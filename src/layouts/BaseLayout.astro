@@ -1,0 +1,141 @@
+---
+/**
+ * BaseLayout.astro — Layout Maestro de Alma Holística
+ *
+ * Implementa:
+ * 1. Estructura HTML5 con lang="es" y modo estricto sólido mate (bg-[#060A1A]).
+ * 2. Carga optimizada de Google Fonts (Cinzel y Plus Jakarta Sans).
+ * 3. Metadatos SEO completos: OpenGraph, Twitter Cards, Canonical.
+ * 4. Auto-descubrimiento de SitemapFast (/sitemap-index.xml).
+ * 5. Slots estructurados para Schema JSON-LD y contenido principal.
+ * 6. Contenedor de Quiz Modal preparado para hidratación inmediata con client:load.
+ */
+
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_CONFIG } from '../config/site';
+import WhatsAppQuizModal from '../components/react/WhatsAppQuizModal';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+  type?: 'website' | 'article';
+}
+
+const {
+  title = SITE_CONFIG.title,
+  description = SITE_CONFIG.description,
+  canonical,
+  image = SITE_CONFIG.defaultOgImage,
+  type = 'website',
+} = Astro.props;
+
+// Fallback robusto de título y descripción para evitar cadenas vacías
+const pageTitle = title?.trim() ? title.trim() : SITE_CONFIG.title;
+const pageDescription = description?.trim() ? description.trim() : SITE_CONFIG.description;
+
+// Resolución de URL canónica y de imagen OpenGraph
+const canonicalUrl = canonical
+  ? canonical
+  : new URL(Astro.url.pathname, SITE_CONFIG.url).href;
+
+const ogImageUrl = image.startsWith('http')
+  ? image
+  : new URL(image, SITE_CONFIG.url).href;
+---
+
+<!doctype html>
+<html lang="es" class="light scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Google Fonts: Cormorant Garamond & Cinzel (títulos) + Inter & Plus Jakarta Sans (lectura) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Metadatos SEO Base -->
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#F8FAFC" />
+
+    <!-- OpenGraph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:site_name" content={SITE_CONFIG.name} />
+    <meta property="og:locale" content="es_ES" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Auto-descubrimiento de SitemapFast (Requisito estricto T1.21) -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap-index.xml" />
+
+    <!-- Inicialización Instantánea de Tema (Modo Claro por defecto absoluto, Anti-FOUC) -->
+    <script is:inline>
+      (function() {
+        try {
+          const pref = localStorage.getItem('theme_preference');
+          if (pref === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          } else {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {
+          document.documentElement.classList.add('light');
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
+
+    <!-- Slot dedicado para inyección de esquemas Schema.org JSON-LD -->
+    <slot name="schema" />
+  </head>
+
+  <body>
+    <div
+      class="bg-[#F8FAFC] dark:bg-[#060A1A] text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans selection:bg-[#779DD1] selection:text-[#060A1A] antialiased"
+    >
+      <!-- Navegación global sólida mate -->
+      <Navbar />
+
+      <!-- Contenido principal de la página -->
+      <main class="flex-grow">
+        <slot />
+      </main>
+
+      <!-- Pie de página con descargo médico y navegación institucional -->
+      <Footer />
+
+      <!--
+        Contenedor de montaje para el Quiz Modal interactivo de WhatsApp (Milestone M3).
+        client:load garantiza cero latencia de hidratación al ser activado por cualquier CTA.
+      -->
+      <div id="quiz-modal-container" data-client-load="client:load">
+        <slot name="quiz-modal" />
+        <WhatsAppQuizModal client:load />
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,193 @@
+---
+/**
+ * Footer.astro — Pie de Página Global de Alma Holística
+ *
+ * Estilo: Minimalista Editorial de Alta Gama (Inspiración Talora Wellness Group).
+ * Paleta Bi-Color: Fondo Abisal (#060A1A), Superficie Midnight Navy (#0A1226),
+ * Luz Cyan (#779DD1) y Slate (#94A3B8 / #64748B). Cero rastros de amarillo/dorado.
+ * Tipografía: Cormorant Garamond (títulos y secciones) + Inter (lectura y enlaces).
+ *
+ * Requisitos y Contratos:
+ * - Descargo de responsabilidad médica y terapéutica explícito (T1.9.3, ADV-M2.1.12).
+ * - Enlaces institucionales, catálogo de biodescodificación y ciudades.
+ * - Soporte para 20 países (18 Latam + España + EE.UU. hispanos).
+ * - Botón CTA y enlaces con data-open-quiz="true" (ADV-M2.1.13, ADV-GEN3.12, GEN3-10).
+ * - Contención de dimensiones de logo (width="40", height="40", shrink-0) (ADV-M2.1.8).
+ * - Grilla responsive: grid-cols-1 md:grid-cols-2 lg:grid-cols-4 (ADV-M2.1.11).
+ * - Barra legal responsive: flex flex-col sm:flex-row (ADV-M2.1.11).
+ */
+
+import { SITE_CONFIG, buildWhatsAppUrl } from '../config/site';
+
+const currentYear = new Date().getFullYear();
+const whatsappFooterUrl = buildWhatsAppUrl({
+  location: 'Pie de Página'
+});
+
+const featuredSystems = [
+  { name: 'Sistema Digestivo (Gastritis, Colon)', slug: 'gastritis' },
+  { name: 'Sistema Osteomuscular (Lumbalgia, Ciática)', slug: 'lumbalgia' },
+  { name: 'Sistema Nervioso (Ansiedad, Migrañas)', slug: 'ansiedad' },
+  { name: 'Sistema Tegumentario (Dermatitis, Psoriasis)', slug: 'dermatitis' }
+];
+
+const mainCountries = [
+  'España', 'Estados Unidos', 'Colombia', 'México',
+  'Argentina', 'Chile', 'Perú', 'Ecuador',
+  'Uruguay', 'Costa Rica', 'Panamá', 'Rep. Dominicana'
+];
+---
+
+<footer class="w-full bg-[#060A1A] border-t border-slate-800/40 text-slate-300 font-sans mt-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+      
+      <!-- Columna 1: Marca y Propósito Holístico -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-[#0A1226] border border-slate-800/60 flex items-center justify-center overflow-hidden shrink-0">
+            <img
+              src="/logo-mariposa-con-fondo-completo.svg"
+              alt="Alma Holística Logo"
+              class="w-full h-full object-contain"
+              width="40"
+              height="40"
+              loading="lazy"
+            />
+          </div>
+          <span class="font-serif text-2xl font-normal tracking-tight text-white">
+            Alma Holística
+          </span>
+        </div>
+        <p class="text-sm font-normal text-slate-300 dark:text-slate-400 leading-relaxed">
+          Centro de biodescodificación y terapia holística online. Te acompañamos a decodificar el sentido biológico y el conflicto emocional inconsciente detrás de tus síntomas físicos para restaurar tu bienestar integral.
+        </p>
+        <div class="pt-2">
+          <a
+            href={whatsappFooterUrl}
+            data-open-quiz="true"
+            data-location="footer-brand"
+            data-symptom=""
+            class="group inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-[#779DD1] hover:text-white transition-colors duration-300"
+          >
+            <span>Sesiones Online 1 a 1</span>
+            <span class="transform group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna 2: Áreas de Biodescodificación -->
+      <div>
+        <h3 class="font-serif text-base font-medium tracking-wider uppercase text-white mb-5 pb-2.5 border-b border-slate-800/40">
+          Biodescodificación
+        </h3>
+        <ul class="space-y-2.5 text-sm font-normal">
+          {featuredSystems.map((item) => (
+            <li>
+              <a
+                href={`/biodescodificacion/${item.slug}`}
+                class="text-slate-400 hover:text-[#779DD1] transition-colors duration-200 font-medium"
+              >
+                {item.name}
+              </a>
+            </li>
+          ))}
+          <li class="pt-2">
+            <a
+              href="/biodescodificacion"
+              class="group inline-flex items-center gap-1.5 text-sm font-medium text-[#779DD1] hover:text-white transition-colors duration-300"
+            >
+              <span>Ver las 45 Dolencias y Síntomas</span>
+              <span class="transform group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Columna 3: Cobertura Internacional (20 Países) -->
+      <div>
+        <h3 class="font-serif text-base font-medium tracking-wider uppercase text-white mb-5 pb-2.5 border-b border-slate-800/40">
+          Atención en 20 Países
+        </h3>
+        <p class="text-sm font-normal text-slate-300 dark:text-slate-400 mb-3.5 leading-relaxed">
+          Terapia en español con adaptación de zona horaria y moneda local:
+        </p>
+        <div class="flex flex-wrap gap-1.5 text-sm font-normal text-slate-300 dark:text-slate-400">
+          {mainCountries.map((country) => (
+            <span class="bg-[#0A1226] border border-slate-800/60 px-2.5 py-1 rounded-full text-slate-300">
+              {country}
+            </span>
+          ))}
+          <span class="bg-[#0E172F] border border-[#1E3A5F] px-2.5 py-1 rounded-full text-[#779DD1] font-medium">
+            +8 países más
+          </span>
+        </div>
+        <div class="mt-5">
+          <a
+            href="/#ciudades"
+            class="group inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 hover:text-[#779DD1] transition-colors duration-300"
+          >
+            <span>Directorio de más de 100 ciudades</span>
+            <span class="transform group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna 4: Evaluación y Agendamiento -->
+      <div class="space-y-4">
+        <h3 class="font-serif text-base font-medium tracking-wider uppercase text-white mb-5 pb-2.5 border-b border-slate-800/40">
+          Evaluación Inicial
+        </h3>
+        <p class="text-sm font-normal text-slate-300 dark:text-slate-400 leading-relaxed">
+          Inicia tu proceso con una valoración personalizada para comprender qué mensaje intenta comunicarte tu cuerpo.
+        </p>
+        <div class="bg-[#0A1226] border border-slate-800/40 p-5 rounded-2xl space-y-4">
+          <div class="flex items-center gap-2 text-sm text-[#779DD1] font-medium">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>Atención terapéutica activa</span>
+          </div>
+          <a
+            href={whatsappFooterUrl}
+            data-open-quiz="true"
+            data-location="footer-cta"
+            data-symptom=""
+            class="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-white text-[#060A1A] font-medium text-sm tracking-normal hover:bg-[#779DD1] hover:text-[#060A1A] transition-all duration-500 shadow-pill-white group"
+          >
+            <svg class="w-4 h-4 fill-current transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.18-.47-.31"/>
+            </svg>
+            <span>Consultar por WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Sección de Descargo de Responsabilidad Médica Obligatoria (T1.9.3) -->
+    <div class="border-t border-slate-800/40 pt-8 pb-6">
+      <div class="bg-[#0A1226] border border-slate-800/40 rounded-2xl p-6 lg:p-7">
+        <h4 class="text-sm font-medium uppercase tracking-[0.15em] text-[#779DD1] mb-2.5 flex items-center gap-2">
+          <span class="w-4 h-[1px] bg-[#779DD1]/50"></span>
+          Descargo de Responsabilidad Médica y Terapéutica
+        </h4>
+        <p class="text-sm font-normal text-slate-400 leading-relaxed">
+          La biodescodificación y las sesiones de terapia holística ofrecidas por Alma Holística constituyen un proceso de autoconocimiento, gestión emocional y toma de consciencia personal. Bajo ninguna circunstancia sustituyen, modifican, interrumpen ni reemplazan el diagnóstico clínico, consulta, examen o tratamiento médico ni farmacológico prescrito por profesionales sanitarios colegiados. Ante cualquier dolencia, síntoma agudo o enfermedad, consulte de forma prioritaria con su médico o especialista de la salud.
+        </p>
+      </div>
+    </div>
+
+    <!-- Barra Inferior de Derechos y Créditos -->
+    <div class="border-t border-slate-800/40 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm font-normal text-slate-400">
+      <p>
+        &copy; {currentYear} {SITE_CONFIG.name} (<a href="/" class="hover:text-white transition-colors duration-200">{SITE_CONFIG.url.replace('https://', '')}</a>). Todos los derechos reservados.
+      </p>
+      <div class="flex items-center gap-6">
+        <a href="/" class="hover:text-[#779DD1] transition-colors duration-200">Inicio</a>
+        <a href="/biodescodificacion" class="hover:text-[#779DD1] transition-colors duration-200">Catálogo de Dolencias</a>
+        <a href="/#ciudades" class="hover:text-[#779DD1] transition-colors duration-200">Ciudades</a>
+        <a href={whatsappFooterUrl} data-open-quiz="true" data-location="footer-bottom-contact" class="hover:text-[#779DD1] transition-colors duration-200">Contacto</a>
+      </div>
+    </div>
+
+  </div>
+</footer>

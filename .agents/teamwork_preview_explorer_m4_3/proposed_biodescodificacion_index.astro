@@ -1,0 +1,430 @@
+---
+/**
+ * src/pages/biodescodificacion/index.astro — Catálogo General de Dolencias de Biodescodificación
+ *
+ * Arquitectura: Astro 5 SSG, Tailwind CSS y TypeScript.
+ * Estilo Visual: Sólido mate estricto (#060A1A, #0A1226, #0E172F, #1E293B, #38BDF8, #D4AF37).
+ * Cero desenfoque de fondo, sin transparencias ni brillos artificiales.
+ * Anti-CLS: Contención estricta de anchos, responsive de 320px a 4K.
+ *
+ * Características integradas:
+ * - Catálogo completo de las 45 patologías estructuradas con sentido biológico y conflicto inconsciente.
+ * - Clasificación por los 7 sistemas biológicos (Digestivo, Osteoarticular, Nervioso, Respiratorio, etc.).
+ * - Buscador interactivo en vivo y filtro por pestañas de sistema corporal (vanilla JS sin dependencias externas).
+ * - Enlaces directos a cada ruta temática /biodescodificacion/[slug].
+ * - Botones CTA conectados al Quiz Modal con data-open-quiz="true" y data-symptom pre-cargado.
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE_CONFIG, buildWhatsAppUrl } from '../../config/site';
+import { getDolencias, getAllSistemas } from '../../lib/dolencias';
+import type { BodilySystem, DolenciaData } from '../../types/dolencia';
+
+// Carga memoizada de las 45 dolencias del catálogo
+const dolencias = getDolencias();
+
+// Los 7 sistemas corporales validados
+const sistemas: (BodilySystem | string)[] = [
+  'Digestivo',
+  'Nervioso / Emocional',
+  'Osteoarticular',
+  'Dermatológico',
+  'Respiratorio',
+  'Endocrino / Metabólico',
+  'Inmunológico / Circulatorio'
+];
+
+// Agrupación por sistema para el renderizado estructurado
+const dolenciasPorSistema: Record<string, DolenciaData[]> = {};
+for (const sis of sistemas) {
+  dolenciasPorSistema[sis] = dolencias.filter((d) => d.sistema === sis);
+}
+
+// URL de WhatsApp para consultas directas del catálogo
+const catalogoWhatsAppUrl = buildWhatsAppUrl({
+  location: 'Catálogo General de Biodescodificación'
+});
+---
+
+<BaseLayout
+  title="Catálogo de Biodescodificación: 45 Dolencias y Conflictos Emocionales | Alma Holística"
+  description="Diccionario y catálogo completo de las 45 patologías físicas y emocionales en biodescodificación. Conoce el sentido biológico de supervivencia y el conflicto emocional de cada síntoma."
+  canonical="https://almaholistica.com/biodescodificacion"
+>
+  <!-- ========================================================================= -->
+  <!-- 1. BREADCRUMBS Y CABECERA DEL CATÁLOGO                                    -->
+  <!-- ========================================================================= -->
+  <section class="w-full bg-[#060A1A] pt-8 pb-12 sm:pt-12 sm:pb-16 border-b border-[#1E293B]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Navegación de Migas de Pan (Breadcrumbs) -->
+      <nav class="flex items-center gap-2 text-xs text-slate-400 mb-8 font-sans" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#38BDF8] transition-colors">Inicio</a>
+        <span class="text-slate-600">/</span>
+        <span class="text-slate-200 font-medium">Biodescodificación</span>
+      </nav>
+
+      <div class="max-w-4xl">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0E172F] border border-[#D4AF37] text-[#D4AF37] text-xs font-semibold uppercase tracking-wider mb-4">
+          <span>Diccionario Bioemocional & Sentido Biológico</span>
+        </div>
+
+        <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight mb-4">
+          Catálogo Completo de <span class="text-[#38BDF8]">Biodescodificación</span>
+        </h1>
+
+        <p class="text-base sm:text-lg text-slate-300 font-sans leading-relaxed">
+          Consulta las 45 afecciones físicas y desequilibrios emocionales estructurados por sistema corporal. Cada patología expresa una respuesta biológica de adaptación ante vivencias no resueltas. Identifica el conflicto de origen y da el primer paso hacia tu sanación consciente.
+        </p>
+      </div>
+
+      <!-- Barra de Búsqueda y Filtro de Sistemas Corporales -->
+      <div class="mt-10 space-y-6">
+        
+        <!-- Input de Búsqueda Reactivo -->
+        <div class="relative max-w-xl">
+          <input
+            type="text"
+            id="symptom-filter-input"
+            placeholder="Buscar por síntoma o conflicto (ej: gastritis, ciática, tiroides, migraña...)"
+            class="w-full px-5 py-4 pl-12 rounded-xl bg-[#0A1226] border border-[#1E293B] focus:border-[#38BDF8] text-slate-100 placeholder-slate-500 text-sm font-sans outline-none transition-colors"
+          />
+          <svg class="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+
+        <!-- Pestañas de Filtro por Sistema Corporal -->
+        <div class="flex flex-wrap gap-2 pt-2" id="system-filter-tabs">
+          <button
+            type="button"
+            data-system="all"
+            class="filter-tab active px-4 py-2 rounded-lg text-xs font-semibold font-sans bg-[#38BDF8] text-[#060A1A] border border-[#38BDF8] transition-colors cursor-pointer"
+          >
+            Todos ({dolencias.length})
+          </button>
+
+          {sistemas.map((sis) => {
+            const count = dolenciasPorSistema[sis]?.length || 0;
+            return (
+              <button
+                type="button"
+                data-system={sis}
+                class="filter-tab px-4 py-2 rounded-lg text-xs font-semibold font-sans bg-[#0A1226] hover:bg-[#0E172F] text-slate-300 hover:text-white border border-[#1E293B] hover:border-[#1E3A5F] transition-colors cursor-pointer"
+              >
+                {sis} ({count})
+              </button>
+            );
+          })}
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 2. CATÁLOGO COMPLETO DE 45 DOLENCIAS (GRID RESPONSIVE SÓLIDO MATE)         -->
+  <!-- ========================================================================= -->
+  <section class="w-full bg-[#060A1A] py-16 sm:py-20 border-b border-[#1E293B]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Contador de Resultados Dinámico -->
+      <div class="flex items-center justify-between mb-8 pb-4 border-b border-[#1E293B]">
+        <div class="text-xs text-slate-400 font-sans">
+          Mostrando <span id="visible-count" class="font-bold text-white">{dolencias.length}</span> de {dolencias.length} dolencias analizadas
+        </div>
+        <div class="text-xs text-[#D4AF37] font-sans font-medium">
+          7 Sistemas Biológicos Cubiertos
+        </div>
+      </div>
+
+      <!-- Cuadrícula Principal de Tarjetas (Responsive Grid) -->
+      <div id="catalog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {dolencias.map((item) => (
+          <article
+            class="dolencia-item-card bg-[#0A1226] border border-[#1E293B] rounded-2xl p-6 flex flex-col justify-between hover:border-[#38BDF8] transition-colors"
+            data-sistema={item.sistema}
+            data-search-text={`${item.nombre} ${item.sistema} ${item.conflictoEmocional} ${item.sentidoBiologico}`.toLowerCase()}
+          >
+            <div>
+              <!-- Cabecera de la Tarjeta: Sistema -->
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="inline-block px-2.5 py-1 rounded-md text-[11px] font-semibold tracking-wider uppercase bg-[#0E172F] text-[#D4AF37] border border-[#1E3A5F]">
+                  {item.sistema}
+                </span>
+                <span class="text-[10px] text-slate-500 font-sans uppercase">
+                  Biodescodificación
+                </span>
+              </div>
+
+              <!-- Título de la Patología con Enlace a la Ficha Temática -->
+              <h2 class="font-serif text-xl font-bold text-white mb-3">
+                <a href={`/biodescodificacion/${item.slug}`} class="hover:text-[#38BDF8] transition-colors">
+                  {item.nombre}
+                </a>
+              </h2>
+
+              <!-- Resumen del Conflicto Biológico Inconsciente -->
+              <div class="space-y-2.5 mb-5 font-sans">
+                <div>
+                  <span class="block text-[11px] uppercase tracking-wider font-semibold text-slate-400 mb-1">
+                    Conflicto Emocional:
+                  </span>
+                  <p class="text-xs text-slate-300 leading-relaxed line-clamp-3">
+                    {item.conflictoEmocional}
+                  </p>
+                </div>
+
+                <div>
+                  <span class="block text-[11px] uppercase tracking-wider font-semibold text-[#38BDF8] mb-1">
+                    Sentido Biológico:
+                  </span>
+                  <p class="text-xs text-slate-400 leading-relaxed line-clamp-2">
+                    {item.sentidoBiologico}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pie de la Tarjeta: Enlace a Detalle y Botón de Conversión Interceptado -->
+            <div class="pt-4 border-t border-[#1E293B] flex items-center justify-between gap-3">
+              <a
+                href={`/biodescodificacion/${item.slug}`}
+                class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-300 hover:text-[#38BDF8] transition-colors"
+                aria-label={`Ver sentido biológico completo de ${item.nombre}`}
+              >
+                <span>Ficha completa</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+
+              <button
+                type="button"
+                data-open-quiz="true"
+                data-symptom={item.nombre}
+                data-location="catalogo-grid-button"
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0E172F] hover:bg-[#38BDF8] border border-[#1E3A5F] hover:border-[#38BDF8] text-[#38BDF8] hover:text-[#060A1A] font-bold text-xs transition-colors cursor-pointer"
+              >
+                <span>Evaluar</span>
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Mensaje cuando no hay resultados en el filtro -->
+      <div id="no-results-msg" class="hidden text-center py-16 bg-[#0A1226] border border-[#1E293B] rounded-2xl p-8 mt-6">
+        <p class="font-serif text-lg font-bold text-white mb-2">
+          No se encontraron dolencias con el término buscado
+        </p>
+        <p class="text-xs text-slate-400 font-sans max-w-md mx-auto mb-6">
+          Puedes intentar con un término más general o consultar directamente a un terapeuta a través de nuestro Quiz de Evaluación.
+        </p>
+        <button
+          type="button"
+          data-open-quiz="true"
+          data-location="catalogo-no-results"
+          data-symptom=""
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#38BDF8] hover:bg-[#7DD3FC] text-[#060A1A] font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
+        >
+          <span>Evaluar tu Síntoma en el Quiz</span>
+          <span aria-hidden="true">&rarr;</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 3. FUNDAMENTO METODOLÓGICO DE LOS 7 SISTEMAS                              -->
+  <!-- ========================================================================= -->
+  <section class="w-full bg-[#060A1A] py-16 sm:py-20 border-b border-[#1E293B]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-xs font-semibold uppercase tracking-widest text-[#D4AF37] block mb-2">
+          Mapa Somático
+        </span>
+        <h2 class="font-serif text-2xl sm:text-4xl font-bold text-white tracking-wide">
+          Cómo se proyectan las emociones en cada sistema
+        </h2>
+        <p class="text-sm sm:text-base text-slate-400 mt-4 leading-relaxed font-sans">
+          Cada órgano y tejido deriva de una capa embrionaria específica con memorias arquetípicas de supervivencia.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <div class="bg-[#0A1226] border border-[#1E293B] rounded-2xl p-6 space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#38BDF8]"></span>
+            <h3 class="font-serif text-lg font-semibold text-white">Sistema Digestivo</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+            Conflictos de <em>"bocado"</em>: aquello que no podemos tragar, tolerar, asimilar o eliminar (injusticias familiares, decepciones viscerales o carencia material).
+          </p>
+        </div>
+
+        <div class="bg-[#0A1226] border border-[#1E293B] rounded-2xl p-6 space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#D4AF37]"></span>
+            <h3 class="font-serif text-lg font-semibold text-white">Sistema Osteoarticular</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+            Conflictos de <em>desvalorización profunda</em>, falta de apoyo del clan, sensación de no ser suficientemente apto o llevar un peso excesivo sobre los hombros.
+          </p>
+        </div>
+
+        <div class="bg-[#0A1226] border border-[#1E293B] rounded-2xl p-6 space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#38BDF8]"></span>
+            <h3 class="font-serif text-lg font-semibold text-white">Sistema Nervioso / Emocional</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+            Conflictos de <em>alerta continua</em>, hipervigilancia ante peligros imaginados o reales, miedo al futuro y necesidad rígida de mantener el control mental.
+          </p>
+        </div>
+
+        <div class="bg-[#0A1226] border border-[#1E293B] rounded-2xl p-6 space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#D4AF37]"></span>
+            <h3 class="font-serif text-lg font-semibold text-white">Sistema Dermatológico</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+            Conflictos de <em>separación y contacto</em>: pérdida involuntaria de cercanía física o rechazo a un contacto no deseado que vulnera los límites personales.
+          </p>
+        </div>
+
+        <div class="bg-[#0A1226] border border-[#1E293B] rounded-2xl p-6 space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#38BDF8]"></span>
+            <h3 class="font-serif text-lg font-semibold text-white">Sistema Respiratorio</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+            Conflictos de <em>miedo a la muerte o asfixia vital</em>: invasión del propio territorio, disputas en el hogar o sensación de que no hay suficiente espacio para respirar.
+          </p>
+        </div>
+
+        <div class="bg-[#0A1226] border border-[#1E293B] rounded-2xl p-6 space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#D4AF37]"></span>
+            <h3 class="font-serif text-lg font-semibold text-white">Endocrino & Circulatorio</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+            Conflictos con <em>el tiempo</em> (urgencia o necesidad de frenar el tiempo en tiroides) y conflictos con <em>los lazos de sangre</em> y la cohesión de la familia.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 4. CTA GLOBAL CON MODAL DE EVALUACIÓN                                     -->
+  <!-- ========================================================================= -->
+  <section class="w-full bg-[#060A1A] py-16 sm:py-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-[#0E172F] border border-[#1E3A5F] rounded-3xl p-8 sm:p-12 text-center space-y-6">
+        
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0A1226] border border-[#D4AF37] text-[#D4AF37] text-xs font-semibold uppercase tracking-wider">
+          Sesiones Online 1 a 1
+        </span>
+
+        <h2 class="font-serif text-2xl sm:text-4xl font-bold text-white tracking-wide">
+          ¿Deseas decodificar tu síntoma con un terapeuta experto?
+        </h2>
+
+        <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto font-sans leading-relaxed">
+          Inicia nuestro cuestionario interactivo de 4 pasos para identificar el patrón de evolución de tu dolencia. Te orientaremos en tu idioma y según las necesidades de tu caso.
+        </p>
+
+        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href={catalogoWhatsAppUrl}
+            data-open-quiz="true"
+            data-location="catalogo-final-cta"
+            data-symptom=""
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-[#38BDF8] hover:bg-[#7DD3FC] text-[#060A1A] font-bold text-base transition-colors"
+          >
+            <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+              <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.18-.47-.31"/>
+            </svg>
+            <span>Iniciar Evaluación Gratuita por WhatsApp</span>
+          </a>
+        </div>
+
+        <p class="text-[11px] text-slate-400 font-sans max-w-xl mx-auto mt-4 leading-normal">
+          * Recordatorio terapéutico: la biodescodificación complementa tu autoconocimiento y no reemplaza tratamientos médicos ni farmacológicos.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Script ligero de filtrado interactivo por texto y por sistema corporal (cero CLS) -->
+  <script>
+    const searchInput = document.getElementById('symptom-filter-input') as HTMLInputElement | null;
+    const tabButtons = document.querySelectorAll<HTMLButtonElement>('.filter-tab');
+    const cards = document.querySelectorAll<HTMLElement>('.dolencia-item-card');
+    const visibleCount = document.getElementById('visible-count');
+    const noResultsMsg = document.getElementById('no-results-msg');
+
+    let currentSystem = 'all';
+    let searchQuery = '';
+
+    function applyFilters() {
+      let count = 0;
+
+      cards.forEach((card) => {
+        const cardSystem = card.getAttribute('data-sistema') || '';
+        const cardSearchText = card.getAttribute('data-search-text') || '';
+
+        const matchesSystem = currentSystem === 'all' || cardSystem === currentSystem;
+        const matchesQuery = !searchQuery || cardSearchText.includes(searchQuery);
+
+        if (matchesSystem && matchesQuery) {
+          card.style.display = 'flex';
+          count++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (visibleCount) {
+        visibleCount.textContent = String(count);
+      }
+
+      if (noResultsMsg) {
+        if (count === 0) {
+          noResultsMsg.classList.remove('hidden');
+        } else {
+          noResultsMsg.classList.add('hidden');
+        }
+      }
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const target = e.target as HTMLInputElement;
+        searchQuery = target.value.toLowerCase().trim();
+        applyFilters();
+      });
+    }
+
+    tabButtons.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        tabButtons.forEach((t) => {
+          t.classList.remove('bg-[#38BDF8]', 'text-[#060A1A]', 'border-[#38BDF8]');
+          t.classList.add('bg-[#0A1226]', 'text-slate-300', 'border-[#1E293B]');
+        });
+
+        tab.classList.remove('bg-[#0A1226]', 'text-slate-300', 'border-[#1E293B]');
+        tab.classList.add('bg-[#38BDF8]', 'text-[#060A1A]', 'border-[#38BDF8]');
+
+        currentSystem = tab.getAttribute('data-system') || 'all';
+        applyFilters();
+      });
+    });
+  </script>
+</BaseLayout>

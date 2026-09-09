@@ -1,0 +1,170 @@
+---
+/**
+ * Navbar.astro — Barra de Navegación Global de Alma Holística
+ *
+ * Estilo: Sólido mate estricto en Midnight Navy (#0A1226), borde #1E293B.
+ * Diseño 100% opaco y sobrio sin desenfoques ni brillos artificiales.
+ * Incluye: Logo SVG oficial animado, navegación temática/hiperlocal y botón CTA WhatsApp.
+ */
+
+import { SITE_CONFIG, buildWhatsAppUrl } from '../config/site';
+
+const currentPath = Astro.url.pathname;
+const whatsappCtaUrl = buildWhatsAppUrl({
+  location: 'Navegación General'
+});
+---
+
+<header class="w-full bg-[#0A1226] border-b border-[#1E293B] sticky top-0 z-40 transition-colors">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Logo y Nombre de Marca -->
+      <a
+        href="/"
+        class="flex items-center gap-3.5 group focus:outline-none focus:ring-2 focus:ring-[#38BDF8] rounded-lg p-1"
+        aria-label="Alma Holística — Ir a Inicio"
+      >
+        <div class="w-11 h-11 relative flex items-center justify-center rounded-full overflow-hidden bg-[#060A1A] border border-[#1E293B] shrink-0">
+          <img
+            src="/logo-mariposa-con-fondo-completo.svg"
+            alt="Alma Holística Logo"
+            class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300"
+            width="44"
+            height="44"
+            loading="eager"
+          />
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif text-xl sm:text-2xl font-bold tracking-wide text-white group-hover:text-[#D4AF37] transition-colors">
+            Alma Holística
+          </span>
+          <span class="text-[10px] tracking-widest uppercase text-[#D4AF37] font-sans font-medium hidden sm:block">
+            Biodescodificación & Sanación
+          </span>
+        </div>
+      </a>
+
+      <!-- Navegación de Escritorio -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Navegación principal">
+        <a
+          href="/"
+          class:list={[
+            'text-sm font-medium transition-colors hover:text-[#38BDF8]',
+            currentPath === '/' ? 'text-[#38BDF8] font-semibold' : 'text-slate-300'
+          ]}
+        >
+          Inicio
+        </a>
+        <a
+          href="/biodescodificacion"
+          class:list={[
+            'text-sm font-medium transition-colors hover:text-[#38BDF8]',
+            currentPath.startsWith('/biodescodificacion') ? 'text-[#38BDF8] font-semibold' : 'text-slate-300'
+          ]}
+        >
+          Biodescodificación
+        </a>
+        <a
+          href="/#ciudades"
+          class="text-sm font-medium text-slate-300 hover:text-[#38BDF8] transition-colors"
+        >
+          Ciudades
+        </a>
+      </nav>
+
+      <!-- Botón CTA WhatsApp (Desktop) -->
+      <div class="hidden sm:flex items-center">
+        <a
+          href={whatsappCtaUrl}
+          data-open-quiz="true"
+          data-location="global"
+          data-symptom=""
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#38BDF8] hover:bg-[#7DD3FC] text-[#060A1A] font-bold text-sm transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#0A1226] focus:ring-[#38BDF8]"
+        >
+          <!-- Icono SVG de WhatsApp -->
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.18-.47-.31"/>
+          </svg>
+          <span>Agendar Sesión</span>
+        </a>
+      </div>
+
+      <!-- Botón Menú Móvil -->
+      <div class="flex md:hidden items-center gap-2">
+        <button
+          type="button"
+          id="mobile-menu-button"
+          class="p-2 rounded-md text-slate-300 hover:text-white hover:bg-[#0E172F] border border-[#1E293B] focus:outline-none focus:ring-2 focus:ring-[#38BDF8]"
+          aria-label="Abrir menú de navegación"
+          aria-expanded="false"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path id="menu-open-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            <path id="menu-close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Panel Menú Móvil (Sólido mate, sin transparencias) -->
+  <div id="mobile-menu" class="hidden md:hidden bg-[#0A1226] border-t border-[#1E293B] px-4 pt-3 pb-6 space-y-3">
+    <a
+      href="/"
+      class:list={[
+        'block px-3 py-2 rounded-md text-base font-medium',
+        currentPath === '/' ? 'bg-[#0E172F] text-[#38BDF8]' : 'text-slate-200 hover:bg-[#0E172F] hover:text-[#38BDF8]'
+      ]}
+    >
+      Inicio
+    </a>
+    <a
+      href="/biodescodificacion"
+      class:list={[
+        'block px-3 py-2 rounded-md text-base font-medium',
+        currentPath.startsWith('/biodescodificacion') ? 'bg-[#0E172F] text-[#38BDF8]' : 'text-slate-200 hover:bg-[#0E172F] hover:text-[#38BDF8]'
+      ]}
+    >
+      Biodescodificación (Dolencias)
+    </a>
+    <a
+      href="/#ciudades"
+      class="block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-[#0E172F] hover:text-[#38BDF8]"
+    >
+      Ciudades & Cobertura
+    </a>
+    <div class="pt-2">
+      <a
+        href={whatsappCtaUrl}
+        data-open-quiz="true"
+        data-location="mobile-nav"
+        data-symptom=""
+        class="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-[#38BDF8] text-[#060A1A] font-bold text-base hover:bg-[#7DD3FC] transition-colors"
+      >
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.18-.47-.31"/>
+        </svg>
+        <span>Agendar Sesión por WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+  const openIcon = document.getElementById('menu-open-icon');
+  const closeIcon = document.getElementById('menu-close-icon');
+
+  if (btn && menu && openIcon && closeIcon) {
+    btn.addEventListener('click', () => {
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!isExpanded));
+      menu.classList.toggle('hidden');
+      openIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    });
+  }
+</script>

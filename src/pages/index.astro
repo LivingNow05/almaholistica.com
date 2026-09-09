@@ -1,0 +1,1092 @@
+---
+/**
+ * src/pages/index.astro — Landing Page Principal de Alma Holística
+ *
+ * Estilo: Minimalista Editorial Contemporáneo (Inspiración Talora Wellness Group).
+ * Paleta Bi-Color Depurada:
+ * - Fondo Abisal Principal: #060A1A (Sólido mate, sereno, ultra-limpio)
+ * - Superficies y Tarjetas: #0A1226 y #0E172F con bordes ultra-finos border-slate-800/40
+ * - Luz de Acento Única: #779DD1 (Cyan suave para badges, micro-líneas de 1px y estados activos)
+ * - Botones de Acción Primarios: Píldora redondeada en blanco puro (bg-white text-[#060A1A] rounded-full shadow-pill-white)
+ * - Tipografía: Cormorant Garamond a gran escala + Inter font-light
+ *
+ * Integraciones clave:
+ * - Embebe <object type="image/svg+xml" data="/logo-mariposa-con-fondo-completo.svg"> para interactividad total.
+ * - Animaciones escalonadas fluidas con GSAP (staggered fade-up, cubic-bezier) y loop sinusoidal continuo.
+ * - Indicador de scroll vertical minimalista de 1px (h-16).
+ * - Tarjetas amplias rounded-[2.5rem], padding generoso e iconografía en burbujas circulares w-14 h-14.
+ * - Preservación 100% de datasets SSG, filtros de búsqueda de 45 dolencias y 113+ ciudades.
+ * - Todos los botones de conversión conectados al WhatsAppQuizModal mediante data-open-quiz="true".
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { buildWhatsAppUrl } from '../config/site';
+import { getDolencias } from '../lib/dolencias';
+import { getCities } from '../lib/cities';
+
+// Obtención memoizada de datasets SSG
+const allDolencias = getDolencias();
+const allCities = getCities();
+
+// Dolencias destacadas para el catálogo principal (12 patologías de alta intención clínica)
+// REQUISITO ESTRICTO ADV-M4.2.18 y ADV-GEN3.10: Mantener nombre 'featuredSlugs' y slugs canónicos 'migrana' y 'sobrepeso-retencion'
+const featuredSlugs = [
+  'gastritis',
+  'colon-irritable',
+  'ansiedad',
+  'lumbalgia',
+  'ciatica',
+  'hipotiroidismo',
+  'dermatitis',
+  'migrana',
+  'insomnio',
+  'sobrepeso-retencion',
+  'fibromialgia',
+  'bruxismo'
+];
+
+const featuredDolencias = allDolencias.filter((d) => featuredSlugs.includes(d.slug));
+
+// 20 Países aprobados
+const countriesList = [
+  'España',
+  'Estados Unidos',
+  'Colombia',
+  'México',
+  'Argentina',
+  'Chile',
+  'Perú',
+  'Ecuador',
+  'Bolivia',
+  'Uruguay',
+  'Paraguay',
+  'Venezuela',
+  'Costa Rica',
+  'Panamá',
+  'República Dominicana',
+  'Guatemala',
+  'El Salvador',
+  'Honduras',
+  'Nicaragua',
+  'Brasil'
+];
+
+// Ciudades capitales y polos principales para acceso rápido
+const priorityCitySlugs = [
+  'madrid',
+  'barcelona',
+  'bogota',
+  'medellin',
+  'cali',
+  'cdmx',
+  'guadalajara',
+  'monterrey',
+  'buenos-aires',
+  'santiago',
+  'lima',
+  'quito',
+  'miami',
+  'los-angeles',
+  'houston',
+  'nueva-york'
+];
+
+const priorityCities = allCities.filter((c) => priorityCitySlugs.includes(c.slug));
+
+// URLs para apertura directa de WhatsApp o Quiz (REQUISITO ADV-M4.2.16)
+const heroWhatsAppUrl = buildWhatsAppUrl({
+  location: 'Página de Inicio — Hero Principal'
+});
+
+const evaluationWhatsAppUrl = buildWhatsAppUrl({
+  location: 'Página de Inicio — Evaluación General'
+});
+---
+
+<BaseLayout
+  title="Alma Holística — Biodescodificación y Terapia Holística Online"
+  description="Centro clínico de biodescodificación y sanación bioemocional online. Comprende el origen inconsciente detrás de tus síntomas físicos con sesiones 1 a 1 en más de 20 países."
+>
+  <!-- ========================================================================= -->
+  <!-- 1. HERO SECTION MINIMALISTA EDITORIAL (ESTILO TALORA WELLNESS GROUP)      -->
+  <!-- ========================================================================= -->
+  <section class="relative w-full bg-[#060A1A] py-16 sm:py-24 lg:py-32 border-b border-slate-800/40 overflow-hidden">
+    <!-- Aura sutil flotante en fondo -->
+    <div class="hero-floating-aura absolute -top-40 left-1/4 w-[35rem] h-[35rem] bg-[#779DD1]/5 rounded-full blur-3xl pointer-events-none animate-float" aria-hidden="true"></div>
+    
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center min-h-[75vh]">
+        
+        <!-- Columna Izquierda: Copy Editorial & Botones Píldora -->
+        <div class="lg:col-span-7 flex flex-col items-start text-left">
+          
+          <!-- Eyebrow con línea divisoria minimalista de 1px -->
+          <span class="gsap-hero-el text-xs font-semibold tracking-[0.2em] text-[#779DD1] uppercase mb-6 flex items-center gap-3">
+            <span class="w-8 h-[1px] bg-[#779DD1]/50"></span>
+            TERAPIA Y BIODESCODIFICACIÓN
+          </span>
+
+          <!-- Título Editorial a Gran Escala (Cormorant Garamond / Cinzel) -->
+          <h1 class="gsap-hero-el font-serif text-5xl md:text-7xl lg:text-[5.5rem] tracking-tight leading-[1.05] font-normal text-slate-900 dark:text-white mb-8">
+            Decodifica la raíz emocional de tus <span class="italic text-[#779DD1]">síntomas</span>
+          </h1>
+
+          <!-- Párrafo de Lectura Serena -->
+          <p class="gsap-hero-el text-base sm:text-lg lg:text-xl text-slate-700 dark:text-slate-300 font-normal max-w-xl mb-10 leading-relaxed">
+            Tu organismo no comete errores fortuitos: cada dolencia física responde a un conflicto biológico inconsciente. En Alma Holística te guiamos a resignificar tu vivencia mediante sesiones online personalizadas 1 a 1 en más de 20 países.
+          </p>
+
+          <!-- Botones de Acción de Alta Gama -->
+          <div class="gsap-hero-el flex flex-col sm:flex-row items-stretch sm:items-center gap-5 w-full sm:w-auto">
+            <a
+              href={heroWhatsAppUrl}
+              data-open-quiz="true"
+              data-location="hero-cta-primary"
+              data-symptom=""
+              class="btn-action-pill-white inline-flex items-center justify-center gap-3 bg-white text-[#060A1A] px-8 py-4 rounded-full text-sm font-medium hover:bg-[#779DD1] hover:text-[#060A1A] transition-all duration-500 shadow-pill-white focus:outline-none focus:ring-2 focus:ring-[#779DD1]"
+            >
+              <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.18-.47-.31"/>
+              </svg>
+              <span>Iniciar Evaluación Online</span>
+            </a>
+
+            <a
+              href="#dolencias"
+              class="group inline-flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300 hover:text-[#779DD1] font-medium py-3.5 px-4 transition-colors"
+            >
+              <span>Explorar 45 Dolencias</span>
+              <span class="group-hover:translate-x-1.5 transition-transform duration-300" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+
+          <!-- Indicador de Scroll Vertical Minimalista de 1px (h-16 = 64px) -->
+          <div class="gsap-hero-el hidden lg:flex items-center gap-4 text-xs tracking-widest text-slate-600 dark:text-slate-400 font-medium uppercase pt-12">
+            <span>Scroll</span>
+            <div class="w-[1px] h-16 bg-slate-800 relative overflow-hidden" aria-hidden="true">
+              <div class="absolute inset-x-0 top-0 h-1/2 bg-[#779DD1] animate-scroll-line"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Columna Derecha: Escenario del Logo Mariposa SVG Animado Interactivo Libre -->
+        <div class="lg:col-span-5 flex justify-center items-center relative">
+          <!-- Floating Aura sutil orgánico en loop sinusoidal detrás del logo -->
+          <div class="hero-floating-aura absolute -inset-6 bg-[#779DD1]/10 rounded-full blur-2xl animate-float pointer-events-none" aria-hidden="true"></div>
+
+          <!-- Escenario del Logo Mariposa Circular Libre (sin marco cuadrado ni bordes) -->
+          <div class="gsap-hero-el relative w-72 h-72 sm:w-88 sm:h-88 md:w-[26rem] md:h-[26rem] flex items-center justify-center shrink-0 group">
+            <object
+              type="image/svg+xml"
+              data="/logo-mariposa-con-fondo-completo.svg"
+              class="w-full h-full object-contain pointer-events-auto cursor-pointer filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)]"
+              aria-label="Alma Holística — Logo Oficial Interactivo de la Mariposa Sagrada"
+            >
+              <img
+                src="/logo-mariposa-con-fondo-completo.svg"
+                alt="Alma Holística Logo"
+                class="w-full h-full object-contain"
+                width="320"
+                height="320"
+                loading="eager"
+              />
+            </object>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Métricas de Confianza Sólidas en Formato Minimalista -->
+      <div class="gsap-hero-el pt-14 grid grid-cols-3 gap-6 border-t border-slate-800/40 text-center lg:text-left max-w-2xl">
+        <div>
+          <span class="block font-serif text-2xl sm:text-3xl font-normal text-slate-900 dark:text-white">45</span>
+          <span class="text-sm text-slate-600 dark:text-slate-400 font-sans tracking-wide font-medium">Patologías analizadas</span>
+        </div>
+        <div>
+          <span class="block font-serif text-2xl sm:text-3xl font-normal text-[#779DD1]">20</span>
+          <span class="text-sm text-slate-600 dark:text-slate-400 font-sans tracking-wide font-medium">Países atendidos</span>
+        </div>
+        <div>
+          <span class="block font-serif text-2xl sm:text-3xl font-normal text-slate-900 dark:text-white">100%</span>
+          <span class="text-sm text-slate-600 dark:text-slate-400 font-sans tracking-wide font-medium">Sesiones online 1 a 1</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 2. CITA EDITORIAL Y MANIFIESTO BIOLÓGICO                                  -->
+  <!-- ========================================================================= -->
+  <section class="w-full bg-[#060A1A] py-24 lg:py-32 border-b border-slate-800/40 text-center relative overflow-hidden">
+    <div class="gsap-scroll-manifesto max-w-4xl mx-auto px-6 relative z-10">
+      <span class="text-xs font-semibold tracking-[0.25em] text-[#779DD1] uppercase mb-8 flex items-center justify-center gap-3">
+        <span class="w-8 h-[1px] bg-[#779DD1]/60"></span>
+        EL MANIFIESTO BIOLÓGICO
+        <span class="w-8 h-[1px] bg-[#779DD1]/60"></span>
+      </span>
+      <blockquote class="font-serif text-2xl sm:text-3xl lg:text-4xl text-slate-800 dark:text-slate-100 font-normal sm:font-medium leading-relaxed mb-8">
+        “El síntoma físico no es un fallo accidental de tu fisiología, sino una brújula biológica de precisión que señala qué emoción quedó reprimida en el inconsciente.”
+      </blockquote>
+      <div class="inline-flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400 font-sans tracking-widest uppercase not-italic font-medium">
+        <span class="w-2 h-2 rounded-full bg-[#779DD1]"></span>
+        <span>Alma Holística &bull; Metodología Clínica Integrativa</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 3. PILARES DE LA BIODESCODIFICACIÓN (TARJETAS ROUNDED-[2.5REM])           -->
+  <!-- ========================================================================= -->
+  <section class="w-full bg-[#060A1A] py-24 lg:py-32 border-b border-slate-800/40">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      
+      <div class="gsap-scroll-header text-center max-w-3xl mx-auto mb-20">
+        <span class="text-xs font-semibold uppercase tracking-[0.25em] text-[#779DD1] flex items-center justify-center gap-3 mb-4">
+          <span class="w-8 h-[1px] bg-[#779DD1]/60"></span>
+          FUNDAMENTO TERAPÉUTICO
+          <span class="w-8 h-[1px] bg-[#779DD1]/60"></span>
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-900 dark:text-white tracking-tight">
+          ¿Cómo transforma la biodescodificación tu salud integral?
+        </h2>
+        <p class="text-base text-slate-700 dark:text-slate-400 mt-5 leading-relaxed font-normal max-w-2xl mx-auto">
+          Un abordaje complementario a la medicina tradicional que descodifica el sentido adaptativo detrás de cada manifestación física y somática.
+        </p>
+      </div>
+
+      <div class="gsap-scroll-pilares-grid grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Pilar 1 -->
+        <div class="gsap-scroll-pilar bg-[#0A1226] border border-slate-800/40 rounded-[2.5rem] p-10 lg:p-12 space-y-6 transition-all duration-500 hover:-translate-y-1 hover:border-[#779DD1]/50 flex flex-col justify-between">
+          <div class="space-y-6">
+            <div class="w-14 h-14 rounded-full bg-[#0E172F] border border-slate-800/60 flex items-center justify-center text-[#779DD1] shrink-0">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="font-serif text-2xl font-normal text-slate-900 dark:text-white">
+              1. El Choque Inconsciente
+            </h3>
+            <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
+              Una vivencia dramática experimentada en soledad, sin solución inmediata o reprimida en el plano consciente activa un programa biológico especial en el tejido correspondiente del organismo.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-slate-800/40">
+            <span class="text-sm text-slate-600 dark:text-slate-400 font-sans tracking-wide font-medium">Fase de activación bioemocional</span>
+          </div>
+        </div>
+
+        <!-- Pilar 2 -->
+        <div class="gsap-scroll-pilar bg-[#0A1226] border border-slate-800/40 rounded-[2.5rem] p-10 lg:p-12 space-y-6 transition-all duration-500 hover:-translate-y-1 hover:border-[#779DD1]/50 flex flex-col justify-between">
+          <div class="space-y-6">
+            <div class="w-14 h-14 rounded-full bg-[#0E172F] border border-slate-800/60 flex items-center justify-center text-[#779DD1] shrink-0">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="font-serif text-2xl font-normal text-slate-900 dark:text-white">
+              2. El Sentido Biológico
+            </h3>
+            <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
+              El síntoma físico no es un error de la naturaleza, sino una respuesta adaptativa orientada a amortiguar el impacto del estrés biológico no resuelto en el sistema nervioso.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-slate-800/40">
+            <span class="text-sm text-slate-600 dark:text-slate-400 font-sans tracking-wide font-medium">Respuesta fisiológica inteligente</span>
+          </div>
+        </div>
+
+        <!-- Pilar 3 -->
+        <div class="gsap-scroll-pilar bg-[#0A1226] border border-slate-800/40 rounded-[2.5rem] p-10 lg:p-12 space-y-6 transition-all duration-500 hover:-translate-y-1 hover:border-[#779DD1]/50 flex flex-col justify-between">
+          <div class="space-y-6">
+            <div class="w-14 h-14 rounded-full bg-[#0E172F] border border-slate-800/60 flex items-center justify-center text-[#779DD1] shrink-0">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            </div>
+            <h3 class="font-serif text-2xl font-normal text-slate-900 dark:text-white">
+              3. Toma de Conciencia
+            </h3>
+            <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
+              Al identificar, verbalizar y resignificar la emoción atrapada, el sistema nervioso desactiva la señal de alarma biológica, permitiendo la autorregulación natural del organismo.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-slate-800/40">
+            <span class="text-sm text-slate-600 dark:text-slate-400 font-sans tracking-wide font-medium">Reprogramación y resolución</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 4. DOLENCIAS Y SÍNTOMAS FRECUENTES (#dolencias)                          -->
+  <!-- ========================================================================= -->
+  <section id="dolencias" class="w-full bg-[#060A1A] py-24 lg:py-32 border-b border-slate-800/40">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-[0.25em] text-[#779DD1] flex items-center gap-3 mb-4">
+            <span class="w-8 h-[1px] bg-[#779DD1]/60"></span>
+            CATÁLOGO CLÍNICO DE SÍNTOMAS
+          </span>
+          <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-900 dark:text-white tracking-tight">
+            Dolencias y síntomas frecuentes
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-400 mt-4 font-normal max-w-2xl leading-relaxed">
+            Explora el conflicto biológico inconsciente detrás de las 12 patologías más consultadas en nuestras sesiones online.
+          </p>
+        </div>
+
+        <div>
+          <a
+            href="/biodescodificacion"
+            class="group inline-flex items-center gap-2 text-sm text-[#779DD1] hover:text-white font-medium transition-colors"
+          >
+            <span>Ver Catálogo Completo (45 dolencias)</span>
+            <span class="group-hover:translate-x-1.5 transition-transform duration-300" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Buscador Rápido de Dolencias en Cliente -->
+      <div class="mb-12">
+        <div class="relative max-w-xl">
+          <input
+            type="text"
+            id="home-symptom-search"
+            placeholder="Buscar síntoma (ej: gastritis, ansiedad, lumbalgia, colon...)"
+            class="w-full px-6 py-4 pl-12 rounded-full bg-[#0A1226] border border-slate-800/40 focus:border-[#779DD1] text-slate-100 placeholder-slate-500 text-sm font-sans outline-none transition-all duration-300"
+          />
+          <svg class="w-5 h-5 text-slate-500 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Grid de Tarjetas con Estilo Editorial Rounded-[2.5rem] (Exactamente 12 tarjetas) -->
+      <div id="home-dolencias-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {featuredDolencias.map((item) => (
+          <article
+            class="home-dolencia-card bg-[#0A1226] border border-slate-800/40 rounded-[2.5rem] p-8 lg:p-10 flex flex-col justify-between hover:border-[#779DD1]/50 transition-all duration-500 hover:-translate-y-1"
+            data-search={`${item.nombre} ${item.sistema} ${item.conflictoEmocional}`.toLowerCase()}
+          >
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-5">
+                <span class="inline-block px-3.5 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#0E172F] text-[#779DD1] border border-slate-800/60">
+                  {item.sistema}
+                </span>
+              </div>
+
+              <h3 class="font-serif text-2xl font-normal text-slate-900 dark:text-white mb-3">
+                <a href={`/biodescodificacion/${item.slug}`} class="hover:text-[#779DD1] transition-colors">
+                  {item.nombre}
+                </a>
+              </h3>
+
+              <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-normal line-clamp-3 mb-6">
+                <strong class="text-slate-900 dark:text-slate-100 font-semibold">Conflicto:</strong> {item.conflictoEmocional}
+              </p>
+            </div>
+
+            <div class="pt-5 border-t border-slate-800/40 flex items-center justify-between gap-3">
+              <a href={`/biodescodificacion/${item.slug}`} class="group inline-flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-400 hover:text-[#779DD1] transition-colors font-medium">
+                <span>Sentido biológico</span>
+                <span class="group-hover:translate-x-1 transition-transform" aria-hidden="true">&rarr;</span>
+              </a>
+
+              <button
+                type="button"
+                data-open-quiz="true"
+                data-symptom={item.nombre}
+                data-location="home-card-cta"
+                class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#0E172F] hover:bg-white text-slate-300 hover:text-[#060A1A] border border-slate-800/60 text-sm font-medium transition-all duration-500 hover:shadow-pill-white cursor-pointer"
+              >
+                <span>Evaluar</span>
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Banner de Navegación hacia el Catálogo Completo -->
+      <div class="mt-14 bg-[#0A1226] border border-slate-800/40 rounded-[2.5rem] p-10 lg:p-14 flex flex-col sm:flex-row items-center justify-between gap-8 text-center sm:text-left">
+        <div class="space-y-2">
+          <h3 class="font-serif text-2xl sm:text-3xl font-normal text-slate-900 dark:text-white">
+            ¿Buscas otra patología o síntoma corporal?
+          </h3>
+          <p class="text-sm text-slate-700 dark:text-slate-400 font-normal max-w-xl leading-relaxed">
+            Nuestro catálogo clasifica 45 afecciones en 7 sistemas corporales con explicaciones del sentido biológico y preguntas de reflexión.
+          </p>
+        </div>
+        <a
+          href="/biodescodificacion"
+          class="btn-action-pill-white inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-[#060A1A] font-medium text-sm hover:bg-[#779DD1] hover:text-[#060A1A] transition-all duration-500 shadow-pill-white shrink-0"
+        >
+          <span>Explorar Catálogo Completo</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 5. DIRECTORIO HIPERLOCAL DE CIUDADES (#ciudades)                          -->
+  <!-- ========================================================================= -->
+  <section id="ciudades" class="w-full bg-[#060A1A] py-24 lg:py-32 border-b border-slate-800/40">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      
+      <div class="gsap-scroll-header text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-semibold uppercase tracking-[0.25em] text-[#779DD1] flex items-center justify-center gap-3 mb-4">
+          <span class="w-8 h-[1px] bg-[#779DD1]/60"></span>
+          COBERTURA INTERNACIONAL EN ESPAÑOL
+          <span class="w-8 h-[1px] bg-[#779DD1]/60"></span>
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-900 dark:text-white tracking-tight">
+          Sesiones de biodescodificación online en tu ciudad
+        </h2>
+        <p class="text-base text-slate-700 dark:text-slate-400 mt-4 leading-relaxed font-normal max-w-2xl mx-auto">
+          Atendemos consultantes en España, Estados Unidos y toda Latinoamérica. Sesiones 1 a 1 adaptadas a tu huso horario y moneda de curso legal.
+        </p>
+      </div>
+
+      <!-- Buscador de Ciudades en Tiempo Real -->
+      <div class="max-w-md mx-auto mb-14">
+        <div class="relative">
+          <input
+            type="text"
+            id="home-city-search"
+            placeholder="Buscar tu ciudad (ej: Bogotá, Madrid, CDMX, Miami...)"
+            class="w-full px-6 py-4 pl-12 rounded-full bg-[#0A1226] border border-slate-800/40 focus:border-[#779DD1] text-slate-100 placeholder-slate-500 text-sm font-sans outline-none transition-all duration-300"
+          />
+          <svg class="w-5 h-5 text-slate-500 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Polos Principales / Ciudades Destacadas -->
+      <div class="mb-14">
+        <h3 class="font-serif text-sm sm:text-base font-normal text-slate-600 dark:text-slate-400 uppercase tracking-widest mb-6 border-b border-slate-800/40 pb-3 flex items-center gap-3">
+          <span class="w-5 h-[1px] bg-[#779DD1]/60"></span>
+          Polos y Ciudades Principales
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-5">
+          {priorityCities.map((city) => (
+            <a
+              href={`/${city.slug}`}
+              class="group bg-[#0A1226] border border-slate-800/40 hover:border-[#779DD1]/50 rounded-[1.75rem] p-5 sm:p-6 transition-all duration-500 hover:-translate-y-1 block"
+            >
+              <span class="block font-serif text-lg sm:text-xl font-normal text-slate-900 dark:text-white group-hover:text-[#779DD1] transition-colors leading-tight mb-3">
+                {city.h1.replace('Terapia Holística y Biodescodificación en ', '')}
+              </span>
+              <div class="flex items-center justify-between text-sm text-slate-600 dark:text-slate-400 font-normal">
+                <span>{city.pais}</span>
+                <span class="text-[#779DD1] font-semibold">{city.moneda}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Directorio Completo de 113+ Ciudades Agrupadas por País -->
+      <div class="bg-[#0A1226] border border-slate-800/40 rounded-[2.5rem] p-10 lg:p-14">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-slate-800/40">
+          <h3 class="font-serif text-2xl sm:text-3xl font-normal text-slate-900 dark:text-white">
+            Directorio Completo de Localidades ({allCities.length} ciudades disponibles)
+          </h3>
+          <span class="text-sm text-slate-600 dark:text-slate-400 font-normal">
+            20 países &bull; Modalidad 100% online
+          </span>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-h-[32rem] overflow-y-auto pr-3" id="full-cities-list">
+          {countriesList.map((countryName) => {
+            const countryCities = allCities.filter((c) => c.pais === countryName);
+            if (countryCities.length === 0) return null;
+            return (
+              <div class="space-y-3">
+                <h4 class="text-sm font-semibold uppercase tracking-wider text-[#779DD1] border-b border-slate-800/40 pb-2">
+                  {countryName}
+                </h4>
+                <ul class="space-y-2 text-sm">
+                  {countryCities.map((city) => (
+                    <li class="city-search-item" data-city-name={`${city.h1} ${city.pais} ${city.slug}`.toLowerCase()}>
+                      <a
+                        href={`/${city.slug}`}
+                        class="text-slate-600 dark:text-slate-400 hover:text-[#779DD1] transition-colors block py-0.5 font-normal text-sm"
+                      >
+                        {city.h1.replace('Terapia Holística y Biodescodificación en ', '')}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 6. EL PROCESO TERAPÉUTICO (THE JOURNEY)                                    -->
+  <!-- ========================================================================= -->
+  <section class="w-full bg-[#060A1A] py-24 lg:py-32 border-b border-slate-800/40">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      
+      <div class="gsap-scroll-header text-center max-w-3xl mx-auto mb-20">
+        <span class="text-xs font-semibold uppercase tracking-[0.25em] text-[#779DD1] flex items-center justify-center gap-3 mb-4">
+          <span class="w-8 h-[1px] bg-[#779DD1]/60"></span>
+          EL PROCESO TERAPÉUTICO
+          <span class="w-8 h-[1px] bg-[#779DD1]/60"></span>
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-900 dark:text-white tracking-tight">
+          Cómo iniciar tu camino de sanación
+        </h2>
+        <p class="text-base text-slate-700 dark:text-slate-400 mt-4 leading-relaxed font-normal max-w-2xl mx-auto">
+          Un proceso estructurado, confidencial y sereno desde el diagnóstico inicial hasta la resolución del conflicto.
+        </p>
+      </div>
+
+      <div class="gsap-scroll-journey-grid grid grid-cols-1 md:grid-cols-4 gap-8">
+        
+        <div class="gsap-scroll-journey-step relative bg-[#0A1226] border border-slate-800/40 rounded-[2.5rem] p-8 lg:p-10 text-center space-y-5 transition-all duration-500 hover:-translate-y-1 hover:border-[#779DD1]/50 flex flex-col justify-between" data-journey-step="1">
+          <div class="space-y-4">
+            <div class="journey-number w-14 h-14 rounded-full border font-serif text-xl flex items-center justify-center mx-auto">
+              01
+            </div>
+            <h3 class="font-serif text-xl font-normal text-slate-900 dark:text-white">Quiz de Evaluación</h3>
+            <p class="text-sm sm:text-base text-slate-700 dark:text-slate-400 font-normal leading-relaxed">
+              Respondes 4 preguntas esenciales sobre tu dolencia, tiempo de evolución y tratamientos previos.
+            </p>
+          </div>
+          <span class="journey-phase-pill inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-sky-50 text-sky-700 border border-sky-200 dark:bg-sky-950/40 dark:text-sky-300 dark:border-sky-800/60">Fase Inicial</span>
+        </div>
+
+        <div class="gsap-scroll-journey-step relative bg-[#0A1226] border border-slate-800/40 rounded-[2.5rem] p-8 lg:p-10 text-center space-y-5 transition-all duration-500 hover:-translate-y-1 hover:border-[#779DD1]/50 flex flex-col justify-between" data-journey-step="2">
+          <div class="space-y-4">
+            <div class="journey-number w-14 h-14 rounded-full border font-serif text-xl flex items-center justify-center mx-auto">
+              02
+            </div>
+            <h3 class="font-serif text-xl font-normal text-slate-900 dark:text-white">Hipótesis Clínica</h3>
+            <p class="text-sm sm:text-base text-slate-700 dark:text-slate-400 font-normal leading-relaxed">
+              El sistema formula la correlación bioemocional preliminar y la deriva a WhatsApp para revisión.
+            </p>
+          </div>
+          <span class="journey-phase-pill inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800/60">Pre-diagnóstico</span>
+        </div>
+
+        <div class="gsap-scroll-journey-step relative bg-[#0A1226] border border-slate-800/40 rounded-[2.5rem] p-8 lg:p-10 text-center space-y-5 transition-all duration-500 hover:-translate-y-1 hover:border-[#779DD1]/50 flex flex-col justify-between" data-journey-step="3">
+          <div class="space-y-4">
+            <div class="journey-number w-14 h-14 rounded-full border font-serif text-xl flex items-center justify-center mx-auto">
+              03
+            </div>
+            <h3 class="font-serif text-xl font-normal text-slate-900 dark:text-white">Sesión Online 1 a 1</h3>
+            <p class="text-sm sm:text-base text-slate-700 dark:text-slate-400 font-normal leading-relaxed">
+              Encuentro privado de 60 a 75 minutos para rastrear y desanclar la vivencia original del conflicto.
+            </p>
+          </div>
+          <span class="journey-phase-pill inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-indigo-50 text-indigo-700 border border-indigo-200 dark:bg-indigo-950/40 dark:text-indigo-300 dark:border-indigo-800/60">Intervención</span>
+        </div>
+
+        <div class="gsap-scroll-journey-step relative bg-[#0A1226] border border-slate-800/40 rounded-[2.5rem] p-8 lg:p-10 text-center space-y-5 transition-all duration-500 hover:-translate-y-1 hover:border-[#779DD1]/50 flex flex-col justify-between" data-journey-step="4">
+          <div class="space-y-4">
+            <div class="journey-number w-14 h-14 rounded-full border font-serif text-xl flex items-center justify-center mx-auto">
+              04
+            </div>
+            <h3 class="font-serif text-xl font-normal text-slate-900 dark:text-white">Reprogramación</h3>
+            <p class="text-sm sm:text-base text-slate-700 dark:text-slate-400 font-normal leading-relaxed">
+              Pautas introspectivas y ejercicios biológicos para desactivar el estado de alerta orgánica.
+            </p>
+          </div>
+          <span class="journey-phase-pill inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-teal-50 text-teal-700 border border-teal-200 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-800/60">Integración</span>
+        </div>
+
+      </div>
+
+      <!-- CTA de la sección de pasos -->
+      <div class="mt-16 text-center">
+        <button
+          type="button"
+          data-open-quiz="true"
+          data-location="steps-cta"
+          data-symptom=""
+          class="btn-action-pill-white inline-flex items-center gap-3 px-9 py-4 rounded-full bg-white text-[#060A1A] font-medium text-sm hover:bg-[#779DD1] hover:text-[#060A1A] transition-all duration-500 shadow-pill-white cursor-pointer"
+        >
+          <span>Comenzar el Cuestionario de Evaluación</span>
+          <span aria-hidden="true">&rarr;</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 7. CASOS CLÍNICOS DE ESTUDIO Y TESTIMONIOS EDITORIALES                    -->
+  <!-- ========================================================================= -->
+  <section class="w-full bg-[#060A1A] py-24 lg:py-32 border-b border-slate-800/40">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      
+      <div class="gsap-scroll-header text-center max-w-3xl mx-auto mb-20">
+        <span class="text-xs font-semibold uppercase tracking-[0.25em] text-[#779DD1] flex items-center justify-center gap-3 mb-4">
+          <span class="w-8 h-[1px] bg-[#779DD1]/60"></span>
+          EXPERIENCIAS CLÍNICAS &amp; RESULTADOS
+          <span class="w-8 h-[1px] bg-[#779DD1]/60"></span>
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-900 dark:text-white tracking-tight">
+          Historias de transformación bioemocional
+        </h2>
+        <p class="text-base text-slate-700 dark:text-slate-400 mt-4 leading-relaxed font-normal max-w-2xl mx-auto">
+          Casos reales anonimizados donde la toma de conciencia del conflicto biológico permitió desactivar la respuesta física del síntoma.
+        </p>
+      </div>
+
+      <div class="gsap-scroll-testimonials-grid grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
+        
+        <!-- Caso 1 -->
+        <article class="gsap-scroll-testimonial group border-t border-slate-800/80 hover:border-[#779DD1] pt-10 pb-4 flex flex-col justify-between transition-all duration-500 hover:-translate-y-1.5">
+          <div>
+            <div class="flex items-center justify-between gap-3 mb-8">
+              <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[#779DD1] flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#779DD1]"></span>
+                Gastritis Crónica
+              </span>
+              <span class="text-sm text-slate-600 dark:text-slate-400 font-medium tracking-wider uppercase">
+                3 sesiones
+              </span>
+            </div>
+            <div class="relative mb-10">
+              <span class="font-serif text-5xl text-[#779DD1]/40 leading-none block select-none mb-3" aria-hidden="true">&ldquo;</span>
+              <p class="font-serif text-lg sm:text-xl text-slate-800 dark:text-slate-100 font-normal sm:font-medium leading-relaxed">
+                Llevaba dos años con ardor gástrico constante que los fármacos solo aliviaban temporalmente. Al identificar la situación familiar no digerida y poner límites, el ardor desapareció por completo en semanas.
+              </p>
+            </div>
+          </div>
+          <div class="pt-6 border-t border-slate-800/50 flex items-center gap-4">
+            <div class="w-11 h-11 rounded-full bg-[#0E172F] border border-slate-800/60 flex items-center justify-center text-xs font-serif text-[#779DD1] shrink-0 font-medium">
+              EM
+            </div>
+            <div>
+              <span class="block text-sm font-semibold text-slate-900 dark:text-white tracking-wide">Elena M., 38 años</span>
+              <span class="text-sm text-slate-600 dark:text-slate-400 font-normal">Madrid, España</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Caso 2 -->
+        <article class="gsap-scroll-testimonial group border-t border-slate-800/80 hover:border-[#779DD1] pt-10 pb-4 flex flex-col justify-between transition-all duration-500 hover:-translate-y-1.5">
+          <div>
+            <div class="flex items-center justify-between gap-3 mb-8">
+              <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[#779DD1] flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#779DD1]"></span>
+                Lumbalgia Mecánica
+              </span>
+              <span class="text-sm text-slate-600 dark:text-slate-400 font-medium tracking-wider uppercase">
+                4 sesiones
+              </span>
+            </div>
+            <div class="relative mb-10">
+              <span class="font-serif text-5xl text-[#779DD1]/40 leading-none block select-none mb-3" aria-hidden="true">&ldquo;</span>
+              <p class="font-serif text-lg sm:text-xl text-slate-800 dark:text-slate-100 font-normal sm:font-medium leading-relaxed">
+                La tensión en la zona baja de mi espalda coincidía exactamente con el peso financiero que sentía tras la reestructuración de mi negocio. Comprender la raíz del soporte biológico me devolvió la movilidad.
+              </p>
+            </div>
+          </div>
+          <div class="pt-6 border-t border-slate-800/50 flex items-center gap-4">
+            <div class="w-11 h-11 rounded-full bg-[#0E172F] border border-slate-800/60 flex items-center justify-center text-xs font-serif text-[#779DD1] shrink-0 font-medium">
+              CR
+            </div>
+            <div>
+              <span class="block text-sm font-semibold text-slate-900 dark:text-white tracking-wide">Carlos R., 45 años</span>
+              <span class="text-sm text-slate-600 dark:text-slate-400 font-normal">Bogotá, Colombia</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Caso 3 -->
+        <article class="gsap-scroll-testimonial group border-t border-slate-800/80 hover:border-[#779DD1] pt-10 pb-4 flex flex-col justify-between transition-all duration-500 hover:-translate-y-1.5">
+          <div>
+            <div class="flex items-center justify-between gap-3 mb-8">
+              <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[#779DD1] flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#779DD1]"></span>
+                Migraña Recurrente
+              </span>
+              <span class="text-sm text-slate-600 dark:text-slate-400 font-medium tracking-wider uppercase">
+                2 sesiones
+              </span>
+            </div>
+            <div class="relative mb-10">
+              <span class="font-serif text-5xl text-[#779DD1]/40 leading-none block select-none mb-3" aria-hidden="true">&ldquo;</span>
+              <p class="font-serif text-lg sm:text-xl text-slate-800 dark:text-slate-100 font-normal sm:font-medium leading-relaxed">
+                Mis crisis aparecían los fines de semana tras periodos de autoexigencia intelectual extrema. Aprender a relajar la necesidad de control mental redujo los episodios en un noventa por ciento.
+              </p>
+            </div>
+          </div>
+          <div class="pt-6 border-t border-slate-800/50 flex items-center gap-4">
+            <div class="w-11 h-11 rounded-full bg-[#0E172F] border border-slate-800/60 flex items-center justify-center text-xs font-serif text-[#779DD1] shrink-0 font-medium">
+              SV
+            </div>
+            <div>
+              <span class="block text-sm font-semibold text-slate-900 dark:text-white tracking-wide">Sofía V., 32 años</span>
+              <span class="text-sm text-slate-600 dark:text-slate-400 font-normal">Miami, EE. UU.</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 8. PREGUNTAS FRECUENTES (FAQ)                                             -->
+  <!-- ========================================================================= -->
+  <section class="w-full bg-[#060A1A] py-24 lg:py-32 border-b border-slate-800/40">
+    <div class="max-w-4xl mx-auto px-6">
+      
+      <div class="gsap-scroll-header text-center mb-16">
+        <span class="text-xs font-semibold uppercase tracking-[0.25em] text-[#779DD1] flex items-center justify-center gap-3 mb-4">
+          <span class="w-8 h-[1px] bg-[#779DD1]/60"></span>
+          CLARIDAD &amp; RIGOR CLÍNICO
+          <span class="w-8 h-[1px] bg-[#779DD1]/60"></span>
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-900 dark:text-white tracking-tight">
+          Preguntas frecuentes sobre la terapia
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        
+        <details class="gsap-scroll-faq bg-[#0A1226] border border-slate-800/40 rounded-[2rem] p-7 lg:p-8 text-sm font-sans group transition-all duration-300 hover:border-slate-700/60">
+          <summary class="font-serif text-lg sm:text-xl font-normal text-slate-900 dark:text-white cursor-pointer list-none flex items-center justify-between gap-4 select-none">
+            <span>¿La biodescodificación reemplaza a mi médico o a mis medicamentos?</span>
+            <span class="w-9 h-9 rounded-full bg-[#0E172F] border border-slate-800/60 flex items-center justify-center text-[#779DD1] text-lg font-medium shrink-0 group-open:rotate-45 group-open:text-white transition-all duration-300">+</span>
+          </summary>
+          <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 mt-5 pt-4 border-t border-slate-800/40 leading-relaxed font-normal">
+            No. Alma Holística promueve un modelo integrativo y complementario. Jamás te pediremos suspender, alterar ni postergar diagnósticos clínicos o prescripciones farmacológicas emitidas por profesionales médicos colegiados. Nuestro trabajo se enfoca en el plano bioemocional inconsciente.
+          </p>
+        </details>
+
+        <details class="gsap-scroll-faq bg-[#0A1226] border border-slate-800/40 rounded-[2rem] p-7 lg:p-8 text-sm font-sans group transition-all duration-300 hover:border-slate-700/60">
+          <summary class="font-serif text-lg sm:text-xl font-normal text-slate-900 dark:text-white cursor-pointer list-none flex items-center justify-between gap-4 select-none">
+            <span>¿Cómo se coordina y realiza una sesión online?</span>
+            <span class="w-9 h-9 rounded-full bg-[#0E172F] border border-slate-800/60 flex items-center justify-center text-[#779DD1] text-lg font-medium shrink-0 group-open:rotate-45 group-open:text-white transition-all duration-300">+</span>
+          </summary>
+          <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 mt-5 pt-4 border-t border-slate-800/40 leading-relaxed font-normal">
+            Tras completar el cuestionario guiado, se genera un resumen inicial en WhatsApp. Por ese canal coordinamos fecha y hora según tu zona horaria local. La sesión se realiza por videollamada privada individual con una duración aproximada de 60 a 75 minutos.
+          </p>
+        </details>
+
+        <details class="gsap-scroll-faq bg-[#0A1226] border border-slate-800/40 rounded-[2rem] p-7 lg:p-8 text-sm font-sans group transition-all duration-300 hover:border-slate-700/60">
+          <summary class="font-serif text-lg sm:text-xl font-normal text-slate-900 dark:text-white cursor-pointer list-none flex items-center justify-between gap-4 select-none">
+            <span>¿Cuántas sesiones se necesitan para experimentar cambios?</span>
+            <span class="w-9 h-9 rounded-full bg-[#0E172F] border border-slate-800/60 flex items-center justify-center text-[#779DD1] text-lg font-medium shrink-0 group-open:rotate-45 group-open:text-white transition-all duration-300">+</span>
+          </summary>
+          <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 mt-5 pt-4 border-t border-slate-800/40 leading-relaxed font-normal">
+            La biodescodificación no requiere procesos interminables. Muchas personas logran identificar con claridad el choque biológico en la primera sesión. Se suele recomendar un ciclo de 2 a 4 sesiones para consolidar la toma de conciencia y la autorregulación.
+          </p>
+        </details>
+
+        <details class="gsap-scroll-faq bg-[#0A1226] border border-slate-800/40 rounded-[2rem] p-7 lg:p-8 text-sm font-sans group transition-all duration-300 hover:border-slate-700/60">
+          <summary class="font-serif text-lg sm:text-xl font-normal text-slate-900 dark:text-white cursor-pointer list-none flex items-center justify-between gap-4 select-none">
+            <span>¿Qué monedas y métodos de pago aceptan?</span>
+            <span class="w-9 h-9 rounded-full bg-[#0E172F] border border-slate-800/60 flex items-center justify-center text-[#779DD1] text-lg font-medium shrink-0 group-open:rotate-45 group-open:text-white transition-all duration-300">+</span>
+          </summary>
+          <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 mt-5 pt-4 border-t border-slate-800/40 leading-relaxed font-normal">
+            Aceptamos pagos en tu moneda local en cada uno de los 20 países atendidos (EUR, USD, COP, MXN, CLP, ARS, PEN, etc.) mediante transferencias bancarias locales, tarjetas de crédito internacionales y plataformas electrónicas seguras.
+          </p>
+        </details>
+
+        <details class="gsap-scroll-faq bg-[#0A1226] border border-slate-800/40 rounded-[2rem] p-7 lg:p-8 text-sm font-sans group transition-all duration-300 hover:border-slate-700/60">
+          <summary class="font-serif text-lg sm:text-xl font-normal text-slate-900 dark:text-white cursor-pointer list-none flex items-center justify-between gap-4 select-none">
+            <span>¿Las sesiones son completamente privadas y confidenciales?</span>
+            <span class="w-9 h-9 rounded-full bg-[#0E172F] border border-slate-800/60 flex items-center justify-center text-[#779DD1] text-lg font-medium shrink-0 group-open:rotate-45 group-open:text-white transition-all duration-300">+</span>
+          </summary>
+          <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 mt-5 pt-4 border-t border-slate-800/40 leading-relaxed font-normal">
+            Absolutamente. Cada encuentro se rige bajo estricto secreto profesional y confidencialidad ética. Las sesiones se desarrollan en salas virtuales encriptadas sin grabación externa.
+          </p>
+        </details>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 9. CTA FINAL CON TARJETA ROUNDED-[2.5REM] Y BOTÓN PÍLDORA BLANCO          -->
+  <!-- ========================================================================= -->
+  <section class="w-full bg-[#060A1A] py-24 lg:py-32">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="gsap-scroll-cta bg-[#0A1226] border border-slate-800/40 rounded-[2.5rem] p-12 sm:p-20 text-center space-y-8 relative overflow-hidden">
+        
+        <span class="text-xs font-semibold tracking-[0.25em] text-[#779DD1] uppercase flex items-center justify-center gap-3">
+          <span class="w-8 h-[1px] bg-[#779DD1]/60"></span>
+          COMIENZA HOY TU TRANSFORMACIÓN
+          <span class="w-8 h-[1px] bg-[#779DD1]/60"></span>
+        </span>
+
+        <h2 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-slate-900 dark:text-white tracking-tight max-w-3xl mx-auto leading-tight">
+          Comienza a escuchar lo que tu cuerpo quiere decirte
+        </h2>
+
+        <p class="text-base sm:text-lg text-slate-700 dark:text-slate-300 max-w-xl mx-auto font-normal leading-relaxed">
+          Dedica 2 minutos a completar nuestro cuestionario guiado. Recibirás una orientación bioemocional preliminar para tu caso particular.
+        </p>
+
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href={evaluationWhatsAppUrl}
+            data-open-quiz="true"
+            data-location="final-cta"
+            data-symptom=""
+            class="btn-action-pill-white inline-flex items-center justify-center gap-3 px-10 py-4.5 rounded-full bg-white text-[#060A1A] font-medium text-sm hover:bg-[#779DD1] hover:text-[#060A1A] transition-all duration-500 shadow-pill-white focus:outline-none focus:ring-2 focus:ring-[#779DD1]"
+          >
+            <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.18-.47-.31"/>
+            </svg>
+            <span>Realizar Test de Evaluación por WhatsApp</span>
+          </a>
+        </div>
+
+        <p class="text-sm text-slate-600 dark:text-slate-400 font-sans max-w-lg mx-auto mt-4 leading-normal font-normal">
+          * Recordatorio ético: las sesiones de biodescodificación no sustituyen la atención ni los tratamientos médicos farmacológicos.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 10. SCRIPTS: GSAP ENTRANCE, LOOP SINUSOIDAL & BÚSQUEDA DINÁMICA          -->
+  <!-- ========================================================================= -->
+  <script>
+    import { gsap } from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Animación suave de entrada escalonada y cinemáticas ScrollTrigger en todo el sitio
+    const initHeroAnimations = () => {
+      const prefersReducedMotion = typeof window !== 'undefined' && 
+        window.matchMedia && 
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!prefersReducedMotion) {
+        // 1. Hero Entrance: Staggered fade-in-up con curva suave y garantía estricta de CLS = 0
+        gsap.from('.gsap-hero-el, .gsap-fade-up', {
+          opacity: 0,
+          y: 35,
+          duration: 1.1,
+          stagger: 0.1,
+          ease: 'power3.out',
+          clearProps: 'transform,opacity'
+        });
+
+        // 2. Floating Aura: Loop sinusoidal continuo orgánico en segundo plano detrás de la mariposa
+        gsap.to('.hero-floating-aura', {
+          y: -14,
+          scale: 1.06,
+          duration: 5,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut'
+        });
+
+        // 3. ScrollTrigger: Encabezados Editoriales de Sección
+        gsap.utils.toArray('.gsap-scroll-header').forEach((header: any) => {
+          gsap.from(header, {
+            scrollTrigger: {
+              trigger: header,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 35,
+            duration: 0.9,
+            ease: 'power3.out',
+            clearProps: 'transform,opacity'
+          });
+        });
+
+        // 4. ScrollTrigger: Manifiesto Biológico (Cita Editorial)
+        const manifesto = document.querySelector('.gsap-scroll-manifesto');
+        if (manifesto) {
+          gsap.from(manifesto, {
+            scrollTrigger: {
+              trigger: manifesto,
+              start: 'top 82%',
+              toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            scale: 0.98,
+            y: 25,
+            duration: 1.1,
+            ease: 'power3.out',
+            clearProps: 'transform,opacity'
+          });
+        }
+
+        // 5. ScrollTrigger: Pilares del Fundamento Terapéutico (Cascada 3 tarjetas)
+        const pilaresGrid = document.querySelector('.gsap-scroll-pilares-grid');
+        if (pilaresGrid) {
+          gsap.from('.gsap-scroll-pilar', {
+            scrollTrigger: {
+              trigger: pilaresGrid,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 45,
+            duration: 0.9,
+            stagger: 0.15,
+            ease: 'power3.out',
+            clearProps: 'transform,opacity'
+          });
+        }
+
+        // 6. ScrollTrigger: Catálogo Clínico de Dolencias (Batch Reveal suave)
+        ScrollTrigger.batch('.home-dolencia-card', {
+          start: 'top 88%',
+          onEnter: (batch) => {
+            gsap.from(batch, {
+              opacity: 0,
+              y: 40,
+              stagger: 0.08,
+              duration: 0.8,
+              ease: 'power3.out',
+              clearProps: 'transform,opacity'
+            });
+          },
+          once: true
+        });
+
+        // 7. ScrollTrigger: El Viaje Terapéutico (Pasos 01 al 04)
+        const journeyGrid = document.querySelector('.gsap-scroll-journey-grid');
+        if (journeyGrid) {
+          gsap.from('.gsap-scroll-journey-step', {
+            scrollTrigger: {
+              trigger: journeyGrid,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 40,
+            duration: 0.85,
+            stagger: 0.12,
+            ease: 'power3.out',
+            clearProps: 'transform,opacity'
+          });
+        }
+
+        // 8. ScrollTrigger: Testimonios Clínicos
+        const testimonialsGrid = document.querySelector('.gsap-scroll-testimonials-grid');
+        if (testimonialsGrid) {
+          gsap.from('.gsap-scroll-testimonial', {
+            scrollTrigger: {
+              trigger: testimonialsGrid,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 40,
+            duration: 0.9,
+            stagger: 0.15,
+            ease: 'power3.out',
+            clearProps: 'transform,opacity'
+          });
+        }
+
+        // 9. ScrollTrigger: Acordeón FAQs
+        ScrollTrigger.batch('.gsap-scroll-faq', {
+          start: 'top 90%',
+          onEnter: (batch) => {
+            gsap.from(batch, {
+              opacity: 0,
+              y: 30,
+              stagger: 0.07,
+              duration: 0.7,
+              ease: 'power3.out',
+              clearProps: 'transform,opacity'
+            });
+          },
+          once: true
+        });
+
+        // 10. ScrollTrigger: Final CTA
+        const finalCta = document.querySelector('.gsap-scroll-cta');
+        if (finalCta) {
+          gsap.from(finalCta, {
+            scrollTrigger: {
+              trigger: finalCta,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 40,
+            scale: 0.98,
+            duration: 1,
+            ease: 'power3.out',
+            clearProps: 'transform,opacity'
+          });
+        }
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHeroAnimations);
+      } else {
+        initHeroAnimations();
+      }
+    }
+
+    // Buscador interactivo de dolencias en home (REQUISITO FUNCIONAL CLIENTE)
+    const symptomInput = document.getElementById('home-symptom-search') as HTMLInputElement | null;
+    const dolenciasCards = document.querySelectorAll<HTMLElement>('.home-dolencia-card');
+
+    if (symptomInput && dolenciasCards.length > 0) {
+      symptomInput.addEventListener('input', (e) => {
+        const target = e.target as HTMLInputElement;
+        const query = target.value.toLowerCase().trim();
+
+        dolenciasCards.forEach((card) => {
+          const searchData = card.getAttribute('data-search') || '';
+          if (!query || searchData.includes(query)) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    }
+
+    // Buscador interactivo de ciudades en home (REQUISITO FUNCIONAL CLIENTE)
+    const cityInput = document.getElementById('home-city-search') as HTMLInputElement | null;
+    const cityItems = document.querySelectorAll<HTMLElement>('.city-search-item');
+
+    if (cityInput && cityItems.length > 0) {
+      cityInput.addEventListener('input', (e) => {
+        const target = e.target as HTMLInputElement;
+        const query = target.value.toLowerCase().trim();
+
+        cityItems.forEach((item) => {
+          const cityName = item.getAttribute('data-city-name') || '';
+          if (!query || cityName.includes(query)) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    }
+  </script>
+</BaseLayout>

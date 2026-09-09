@@ -1,0 +1,368 @@
+---
+/**
+ * src/pages/[slug].astro — Ruta Dinámica SSG para Ciudades (SEO Hiperlocal)
+ * Alma Holística (almaholistica.com)
+ *
+ * Genera estáticamente las páginas de más de 113 ciudades en los 20 países aprobados.
+ * Estilo visual estricto: Sólido Mate (#060A1A, #0A1226, #0E172F, #1E293B, #779DD1, #779DD1).
+ * Cero transparencias, cero brillos artificiales, cero desenfoques.
+ * Cumple con R1, R2, R3, R4 y la suite de pruebas E2E (Features 15, Cruce 1, Journey A).
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCities } from '../lib/cities';
+import type { CityData, CityStaticPath } from '../types/city';
+import { SITE_CONFIG, buildWhatsAppUrl } from '../config/site';
+import { buildLocalServiceSchema, buildBreadcrumbSchema } from '../lib/schema';
+
+export async function getStaticPaths(): Promise<CityStaticPath[]> {
+  const cities = getCities();
+  return cities.map((city) => ({
+    params: { slug: city.slug },
+    props: { city },
+  }));
+}
+
+export interface Props {
+  city: CityData;
+}
+
+const { city } = Astro.props;
+
+// Normalización y fallbacks para máxima resiliencia ante variaciones de datos
+const rawSlug = city.slug || (city as any)['URL Final (Slug)'] || '';
+const cityName = rawSlug ? rawSlug.charAt(0).toUpperCase() + rawSlug.slice(1) : 'Tu Ciudad';
+const h1Title = city.h1 || (city as any)['H1 Título'] || `Terapia Holística y Biodescodificación en ${cityName}`;
+const metaDesc = city.metaDescripcion || (city as any)['Meta Descripción'] || `Sesiones online de terapia holística y biodescodificación en ${cityName}, ${city.pais}. Sanación emocional profunda y equilibrio mente-cuerpo.`;
+const moneda = city.moneda || (city as any)['Moneda'] || 'USD';
+const precio = city.rangoPrecio || (city as any)['Rango_Precio_Sesion'] || `Consultar tarifas locales (${moneda})`;
+const historiaLocal = city.historiaLocal || (city as any)['Historia_Local'] || '';
+const pais = city.pais || (city as any)['País'] || '';
+
+// URL Canónica oficial con trailing slash (conforme a astro.config.mjs)
+const canonicalUrl = `https://almaholistica.com/${rawSlug}/`;
+
+// Schemas JSON-LD Estructurados (HealthAndBeautyBusiness + BreadcrumbList) conforme a Cruce 1
+const localBusinessSchema = buildLocalServiceSchema(city, canonicalUrl);
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  {
+    name: 'Inicio',
+    url: 'https://almaholistica.com/',
+  },
+  {
+    name: 'Ciudades',
+    url: 'https://almaholistica.com/#ciudades',
+  },
+  {
+    name: cityName,
+    url: canonicalUrl,
+  },
+]);
+
+// Generación de URL de WhatsApp estructurada para progressive enhancement
+const fallbackWhatsAppUrl = buildWhatsAppUrl({
+  location: `${cityName}, ${pais}`,
+});
+---
+
+<BaseLayout
+  title={`${h1Title} | ${SITE_CONFIG.name}`}
+  description={metaDesc}
+  canonical={canonicalUrl}
+>
+  <Fragment slot="schema">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <article class="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <!-- Migas de pan discretas y solemnes -->
+    <nav class="flex items-center gap-2 text-xs sm:text-sm text-slate-400 mb-8" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-[#779DD1] transition-colors">Inicio</a>
+      <span class="text-slate-600">/</span>
+      <a href="/#ciudades" class="hover:text-[#779DD1] transition-colors">Ciudades</a>
+      <span class="text-slate-600">/</span>
+      <span class="text-[#779DD1] font-medium">{cityName}</span>
+    </nav>
+
+    <!-- HERO SECTION HIPERLOCAL -->
+    <header class="card-matte-elevated p-6 sm:p-10 md:p-14 mb-12 relative overflow-hidden">
+      <div class="max-w-3xl">
+        <!-- Badge geográfico oficial en oro satinado -->
+        <div class="badge-gold mb-4">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+            <circle cx="12" cy="9" r="2.5" />
+          </svg>
+          <span>Sesiones Online en Vivo • {pais.toUpperCase()}</span>
+        </div>
+
+        <!-- H1 Dinámico Requerido por T1.15.3 -->
+        <h1 class="heading-solemn text-3xl sm:text-4xl md:text-5xl font-bold mt-2 mb-6 leading-tight text-slate-100">
+          {h1Title}
+        </h1>
+
+        <!-- Meta descripción y propuesta de valor -->
+        <p class="text-base sm:text-lg md:text-xl text-slate-300 leading-relaxed mb-8">
+          {metaDesc}
+        </p>
+
+        <!-- Indicadores Clave de la Sesión (Precio, Moneda y Modalidad) -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+          <div class="card-matte p-4 flex flex-col justify-center">
+            <span class="text-xs uppercase tracking-wider text-slate-400 mb-1">Rango por Sesión</span>
+            <span class="text-base sm:text-lg font-bold text-[#779DD1]">{precio}</span>
+            <span class="text-xs text-slate-500 mt-0.5">Moneda local: {moneda}</span>
+          </div>
+          <div class="card-matte p-4 flex flex-col justify-center">
+            <span class="text-xs uppercase tracking-wider text-slate-400 mb-1">Modalidad</span>
+            <span class="text-base sm:text-lg font-bold text-slate-200">100% Online en Vivo</span>
+            <span class="text-xs text-slate-500 mt-0.5">Vía Zoom / Google Meet</span>
+          </div>
+          <div class="card-matte p-4 flex flex-col justify-center">
+            <span class="text-xs uppercase tracking-wider text-slate-400 mb-1">Enfoque</span>
+            <span class="text-base sm:text-lg font-bold text-[#779DD1]">Biodescodificación</span>
+            <span class="text-xs text-slate-500 mt-0.5">Desactivación de origen</span>
+          </div>
+        </div>
+
+        <!-- Acciones Principales con Interceptación Global de WhatsApp Quiz Modal -->
+        <div class="flex flex-wrap items-center gap-4">
+          <a
+            href={fallbackWhatsAppUrl}
+            class="btn-action-primary text-base font-bold shadow-matte-sm"
+            data-open-quiz="true"
+            data-city={rawSlug}
+          >
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+            </svg>
+            <span>Iniciar Evaluación en {cityName}</span>
+          </a>
+
+          <a
+            href="/biodescodificacion"
+            class="btn-action-secondary text-sm font-semibold"
+          >
+            <span>Explorar Dolencias Físicas</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- HISTORIA LOCAL Y CONTEXTO BIOLÓGICO -->
+    {historiaLocal && (
+      <section class="card-matte-elevated p-6 sm:p-8 md:p-10 mb-12" aria-labelledby="historia-local-heading">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-2 h-2 rounded-full bg-[#779DD1]"></span>
+          <span class="text-xs uppercase tracking-widest text-[#779DD1] font-semibold">Contexto Urbano y Salud Emocional</span>
+        </div>
+        <h2 id="historia-local-heading" class="heading-solemn text-2xl sm:text-3xl font-normal mb-6 text-slate-100">
+          Vivir y Sanar en {cityName}
+        </h2>
+        <div class="prose prose-invert max-w-none text-slate-300 leading-relaxed space-y-4">
+          <p class="text-base sm:text-lg">
+            {historiaLocal}
+          </p>
+          <div class="card-matte p-5 mt-6 border-l-4 border-[#779DD1]">
+            <p class="text-sm sm:text-base text-slate-200 italic">
+              "El organismo no produce un síntoma al azar: cada molestia gástrica, contractura o cuadro de ansiedad es la manifestación biológica de un conflicto que no ha sido verbalizado ni procesado conscientemente."
+            </p>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- CÓMO FUNCIONA EL PROCESO ONLINE -->
+    <section class="mb-12" aria-labelledby="como-funciona-heading">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h2 id="como-funciona-heading" class="heading-solemn text-2xl sm:text-3xl font-normal mb-3 text-slate-100">
+          Cómo se Desarrolla tu Proceso Terapéutico
+        </h2>
+        <p class="text-sm sm:text-base text-slate-400">
+          Un acompañamiento confidencial, preciso y adaptado a tu zona horaria desde la comodidad de tu hogar en {cityName}.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="card-matte p-6 flex flex-col items-start">
+          <div class="w-10 h-10 rounded-full bg-[#0E172F] border border-[#779DD1] text-[#779DD1] font-bold text-base flex items-center justify-center mb-4">
+            1
+          </div>
+          <h3 class="font-serif text-xl font-normal mb-2 text-slate-100">Test de Evaluación Inicial</h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Completas el cuestionario interactivo de 4 pasos para identificar tu síntoma principal, tiempo de evolución y tratamientos previos.
+          </p>
+        </div>
+
+        <div class="card-matte p-6 flex flex-col items-start">
+          <div class="w-10 h-10 rounded-full bg-[#0E172F] border border-[#779DD1] text-[#779DD1] font-bold text-base flex items-center justify-center mb-4">
+            2
+          </div>
+          <h3 class="font-serif text-xl font-normal mb-2 text-slate-100">Sesión 1 a 1 por Videollamada</h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            En un encuentro de 60 a 75 minutos, rastreamos el evento biográfico o transgeneracional donde se programó el conflicto biológico inconsciente.
+          </p>
+        </div>
+
+        <div class="card-matte p-6 flex flex-col items-start">
+          <div class="w-10 h-10 rounded-full bg-[#0E172F] border border-[#779DD1] text-[#779DD1] font-bold text-base flex items-center justify-center mb-4">
+            3
+          </div>
+          <h3 class="font-serif text-xl font-normal mb-2 text-slate-100">Reprogramación y Cierre</h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Te proporcionamos pautas específicas de toma de conciencia y ejercicios de liberación emocional para desactivar la reactividad corporal.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOLENCIAS PRINCIPALES ATENDIDAS ONLINE -->
+    <section class="card-matte p-6 sm:p-8 md:p-10 mb-12" aria-labelledby="dolencias-relacionadas-heading">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div>
+          <h2 id="dolencias-relacionadas-heading" class="heading-solemn text-2xl sm:text-3xl font-normal text-slate-100">
+            Dolencias Frecuentes Atendidas en {cityName}
+          </h2>
+          <p class="text-sm text-slate-400 mt-1">
+            Mapeo biológico y emocional de síntomas físicos recurrentes.
+          </p>
+        </div>
+        <a href="/biodescodificacion" class="btn-action-secondary text-xs sm:text-sm font-semibold flex-shrink-0">
+          <span>Ver las 45 Dolencias</span>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="/biodescodificacion/gastritis" class="card-matte-elevated p-5 hover:border-[#779DD1] transition-colors group">
+          <span class="text-xs font-semibold text-[#779DD1] uppercase tracking-wider">Sistema Digestivo</span>
+          <h3 class="font-serif text-lg font-normal text-slate-100 group-hover:text-[#779DD1] transition-colors mt-1 mb-2">Gastritis y Acidez</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Conflicto de bocado indigesto e ira impotente ante situaciones no toleradas.</p>
+        </a>
+
+        <a href="/biodescodificacion/ansiedad" class="card-matte-elevated p-5 hover:border-[#779DD1] transition-colors group">
+          <span class="text-xs font-semibold text-[#779DD1] uppercase tracking-wider">Nervioso / Emocional</span>
+          <h3 class="font-serif text-lg font-normal text-slate-100 group-hover:text-[#779DD1] transition-colors mt-1 mb-2">Ansiedad Generalizada</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Miedo visceral a la anticipación del futuro y desprotección en el territorio.</p>
+        </a>
+
+        <a href="/biodescodificacion/lumbalgia" class="card-matte-elevated p-5 hover:border-[#779DD1] transition-colors group">
+          <span class="text-xs font-semibold text-[#779DD1] uppercase tracking-wider">Osteoarticular</span>
+          <h3 class="font-serif text-lg font-normal text-slate-100 group-hover:text-[#779DD1] transition-colors mt-1 mb-2">Lumbalgia y Espalda Baja</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Sobrecarga de responsabilidades familiares y temor a la inestabilidad material.</p>
+        </a>
+
+        <a href="/biodescodificacion/colon-irritable" class="card-matte-elevated p-5 hover:border-[#779DD1] transition-colors group">
+          <span class="text-xs font-semibold text-[#779DD1] uppercase tracking-wider">Sistema Digestivo</span>
+          <h3 class="font-serif text-lg font-normal text-slate-100 group-hover:text-[#779DD1] transition-colors mt-1 mb-2">Colon Irritable</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Sentimiento de traición, afrentas sucias y miedo a perder el control.</p>
+        </a>
+
+        <a href="/biodescodificacion/migrana" class="card-matte-elevated p-5 hover:border-[#779DD1] transition-colors group">
+          <span class="text-xs font-semibold text-[#779DD1] uppercase tracking-wider">Nervioso / Emocional</span>
+          <h3 class="font-serif text-lg font-normal text-slate-100 group-hover:text-[#779DD1] transition-colors mt-1 mb-2">Migrañas y Cefaleas</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Exceso de control intelectual, autoexigencia y desvalorización mental.</p>
+        </a>
+
+        <a href="/biodescodificacion/hipotiroidismo" class="card-matte-elevated p-5 hover:border-[#779DD1] transition-colors group">
+          <span class="text-xs font-semibold text-[#779DD1] uppercase tracking-wider">Endocrino / Metabólico</span>
+          <h3 class="font-serif text-lg font-normal text-slate-100 group-hover:text-[#779DD1] transition-colors mt-1 mb-2">Hipotiroidismo</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Conflicto con la gestión del tiempo: sensación de impotencia para actuar rápido.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- TRANSPARENCIA DE TARIFAS Y MEDIOS DE PAGO -->
+    <section class="card-matte-elevated p-6 sm:p-8 md:p-10 mb-12" aria-labelledby="precios-heading">
+      <div class="max-w-2xl">
+        <span class="badge-gold mb-3">Tarifas Transparentes</span>
+        <h2 id="precios-heading" class="heading-solemn text-2xl sm:text-3xl font-bold mb-4 text-slate-100">
+          Inversión en Tu Bienestar ({cityName})
+        </h2>
+        <p class="text-base text-slate-300 leading-relaxed mb-6">
+          Nuestras tarifas están ajustadas a la realidad económica de cada país. El rango estimado para la sesión individual de biodescodificación en {cityName} es de <strong class="text-[#779DD1]">{precio}</strong> (facturado en {moneda}).
+        </p>
+
+        <div class="card-matte p-5 border-l-4 border-[#779DD1] mb-6">
+          <h3 class="text-sm font-bold text-slate-100 mb-2 uppercase tracking-wide">Medios de Pago Aceptados</h3>
+          <ul class="text-xs sm:text-sm text-slate-300 space-y-1.5 list-disc list-inside">
+            <li>Transferencias bancarias locales en {pais} ({moneda})</li>
+            <li>Tarjetas de crédito y débito internacionales (Visa, Mastercard, American Express)</li>
+            <li>PayPal y enlaces de pago seguros</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREGUNTAS FRECUENTES HIPERLOCALES -->
+    <section class="mb-12" aria-labelledby="faqs-heading">
+      <h2 id="faqs-heading" class="heading-solemn text-2xl sm:text-3xl font-bold mb-6 text-slate-100">
+        Preguntas Frecuentes en {cityName}
+      </h2>
+
+      <div class="space-y-4">
+        <details class="card-matte p-5 group cursor-pointer">
+          <summary class="flex justify-between items-center text-base sm:text-lg font-semibold text-slate-100 list-none">
+            <span>¿Es tan efectiva una sesión online como una presencial?</span>
+            <span class="text-[#779DD1] text-xl transition-transform group-open:rotate-45 font-mono">+</span>
+          </summary>
+          <p class="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed">
+            Sí. La biodescodificación trabaja con la toma de conciencia del consultante mediante el lenguaje, la evocación emocional y el rastreo de eventos biográficos. El formato online permite estar en un entorno seguro y relajado sin el desgaste del tráfico de {cityName}.
+          </p>
+        </details>
+
+        <details class="card-matte p-5 group cursor-pointer">
+          <summary class="flex justify-between items-center text-base sm:text-lg font-semibold text-slate-100 list-none">
+            <span>¿Cómo se coordina el horario de la consulta?</span>
+            <span class="text-[#779DD1] text-xl transition-transform group-open:rotate-45 font-mono">+</span>
+          </summary>
+          <p class="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed">
+            Al completar el cuestionario inicial de WhatsApp, el equipo de coordinación te presentará opciones de agenda ajustadas a tu huso horario local en {pais}.
+          </p>
+        </details>
+
+        <details class="card-matte p-5 group cursor-pointer">
+          <summary class="flex justify-between items-center text-base sm:text-lg font-semibold text-slate-100 list-none">
+            <span>¿La biodescodificación sustituye a mi médico de cabecera en {cityName}?</span>
+            <span class="text-[#779DD1] text-xl transition-transform group-open:rotate-45 font-mono">+</span>
+          </summary>
+          <p class="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed">
+            No. Alma Holística promueve una visión integrativa de la salud. La terapia complementa la atención médica abordando la raíz emocional inconsciente del síntoma. Nunca sugerimos suspender tratamientos ni prescripciones facultativas.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- BANNER FINAL DE CONVERSIÓN -->
+    <footer class="card-matte-elevated border-[#779DD1] p-8 sm:p-12 text-center rounded-xl relative overflow-hidden">
+      <div class="max-w-2xl mx-auto">
+        <span class="badge-gold mb-4">Agenda Abierta en {cityName}</span>
+        <h2 class="heading-solemn text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-slate-100">
+          Da el Primer Paso Hacia el Origen de tu Síntoma
+        </h2>
+        <p class="text-sm sm:text-base text-slate-300 mb-8 leading-relaxed">
+          Haz el test de evaluación rápida de 4 pasos para recibir una primera lectura terapéutica y coordinar tu sesión online por WhatsApp.
+        </p>
+
+        <a
+          href={fallbackWhatsAppUrl}
+          class="btn-action-primary text-base font-bold shadow-matte-sm"
+          data-open-quiz="true"
+          data-city={rawSlug}
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+          </svg>
+          <span>Agendar Sesión en {cityName}</span>
+        </a>
+      </div>
+    </footer>
+  </article>
+</BaseLayout>
