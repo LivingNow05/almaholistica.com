@@ -21,8 +21,11 @@
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { buildWhatsAppUrl } from '../config/site';
-import { getDolencias } from '../lib/dolencias';
+import { getDolencias, getBiologicalBorderClass, getBiologicalBadgeClass } from '../lib/dolencias';
 import { getCities } from '../lib/cities';
+import ClinicalApproachTable from '../components/ClinicalApproachTable.astro';
+import BiologicalMatrixTable from '../components/BiologicalMatrixTable.astro';
+import AccompanimentStagesTable from '../components/AccompanimentStagesTable.astro';
 
 // Obtención memoizada de datasets SSG
 const allDolencias = getDolencias();
@@ -234,6 +237,24 @@ const evaluationWhatsAppUrl = buildWhatsAppUrl({
         <span>Alma Holística &bull; Metodología Clínica Integrativa</span>
       </div>
     </div>
+
+    <!-- Ilustración Médica: Eje Mente-Cuerpo y Correlación Neurovegetativa (R2) -->
+    <div class="mt-16 max-w-4xl mx-auto px-6 relative z-10">
+      <img
+        src="/images/eje-mente-cuerpo-neurovegetativo.svg"
+        alt="Diagrama médico del eje mente-cuerpo y correlación neurovegetativa en biodescodificación"
+        width="800"
+        height="600"
+        loading="lazy"
+        decoding="async"
+        class="w-full max-w-2xl h-auto mx-auto rounded-[2rem] border border-slate-800/40"
+      />
+    </div>
+
+    <!-- Tabla Comparativa: Enfoque Clínico (Medicina Convencional vs Biodescodificación) (R3 & R4) -->
+    <div class="mt-16 max-w-7xl mx-auto px-6 lg:px-12 text-left relative z-10">
+      <ClinicalApproachTable />
+    </div>
   </section>
 
   <!-- ========================================================================= -->
@@ -254,6 +275,19 @@ const evaluationWhatsAppUrl = buildWhatsAppUrl({
         <p class="text-base text-slate-700 dark:text-slate-400 mt-5 leading-relaxed font-normal max-w-2xl mx-auto">
           Un abordaje complementario a la medicina tradicional que descodifica el sentido adaptativo detrás de cada manifestación física y somática.
         </p>
+      </div>
+
+      <!-- Ilustración 2: Los 3 Pilares del Choque Biológico y Respuesta Adaptativa Celular (R2) -->
+      <div class="mb-16 max-w-4xl mx-auto">
+        <img
+          src="/images/pilares-choque-biologico.svg"
+          alt="Los 3 pilares del choque biológico y respuesta adaptativa celular"
+          width="800"
+          height="500"
+          loading="lazy"
+          decoding="async"
+          class="w-full max-w-2xl h-auto mx-auto rounded-[2rem] border border-slate-800/40"
+        />
       </div>
 
       <div class="gsap-scroll-pilares-grid grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -320,6 +354,11 @@ const evaluationWhatsAppUrl = buildWhatsAppUrl({
 
       </div>
 
+      <!-- Tabla Matriz de Dolencias y Sentido Biológico (R3 & R4) -->
+      <div class="mt-16">
+        <BiologicalMatrixTable />
+      </div>
+
     </div>
   </section>
 
@@ -373,12 +412,12 @@ const evaluationWhatsAppUrl = buildWhatsAppUrl({
       <div id="home-dolencias-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {featuredDolencias.map((item) => (
           <article
-            class="home-dolencia-card bg-[#0A1226] border border-slate-800/40 rounded-[2.5rem] p-8 lg:p-10 flex flex-col justify-between hover:border-[#779DD1]/50 transition-all duration-500 hover:-translate-y-1"
+            class={`home-dolencia-card ${getBiologicalBorderClass(item.sistema)} bg-[#0A1226] border border-slate-800/40 rounded-[2.5rem] p-8 lg:p-10 flex flex-col justify-between hover:border-[#779DD1]/50 transition-all duration-500 hover:-translate-y-1`}
             data-search={`${item.nombre} ${item.sistema} ${item.conflictoEmocional}`.toLowerCase()}
           >
             <div>
               <div class="flex items-center justify-between gap-2 mb-5">
-                <span class="inline-block px-3.5 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-[#0E172F] text-[#779DD1] border border-slate-800/60">
+                <span class={`bio-badge ${getBiologicalBadgeClass(item.sistema)} inline-flex items-center text-xs font-bold tracking-wider uppercase`}>
                   {item.sistema}
                 </span>
               </div>
@@ -557,6 +596,19 @@ const evaluationWhatsAppUrl = buildWhatsAppUrl({
         </p>
       </div>
 
+      <!-- Ilustración 3: Rango de etapas terapéuticas desde diagnóstico preliminar hasta autorregulación (R2) -->
+      <div class="mb-16 max-w-4xl mx-auto">
+        <img
+          src="/images/fases-proceso-terapeutico.svg"
+          alt="Rango de etapas terapéuticas desde diagnóstico preliminar hasta autorregulación"
+          width="900"
+          height="450"
+          loading="lazy"
+          decoding="async"
+          class="w-full max-w-3xl h-auto mx-auto rounded-[2rem] border border-slate-800/40"
+        />
+      </div>
+
       <div class="gsap-scroll-journey-grid grid grid-cols-1 md:grid-cols-4 gap-8">
         
         <div class="gsap-scroll-journey-step relative bg-[#0A1226] border border-slate-800/40 rounded-[2.5rem] p-8 lg:p-10 text-center space-y-5 transition-all duration-500 hover:-translate-y-1 hover:border-[#779DD1]/50 flex flex-col justify-between" data-journey-step="1">
@@ -611,6 +663,11 @@ const evaluationWhatsAppUrl = buildWhatsAppUrl({
           <span class="journey-phase-pill inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-teal-50 text-teal-700 border border-teal-200 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-800/60">Integración</span>
         </div>
 
+      </div>
+
+      <!-- Tabla de Etapas del Acompañamiento Terapéutico (R3 & R4) -->
+      <div class="mt-16">
+        <AccompanimentStagesTable />
       </div>
 
       <!-- CTA de la sección de pasos -->

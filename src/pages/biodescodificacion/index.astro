@@ -17,7 +17,7 @@
 
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { buildWhatsAppUrl } from '../../config/site';
-import { getDolencias } from '../../lib/dolencias';
+import { getDolencias, getBiologicalBorderClass, getBiologicalBadgeClass } from '../../lib/dolencias';
 import type { BodilySystem, DolenciaData } from '../../types/dolencia';
 
 // Carga memoizada de las 45 dolencias del catálogo
@@ -143,14 +143,14 @@ const catalogoWhatsAppUrl = buildWhatsAppUrl({
       <div id="catalog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {dolencias.map((item) => (
           <article
-            class="dolencia-item-card bg-[#0A1226] border border-[#1E293B] rounded-2xl p-6 flex flex-col justify-between hover:border-[#779DD1] transition-colors"
+            class={`dolencia-item-card ${getBiologicalBorderClass(item.sistema)} bg-[#0A1226] border border-[#1E293B] rounded-2xl p-6 flex flex-col justify-between hover:border-[#779DD1] transition-colors`}
             data-sistema={item.sistema}
             data-search-text={`${item.nombre} ${item.sistema} ${item.conflictoEmocional} ${item.sentidoBiologico}`.toLowerCase()}
           >
             <div>
               <!-- Cabecera de la Tarjeta: Sistema -->
               <div class="flex items-center justify-between gap-2 mb-3">
-                <span class="inline-block px-2.5 py-1 rounded-md text-xs font-semibold tracking-wider uppercase bg-[#0E172F] text-[#779DD1] border border-[#1E3A5F]">
+                <span class={`bio-badge ${getBiologicalBadgeClass(item.sistema)} inline-flex items-center text-xs font-semibold tracking-wider uppercase`}>
                   {item.sistema}
                 </span>
                 <span class="text-xs text-slate-500 font-sans font-medium uppercase">

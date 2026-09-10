@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-labelledby="desc-pilares-choque">
+  <title id="desc-pilares-choque">Diagrama de los Tres Pilares del Choque Biológico y la Respuesta Adaptativa</title>
+  <defs>
+    <!-- Marcadores de flujo direccional -->
+    <marker id="flow-terracotta" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#C25E3E"/>
+    </marker>
+    <marker id="flow-green" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#2E854B"/>
+    </marker>
+    <marker id="flow-cyan" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38BDF8"/>
+    </marker>
+  </defs>
+
+  <!-- Lienzo Sólido Mate Base -->
+  <rect width="800" height="500" rx="16" fill="#0A1226" stroke="#1E293B" stroke-width="2"/>
+
+  <!-- Cuadrícula Técnica Médica Editorial -->
+  <g stroke="#1E293B" stroke-width="0.75" stroke-dasharray="3 4">
+    <line x1="40" y1="75" x2="760" y2="75"/>
+    <line x1="40" y1="160" x2="760" y2="160"/>
+    <line x1="40" y1="285" x2="760" y2="285"/>
+    <line x1="40" y1="410" x2="760" y2="410"/>
+    <line x1="400" y1="75" x2="400" y2="445"/>
+    <circle cx="400" cy="285" r="160" fill="none" stroke="#1E293B" stroke-width="1" stroke-dasharray="4 4"/>
+    <circle cx="400" cy="285" r="90" fill="none" stroke="#1E293B" stroke-width="0.75"/>
+  </g>
+
+  <!-- Encabezado Editorial Superior -->
+  <g id="header-pilares">
+    <rect x="40" y="20" width="720" height="42" rx="8" fill="#0E172F" stroke="#1E3A5F" stroke-width="1"/>
+    <circle cx="58" cy="41" r="4" fill="#38BDF8"/>
+    <text x="74" y="37" fill="#38BDF8" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" letter-spacing="0.15em">METODOLOGÍA CLÍNICA • BIODESCODIFICACIÓN INTEGRATIVA</text>
+    <text x="74" y="51" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="600">FIGURA II: LOS TRES PILARES DEL CHOQUE BIOLÓGICO Y LA RESPUESTA ADAPTATIVA</text>
+    <rect x="660" y="30" width="86" height="22" rx="11" fill="#060A1A" stroke="#779DD1" stroke-width="1"/>
+    <text x="703" y="45" fill="#779DD1" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" text-anchor="middle">TRIÁDA SBS</text>
+  </g>
+
+  <!-- LÍNEAS CONECTORAS TRIANGULARES BIO-CIBERNÉTICAS -->
+  <g id="triangular-feedback-loop">
+    <!-- Pilar 1 -> Pilar 2 (Impacto -> Tejido Embrionario) -->
+    <path d="M 330 145 C 240 170, 200 210, 210 265" fill="none" stroke="#C25E3E" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#flow-terracotta)"/>
+    <!-- Pilar 2 -> Pilar 3 (Tejido Embrionario -> Sentido Biológico) -->
+    <path d="M 315 375 Q 400 415 485 375" fill="none" stroke="#2E854B" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#flow-green)"/>
+    <!-- Pilar 3 -> Pilar 1 (Sentido Biológico -> Desactivación / Homeostasis) -->
+    <path d="M 590 265 C 600 210, 560 170, 470 145" fill="none" stroke="#38BDF8" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#flow-cyan)"/>
+  </g>
+
+  <!-- NÚCLEO CENTRAL DE RESONANCIA & TRANSFORMACIÓN (MARIPOSA ALMA HOLÍSTICA) -->
+  <g id="central-core" transform="translate(400, 285)">
+    <!-- Aura de resonancia circular sólida -->
+    <circle cx="0" cy="0" r="48" fill="#060A1A" stroke="#1E3A5F" stroke-width="2"/>
+    <circle cx="0" cy="0" r="42" fill="#0A1226" stroke="#779DD1" stroke-width="1.2" stroke-dasharray="3 3"/>
+    
+    <!-- Silueta Vectorial de Mariposa Transformadora -->
+    <!-- Ala izquierda superior e inferior -->
+    <path d="M -4 -3 C -15 -24, -32 -18, -26 -4 C -22 6, -10 6, -4 2 Z" fill="#779DD1" opacity="0.9"/>
+    <path d="M -4 4 C -18 10, -22 22, -12 24 C -4 26, -2 14, -3 6 Z" fill="#38BDF8" opacity="0.8"/>
+    <!-- Ala derecha superior e inferior -->
+    <path d="M 4 -3 C 15 -24, 32 -18, 26 -4 C 22 6, 10 6, 4 2 Z" fill="#779DD1" opacity="0.9"/>
+    <path d="M 4 4 C 18 10, 22 22, 12 24 C 4 26, 2 14, 3 6 Z" fill="#38BDF8" opacity="0.8"/>
+    <!-- Cuerpo central -->
+    <ellipse cx="0" cy="2" rx="2.5" ry="12" fill="#F8FAFC"/>
+    <circle cx="0" cy="-11" r="2.5" fill="#F8FAFC"/>
+
+    <!-- Etiqueta central inferior -->
+    <rect x="-65" y="56" width="130" height="22" rx="11" fill="#060A1A" stroke="#779DD1" stroke-width="1"/>
+    <text x="0" y="70" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" text-anchor="middle" letter-spacing="0.08em">TOMA DE CONCIENCIA</text>
+  </g>
+
+  <!-- PILAR 01: EL CHOQUE INCONSCIENTE (DHS - DIRK HAMER SYNDROME) -->
+  <g id="pilar-01-dhs" transform="translate(400, 128)">
+    <!-- Tarjeta del Pilar -->
+    <rect x="-145" y="-45" width="290" height="90" rx="12" fill="#0E172F" stroke="#C25E3E" stroke-width="1.5"/>
+    
+    <!-- Micro-emblema de impacto en terracota -->
+    <circle cx="-112" cy="0" r="24" fill="#060A1A" stroke="#C25E3E" stroke-width="2"/>
+    <circle cx="-112" cy="0" r="17" fill="#C25E3E" opacity="0.2"/>
+    <!-- Icono Rayo / Choque Inesperado -->
+    <path d="M -114 -9 L -119 0 L -113 0 L -115 9 L -107 -1 L -112 -1 Z" fill="#F8FAFC"/>
+
+    <!-- Textos Informativos del Pilar 01 -->
+    <rect x="-80" y="-35" width="68" height="18" rx="4" fill="#060A1A" stroke="#C25E3E" stroke-width="1"/>
+    <text x="-46" y="-22" fill="#C25E3E" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" text-anchor="middle">PILAR 01</text>
+    <text x="-6" y="-22" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600">DETONANTE AGUDO</text>
+
+    <text x="-80" y="-2" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700">El Choque Inconsciente (DHS)</text>
+    <text x="-80" y="16" fill="#CBD5E1" font-family="system-ui, -apple-system, sans-serif" font-size="9.5">Evento imprevisto, agudo y vivido en soledad.</text>
+    <text x="-80" y="30" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="8.5">Desborda la mente analítica y activa la alerta orgánica.</text>
+  </g>
+
+  <!-- PILAR 02: RELÉ CEREBRAL Y CAPAS EMBRIONARIAS (ONTOGÉNESIS) -->
+  <g id="pilar-02-embrio" transform="translate(195, 345)">
+    <!-- Tarjeta del Pilar -->
+    <rect x="-140" y="-55" width="280" height="106" rx="12" fill="#0E172F" stroke="#2E854B" stroke-width="1.5"/>
+    
+    <!-- Micro-emblema de capas ontogenéticas en verde salvia -->
+    <circle cx="-106" cy="-4" r="24" fill="#060A1A" stroke="#2E854B" stroke-width="2"/>
+    <!-- 3 arcos concéntricos simbolizando Endodermo, Mesodermo, Ectodermo -->
+    <circle cx="-106" cy="-4" r="16" fill="none" stroke="#2E854B" stroke-width="2"/>
+    <circle cx="-106" cy="-4" r="10" fill="none" stroke="#2B74AA" stroke-width="2"/>
+    <circle cx="-106" cy="-4" r="5" fill="#7C4499"/>
+
+    <!-- Textos Informativos del Pilar 02 -->
+    <rect x="-74" y="-45" width="68" height="18" rx="4" fill="#060A1A" stroke="#2E854B" stroke-width="1"/>
+    <text x="-40" y="-32" fill="#2E854B" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" text-anchor="middle">PILAR 02</text>
+    <text x="0" y="-32" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600">SUSTRATO TISULAR</text>
+
+    <text x="-74" y="-12" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700">Relé Cerebral &amp; Capa Embrionaria</text>
+    <text x="-74" y="6" fill="#CBD5E1" font-family="system-ui, -apple-system, sans-serif" font-size="9.5">• Endodermo: supervivencia digestiva/pulmonar</text>
+    <text x="-74" y="20" fill="#CBD5E1" font-family="system-ui, -apple-system, sans-serif" font-size="9.5">• Mesodermo: valorización &amp; estructura ósea</text>
+    <text x="-74" y="34" fill="#CBD5E1" font-family="system-ui, -apple-system, sans-serif" font-size="9.5">• Ectodermo: contacto social &amp; territorio</text>
+  </g>
+
+  <!-- PILAR 03: SENTIDO BIOLÓGICO ADAPTATIVO (TELEOLOGÍA DE SUPERVIVENCIA) -->
+  <g id="pilar-03-sentido" transform="translate(605, 345)">
+    <!-- Tarjeta del Pilar -->
+    <rect x="-140" y="-55" width="280" height="106" rx="12" fill="#0E172F" stroke="#38BDF8" stroke-width="1.5"/>
+    
+    <!-- Micro-emblema de homeostasis y sentido biológico -->
+    <circle cx="-106" cy="-4" r="24" fill="#060A1A" stroke="#38BDF8" stroke-width="2"/>
+    <circle cx="-106" cy="-4" r="17" fill="#38BDF8" opacity="0.15"/>
+    <!-- Icono Balanza / Escudo de Protección -->
+    <path d="M -114 -6 L -106 -12 L -98 -6 L -98 3 C -98 8, -106 12, -106 12 C -106 12, -114 8, -114 3 Z" fill="#F8FAFC"/>
+
+    <!-- Textos Informativos del Pilar 03 -->
+    <rect x="-74" y="-45" width="68" height="18" rx="4" fill="#060A1A" stroke="#38BDF8" stroke-width="1"/>
+    <text x="-40" y="-32" fill="#38BDF8" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" text-anchor="middle">PILAR 03</text>
+    <text x="4" y="-32" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600">PROGRAMA SBS</text>
+
+    <text x="-74" y="-12" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700">Sentido Biológico Adaptativo</text>
+    <text x="-74" y="6" fill="#CBD5E1" font-family="system-ui, -apple-system, sans-serif" font-size="9.5">La enfermedad no es un error de la biología.</text>
+    <text x="-74" y="20" fill="#CBD5E1" font-family="system-ui, -apple-system, sans-serif" font-size="9.5">Es una respuesta orientada a salvaguardar</text>
+    <text x="-74" y="34" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="9.5">la supervivencia individual y del clan.</text>
+  </g>
+
+  <!-- PIE DE DIAGRAMA: SÍNTESIS OPERATIVA DEL PROTOCOLO -->
+  <g id="footer-triada" transform="translate(40, 448)">
+    <rect x="0" y="0" width="720" height="34" rx="6" fill="#0E172F" stroke="#1E293B" stroke-width="1"/>
+    <text x="24" y="21" fill="#779DD1" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="600">SECUENCIA CLÍNICA:</text>
+    <text x="140" y="21" fill="#CBD5E1" font-family="system-ui, -apple-system, sans-serif" font-size="9.5">1. Impacto (DHS) ➔ 2. Focalización Orgánica (Capa) ➔ 3. Descifrado del Sentido ➔ 4. Autorregulación</text>
+    <text x="700" y="21" fill="#64748B" font-family="system-ui, -apple-system, sans-serif" font-size="9" text-anchor="end">Alma Holística ©</text>
+  </g>
+</svg>

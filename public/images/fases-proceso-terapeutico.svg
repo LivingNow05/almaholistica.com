@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450" width="900" height="450" role="img" aria-labelledby="desc-fases-proceso">
+  <title id="desc-fases-proceso">Curva Electrofisiológica de las Fases del Proceso Terapéutico y Autorregulación</title>
+  <defs>
+    <!-- Marcadores de flecha médica -->
+    <marker id="arrow-axis" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#779DD1"/>
+    </marker>
+  </defs>
+
+  <!-- Lienzo Sólido Mate Base -->
+  <rect width="900" height="450" rx="16" fill="#0A1226" stroke="#1E293B" stroke-width="2"/>
+
+  <!-- Cuadrícula Médica Tipo Oscilograma Clínico -->
+  <g stroke="#1E293B" stroke-width="0.75" stroke-dasharray="3 3">
+    <!-- Líneas Horizontales -->
+    <line x1="50" y1="90" x2="850" y2="90"/>
+    <line x1="50" y1="140" x2="850" y2="140"/>
+    <line x1="50" y1="190" x2="850" y2="190"/>
+    <line x1="50" y1="240" x2="850" y2="240"/>
+    <line x1="50" y1="290" x2="850" y2="290"/>
+    <line x1="50" y1="340" x2="850" y2="340"/>
+    <line x1="50" y1="390" x2="850" y2="390"/>
+    <!-- Líneas Verticales -->
+    <line x1="100" y1="80" x2="100" y2="400"/>
+    <line x1="220" y1="80" x2="220" y2="400"/>
+    <line x1="340" y1="80" x2="340" y2="400"/>
+    <line x1="460" y1="80" x2="460" y2="400"/>
+    <line x1="580" y1="80" x2="580" y2="400"/>
+    <line x1="700" y1="80" x2="700" y2="400"/>
+    <line x1="820" y1="80" x2="820" y2="400"/>
+  </g>
+
+  <!-- Encabezado Editorial Clínico -->
+  <g id="header-fases">
+    <rect x="50" y="18" width="800" height="42" rx="8" fill="#0E172F" stroke="#1E3A5F" stroke-width="1"/>
+    <circle cx="68" cy="39" r="4" fill="#38BDF8"/>
+    <text x="84" y="35" fill="#38BDF8" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" letter-spacing="0.15em">PROCESO TERAPÉUTICO • DINÁMICA BIFÁSICA</text>
+    <text x="84" y="49" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="600">FIGURA III: RANGO DE ETAPAS TERAPÉUTICAS DESDE EL DIAGNÓSTICO HASTA LA AUTORREGULACIÓN</text>
+    <rect x="735" y="28" width="105" height="22" rx="11" fill="#060A1A" stroke="#779DD1" stroke-width="1"/>
+    <text x="787" y="43" fill="#779DD1" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" text-anchor="middle">CURVA BIFÁSICA</text>
+  </g>
+
+  <!-- LÍNEA BASE CENTRAL DE NORMOTONÍA (HOMEOSTASIS FISIOLÓGICA) -->
+  <g id="normotonia-baseline">
+    <line x1="60" y1="240" x2="850" y2="240" stroke="#64748B" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <rect x="70" y="230" width="130" height="20" rx="4" fill="#0A1226" stroke="#1E3A5F" stroke-width="1"/>
+    <text x="135" y="244" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" text-anchor="middle">LÍNEA DE NORMOTONÍA</text>
+  </g>
+
+  <!-- EJES Y POLARIDADES NEUROVEGETATIVAS -->
+  <g id="axes-polarities">
+    <!-- Eje Vertical Y -->
+    <line x1="70" y1="390" x2="70" y2="85" stroke="#779DD1" stroke-width="1.5" marker-end="url(#arrow-axis)"/>
+    <!-- Indicadores de Tono -->
+    <rect x="80" y="95" width="150" height="22" rx="4" fill="#0E172F" stroke="#C25E3E" stroke-width="1"/>
+    <text x="88" y="110" fill="#C25E3E" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700">▲ SIMPATICOTONÍA (ESTRÉS)</text>
+
+    <rect x="80" y="365" width="150" height="22" rx="4" fill="#0E172F" stroke="#2B74AA" stroke-width="1"/>
+    <text x="88" y="380" fill="#38BDF8" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700">▼ VAGOTONÍA (REPARACIÓN)</text>
+  </g>
+
+  <!-- ZONAS SOMBREADAS DE ESTADO FISIOLÓGICO -->
+  <g id="physiological-zones">
+    <!-- Zona de Conflicto Activo (Simpaticotónica) -->
+    <path d="M 210 240 L 210 145 Q 310 120 410 145 L 410 240 Z" fill="#C25E3E" opacity="0.08"/>
+    <!-- Zona de Reparación (Vagotónica) -->
+    <path d="M 410 240 L 410 325 Q 510 355 610 240 Z" fill="#7C4499" opacity="0.08"/>
+  </g>
+
+  <!-- CURVA ELECTROFISIOLÓGICA BIFÁSICA PRINCIPAL -->
+  <g id="clinical-biphasic-wave">
+    <!-- 1. Normotonía Inicial: Onda sinusoidal día/noche regular -->
+    <path d="M 70 240 Q 90 225 110 240 T 150 240 T 190 240 L 210 240" 
+          fill="none" stroke="#779DD1" stroke-width="2"/>
+
+    <!-- 2. Impacto DHS: Disparo abrupto hacia simpaticotonía aguda -->
+    <path d="M 210 240 L 218 145" fill="none" stroke="#C25E3E" stroke-width="2.5"/>
+    <circle cx="218" cy="145" r="5" fill="#C25E3E"/>
+    <circle cx="218" cy="145" r="9" fill="none" stroke="#C25E3E" stroke-width="1" stroke-dasharray="2 2"/>
+
+    <!-- 3. Fase de Conflicto Activo (CA): Meseta sostenida de estrés y alerta biológica -->
+    <path d="M 218 145 Q 260 135 310 140 T 410 145" 
+          fill="none" stroke="#C25E3E" stroke-width="2.5"/>
+
+    <!-- 4. Punto de Conflictolisis (CL) / Sesión de Desanclaje: Descenso a vagotonía -->
+    <circle cx="410" cy="145" r="5" fill="#38BDF8"/>
+    <path d="M 410 145 L 425 240 L 440 325" fill="none" stroke="#38BDF8" stroke-width="2.5"/>
+
+    <!-- 5. Fase PCL-A (Vagotonía Exudativa y Cansancio Reparador) -->
+    <path d="M 440 325 Q 480 345 520 325" fill="none" stroke="#7C4499" stroke-width="2.5"/>
+
+    <!-- 6. Crisis Epileptoide (Epicrisis / Espiga de Validación) -->
+    <path d="M 520 325 L 535 170 L 550 315" fill="none" stroke="#38BDF8" stroke-width="2"/>
+    <circle cx="535" cy="170" r="4" fill="#38BDF8"/>
+
+    <!-- 7. Fase PCL-B (Cicatrización Tisular y Normalización Gradual) -->
+    <path d="M 550 315 Q 600 325 650 255 L 670 240" fill="none" stroke="#2E854B" stroke-width="2.5"/>
+
+    <!-- 8. Retorno a la Normotonía Permanente de Mayor Resiliencia -->
+    <path d="M 670 240 Q 695 228 720 240 T 770 240 T 820 240 L 850 240" 
+          fill="none" stroke="#2E854B" stroke-width="2"/>
+  </g>
+
+  <!-- PUNTOS CRÍTICOS MARCADOS (LABELS DE LA CURVA) -->
+  <g id="curve-markers">
+    <!-- DHS -->
+    <rect x="180" y="115" width="75" height="18" rx="4" fill="#060A1A" stroke="#C25E3E" stroke-width="1"/>
+    <text x="217" y="127" fill="#C25E3E" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" text-anchor="middle">DHS (CHOQUE)</text>
+
+    <!-- CL -->
+    <rect x="375" y="115" width="70" height="18" rx="4" fill="#060A1A" stroke="#38BDF8" stroke-width="1"/>
+    <text x="410" y="127" fill="#38BDF8" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" text-anchor="middle">CL (SESIÓN)</text>
+
+    <!-- EPICRISIS -->
+    <rect x="500" y="142" width="70" height="18" rx="4" fill="#060A1A" stroke="#779DD1" stroke-width="1"/>
+    <text x="535" y="154" fill="#779DD1" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" text-anchor="middle">EPICRISIS</text>
+
+    <!-- PCL-A y PCL-B -->
+    <text x="475" y="358" fill="#7C4499" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="600">PCL-A (Vagotonía)</text>
+    <text x="590" y="358" fill="#2E854B" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="600">PCL-B (Cicatrización)</text>
+  </g>
+
+  <!-- LAS 4 ESTACIONES DEL ACOMPAÑAMIENTO CLÍNICO (CARDS EDITORIALES) -->
+
+  <!-- ESTACIÓN 01: EVALUACIÓN Y QUIZ -->
+  <g id="station-01" transform="translate(70, 275)">
+    <rect x="0" y="0" width="170" height="80" rx="8" fill="#0E172F" stroke="#2B74AA" stroke-width="1.2"/>
+    <!-- Burbuja Numérica -->
+    <circle cx="22" cy="22" r="12" fill="#060A1A" stroke="#2B74AA" stroke-width="1.5"/>
+    <text x="22" y="26" fill="#38BDF8" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" text-anchor="middle">01</text>
+    <text x="40" y="24" fill="#38BDF8" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700">EVALUACIÓN INICIAL</text>
+    <text x="14" y="44" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600">Quiz de Calificación</text>
+    <text x="14" y="58" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="8.5">Mapeo cronológico del síntoma</text>
+    <text x="14" y="70" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="8.5">y detección de la línea de tiempo.</text>
+  </g>
+
+  <!-- ESTACIÓN 02: HIPÓTESIS CLÍNICA Y CONFLICTO ACTIVO -->
+  <g id="station-02" transform="translate(255, 68)">
+    <rect x="0" y="0" width="180" height="66" rx="8" fill="#0E172F" stroke="#C25E3E" stroke-width="1.2"/>
+    <!-- Burbuja Numérica -->
+    <circle cx="22" cy="20" r="12" fill="#060A1A" stroke="#C25E3E" stroke-width="1.5"/>
+    <text x="22" y="24" fill="#C25E3E" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" text-anchor="middle">02</text>
+    <text x="40" y="22" fill="#C25E3E" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700">HIPÓTESIS CLÍNICA</text>
+    <text x="14" y="40" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600">Conflicto Biológico Activo</text>
+    <text x="14" y="54" fill="#CBD5E1" font-family="system-ui, -apple-system, sans-serif" font-size="8.5">Decodificación del sentido biológico.</text>
+  </g>
+
+  <!-- ESTACIÓN 03: SESIÓN TERAPÉUTICA 1 A 1 & DESANCLAJE -->
+  <g id="station-03" transform="translate(460, 275)">
+    <rect x="0" y="0" width="180" height="80" rx="8" fill="#0E172F" stroke="#7C4499" stroke-width="1.2"/>
+    <!-- Burbuja Numérica -->
+    <circle cx="22" cy="22" r="12" fill="#060A1A" stroke="#7C4499" stroke-width="1.5"/>
+    <text x="22" y="26" fill="#8E55B0" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" text-anchor="middle">03</text>
+    <text x="40" y="24" fill="#8E55B0" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700">SESIÓN CLÍNICA 1 A 1</text>
+    <text x="14" y="44" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600">Desanclaje Emocional</text>
+    <text x="14" y="58" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="8.5">Solución inconsciente (CL) y</text>
+    <text x="14" y="70" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="8.5">entrada en vagotonía reparadora.</text>
+  </g>
+
+  <!-- ESTACIÓN 04: AUTORREGULACIÓN Y HOMEOSTASIS -->
+  <g id="station-04" transform="translate(665, 68)">
+    <rect x="0" y="0" width="185" height="66" rx="8" fill="#0E172F" stroke="#2E854B" stroke-width="1.2"/>
+    <!-- Burbuja Numérica -->
+    <circle cx="22" cy="20" r="12" fill="#060A1A" stroke="#2E854B" stroke-width="1.5"/>
+    <text x="22" y="24" fill="#2E854B" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" text-anchor="middle">04</text>
+    <text x="40" y="22" fill="#2E854B" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700">AUTORREGULACIÓN</text>
+    <text x="14" y="40" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600">Homeostasis Permanente</text>
+    <text x="14" y="54" fill="#CBD5E1" font-family="system-ui, -apple-system, sans-serif" font-size="8.5">Integración celular y cierre de ciclo.</text>
+  </g>
+
+  <!-- PIE DE FIGURA: LEYENDA CLÍNICA -->
+  <g id="footer-fases" transform="translate(50, 405)">
+    <rect x="0" y="0" width="800" height="30" rx="6" fill="#0E172F" stroke="#1E293B" stroke-width="1"/>
+    <text x="20" y="19" fill="#779DD1" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600">ESQUEMA DE EVOLUCIÓN:</text>
+    <text x="150" y="19" fill="#CBD5E1" font-family="system-ui, -apple-system, sans-serif" font-size="9">Normotonía ➔ Simpaticotonía Activa (CA) ➔ Conflictolisis (CL) ➔ Vagotonía (PCL-A/B) ➔ Autorregulación</text>
+    <text x="780" y="19" fill="#64748B" font-family="system-ui, -apple-system, sans-serif" font-size="9" text-anchor="end">Alma Holística ©</text>
+  </g>
+</svg>

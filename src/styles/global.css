@@ -801,11 +801,207 @@ html.dark::-webkit-scrollbar-thumb:hover {
 
 
 /* ==========================================================================
-   JOURNEY STEP — PROGRESIÓN CROMÁTICA DE MARCA
-   Números de paso, acentos de borde, píldoras de fase y conectores de flujo
+   11. PALETA CROMÁTICA BIOLÓGICA SEMÁNTICA (HITO M1)
+   Bordes superiores de 3px, badges de categoría 100% sólidos mates,
+   micro-dots circulares y variantes para Modo Claro y Modo Oscuro (WCAG AAA)
    ========================================================================== */
 
-/* --- Círculos de número: Modo Claro --- */
+/* --------------------------------------------------------------------------
+   BORDES SUPERIORES SEMÁNTICOS (3px de grosor sólido mate)
+   -------------------------------------------------------------------------- */
+.bio-border-digestivo {
+  border-top: 3px solid #2E854B !important;
+}
+html.dark .bio-border-digestivo {
+  border-top: 3px solid #3E9B67 !important;
+}
+
+.bio-border-osteoarticular {
+  border-top: 3px solid #C25E3E !important;
+}
+html.dark .bio-border-osteoarticular {
+  border-top: 3px solid #C86241 !important;
+}
+
+.bio-border-respiratorio {
+  border-top: 3px solid #2B74AA !important;
+}
+html.dark .bio-border-respiratorio {
+  border-top: 3px solid #3688C7 !important;
+}
+
+.bio-border-nervioso {
+  border-top: 3px solid #7C4499 !important;
+}
+html.dark .bio-border-nervioso {
+  border-top: 3px solid #8E55B0 !important;
+}
+
+/* --------------------------------------------------------------------------
+   MICRO-DOTS INDICADORES CIRCULARES BIOLÓGICOS (100% Sólidos Mates)
+   -------------------------------------------------------------------------- */
+.bio-dot {
+  display: inline-block;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+.bio-dot-digestivo,
+.bio-badge-digestivo .bio-dot {
+  background-color: #2E854B !important;
+}
+html.dark .bio-dot-digestivo,
+html.dark .bio-badge-digestivo .bio-dot {
+  background-color: #3E9B67 !important;
+}
+
+.bio-dot-osteoarticular,
+.bio-badge-osteoarticular .bio-dot {
+  background-color: #C25E3E !important;
+}
+html.dark .bio-dot-osteoarticular,
+html.dark .bio-badge-osteoarticular .bio-dot {
+  background-color: #C86241 !important;
+}
+
+.bio-dot-respiratorio,
+.bio-badge-respiratorio .bio-dot {
+  background-color: #2B74AA !important;
+}
+html.dark .bio-dot-respiratorio,
+html.dark .bio-badge-respiratorio .bio-dot {
+  background-color: #3688C7 !important;
+}
+
+.bio-dot-nervioso,
+.bio-badge-nervioso .bio-dot {
+  background-color: #7C4499 !important;
+}
+html.dark .bio-dot-nervioso,
+html.dark .bio-badge-nervioso .bio-dot {
+  background-color: #8E55B0 !important;
+}
+
+/* --------------------------------------------------------------------------
+   BADGES DE CATEGORÍA BIOLÓGICOS (100% Sólidos Mates, Contraste WCAG AAA)
+   -------------------------------------------------------------------------- */
+.bio-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1;
+  border-width: 1px;
+  border-style: solid;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Pseudo-element dot fallback si no se incluye .bio-dot explícito */
+.bio-badge-digestivo::before,
+.bio-badge-osteoarticular::before,
+.bio-badge-respiratorio::before,
+.bio-badge-nervioso::before {
+  content: '';
+  display: inline-block;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+.bio-badge-digestivo:has(.bio-dot)::before,
+.bio-badge-osteoarticular:has(.bio-dot)::before,
+.bio-badge-respiratorio:has(.bio-dot)::before,
+.bio-badge-nervioso:has(.bio-dot)::before {
+  display: none;
+}
+
+/* Familia 1: Sistema Digestivo (Verde Salvia / Esmeralda Sereno) */
+.bio-badge-digestivo {
+  background-color: #E8F5EC !important;
+  border-color: #A8D8B6 !important;
+  color: #13522E !important;
+}
+.bio-badge-digestivo::before {
+  background-color: #2E854B;
+}
+html.dark .bio-badge-digestivo {
+  background-color: #0C1F16 !important;
+  border-color: #1A3D2C !important;
+  color: #6AC894 !important;
+}
+html.dark .bio-badge-digestivo::before {
+  background-color: #3E9B67;
+}
+
+/* Familia 2: Sistema Osteoarticular (Arcilla / Terracota Cálido) */
+.bio-badge-osteoarticular {
+  background-color: #FDF0EA !important;
+  border-color: #ECC3B2 !important;
+  color: #8A3618 !important;
+}
+.bio-badge-osteoarticular::before {
+  background-color: #C25E3E;
+}
+html.dark .bio-badge-osteoarticular {
+  background-color: #24120D !important;
+  border-color: #4A2419 !important;
+  color: #E88F71 !important;
+}
+html.dark .bio-badge-osteoarticular::before {
+  background-color: #C86241;
+}
+
+/* Familia 3: Sistema Respiratorio (Azul Zafiro / Celeste Nórdico) */
+.bio-badge-respiratorio {
+  background-color: #EAF2F9 !important;
+  border-color: #AECBE5 !important;
+  color: #124B73 !important;
+}
+.bio-badge-respiratorio::before {
+  background-color: #2B74AA;
+}
+html.dark .bio-badge-respiratorio {
+  background-color: #0B1A28 !important;
+  border-color: #19354E !important;
+  color: #6BAEE3 !important;
+}
+html.dark .bio-badge-respiratorio::before {
+  background-color: #3688C7;
+}
+
+/* Familia 4: Sistema Nervioso / Psicosomático (Amatista Suave / Lavanda Profundo) */
+.bio-badge-nervioso {
+  background-color: #F4EFF9 !important;
+  border-color: #D0BEE0 !important;
+  color: #532A78 !important;
+}
+.bio-badge-nervioso::before {
+  background-color: #7C4499;
+}
+html.dark .bio-badge-nervioso {
+  background-color: #1B0F28 !important;
+  border-color: #392051 !important;
+  color: #BC91DF !important;
+}
+html.dark .bio-badge-nervioso::before {
+  background-color: #8E55B0;
+}
+
+/* ==========================================================================
+   JOURNEY STEP — PROGRESIÓN CROMÁTICA DE MARCA (ARMONIZADA M1)
+   Números de paso, acentos de borde, píldoras de fase y conectores de flujo
+   100% Sólidos Mates (WCAG AAA)
+   ========================================================================== */
+
+/* --- Círculos de número base: Modo Claro --- */
 html:not(.dark) .journey-number,
 html.light .journey-number {
   background-color: #E0EAF5 !important;
@@ -813,52 +1009,147 @@ html.light .journey-number {
   color: #1E3A8A !important;
 }
 
-/* --- Círculos de número: Modo Oscuro --- */
+/* --- Círculos de número base: Modo Oscuro --- */
 html.dark .journey-number {
   background-color: #0E172F !important;
-  border-color: rgba(30, 41, 59, 0.6) !important;
+  border-color: #1E293B !important;
   color: #779DD1 !important;
 }
 
-/* --- Acentos de borde superior por paso: Modo Claro --- */
+/* --- Paso 1: Celeste / Zafiro Respiratorio (Diagnóstico / Aire) --- */
 html:not(.dark) [data-journey-step="1"],
 html.light [data-journey-step="1"] {
-  border-top: 2px solid rgba(56, 189, 248, 0.5) !important;
+  border-top: 3px solid #2B74AA !important;
 }
+html:not(.dark) [data-journey-step="1"] .journey-number,
+html.light [data-journey-step="1"] .journey-number {
+  background-color: #EAF2F9 !important;
+  border-color: #AECBE5 !important;
+  color: #124B73 !important;
+}
+html:not(.dark) [data-journey-step="1"] .journey-phase-pill,
+html.light [data-journey-step="1"] .journey-phase-pill {
+  background-color: #EAF2F9 !important;
+  border-color: #AECBE5 !important;
+  color: #124B73 !important;
+}
+
+html.dark [data-journey-step="1"] {
+  border-top: 3px solid #3688C7 !important;
+}
+html.dark [data-journey-step="1"] .journey-number {
+  background-color: #0B1A28 !important;
+  border-color: #19354E !important;
+  color: #6BAEE3 !important;
+}
+html.dark [data-journey-step="1"] .journey-phase-pill {
+  background-color: #0B1A28 !important;
+  border-color: #19354E !important;
+  color: #6BAEE3 !important;
+}
+
+/* --- Paso 2: Amatista / Lavanda Psicosomático (Hipótesis / Inconsciente) --- */
 html:not(.dark) [data-journey-step="2"],
 html.light [data-journey-step="2"] {
-  border-top: 2px solid rgba(96, 165, 250, 0.5) !important;
+  border-top: 3px solid #7C4499 !important;
 }
+html:not(.dark) [data-journey-step="2"] .journey-number,
+html.light [data-journey-step="2"] .journey-number {
+  background-color: #F4EFF9 !important;
+  border-color: #D0BEE0 !important;
+  color: #532A78 !important;
+}
+html:not(.dark) [data-journey-step="2"] .journey-phase-pill,
+html.light [data-journey-step="2"] .journey-phase-pill {
+  background-color: #F4EFF9 !important;
+  border-color: #D0BEE0 !important;
+  color: #532A78 !important;
+}
+
+html.dark [data-journey-step="2"] {
+  border-top: 3px solid #8E55B0 !important;
+}
+html.dark [data-journey-step="2"] .journey-number {
+  background-color: #1B0F28 !important;
+  border-color: #392051 !important;
+  color: #BC91DF !important;
+}
+html.dark [data-journey-step="2"] .journey-phase-pill {
+  background-color: #1B0F28 !important;
+  border-color: #392051 !important;
+  color: #BC91DF !important;
+}
+
+/* --- Paso 3: Terracota / Arcilla Osteoarticular (Sesión 1 a 1 / Arraigo) --- */
 html:not(.dark) [data-journey-step="3"],
 html.light [data-journey-step="3"] {
-  border-top: 2px solid rgba(129, 140, 248, 0.5) !important;
+  border-top: 3px solid #C25E3E !important;
 }
+html:not(.dark) [data-journey-step="3"] .journey-number,
+html.light [data-journey-step="3"] .journey-number {
+  background-color: #FDF0EA !important;
+  border-color: #ECC3B2 !important;
+  color: #8A3618 !important;
+}
+html:not(.dark) [data-journey-step="3"] .journey-phase-pill,
+html.light [data-journey-step="3"] .journey-phase-pill {
+  background-color: #FDF0EA !important;
+  border-color: #ECC3B2 !important;
+  color: #8A3618 !important;
+}
+
+html.dark [data-journey-step="3"] {
+  border-top: 3px solid #C86241 !important;
+}
+html.dark [data-journey-step="3"] .journey-number {
+  background-color: #24120D !important;
+  border-color: #4A2419 !important;
+  color: #E88F71 !important;
+}
+html.dark [data-journey-step="3"] .journey-phase-pill {
+  background-color: #24120D !important;
+  border-color: #4A2419 !important;
+  color: #E88F71 !important;
+}
+
+/* --- Paso 4: Esmeralda / Salvia Digestivo (Regeneración / Homeostasis) --- */
 html:not(.dark) [data-journey-step="4"],
 html.light [data-journey-step="4"] {
-  border-top: 2px solid rgba(45, 212, 191, 0.5) !important;
+  border-top: 3px solid #2E854B !important;
+}
+html:not(.dark) [data-journey-step="4"] .journey-number,
+html.light [data-journey-step="4"] .journey-number {
+  background-color: #E8F5EC !important;
+  border-color: #A8D8B6 !important;
+  color: #13522E !important;
+}
+html:not(.dark) [data-journey-step="4"] .journey-phase-pill,
+html.light [data-journey-step="4"] .journey-phase-pill {
+  background-color: #E8F5EC !important;
+  border-color: #A8D8B6 !important;
+  color: #13522E !important;
 }
 
-/* --- Acentos de borde superior por paso: Modo Oscuro --- */
-html.dark [data-journey-step="1"] {
-  border-top: 2px solid rgba(56, 189, 248, 0.35) !important;
-}
-html.dark [data-journey-step="2"] {
-  border-top: 2px solid rgba(96, 165, 250, 0.35) !important;
-}
-html.dark [data-journey-step="3"] {
-  border-top: 2px solid rgba(129, 140, 248, 0.35) !important;
-}
 html.dark [data-journey-step="4"] {
-  border-top: 2px solid rgba(45, 212, 191, 0.35) !important;
+  border-top: 3px solid #3E9B67 !important;
+}
+html.dark [data-journey-step="4"] .journey-number {
+  background-color: #0C1F16 !important;
+  border-color: #1A3D2C !important;
+  color: #6AC894 !important;
+}
+html.dark [data-journey-step="4"] .journey-phase-pill {
+  background-color: #0C1F16 !important;
+  border-color: #1A3D2C !important;
+  color: #6AC894 !important;
 }
 
-/* --- Píldoras de fase: protección en modo claro --- */
-html:not(.dark) .journey-phase-pill,
-html.light .journey-phase-pill {
+/* --- Píldoras de fase: protección tipográfica --- */
+.journey-phase-pill {
   font-weight: 600 !important;
 }
 
-/* --- Conectores de flujo entre pasos (solo desktop) --- */
+/* --- Conectores de flujo entre pasos (solo desktop, sólido mate) --- */
 @media (min-width: 768px) {
   [data-journey-step="1"]::after,
   [data-journey-step="2"]::after,
@@ -869,10 +1160,11 @@ html.light .journey-phase-pill {
     top: 50%;
     width: 10px;
     height: 10px;
-    border-right: 2px solid rgba(119, 157, 209, 0.45);
-    border-bottom: 2px solid rgba(119, 157, 209, 0.45);
+    border-right: 2px solid #779DD1;
+    border-bottom: 2px solid #779DD1;
     transform: translateY(-50%) rotate(-45deg);
     pointer-events: none;
   }
 }
+
 

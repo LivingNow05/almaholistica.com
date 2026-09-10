@@ -1,0 +1,158 @@
+---
+/**
+ * src/components/AccompanimentStagesTable.astro
+ * Tabla de Etapas del Acompañamiento Terapéutico
+ *
+ * Desglose estructurado de las 4 fases clínicas del proceso terapéutico.
+ * Columnas: Fase, Sesiones Estimadas, Metodología Aplicada, Resultado Terapéutico Esperado.
+ * Marcado semántico HTML5 con microdatos Schema.org/Table.
+ * Cero scripts JSON-LD para cumplir la restricción MR3-ADV-4.1 en dist/index.html.
+ */
+
+export interface AccompanimentStageRow {
+  numero: string;
+  fase: string;
+  sesionesEstimadas: string;
+  metodologia: string;
+  resultadoEsperado: string;
+  badgeClass: string;
+  badgeLabel: string;
+}
+
+const stages: AccompanimentStageRow[] = [
+  {
+    numero: '01',
+    fase: 'Diagnóstico & Cartografía Biológica',
+    sesionesEstimadas: '1 sesión (60 - 75 min)',
+    metodologia: 'Anamnesis clínica biográfica, correlación del síntoma físico con las leyes biológicas del choque inconsciente (Bioshock) y localización del tejido embrionario afectado.',
+    resultadoEsperado: 'Identificación precisa del conflicto raíz inconsciente, comprensión del sentido adaptativo del síntoma y entrega de la hipótesis clínica personalizada.',
+    badgeClass: 'bio-badge-respiratorio',
+    badgeLabel: 'Fase Inicial'
+  },
+  {
+    numero: '02',
+    fase: 'Desanclaje Emocional & Catarsis',
+    sesionesEstimadas: '1 a 2 sesiones',
+    metodologia: 'Técnicas de Psiconeuroinmunología (PNI), regresión consciente al momento del bioshock, desactivación de la alerta neurovegetativa y liberación somática de emociones reprimidas.',
+    resultadoEsperado: 'Descenso notable del nivel de alerta simpática en el sistema nervioso autónomo, liberación de la tensión visceral y disminución progresiva del dolor físico.',
+    badgeClass: 'bio-badge-nervioso',
+    badgeLabel: 'Intervención'
+  },
+  {
+    numero: '03',
+    fase: 'Reprogramación Mental & Límites',
+    sesionesEstimadas: '1 sesión',
+    metodologia: 'Anclajes de PNL integrativa, decretos biológicos de resignificación, reestructuración cognitiva de creencias limitantes y establecimiento de límites asertivos.',
+    resultadoEsperado: 'Generación de nuevos circuitos neuronales de respuesta ante detonantes estresores, desactivación de la orden biológica de alarma y prevención activa de recidivas.',
+    badgeClass: 'bio-badge-osteoarticular',
+    badgeLabel: 'Integración'
+  },
+  {
+    numero: '04',
+    fase: 'Consolidación & Autorregulación',
+    sesionesEstimadas: 'Seguimiento a 21-30 días (opcional)',
+    metodologia: 'Evaluación de marcadores de estabilidad somática, balance de coherencia mente-cuerpo, calibración del estilo de vida y entrega de pautas de higiene bioemocional.',
+    resultadoEsperado: 'Remisión sostenida del conflicto inconsciente, autonomía del consultante para autorregularse ante futuros estresores y consolidación del bienestar integral.',
+    badgeClass: 'bio-badge-digestivo',
+    badgeLabel: 'Consolidación'
+  }
+];
+---
+
+<div class="w-full max-w-full overflow-hidden rounded-[2.5rem] bg-[#0A1226] border border-slate-800/40 p-6 sm:p-8 lg:p-10 my-12">
+  <!-- Cabecera de la tabla y micro-indicador móvil -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-800/40">
+    <div class="space-y-1">
+      <span class="text-xs font-semibold tracking-[0.2em] text-[#779DD1] uppercase flex items-center gap-2">
+        <span class="w-6 h-[1px] bg-[#779DD1]/60"></span>
+        HOJA DE RUTA CLÍNICA
+      </span>
+      <h3 class="font-serif text-2xl sm:text-3xl text-slate-900 dark:text-white font-normal tracking-tight">
+        Etapas del Acompañamiento Terapéutico
+      </h3>
+    </div>
+
+    <!-- Micro-indicador visual de desplazamiento horizontal en móvil -->
+    <div class="flex items-center gap-2 text-xs text-slate-400 font-sans lg:hidden shrink-0 bg-[#0E172F] px-3.5 py-1.5 rounded-full border border-slate-800/60 self-start sm:self-auto">
+      <svg class="w-3.5 h-3.5 text-[#779DD1] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+      </svg>
+      <span>Desplaza horizontalmente</span>
+    </div>
+  </div>
+
+  <!-- Contenedor scrollable responsivo con contención anti-desbordamiento -->
+  <div class="w-full max-w-full overflow-x-auto scroll-smooth overscroll-contain accompaniment-table-container">
+    <table
+      itemscope
+      itemtype="https://schema.org/Table"
+      class="w-full text-left border-collapse min-w-[720px]"
+      aria-label="Etapas clínicas del acompañamiento en biodescodificación integrativa"
+    >
+      <caption itemprop="about" class="sr-only">
+        Etapas del acompañamiento terapéutico: desglose cronológico de 4 fases clínicas con sesiones estimadas, metodologías aplicadas y resultados terapéuticos esperados
+      </caption>
+      <thead>
+        <tr class="border-b border-slate-800/60 bg-[#0E172F]">
+          <th scope="col" class="py-4 px-5 text-xs font-semibold uppercase tracking-wider text-[#779DD1] w-[22%]">
+            Fase Clínica
+          </th>
+          <th scope="col" class="py-4 px-5 text-xs font-semibold uppercase tracking-wider text-slate-200 w-[18%]">
+            Sesiones Estimadas
+          </th>
+          <th scope="col" class="py-4 px-5 text-xs font-semibold uppercase tracking-wider text-slate-200 w-[30%]">
+            Metodología Aplicada
+          </th>
+          <th scope="col" class="py-4 px-5 text-xs font-semibold uppercase tracking-wider text-slate-200 w-[30%]">
+            Resultado Terapéutico Esperado
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-800/40">
+        {stages.map((row, idx) => (
+          <tr class={idx % 2 === 0 ? 'bg-[#0A1226]' : 'bg-[#0E172F]'}>
+            <th scope="row" class="py-5 px-5 text-sm font-semibold text-slate-900 dark:text-white align-top">
+              <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                  <span class="font-mono text-xs text-[#779DD1] font-bold">[{row.numero}]</span>
+                  <span>{row.fase}</span>
+                </div>
+                <span class={`bio-badge ${row.badgeClass} inline-flex items-center text-[11px]`}>
+                  {row.badgeLabel}
+                </span>
+              </div>
+            </th>
+            <td class="py-5 px-5 text-xs text-slate-700 dark:text-slate-300 font-medium align-top">
+              <span class="inline-block px-2.5 py-1 rounded-md bg-[#0E172F] text-slate-300 border border-slate-800/60">
+                {row.sesionesEstimadas}
+              </span>
+            </td>
+            <td class="py-5 px-5 text-sm text-slate-700 dark:text-slate-300 font-normal leading-relaxed align-top">
+              {row.metodologia}
+            </td>
+            <td class="py-5 px-5 text-sm text-slate-800 dark:text-slate-200 font-normal leading-relaxed align-top">
+              {row.resultadoEsperado}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<style>
+  .accompaniment-table-container::-webkit-scrollbar {
+    height: 6px;
+  }
+  .accompaniment-table-container::-webkit-scrollbar-track {
+    background-color: #060A1A;
+    border-radius: 9999px;
+  }
+  .accompaniment-table-container::-webkit-scrollbar-thumb {
+    background-color: #1E293B;
+    border-radius: 9999px;
+  }
+  .accompaniment-table-container::-webkit-scrollbar-thumb:hover {
+    background-color: #1E3A5F;
+  }
+</style>

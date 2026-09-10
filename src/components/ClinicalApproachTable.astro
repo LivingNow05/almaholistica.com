@@ -1,0 +1,129 @@
+---
+/**
+ * src/components/ClinicalApproachTable.astro
+ * Tabla Comparativa: Medicina Convencional vs Biodescodificación Integrativa
+ *
+ * Marcado semántico HTML5 con microdatos Schema.org/Table.
+ * Cero scripts JSON-LD para cumplir la restricción MR3-ADV-4.1 en dist/index.html.
+ * Diseño responsivo, 100% sólido mate, accesible WCAG AAA.
+ */
+
+export interface ClinicalDimension {
+  dimension: string;
+  medicinaConvencional: string;
+  biodescodificacion: string;
+}
+
+const dimensions: ClinicalDimension[] = [
+  {
+    dimension: 'Paradigma de origen',
+    medicinaConvencional: 'Etiología físico-mecánica y bioquímica. La afección se interpreta como una disfunción celular, anomalía orgánica, mutación fortuita o agresión externa de patógenos.',
+    biodescodificacion: 'Paradigma psicosomático y adaptativo (Psiconeuroinmunología). El síntoma es un Programa Biológico Especial (SBS) activado por un impacto emocional vivido en soledad.'
+  },
+  {
+    dimension: 'Enfoque diagnóstico',
+    medicinaConvencional: 'Taxonomía nosológica y análisis sintomático físico (pruebas de laboratorio séricas, biopsias, ecografías, resonancias magnéticas y marcadores clínicos).',
+    biodescodificacion: 'Decodificación biosemiótica y cartografía biográfica. Mapeo del órgano y capa embrionaria afectada para identificar el conflicto biológico inconsciente.'
+  },
+  {
+    dimension: 'Nivel de intervención',
+    medicinaConvencional: 'Tratamiento bioquímico y estructural físico (farmacoterapia, cirugía reparadora, técnicas paliativas y supresión directa de la respuesta biológica).',
+    biodescodificacion: 'Intervención psicoemocional y neurovegetativa (toma de conciencia, catarsis guiada, desactivación de la fase simpaticotónica y reprogramación cognitiva).'
+  },
+  {
+    dimension: 'Objetivo del síntoma',
+    medicinaConvencional: 'Anomalía disfuncional o enemigo patológico que debe ser neutralizado, suprimido o extirpado para restaurar los parámetros fisiológicos estándar.',
+    biodescodificacion: 'Brújula biológica de precisión y respuesta adaptativa de supervivencia. Revela la necesidad biológica no satisfecha que no logró resolverse conscientemente.'
+  },
+  {
+    dimension: 'Papel del consultante',
+    medicinaConvencional: 'Receptor receptivo o pasivo de la prescripción facultativa y de los procedimientos externos prescritos por el especialista de la salud.',
+    biodescodificacion: 'Protagonista y agente activo indispensable. Asume la responsabilidad consciente de explorar su historia personal, liberar emociones y resignificar vivencias.'
+  }
+];
+---
+
+<div class="w-full max-w-full overflow-hidden rounded-[2.5rem] bg-[#0A1226] border border-slate-800/40 p-6 sm:p-8 lg:p-10 my-12">
+  <!-- Cabecera de la tabla y micro-indicador móvil -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-800/40">
+    <div class="space-y-1">
+      <span class="text-xs font-semibold tracking-[0.2em] text-[#779DD1] uppercase flex items-center gap-2">
+        <span class="w-6 h-[1px] bg-[#779DD1]/60"></span>
+        PARADIGMAS DE SALUD INTEGRAL
+      </span>
+      <h3 class="font-serif text-2xl sm:text-3xl text-slate-900 dark:text-white font-normal tracking-tight">
+        Medicina Convencional vs Biodescodificación Integrativa
+      </h3>
+    </div>
+
+    <!-- Micro-indicador visual de desplazamiento horizontal en móvil -->
+    <div class="flex items-center gap-2 text-xs text-slate-400 font-sans lg:hidden shrink-0 bg-[#0E172F] px-3.5 py-1.5 rounded-full border border-slate-800/60 self-start sm:self-auto">
+      <svg class="w-3.5 h-3.5 text-[#779DD1] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+      </svg>
+      <span>Desplaza horizontalmente</span>
+    </div>
+  </div>
+
+  <!-- Contenedor scrollable responsivo con contención anti-desbordamiento -->
+  <div class="w-full max-w-full overflow-x-auto scroll-smooth overscroll-contain clinical-table-container">
+    <table
+      itemscope
+      itemtype="https://schema.org/Table"
+      class="w-full text-left border-collapse min-w-[680px]"
+      aria-label="Cuadro comparativo entre Medicina Convencional y Biodescodificación Integrativa"
+    >
+      <caption itemprop="about" class="sr-only">
+        Cuadro Comparativo: Medicina Convencional vs Biodescodificación Integrativa a través de cinco dimensiones clínicas fundamentales
+      </caption>
+      <thead>
+        <tr class="border-b border-slate-800/60 bg-[#0E172F]">
+          <th scope="col" class="py-4 px-5 text-xs font-semibold uppercase tracking-wider text-[#779DD1] w-1/4">
+            Dimensión Clínica
+          </th>
+          <th scope="col" class="py-4 px-5 text-xs font-semibold uppercase tracking-wider text-slate-200 w-[37.5%]">
+            Medicina Convencional
+          </th>
+          <th scope="col" class="py-4 px-5 text-xs font-semibold uppercase tracking-wider text-slate-200 w-[37.5%]">
+            Biodescodificación Integrativa
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-800/40">
+        {dimensions.map((row, idx) => (
+          <tr class={idx % 2 === 0 ? 'bg-[#0A1226]' : 'bg-[#0E172F]'}>
+            <th scope="row" class="py-5 px-5 text-sm font-semibold text-slate-900 dark:text-white align-top">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#779DD1] shrink-0"></span>
+                <span>{row.dimension}</span>
+              </div>
+            </th>
+            <td class="py-5 px-5 text-sm text-slate-700 dark:text-slate-300 font-normal leading-relaxed align-top">
+              {row.medicinaConvencional}
+            </td>
+            <td class="py-5 px-5 text-sm text-slate-800 dark:text-slate-200 font-normal leading-relaxed align-top">
+              {row.biodescodificacion}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<style>
+  .clinical-table-container::-webkit-scrollbar {
+    height: 6px;
+  }
+  .clinical-table-container::-webkit-scrollbar-track {
+    background-color: #060A1A;
+    border-radius: 9999px;
+  }
+  .clinical-table-container::-webkit-scrollbar-thumb {
+    background-color: #1E293B;
+    border-radius: 9999px;
+  }
+  .clinical-table-container::-webkit-scrollbar-thumb:hover {
+    background-color: #1E3A5F;
+  }
+</style>

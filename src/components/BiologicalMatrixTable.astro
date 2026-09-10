@@ -1,0 +1,181 @@
+---
+/**
+ * src/components/BiologicalMatrixTable.astro
+ * Matriz de Dolencias y Sentido Biológico (Muestra Representativa de 8 Patologías)
+ *
+ * Muestra representativa de 8 afecciones clave cubriendo Endodermo, Mesodermo y Ectodermo.
+ * Integra badges semánticos biológicos sólidos mates (.bio-badge-digestivo, .bio-badge-osteoarticular, etc.)
+ * Marcado semántico HTML5 con microdatos Schema.org/Table sin inyectar scripts JSON-LD en home.
+ */
+
+export interface BiologicalMatrixRow {
+  sintoma: string;
+  capaEmbrionaria: 'Endodermo' | 'Mesodermo Nuevo' | 'Mesodermo Antiguo' | 'Ectodermo';
+  emocionAtrapada: string;
+  sentidoBiologico: string;
+  badgeClass: string;
+  badgeLabel: string;
+}
+
+const matrixData: BiologicalMatrixRow[] = [
+  {
+    sintoma: 'Gastritis y Acidez Gástrica',
+    capaEmbrionaria: 'Endodermo',
+    emocionAtrapada: 'Bocado indigesto. Rabia contenida e impotencia ante imposiciones o situaciones cotidianas que la persona se ve forzada a tolerar contra sus valores personales.',
+    sentidoBiologico: 'Hipersecreción de ácido clorhídrico para descomponer rápidamente el bocado tóxico o inaceptable que el organismo siente atorado en su sistema.',
+    badgeClass: 'bio-badge-digestivo',
+    badgeLabel: 'Digestivo'
+  },
+  {
+    sintoma: 'Lumbalgia Mecánica (L4-L5)',
+    capaEmbrionaria: 'Mesodermo Nuevo',
+    emocionAtrapada: 'Desvalorización por colapso del soporte vital. Miedo a la ruina económica, sensación de ser incapaz de sostener la estructura familiar o profesional.',
+    sentidoBiologico: 'Osteólisis microscópica en estrés para flexibilizar la estructura axial; recalcificación reforzada en vagotonía para soportar mayor carga vital.',
+    badgeClass: 'bio-badge-osteoarticular',
+    badgeLabel: 'Osteoarticular'
+  },
+  {
+    sintoma: 'Rinitis Alérgica y Sinusitis',
+    capaEmbrionaria: 'Ectodermo',
+    emocionAtrapada: 'Conflicto de amenaza anticipada en el territorio o separación súbita. Sensación de peligro o sospecha de un evento adverso que "huele mal".',
+    sentidoBiologico: 'Ulceración de la mucosa en fase activa para dilatar conductos nasales y percibir el peligro; hipersecreción mucosa en solución para expulsar la memoria alergénica.',
+    badgeClass: 'bio-badge-respiratorio',
+    badgeLabel: 'Respiratorio'
+  },
+  {
+    sintoma: 'Ansiedad y Crisis de Angustia',
+    capaEmbrionaria: 'Ectodermo',
+    emocionAtrapada: 'Miedo al futuro e hipervigilancia constante. Incertidumbre anticipatoria, temor al descontrol y conflicto de separación territorial involuntaria.',
+    sentidoBiologico: 'Activación adrenérgica neurovegetativa sostenida para dotar a la musculatura y sentidos de recursos inmediatos para la huida o defensa adaptativa.',
+    badgeClass: 'bio-badge-nervioso',
+    badgeLabel: 'Nervioso'
+  },
+  {
+    sintoma: 'Sobrepeso y Retención de Líquidos',
+    capaEmbrionaria: 'Endodermo',
+    emocionAtrapada: 'Conflicto de refugiado, abandono y desamparo. Vivencia de soledad profunda o pérdida brusca de todos los referentes cotidianos de protección y seguridad.',
+    sentidoBiologico: 'Cierre de los túbulos colectores renales para retener líquido en el organismo y acopio de grasa como amortiguador calórico defensivo.',
+    badgeClass: 'bio-badge-digestivo',
+    badgeLabel: 'Endocrino'
+  },
+  {
+    sintoma: 'Eczema y Dermatitis de Contacto',
+    capaEmbrionaria: 'Ectodermo',
+    emocionAtrapada: 'Conflicto de separación física o afectiva. Pérdida súbita del contacto cálido de un ser querido, o contacto impuesto no deseado vivido con agresión.',
+    sentidoBiologico: 'Pérdida transitoria de sensibilidad táctil en fase simpaticotónica para atenuar el dolor; hiperemia y prurito reparativo en fase de curación.',
+    badgeClass: 'bio-badge-nervioso',
+    badgeLabel: 'Dermatológico'
+  },
+  {
+    sintoma: 'Hipotiroidismo y Fatiga Crónica',
+    capaEmbrionaria: 'Endodermo',
+    emocionAtrapada: 'Conflicto de tiempo e impotencia. Sensación de que el tiempo vuela y nunca se llega a tiempo a las exigencias ("no alcanzo a atrapar el bocado a tiempo").',
+    sentidoBiologico: 'Frenado coordinado del ritmo metabólico basal para economizar recursos y energía vital ante una demanda evaluada como biológicamente inalcanzable.',
+    badgeClass: 'bio-badge-digestivo',
+    badgeLabel: 'Metabólico'
+  },
+  {
+    sintoma: 'Hipertensión Arterial Esencial',
+    capaEmbrionaria: 'Mesodermo Nuevo',
+    emocionAtrapada: 'Conflicto de líquido y desarraigo relacional. Sobreesfuerzo extremo para resistir presiones familiares o laborales sin exteriorizar la tensión interna.',
+    sentidoBiologico: 'Incremento sostenido de la presión hidrostática vascular para acelerar la oxigenación y transporte de nutrientes ante un esfuerzo prolongado.',
+    badgeClass: 'bio-badge-osteoarticular',
+    badgeLabel: 'Circulatorio'
+  }
+];
+---
+
+<div class="w-full max-w-full overflow-hidden rounded-[2.5rem] bg-[#0A1226] border border-slate-800/40 p-6 sm:p-8 lg:p-10 my-12">
+  <!-- Cabecera de la tabla y micro-indicador móvil -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-800/40">
+    <div class="space-y-1">
+      <span class="text-xs font-semibold tracking-[0.2em] text-[#779DD1] uppercase flex items-center gap-2">
+        <span class="w-6 h-[1px] bg-[#779DD1]/60"></span>
+        MATRIZ BIOLÓGICA DE SÍNTOMAS
+      </span>
+      <h3 class="font-serif text-2xl sm:text-3xl text-slate-900 dark:text-white font-normal tracking-tight">
+        Matriz de Dolencias y Sentido Biológico Adaptativo
+      </h3>
+    </div>
+
+    <!-- Micro-indicador visual de desplazamiento horizontal en móvil -->
+    <div class="flex items-center gap-2 text-xs text-slate-400 font-sans lg:hidden shrink-0 bg-[#0E172F] px-3.5 py-1.5 rounded-full border border-slate-800/60 self-start sm:self-auto">
+      <svg class="w-3.5 h-3.5 text-[#779DD1] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+      </svg>
+      <span>Desplaza horizontalmente</span>
+    </div>
+  </div>
+
+  <!-- Contenedor scrollable responsivo con contención anti-desbordamiento -->
+  <div class="w-full max-w-full overflow-x-auto scroll-smooth overscroll-contain biological-matrix-container">
+    <table
+      itemscope
+      itemtype="https://schema.org/Table"
+      class="w-full text-left border-collapse min-w-[780px]"
+      aria-label="Matriz de dolencias, capa embrionaria, emoción atrapada y sentido biológico adaptativo"
+    >
+      <caption itemprop="about" class="sr-only">
+        Matriz representativa de 8 patologías analizadas bajo el modelo de la biodescodificación integrativa y la ontogenia de las capas embrionarias
+      </caption>
+      <thead>
+        <tr class="border-b border-slate-800/60 bg-[#0E172F]">
+          <th scope="col" class="py-4 px-5 text-xs font-semibold uppercase tracking-wider text-[#779DD1] w-[22%]">
+            Síntoma Físico
+          </th>
+          <th scope="col" class="py-4 px-5 text-xs font-semibold uppercase tracking-wider text-slate-200 w-[18%]">
+            Capa Embrionaria
+          </th>
+          <th scope="col" class="py-4 px-5 text-xs font-semibold uppercase tracking-wider text-slate-200 w-[30%]">
+            Emoción Atrapada
+          </th>
+          <th scope="col" class="py-4 px-5 text-xs font-semibold uppercase tracking-wider text-slate-200 w-[30%]">
+            Sentido Biológico Adaptativo
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-800/40">
+        {matrixData.map((row, idx) => (
+          <tr class={idx % 2 === 0 ? 'bg-[#0A1226]' : 'bg-[#0E172F]'}>
+            <th scope="row" class="py-5 px-5 text-sm font-semibold text-slate-900 dark:text-white align-top">
+              <div class="space-y-2">
+                <span class="block">{row.sintoma}</span>
+                <span class={`bio-badge ${row.badgeClass} inline-flex items-center text-[11px]`}>
+                  {row.badgeLabel}
+                </span>
+              </div>
+            </th>
+            <td class="py-5 px-5 text-xs text-slate-700 dark:text-slate-300 font-medium align-top">
+              <span class="inline-block px-2.5 py-1 rounded-md bg-[#0E172F] text-slate-300 border border-slate-800/60">
+                {row.capaEmbrionaria}
+              </span>
+            </td>
+            <td class="py-5 px-5 text-sm text-slate-700 dark:text-slate-300 font-normal leading-relaxed align-top">
+              {row.emocionAtrapada}
+            </td>
+            <td class="py-5 px-5 text-sm text-slate-800 dark:text-slate-200 font-normal leading-relaxed align-top">
+              {row.sentidoBiologico}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<style>
+  .biological-matrix-container::-webkit-scrollbar {
+    height: 6px;
+  }
+  .biological-matrix-container::-webkit-scrollbar-track {
+    background-color: #060A1A;
+    border-radius: 9999px;
+  }
+  .biological-matrix-container::-webkit-scrollbar-thumb {
+    background-color: #1E293B;
+    border-radius: 9999px;
+  }
+  .biological-matrix-container::-webkit-scrollbar-thumb:hover {
+    background-color: #1E3A5F;
+  }
+</style>
