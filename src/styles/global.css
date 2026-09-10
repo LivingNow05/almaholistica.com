@@ -34,7 +34,7 @@
 
   /* Familias Tipográficas */
   --font-serif: 'Cormorant Garamond', 'Cinzel', 'Playfair Display', serif;
-  --font-sans: 'Inter', 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* --------------------------------------------------------------------------
@@ -515,24 +515,60 @@ html.light [class*="text-slate-500"] {
 .font-light,
 html:not(.dark) .font-light,
 html.light .font-light {
-  font-weight: 400 !important;
+  font-weight: 450 !important;
 }
 
-/* Párrafos con cuerpo sólido y excelente legibilidad */
+/* Párrafos y textos de lectura con cuerpo sólido y excelente legibilidad */
 html:not(.dark) p,
 html.light p {
-  color: #1E293B;
-  font-weight: 400;
+  color: #0F172A;
+  font-weight: 450;
+  line-height: 1.68;
 }
 
-/* Títulos y encabezados editoriales en Cormorant Garamond (elegancia serena sin sobreengruesar) */
+/* Textos secundarios en modo claro: elevar contraste a #1E293B / #334155 */
+html:not(.dark) [class*="text-slate-500"],
+html.light [class*="text-slate-500"],
+html:not(.dark) [class*="text-slate-600"],
+html.light [class*="text-slate-600"] {
+  color: #334155 !important;
+  font-weight: 500;
+}
+
+html:not(.dark) [class*="text-slate-700"],
+html.light [class*="text-slate-700"] {
+  color: #0F172A !important;
+  font-weight: 450;
+}
+
+/* Acentos de marca en modo claro: azul zafiro accesible AAA */
+html:not(.dark) [class*="text-[#779DD1]"],
+html.light [class*="text-[#779DD1]"] {
+  color: #1E40AF !important;
+  font-weight: 600;
+}
+
+/* Subtítulos uppercase con tracking amplio: peso semi-negrita para nitidez */
+html:not(.dark) [class*="tracking-wider"],
+html.light [class*="tracking-wider"],
+html:not(.dark) [class*="tracking-widest"],
+html.light [class*="tracking-widest"] {
+  font-weight: 600;
+}
+
+/* Títulos y encabezados editoriales en Cormorant Garamond:
+   h1 y h2 conservan elegancia serena sin engruesar; h3 obtiene presencia nítida (500) */
 html:not(.dark) h1,
 html.light h1,
 html:not(.dark) h2,
-html.light h2,
+html.light h2 {
+  color: #0F172A !important;
+}
+
 html:not(.dark) h3,
 html.light h3 {
   color: #0F172A !important;
+  font-weight: 500;
 }
 
 /* Botones principales de acción (Obsidian Charcoal en Modo Claro) */
