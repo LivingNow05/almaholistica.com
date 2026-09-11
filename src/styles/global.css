@@ -117,34 +117,41 @@ img, svg, video, canvas, audio, iframe, embed, object {
     border-radius: 0.75rem;
   }
 
-  /* Botón de Acción Primario Cyan (Sólido, Plano, Máxima Legibilidad) */
-  .btn-action-primary {
+  /* Botón de Acción Primario WhatsApp Esmeralda (Sólido, Máxima Legibilidad y Conversión) */
+  .btn-action-primary,
+  .btn-whatsapp-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    background-color: #779DD1;
-    color: #060A1A;
+    gap: 0.625rem;
+    background-color: #25D366 !important;
+    color: #FFFFFF !important;
     font-family: var(--font-sans);
     font-weight: 700;
     font-size: 0.95rem;
-    padding: 0.75rem 1.5rem;
+    padding: 0.875rem 1.75rem;
     border-radius: 9999px;
     border: none;
     outline: none;
     cursor: pointer;
     text-decoration: none;
-    transition: background-color 0.15s ease-in-out, transform 0.15s ease-in-out;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   }
 
-  .btn-action-primary:hover {
-    background-color: #0EA5E9;
-    transform: translateY(-1px);
+  .btn-action-primary:hover,
+  .btn-whatsapp-primary:hover {
+    background-color: #20BD5A !important;
+    color: #FFFFFF !important;
+    transform: translateY(-1.5px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
   }
 
-  .btn-action-primary:active {
-    background-color: #0284C7;
+  .btn-action-primary:active,
+  .btn-whatsapp-primary:active {
+    background-color: #1DA851 !important;
     transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(37, 211, 102, 0.25);
   }
 
   /* Botón Secundario Borde Mate */
@@ -589,8 +596,27 @@ html:not(.dark) a.bg-white.text-\[\#060A1A\]:hover,
 html.light a.bg-white.text-\[\#060A1A\]:hover,
 html:not(.dark) button.bg-white.text-\[\#060A1A\]:hover,
 html.light button.bg-white.text-\[\#060A1A\]:hover {
-  background-color: #779DD1 !important;
-  color: #060A1A !important;
+  background-color: #25D366 !important;
+  color: #FFFFFF !important;
+}
+
+/* Botón Primario WhatsApp en Modo Claro: Verde Esmeralda Oficial con Texto Blanco */
+html:not(.dark) .btn-action-primary,
+html.light .btn-action-primary,
+html:not(.dark) .btn-whatsapp-primary,
+html.light .btn-whatsapp-primary {
+  background-color: #25D366 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35) !important;
+}
+
+html:not(.dark) .btn-action-primary:hover,
+html.light .btn-action-primary:hover,
+html:not(.dark) .btn-whatsapp-primary:hover,
+html.light .btn-whatsapp-primary:hover {
+  background-color: #20BD5A !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45) !important;
 }
 
 /* Botones secundarios (como "Evaluar" en tarjetas) */
