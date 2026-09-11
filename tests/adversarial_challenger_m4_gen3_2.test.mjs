@@ -44,7 +44,7 @@ function getAllHtmlFiles(dir) {
 describe('Adversarial Challenger M4-Gen3-2: Conversion Funnel Triggers', () => {
   const targetPages = [
     { path: 'dist/index.html', name: 'Home', minWa: 4, minQuiz: 3 },
-    { path: 'dist/bogota/index.html', name: 'Bogota (City)', minWa: 4, minQuiz: 3 },
+    { path: 'dist/biodescodificacion-bogota/index.html', name: 'Bogota (City)', minWa: 4, minQuiz: 3 },
     { path: 'dist/biodescodificacion/gastritis/index.html', name: 'Gastritis (Dolencia)', minWa: 4, minQuiz: 3 },
     { path: 'dist/biodescodificacion/index.html', name: 'Catalog', minWa: 4, minQuiz: 45 }
   ];
@@ -106,7 +106,7 @@ describe('Adversarial Challenger M4-Gen3-2: Conversion Funnel Triggers', () => {
     );
 
     // Check city sample
-    const bogotaHtml = fs.readFileSync(path.join(DIST_DIR, 'bogota/index.html'), 'utf8');
+    const bogotaHtml = fs.readFileSync(path.join(DIST_DIR, 'biodescodificacion-bogota/index.html'), 'utf8');
     assert.ok(
       bogotaHtml.includes('data-city="bogota"') || bogotaHtml.includes('data-city="Bogotá"'),
       'Bogotá page must inject data-city="bogota"'
@@ -121,7 +121,7 @@ describe('Adversarial Challenger M4-Gen3-2: Conversion Funnel Triggers', () => {
 describe('Adversarial Challenger M4-Gen3-2: CLS Prevention & Viewport Containment', () => {
   const targetSamples = [
     'dist/index.html',
-    'dist/bogota/index.html',
+    'dist/biodescodificacion-bogota/index.html',
     'dist/biodescodificacion/gastritis/index.html',
     'dist/biodescodificacion/index.html'
   ];

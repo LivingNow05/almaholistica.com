@@ -38,7 +38,7 @@ describe('Challenger M4-Gen3: Static File Census and Build Verification', () => 
   test('GEN3-2: Categorical census: 113 city pages, 45 dolencia pages, 1 catalog, 1 home', () => {
     const cityPages = allHtml.filter((f) => {
       const rel = path.relative(DIST_DIR, f);
-      return !rel.startsWith('biodescodificacion') && rel !== 'index.html';
+      return rel.startsWith('biodescodificacion-');
     });
     const dolenciaPages = allHtml.filter((f) => {
       const rel = path.relative(DIST_DIR, f);
@@ -117,7 +117,7 @@ describe('Challenger M4-Gen3: Migraña Canonical Singular Link Integrity', () =>
   const allHtml = getAllHtmlFiles(DIST_DIR);
   const cityPages = allHtml.filter((f) => {
     const rel = path.relative(DIST_DIR, f);
-    return !rel.startsWith('biodescodificacion') && rel !== 'index.html';
+    return rel.startsWith('biodescodificacion-');
   });
 
   test('GEN3-4: ZERO city pages contain plural link /biodescodificacion/migranas', () => {
@@ -218,7 +218,7 @@ describe('Challenger M4-Gen3: Catalog and City Pages Link Resolution Stress Test
       'Footer contact link on Catalog must have data-open-quiz="true"'
     );
 
-    const sampleCityHtml = fs.readFileSync(path.join(DIST_DIR, 'bogota/index.html'), 'utf8');
+    const sampleCityHtml = fs.readFileSync(path.join(DIST_DIR, 'biodescodificacion-bogota/index.html'), 'utf8');
     assert.ok(
       sampleCityHtml.includes('data-location="footer-bottom-contact"') && sampleCityHtml.includes('data-open-quiz="true"'),
       'Footer contact link on Bogota must have data-open-quiz="true"'

@@ -244,8 +244,8 @@ describe('Adversarial Challenge M4.3: Determinismo Geográfico y Financiero (20 
     assert.ok(spainCities.length >= 6, `España debe tener >= 6 ciudades (tiene ${spainCities.length})`);
     assert.ok(usCities.length >= 7, `EE.UU. debe tener >= 7 ciudades (tiene ${usCities.length})`);
 
-    const requiredSpain = ['madrid', 'barcelona', 'valencia', 'sevilla', 'malaga', 'bilbao'];
-    const requiredUs = ['miami', 'los-angeles', 'houston', 'nueva-york', 'chicago', 'orlando', 'san-antonio'];
+    const requiredSpain = ['biodescodificacion-madrid', 'biodescodificacion-barcelona', 'biodescodificacion-valencia', 'biodescodificacion-sevilla', 'biodescodificacion-malaga', 'biodescodificacion-bilbao'];
+    const requiredUs = ['biodescodificacion-miami', 'biodescodificacion-los-angeles', 'biodescodificacion-houston', 'biodescodificacion-nueva-york', 'biodescodificacion-chicago', 'biodescodificacion-orlando', 'biodescodificacion-san-antonio'];
 
     const spainSlugs = spainCities.map((c) => c.slug);
     const usSlugs = usCities.map((c) => c.slug);
@@ -440,8 +440,8 @@ describe('Adversarial Challenge M4.6: Estilo Sólido Mate y Prevención de CLS',
     const keyPages = [
       'index.html',
       'biodescodificacion/index.html',
-      'bogota/index.html',
-      'madrid/index.html',
+      'biodescodificacion-bogota/index.html',
+      'biodescodificacion-madrid/index.html',
       'biodescodificacion/gastritis/index.html',
       'biodescodificacion/ansiedad/index.html'
     ];

@@ -74,22 +74,22 @@ const countriesList = [
 
 // Ciudades capitales y polos principales para acceso rápido
 const priorityCitySlugs = [
-  'madrid',
-  'barcelona',
-  'bogota',
-  'medellin',
-  'cali',
-  'cdmx',
-  'guadalajara',
-  'monterrey',
-  'buenos-aires',
-  'santiago',
-  'lima',
-  'quito',
-  'miami',
-  'los-angeles',
-  'houston',
-  'nueva-york'
+  'biodescodificacion-madrid',
+  'biodescodificacion-barcelona',
+  'biodescodificacion-bogota',
+  'biodescodificacion-medellin',
+  'biodescodificacion-cali',
+  'biodescodificacion-cdmx',
+  'biodescodificacion-guadalajara',
+  'biodescodificacion-monterrey',
+  'biodescodificacion-buenos-aires',
+  'biodescodificacion-santiago',
+  'biodescodificacion-lima',
+  'biodescodificacion-quito',
+  'biodescodificacion-miami',
+  'biodescodificacion-los-angeles',
+  'biodescodificacion-houston',
+  'biodescodificacion-nueva-york'
 ];
 
 const priorityCities = allCities.filter((c) => priorityCitySlugs.includes(c.slug));
@@ -839,7 +839,7 @@ const evaluationWhatsAppUrl = buildWhatsAppUrl({
               class="group bg-[#0A1226] border border-slate-800/40 hover:border-[#38BDF8]/50 rounded-[1.75rem] p-5 sm:p-6 transition-all duration-500 hover:-translate-y-1 block"
             >
               <span class="block font-sans font-bold text-lg sm:text-xl text-white group-hover:text-[#38BDF8] transition-colors leading-tight mb-2">
-                {city.h1.replace('Terapia Holística y Biodescodificación en ', '')}
+                {city.h1.replace(/^Terapia.*en /i, '')}
               </span>
               <div class="flex items-center justify-between text-xs font-mono text-slate-400">
                 <span>{city.pais}</span>
@@ -877,7 +877,7 @@ const evaluationWhatsAppUrl = buildWhatsAppUrl({
                         href={`/${city.slug}`}
                         class="text-slate-400 hover:text-[#38BDF8] transition-colors block py-0.5 text-xs font-mono"
                       >
-                        {city.h1.replace('Terapia Holística y Biodescodificación en ', '')}
+                        {city.h1.replace(/^Terapia.*en /i, '')}
                       </a>
                     </li>
                   ))}

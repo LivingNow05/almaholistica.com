@@ -123,10 +123,10 @@ describe('Challenger M4-2: SSG Modules Robustness Under Non-existent Slugs', () 
   });
 
   test('ADV-M4.2.4: Slugs with whitespace, casing variations, or surrounding slashes resolve valid entities', () => {
-    // Valid city: bogota
-    assert.strictEqual(citiesMod.getCityBySlug('BOGOTA')?.slug, 'bogota');
-    assert.strictEqual(citiesMod.getCityBySlug('/bogota/')?.slug, 'bogota');
-    assert.strictEqual(citiesMod.getCityBySlug('   bogota   ')?.slug, 'bogota');
+    // Valid city: biodescodificacion-bogota
+    assert.strictEqual(citiesMod.getCityBySlug('BIODESCODIFICACION-BOGOTA')?.slug, 'biodescodificacion-bogota');
+    assert.strictEqual(citiesMod.getCityBySlug('/biodescodificacion-bogota/')?.slug, 'biodescodificacion-bogota');
+    assert.strictEqual(citiesMod.getCityBySlug('   biodescodificacion-bogota   ')?.slug, 'biodescodificacion-bogota');
 
     // Valid dolencia: gastritis
     assert.strictEqual(dolenciasMod.getDolenciaBySlug('GASTRITIS')?.slug, 'gastritis');
@@ -319,7 +319,7 @@ describe('Challenger M4-2: Home Experience Verification (CLS, Links, Styling)', 
 
   test('ADV-M4.2.15: Hyperlocal city links in Home directory all point to existing static pages', () => {
     const hrefMatches = [...homeHtml.matchAll(/href="(\/[a-zA-Z0-9-]+)"/g)].map((m) => m[1]);
-    const cityLinks = hrefMatches.filter((h) => !h.startsWith('/biodescodificacion') && h !== '/');
+    const cityLinks = hrefMatches.filter((h) => h.startsWith('/biodescodificacion-'));
 
     assert.ok(cityLinks.length >= 100, `Home must feature links to at least 100 cities (found ${cityLinks.length})`);
 
