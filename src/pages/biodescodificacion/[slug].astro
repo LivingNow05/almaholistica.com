@@ -97,7 +97,7 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
     <header class="card-matte-elevated p-6 sm:p-10 md:p-12 mb-10 relative overflow-hidden">
       <div class="max-w-3xl">
         <!-- Badge de Sistema Biológico Técnico con Pulsación -->
-        <div class="inline-flex items-center gap-2.5 text-xs font-mono tracking-widest text-[#38BDF8] uppercase mb-4">
+        <div class="inline-flex items-center gap-2.5 text-xs font-sans font-bold tracking-wider text-[#38BDF8] uppercase mb-4">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           <span>SISTEMA {sistema.toUpperCase()} • BIODESCODIFICACIÓN</span>
         </div>
@@ -154,7 +154,7 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
         <!-- Tarjeta 1: La Vivencia Diaria -->
         <div class="card-matte-elevated p-6 flex flex-col justify-between border-t-2 border-t-[#F97316]">
           <div>
-            <span class="text-xs font-mono uppercase tracking-wider text-[#F97316] font-bold block mb-2">01 // La Emoción Oculta</span>
+            <span class="text-xs font-sans uppercase tracking-wider text-[#F97316] font-bold block mb-2">01 // La Emoción Oculta</span>
             <h3 class="text-base font-bold text-white mb-2">¿Cómo se siente en tu día a día?</h3>
             <p class="text-sm text-slate-300 leading-relaxed">
               Suele relacionarse con situaciones de impotencia, silencios prolongados o sobreexigencia donde te costó poner límites o expresar lo que sentías.
@@ -165,7 +165,7 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
         <!-- Tarjeta 2: La Reacción Biológica -->
         <div class="card-matte-elevated p-6 flex flex-col justify-between border-t-2 border-t-[#38BDF8]">
           <div>
-            <span class="text-xs font-mono uppercase tracking-wider text-[#38BDF8] font-bold block mb-2">02 // La Respuesta Orgánica</span>
+            <span class="text-xs font-sans uppercase tracking-wider text-[#38BDF8] font-bold block mb-2">02 // La Respuesta Orgánica</span>
             <h3 class="text-base font-bold text-white mb-2">¿Por qué reacciona el cuerpo?</h3>
             <p class="text-sm text-slate-300 leading-relaxed">
               Tu biología no se equivoca: activa una alerta temporal en este tejido para amortiguar el impacto del estrés que tu mente no pudo resolver.
@@ -176,7 +176,7 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
         <!-- Tarjeta 3: La Clave de Liberación -->
         <div class="card-matte-elevated p-6 flex flex-col justify-between border-t-2 border-t-emerald-400">
           <div>
-            <span class="text-xs font-mono uppercase tracking-wider text-emerald-400 font-bold block mb-2">03 // El Camino de Alivio</span>
+            <span class="text-xs font-sans uppercase tracking-wider text-emerald-400 font-bold block mb-2">03 // El Camino de Alivio</span>
             <h3 class="text-base font-bold text-white mb-2">¿Cómo empezar a sanarlo?</h3>
             <p class="text-sm text-slate-300 leading-relaxed">
               Al hacer consciente la emoción original y resignificarla en consulta 1 a 1, el sistema nervioso suelta la alarma y el cuerpo vuelve a su estado de equilibrio.
@@ -196,13 +196,13 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="p-4 rounded-xl bg-[#0A1226] border border-[#F97316]/40">
-          <span class="text-xs font-mono font-bold text-[#F97316] uppercase block mb-1">🔴 Fase 1: Estrés Activo</span>
+          <span class="text-xs font-sans font-bold text-[#F97316] uppercase block mb-1">🔴 Fase 1: Estrés Activo</span>
           <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
             La mente le da vueltas al problema, hay tensión muscular o insomnio. El cuerpo mantiene encendido el programa de adaptación.
           </p>
         </div>
         <div class="p-4 rounded-xl bg-[#0A1226] border border-[#38BDF8]/40">
-          <span class="text-xs font-mono font-bold text-[#38BDF8] uppercase block mb-1">🔵 Fase 2: Fase de Reparación</span>
+          <span class="text-xs font-sans font-bold text-[#38BDF8] uppercase block mb-1">🔵 Fase 2: Fase de Reparación</span>
           <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
             Tras verbalizar o calmar el conflicto, aparece la inflamación o cansancio reparador. La biología trabaja para regenerar el tejido.
           </p>
@@ -387,7 +387,7 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
             <details class="card-matte p-5 sm:p-6 group cursor-pointer">
               <summary class="flex justify-between items-center text-base sm:text-lg font-semibold text-slate-100 list-none">
                 <span class="pr-4">{faq.pregunta}</span>
-                <span class="text-[#779DD1] text-xl transition-transform group-open:rotate-45 font-mono flex-shrink-0">+</span>
+                <span class="text-[#779DD1] text-xl transition-transform group-open:rotate-45 font-sans font-bold flex-shrink-0">+</span>
               </summary>
               <p class="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed border-t border-[#1E293B] pt-4">
                 {faq.respuesta}
@@ -416,7 +416,7 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
     <!-- BANNER FINAL DE CONVERSIÓN -->
     <footer class="card-matte-elevated border-slate-800 p-8 sm:p-12 text-center rounded-2xl relative overflow-hidden">
       <div class="max-w-2xl mx-auto">
-        <div class="inline-flex items-center gap-2 text-xs font-mono tracking-widest text-[#38BDF8] uppercase mb-4">
+        <div class="inline-flex items-center gap-2 text-xs font-sans font-bold tracking-wider text-[#38BDF8] uppercase mb-4">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           <span>DIAGNÓSTICO EMOCIONAL EN VIVO</span>
         </div>

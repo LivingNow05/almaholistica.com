@@ -118,7 +118,7 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
   <!-- Encabezado técnico de laboratorio -->
   <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-8 border-b border-slate-800/60">
     <div class="space-y-1">
-      <div class="inline-flex items-center gap-2 text-xs font-mono tracking-widest text-[#38BDF8] uppercase">
+      <div class="inline-flex items-center gap-2 text-xs font-sans font-bold tracking-wider text-[#38BDF8] uppercase">
         <span class="w-2 h-2 rounded-full bg-[#38BDF8] animate-pulse"></span>
         <span>SYS // BIO-SCANNER ANATÓMICO v2.4</span>
       </div>
@@ -128,7 +128,7 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
     </div>
     
     <!-- Leyenda térmica funcional -->
-    <div class="flex items-center gap-4 text-xs font-mono shrink-0">
+    <div class="flex items-center gap-4 text-xs font-sans font-medium shrink-0">
       <div class="flex items-center gap-1.5 text-slate-300">
         <span class="w-2.5 h-2.5 rounded-full bg-[#F97316]"></span>
         <span>Estrés Activo</span>
@@ -145,7 +145,7 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
     
     <!-- Columna 1: Silueta Anatómica Vectorial -->
     <div class="lg:col-span-5 flex flex-col items-center justify-center p-4 bg-[#060A1A] rounded-[2rem] border border-slate-800/40 relative">
-      <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest absolute top-3 left-4">
+      <div class="text-[10px] font-sans font-semibold text-slate-500 uppercase tracking-wider absolute top-3 left-4">
         RAD // CORONAL PLANE
       </div>
       
@@ -230,7 +230,7 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
         {hotspots.map((hs) => (
           <button
             type="button"
-            class="bio-zone-pill text-[11px] font-mono px-2.5 py-1 rounded-full border border-slate-700 bg-[#0E172F] text-slate-300 hover:border-slate-500 transition-colors"
+            class="bio-zone-pill text-[11px] font-sans font-medium px-2.5 py-1 rounded-full border border-slate-700 bg-[#0E172F] text-slate-300 hover:border-slate-500 transition-colors"
             data-hotspot-target={hs.id}
           >
             {hs.label.split(' ')[0]}
@@ -245,12 +245,12 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
       <!-- Metadatos de la zona activa -->
       <div class="space-y-3">
         <div class="flex items-center justify-between gap-2">
-          <span id="hud-code" class="text-xs font-mono tracking-widest text-[#38BDF8] uppercase font-bold">
+          <span id="hud-code" class="text-xs font-sans tracking-wider text-[#38BDF8] uppercase font-bold">
             {initialHotspot.code}
           </span>
           <span 
             id="hud-phase-badge" 
-            class="text-[11px] font-mono px-3 py-1 rounded-full bg-[#0A1226] border border-slate-700 text-[#38BDF8] font-medium"
+            class="text-[11px] font-sans px-3 py-1 rounded-full bg-[#0A1226] border border-slate-700 text-[#38BDF8] font-medium"
           >
             {initialHotspot.phaseText}
           </span>
@@ -260,18 +260,18 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
           {initialHotspot.label}
         </h3>
         
-        <div class="flex items-center gap-3 text-xs font-mono text-slate-400">
-          <span class="text-slate-500">ÓRGANO:</span>
+        <div class="flex items-center gap-3 text-xs font-sans text-slate-400">
+          <span class="text-slate-500 font-semibold">ÓRGANO:</span>
           <span id="hud-organ" class="text-slate-200">{initialHotspot.organ}</span>
           <span class="text-slate-600">|</span>
-          <span class="text-slate-500">CAPA:</span>
+          <span class="text-slate-500 font-semibold">CAPA:</span>
           <span id="hud-layer" class="text-slate-200">{initialHotspot.layer}</span>
         </div>
       </div>
 
       <!-- Decodificación biológica del conflicto -->
       <div class="p-4 sm:p-5 rounded-xl bg-[#060A1A] border border-slate-800/80 space-y-2">
-        <div class="text-[11px] font-mono text-slate-500 uppercase tracking-widest flex items-center gap-2">
+        <div class="text-[11px] font-sans font-semibold text-slate-500 uppercase tracking-wider flex items-center gap-2">
           <span class="w-1.5 h-1.5 rounded-full bg-[#F97316]"></span>
           <span>Conflicto Biológico Raíz (Sentido de Supervivencia)</span>
         </div>
@@ -282,12 +282,12 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
 
       <!-- Patologías y síntomas asociados -->
       <div class="space-y-2">
-        <span class="text-[11px] font-mono text-slate-400 uppercase tracking-widest">
+        <span class="text-[11px] font-sans font-semibold text-slate-400 uppercase tracking-wider">
           Síntomas frecuentes en este eje:
         </span>
         <div id="hud-symptoms" class="flex flex-wrap gap-2">
           {initialHotspot.symptoms.map((sym) => (
-            <span class="px-3 py-1 text-xs font-mono rounded-lg bg-[#0A1226] border border-slate-800 text-slate-300">
+            <span class="px-3 py-1 text-xs font-sans rounded-lg bg-[#0A1226] border border-slate-800 text-slate-300">
               {sym}
             </span>
           ))}
@@ -349,15 +349,15 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
       if (badgeEl) {
         badgeEl.textContent = data.phaseText;
         if (data.phase === 'stress') {
-          badgeEl.className = 'text-[11px] font-mono px-3 py-1 rounded-full bg-[#0A1226] border border-[#F97316] text-[#F97316] font-medium';
+          badgeEl.className = 'text-[11px] font-sans px-3 py-1 rounded-full bg-[#0A1226] border border-[#F97316] text-[#F97316] font-medium';
         } else {
-          badgeEl.className = 'text-[11px] font-mono px-3 py-1 rounded-full bg-[#0A1226] border border-[#38BDF8] text-[#38BDF8] font-medium';
+          badgeEl.className = 'text-[11px] font-sans px-3 py-1 rounded-full bg-[#0A1226] border border-[#38BDF8] text-[#38BDF8] font-medium';
         }
       }
 
       if (symptomsEl) {
         symptomsEl.innerHTML = data.symptoms.map(s => 
-          `<span class="px-3 py-1 text-xs font-mono rounded-lg bg-[#0A1226] border border-slate-800 text-slate-300">${s}</span>`
+          `<span class="px-3 py-1 text-xs font-sans rounded-lg bg-[#0A1226] border border-slate-800 text-slate-300">${s}</span>`
         ).join('');
       }
 

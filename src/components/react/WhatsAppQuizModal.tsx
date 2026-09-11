@@ -260,12 +260,12 @@ export function WhatsAppQuizModal({
                 <span className="font-sans font-extrabold text-sm sm:text-base text-white tracking-tight uppercase">
                   Alma Holística
                 </span>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#0E172F] border border-[#1E3A5F] text-[10px] font-mono font-medium text-emerald-400">
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#0E172F] border border-[#1E3A5F] text-[10px] font-sans font-bold text-emerald-400">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] animate-pulse" />
                   ONLINE
                 </span>
               </div>
-              <span className="text-[11px] uppercase tracking-wider text-[#38BDF8] font-mono block">
+              <span className="text-[11px] uppercase tracking-wider text-[#38BDF8] font-sans font-semibold block">
                 Evaluación &amp; Agendamiento
               </span>
             </div>
@@ -287,7 +287,7 @@ export function WhatsAppQuizModal({
           Barra de Progreso Segmentada: 4 pasos visuales con acento Cyan (#38BDF8) y Slate Mate (#1E293B).
         */}
         <div className="w-full mb-6">
-          <div className="flex items-center justify-between mb-2 text-xs font-mono">
+          <div className="flex items-center justify-between mb-2 text-xs font-sans">
             <span className="font-semibold uppercase tracking-wider text-[#38BDF8]">
               {step <= 4 ? `PASO 0${step} / 04` : 'DIAGNÓSTICO COMPLETADO'}
             </span>
@@ -362,7 +362,7 @@ export function WhatsAppQuizModal({
             <div className="mb-5">
               <label
                 htmlFor="custom-symptom-input"
-                className="block text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-400 mb-2"
+                className="block text-[11px] font-sans font-semibold uppercase tracking-wider text-slate-400 mb-2"
               >
                 O describe tu síntoma específico:
               </label>
@@ -431,7 +431,7 @@ export function WhatsAppQuizModal({
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <span className="w-6 h-6 rounded-full bg-[#060A1A] border border-slate-700 text-[11px] font-mono text-slate-400 flex items-center justify-center shrink-0">
+                      <span className="w-6 h-6 rounded-full bg-[#060A1A] border border-slate-700 text-[11px] font-sans font-bold text-slate-400 flex items-center justify-center shrink-0">
                         0{idx + 1}
                       </span>
                       <span className="leading-snug">{dur}</span>
@@ -451,7 +451,7 @@ export function WhatsAppQuizModal({
             <div className="mb-5">
               <label
                 htmlFor="custom-duration-input"
-                className="block text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-400 mb-2"
+                className="block text-[11px] font-sans font-semibold uppercase tracking-wider text-slate-400 mb-2"
               >
                 O especifica el tiempo exacto:
               </label>
@@ -474,7 +474,7 @@ export function WhatsAppQuizModal({
               <button
                 type="button"
                 onClick={() => setStep(1)}
-                className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#0E172F] hover:bg-[#1E293B] border border-slate-800 text-slate-300 hover:text-white text-xs font-mono uppercase tracking-wider active:scale-[0.96] transition-all cursor-pointer"
+                className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#0E172F] hover:bg-[#1E293B] border border-slate-800 text-slate-300 hover:text-white text-xs font-sans font-semibold uppercase tracking-wider active:scale-[0.96] transition-all cursor-pointer"
               >
                 &larr; Volver
               </button>
@@ -527,7 +527,7 @@ export function WhatsAppQuizModal({
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <span className="w-6 h-6 rounded-full bg-[#060A1A] border border-slate-700 text-[11px] font-mono text-slate-400 flex items-center justify-center shrink-0">
+                      <span className="w-6 h-6 rounded-full bg-[#060A1A] border border-slate-700 text-[11px] font-sans font-bold text-slate-400 flex items-center justify-center shrink-0">
                         0{idx + 1}
                       </span>
                       <span className="leading-snug">{treatment}</span>
@@ -547,7 +547,7 @@ export function WhatsAppQuizModal({
             <div className="mb-5">
               <label
                 htmlFor="custom-treatments-input"
-                className="block text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-400 mb-2"
+                className="block text-[11px] font-sans font-semibold uppercase tracking-wider text-slate-400 mb-2"
               >
                 O detalla tus tratamientos previos:
               </label>
@@ -570,7 +570,7 @@ export function WhatsAppQuizModal({
               <button
                 type="button"
                 onClick={() => setStep(2)}
-                className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#0E172F] hover:bg-[#1E293B] border border-slate-800 text-slate-300 hover:text-white text-xs font-mono uppercase tracking-wider active:scale-[0.96] transition-all cursor-pointer"
+                className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#0E172F] hover:bg-[#1E293B] border border-slate-800 text-slate-300 hover:text-white text-xs font-sans font-semibold uppercase tracking-wider active:scale-[0.96] transition-all cursor-pointer"
               >
                 &larr; Volver
               </button>
@@ -631,7 +631,7 @@ export function WhatsAppQuizModal({
             <div className="mb-5">
               <label
                 htmlFor="custom-location-input"
-                className="block text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-400 mb-2"
+                className="block text-[11px] font-sans font-semibold uppercase tracking-wider text-slate-400 mb-2"
               >
                 O escribe tu ciudad o país específico:
               </label>
@@ -652,7 +652,7 @@ export function WhatsAppQuizModal({
               <button
                 type="button"
                 onClick={() => setStep(3)}
-                className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#0E172F] hover:bg-[#1E293B] border border-slate-800 text-slate-300 hover:text-white text-xs font-mono uppercase tracking-wider active:scale-[0.96] transition-all cursor-pointer"
+                className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#0E172F] hover:bg-[#1E293B] border border-slate-800 text-slate-300 hover:text-white text-xs font-sans font-semibold uppercase tracking-wider active:scale-[0.96] transition-all cursor-pointer"
               >
                 &larr; Volver
               </button>
@@ -680,7 +680,7 @@ export function WhatsAppQuizModal({
         {step === 5 && (
           <div key={5} className="animate-quiz-step">
             <div className="mb-3">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono font-semibold uppercase tracking-wider bg-[#0E172F] text-emerald-400 border border-[#1E3A5F]">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-sans font-semibold uppercase tracking-wider bg-[#0E172F] text-emerald-400 border border-[#1E3A5F]">
                 <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
                 Evaluación Preliminar Completada
               </span>
@@ -711,19 +711,19 @@ export function WhatsAppQuizModal({
               {/* Ficha Resumen de Respuestas */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 bg-[#060A1A] border border-slate-800 rounded-xl p-3 text-xs font-sans mt-3">
                 <div>
-                  <span className="text-slate-400 block text-[11px] uppercase tracking-wider font-mono">Síntoma:</span>
+                  <span className="text-slate-400 block text-[11px] uppercase tracking-wider font-sans font-semibold">Síntoma:</span>
                   <span className="font-semibold text-white">{effectiveSymptom}</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[11px] uppercase tracking-wider font-mono">Tiempo de evolución:</span>
+                  <span className="text-slate-400 block text-[11px] uppercase tracking-wider font-sans font-semibold">Tiempo de evolución:</span>
                   <span className="font-semibold text-white">{effectiveDuration}</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[11px] uppercase tracking-wider font-mono">Tratamientos previos:</span>
+                  <span className="text-slate-400 block text-[11px] uppercase tracking-wider font-sans font-semibold">Tratamientos previos:</span>
                   <span className="font-semibold text-white">{effectivePriorTreatments}</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[11px] uppercase tracking-wider font-mono">Ubicación:</span>
+                  <span className="text-slate-400 block text-[11px] uppercase tracking-wider font-sans font-semibold">Ubicación:</span>
                   <span className="font-semibold text-white">{effectiveLocation}</span>
                 </div>
               </div>
@@ -748,14 +748,14 @@ export function WhatsAppQuizModal({
               <button
                 type="button"
                 onClick={() => setStep(4)}
-                className="group inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-[#38BDF8] active:scale-[0.96] transition-all cursor-pointer font-medium font-mono uppercase tracking-wide"
+                className="group inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-[#38BDF8] active:scale-[0.96] transition-all cursor-pointer font-sans font-semibold uppercase tracking-wider"
               >
                 &larr; Modificar respuestas
               </button>
               <button
                 type="button"
                 onClick={handleClose}
-                className="text-xs text-slate-400 hover:text-white active:scale-[0.96] transition-all cursor-pointer font-medium font-mono uppercase tracking-wide"
+                className="text-xs text-slate-400 hover:text-white active:scale-[0.96] transition-all cursor-pointer font-sans font-semibold uppercase tracking-wider"
               >
                 Cerrar
               </button>

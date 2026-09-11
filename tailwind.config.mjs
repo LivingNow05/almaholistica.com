@@ -141,7 +141,7 @@ export default {
         cinzel: ['Cinzel', 'Playfair Display', 'serif'],
         inter: ['Inter', 'sans-serif'],
         body: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
-        mono: ['"JetBrains Mono"', '"Space Mono"', 'monospace'],
+        mono: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
         grotesk: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
       },
       borderRadius: {
