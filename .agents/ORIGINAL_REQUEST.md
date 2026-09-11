@@ -110,3 +110,68 @@ Integrity mode: development
 - [ ] El proyecto compila limpiamente al 100% sin errores de TypeScript ni de Astro al ejecutar `npm run build`.
 - [ ] Las 160 páginas estáticas se generan correctamente.
 - [ ] La suite de pruebas pasa satisfactoriamente.
+
+## Follow-up — 2026-09-10T19:48:47Z
+
+Transformación visual, estructural y SEO de Alma Holística (almaholistica.com) mediante una paleta cromática biológica semántica, generación de ilustraciones anatómicas y geométricas abstractas para romper los bloques continuos de texto, e incorporación de tablas comparativas de alto valor clínico indexables para motores tradicionales y de IA (GEO).
+
+Working directory: /Users/anthony/Downloads/almaholistica.com
+Integrity mode: development
+
+## Requirements
+
+### R1. Dinamismo y Paleta Cromática Biológica Semántica
+- Romper la uniformidad visual del sitio implementando una paleta de colores semántica y diferenciada según el sistema biológico y la función anatómica:
+  - Sistema Digestivo (verde salvia / esmeralda sereno).
+  - Sistema Osteoarticular (arcilla / ámbar cálido / terracota).
+  - Sistema Respiratorio (azul zafiro / celeste nórdico).
+  - Sistema Nervioso / Psicosomático (amatista suave / lavanda profundo).
+- Aplicar estos acentos de forma elegante en bordes superiores, badges de categoría, números de paso e indicadores visuales tanto en Modo Claro como en Modo Oscuro.
+- Respetar la normativa de diseño sólido mate: fondos y superficies 100% opacas, sin gradientes deslumbrantes ni efectos de neón.
+
+### R2. Generación e Integración de Ilustraciones Anatómicas y Geométricas Abstractas
+- Crear e integrar activos visuales originales con estética de ilustraciones anatómicas, biología celular y siluetas bioenergéticas en vectores y texturas mate de calidad médica editorial:
+  - Ilustración 1 (Hero/Enfoque): Eje mente-cuerpo y correlación neurovegetativa.
+  - Ilustración 2 (Metodología): Los 3 pilares del choque biológico y la respuesta adaptativa.
+  - Ilustración 3 (Fases del Proceso): Rango de etapas terapéuticas desde el diagnóstico preliminar hasta la autorregulación.
+- Cada imagen debe alojarse localmente en `public/images/`, contar con atributos fijos `width` y `height`, texto alternativo (`alt`) descriptivo optimizado para SEO, y carga diferida (`loading="lazy"`).
+
+### R3. Tablas Comparativas y Alivio Estructural de Texto
+- Reorganizar secciones con alta densidad de texto continuo en tablas comparativas estructuradas y agradables a la vista:
+  - **Tabla de Enfoque Clínico**: *Medicina Convencional vs Biodescodificación Integrativa* (Dimensiones: Paradigma de origen, Enfoque diagnóstico, Nivel de intervención, Objetivo del síntoma, Papel del consultante).
+  - **Tabla Matriz de Dolencias y Sentido Biológico**: Muestra representativa de patologías con *Síntoma Físico, Emoción Atrapada, Capa Embrionaria (Endodermo/Mesodermo/Ectodermo) y Sentido Biológico Adaptativo*.
+  - **Tabla de Etapas del Acompañamiento**: *Fase, Sesiones Estimadas, Metodología Aplicada y Resultado Terapéutico Esperado*.
+- Las tablas deben ser plenamente responsivas (scroll horizontal suave con indicación visual o diseño apilable en móviles) y visualmente estilizadas con la paleta de la marca.
+
+### R4. Optimización SEO, GEO (Generative Engine Optimization) y Datos Estructurados
+- Integrar microdatos semánticos HTML y esquemas JSON-LD complementarios (`MedicalWebPage`, `HowTo`, `Table`, `FAQPage`) que permitan a motores de respuesta de IA (ChatGPT Search, Perplexity, Google AI Overviews) extraer y citar directamente los datos de las tablas.
+- Asegurar encabezados semánticos jerárquicos (H2, H3), etiquetas semánticas `<table>`, `<thead>`, `<tbody>`, `<th>`, `<caption>` y descripciones enriquecidas con palabras clave de alta intención en terapia integrativa y biodescodificación.
+
+### R5. Garantía de Calidad Técnica, Cero CLS y Preservación de Pruebas
+- Preservar las 160 rutas estáticas SSG del proyecto sin alterar rutas ni enlaces canónicos.
+- Superar con 0 fallos la suite completa de tests automatizados (150 tests de regresión y 244 tests adversariales).
+- Garantizar Cero Cumulative Layout Shift (`CLS = 0`) en la carga de imágenes, tablas y estilos.
+
+## Acceptance Criteria
+
+### Cromatismo e Identidad Visual
+- [ ] Las diferentes dolencias y secciones presentan acentos diferenciados según su sistema biológico (verde para digestivo, terracota para osteoarticular, azul para respiratorio, lavanda para nervioso).
+- [ ] El contraste en Modo Claro cumple con las normativas de accesibilidad WCAG (mínimo 4.5:1 para texto normal y 3:1 para acentos grandes).
+- [ ] No existen transparencias no permitidas ni brillos de neón (`auditMateStyleContent` conforme).
+
+### Ilustraciones y Medios Visuales
+- [ ] Se integran ilustraciones conceptuales abstractas de calidad médica en las secciones clave del portal.
+- [ ] Cada imagen cuenta con dimensiones explícitas (`width`, `height`) y texto `alt` rico en contexto semántico.
+- [ ] No se produce salto de layout durante la carga de las imágenes.
+
+### Tablas Comparativas y Legibilidad
+- [ ] El portal incluye al menos 2 tablas comparativas claras y legibles que alivian la carga de texto continuo.
+- [ ] En pantallas móviles (320px - 640px) las tablas son accesibles y cómodas de navegar sin desbordar el viewport horizontal del layout.
+
+### SEO y Validación Técnica
+- [ ] Las tablas y contenido nuevo cuentan con Schema.org JSON-LD válido y etiquetas semánticas HTML5.
+- [ ] `npm run build` genera las 160 páginas estáticas sin advertencias ni errores.
+- [ ] `npm test` ejecuta 150 pruebas con 0 fallos.
+- [ ] `node --test tests/adversarial_*.test.mjs` pasa 244 pruebas con 0 fallos.
+- [ ] El despliegue a producción vía Easypanel se sincroniza exitosamente a través del repositorio GitHub.
+

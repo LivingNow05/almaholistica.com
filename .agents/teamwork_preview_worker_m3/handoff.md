@@ -1,165 +1,180 @@
-# Handoff Report — Worker M3 (WhatsApp Quiz Funnel Modal)
-**Agente**: `teamwork_preview_worker_m3` (`teamwork_preview_worker`)  
-**Fecha / Timestamp**: 2026-09-06T04:47:00Z  
-**Working Directory**: `/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_worker_m3`  
-**Destinatario**: Parent Orchestrator (`ec56c22f-c2e2-4cb7-b566-7fc263c92882`)  
-**Tipo de Handoff**: Hard (Task Complete)
+# Handoff Report — Hito M3: Tablas Comparativas, Ilustraciones Vectoriales y Paleta Biológica
+
+**Agente**: `teamwork_preview_worker_m3` (Implementer / QA / Specialist)  
+**Parent**: `6726af5a-d5c1-4a22-89aa-ecd41de70482` (`teamwork_preview_orchestrator_7`)  
+**Fecha**: 2026-09-10  
+**Hito**: M3 — Integración de Tablas Comparativas, Ilustraciones Vectoriales y Paleta Biológica en Home  
+**Tipo de Handoff**: Hard (Tarea completada al 100%)
 
 ---
 
-## 1. Observation
+## 1. Observation (Observaciones Directas y Empíricas)
 
-A partir de la inspección directa del código fuente, configuración, layouts y suites de pruebas:
+1. **Creación de Componentes de Tablas Comparativas (R3 y R4)**:
+   - `src/components/ClinicalApproachTable.astro`:
+     - Implementa cuadro comparativo entre Medicina Convencional y Biodescodificación Integrativa a través de 5 dimensiones: *Paradigma de origen*, *Enfoque diagnóstico*, *Nivel de intervención*, *Objetivo del síntoma*, *Papel del consultante*.
+     - Marcado semántico HTML5: `<table itemscope itemtype="https://schema.org/Table">`, `<caption itemprop="about">`, `<thead>`, `<tbody>`, `<th scope="col">`, `<th scope="row">`, `<td>`.
+     - Contenedor con `w-full max-w-full overflow-x-auto scroll-smooth overscroll-contain` y micro-indicador visual para navegación en pantallas móviles (`lg:hidden`).
+   - `src/components/BiologicalMatrixTable.astro`:
+     - Implementa matriz biológica representativa con 8 patologías clave: *Gastritis y Acidez Gástrica*, *Lumbalgia Mecánica (L4-L5)*, *Rinitis Alérgica y Sinusitis*, *Ansiedad y Crisis de Angustia*, *Sobrepeso y Retención de Líquidos*, *Eczema y Dermatitis de Contacto*, *Hipotiroidismo y Fatiga Crónica*, *Hipertensión Arterial Esencial*.
+     - Columnas: *Síntoma Físico*, *Capa Embrionaria* (Endodermo, Mesodermo Nuevo, Ectodermo), *Emoción Atrapada*, *Sentido Biológico Adaptativo*.
+     - Badges semánticos biológicos sólidos mates usando clases oficiales de M1: `.bio-badge-digestivo`, `.bio-badge-osteoarticular`, `.bio-badge-respiratorio`, `.bio-badge-nervioso`.
+     - Marcado Schema.org/Table vía microdatos HTML5.
+   - `src/components/AccompanimentStagesTable.astro`:
+     - Implementa hoja de ruta clínica estructurada en 4 fases: *01 Diagnóstico & Cartografía Biológica*, *02 Desanclaje Emocional & Catarsis*, *03 Reprogramación Mental & Límites*, *04 Consolidación & Autorregulación*.
+     - Columnas: *Fase Clínica*, *Sesiones Estimadas*, *Metodología Aplicada*, *Resultado Terapéutico Esperado*.
+     - Marcado semántico HTML5 y microdatos Schema.org/Table.
 
-1. **Requerimientos de Milestone M3 (`ORIGINAL_REQUEST.md` §R3 & `DISPATCH.md`)**:
-   - `ORIGINAL_REQUEST.md` líneas 31-35: *«Los botones de WhatsApp (flotantes y CTAs) interceptan la acción y abren un Quiz Modal interactivo de 3-4 pasos (síntoma, duración, intentos previos, ubicación). Al finalizar el cuestionario, muestra un diagnóstico preliminar y abre WhatsApp con un mensaje estructurado y listo para agendar. Número de WhatsApp provisional genérico (`573000000000`) parametrizado en un archivo central (`src/config/site.ts`) para su posterior actualización.»*
-   - `DISPATCH.md` líneas 24-32: Requiere exactamente 4 pasos interactivos (`symptom`, `duration`, `priorTreatments`, `location`) + paso 5 de diagnóstico preliminar con la fórmula verbatim: `"Identificamos un patrón relacionado con ${symptom} de ${duration} de evolución."`, derivación a WhatsApp con `buildWhatsAppUrl()` de `src/config/site.ts`, interceptación global de enlaces `wa.me`, `whatsapp.com` y `[data-open-quiz]`, escucha de `alma:open-quiz`, a11y (Escape, backdrop click), scroll lock y estilo 100% sólido mate.
-   - `DISPATCH.md` líneas 33-43: Integrar en `src/layouts/BaseLayout.astro` con `client:load` dentro de `#quiz-modal-container`, manteniendo `<slot name="quiz-modal" />` intacto y autocerrado para cumplir con el test adversarial `ADV-M2.2.10`.
+2. **Integración de las 3 Ilustraciones Vectoriales en `src/pages/index.astro` (R2)**:
+   - Sección 2 (Manifiesto & Enfoque Clínico):
+     ```html
+     <img
+       src="/images/eje-mente-cuerpo-neurovegetativo.svg"
+       alt="Diagrama médico del eje mente-cuerpo y correlación neurovegetativa en biodescodificación"
+       width="800"
+       height="600"
+       loading="lazy"
+       decoding="async"
+       class="w-full max-w-2xl h-auto mx-auto rounded-[2rem] border border-slate-800/40"
+     />
+     ```
+   - Sección 3 (Pilares del Fundamento Terapéutico):
+     ```html
+     <img
+       src="/images/pilares-choque-biologico.svg"
+       alt="Los 3 pilares del choque biológico y respuesta adaptativa celular"
+       width="800"
+       height="500"
+       loading="lazy"
+       decoding="async"
+       class="w-full max-w-2xl h-auto mx-auto rounded-[2rem] border border-slate-800/40"
+     />
+     ```
+   - Sección 6 (El Proceso Terapéutico):
+     ```html
+     <img
+       src="/images/fases-proceso-terapeutico.svg"
+       alt="Rango de etapas terapéuticas desde diagnóstico preliminar hasta autorregulación"
+       width="900"
+       height="450"
+       loading="lazy"
+       decoding="async"
+       class="w-full max-w-3xl h-auto mx-auto rounded-[2rem] border border-slate-800/40"
+     />
+     ```
+   - Cada etiqueta `<img>` cuenta con atributos numéricos literales `width` y `height`, `loading="lazy"`, `decoding="async"` y contención responsive sin desbordamiento.
 
-2. **Implementación de Componentes y Código Creado**:
-   - Se creó `src/components/react/WhatsAppQuizModal.tsx` con exportación dual (`export function WhatsAppQuizModal` y `export default WhatsAppQuizModal`).
-   - Máquina de 5 pasos interactivos con opciones predefinidas y soporte para ingreso personalizado en cada paso.
-   - En el Paso 5, el diagnóstico incluye exactamente:
-     `Identificamos un patrón relacionado con ${effectiveSymptom} de ${effectiveDuration} de evolución.`
-   - El botón final de derivación redirige a la URL calculada mediante `buildWhatsAppUrl()`.
-   - Delegación global de eventos mediante `document.addEventListener('click', handleDocumentClick, { capture: true })`, resolviendo triggers con `target.closest('a[href*="wa.me"], a[href*="whatsapp.com"], [data-open-quiz]')` y extrayendo de forma ascendente `data-symptom`, `data-city` y `data-location`.
-   - Soporte para saltar automáticamente al Paso 2 cuando `data-symptom` está presente (contrato T4.2.1).
-   - Ignora la interceptación cuando el clic es sobre el enlace final del propio modal (`data-quiz-final`) o cuando se usan modificadores de teclado (`Ctrl`, `Cmd`, `Shift`, `Alt`) o clics secundarios.
-   - Escucha de `alma:open-quiz` en `window`.
-   - WAI-ARIA modal con `role="dialog"`, `aria-modal="true"`, `aria-labelledby="quiz-modal-title"`, `aria-describedby="quiz-modal-description"`, cierre por tecla `Escape`, cierre por clic en backdrop y botón de cierre accesible.
-   - Bloqueo de scroll en `document.body` al abrir con compensación de barra de desplazamiento (`scrollbarWidth`) para prevenir Cumulative Layout Shift (CLS = 0).
+3. **Integración de Tablas y Alivio Textual en `src/pages/index.astro` (R3)**:
+   - `<ClinicalApproachTable />` insertado en Sección 2.
+   - `<BiologicalMatrixTable />` insertado en Sección 3 tras los 3 pilares.
+   - `<AccompanimentStagesTable />` insertado en Sección 6 tras los 4 pasos del proceso.
+   - En Sección 4 (`#dolencias`), las 12 tarjetas `.home-dolencia-card` fueron enriquecidas con acentos de borde superior de 3px (`${getBiologicalBorderClass(item.sistema)}`) y badges biológicos (`${getBiologicalBadgeClass(item.sistema)}`).
+   - En `src/pages/biodescodificacion/index.astro`, las tarjetas `.dolencia-item-card` incorporan los bordes superiores biológicos y los badges semánticos armonizados.
 
-3. **Integración en `src/layouts/BaseLayout.astro`**:
-   - Línea 18: `import WhatsAppQuizModal from '../components/react/WhatsAppQuizModal';`.
-   - Líneas 114-117:
-     ```astro
-     <div id="quiz-modal-container" data-client-load="client:load">
-       <slot name="quiz-modal" />
-       <WhatsAppQuizModal client:load />
-     </div>
-     ```
-   - `<slot name="quiz-modal" />` se mantuvo autocerrado intacto.
+4. **Verificación de Invariantes Técnicos en `dist/`**:
+   - `dist/index.html` contiene **exactamente 0 bloques `<script type="application/ld+json">`** (pasa `MR3-ADV-4.1` y `MR3-CH2-4.5`).
+   - El total de bloques JSON-LD en `dist/` es de **exactamente 361** (113 ciudades * 2 + 45 dolencias * 3 = 361, pasa `ADV-M5.2.2`).
+   - Se preservan **exactamente 12 tarjetas `.home-dolencia-card`** con slugs `migrana` y `sobrepeso-retencion` (pasa `MR3-ADV-1.1`, `MR3-ADV-1.2`, `MR3-CH2-3.1`).
+   - Se preservan **113 elementos `.city-search-item`** (>=100 requeridos, pasa `MR3-ADV-2.1`).
+   - Se preservan **7 enlaces de WhatsApp hacia `573000000000`** (>=4 requeridos, pasa `MR3-ADV-3.1`).
+   - Anclas `#dolencias` y `#ciudades` presentes y operativas (pasa `MR3-ADV-6.5`).
+   - Cero clases prohibidas (`bg-amber-*`, `text-amber-*`, `yellow`, `gold`, `backdrop-blur`, `bg-opacity-*`).
+   - Cero errores en `auditMateStyleContent` (100% Sólido Mate).
 
-4. **Resultados de Verificación de Tipos y Pruebas**:
-   - `npx astro check`:
-     ```
-     Result (19 files): 
-     - 0 errors
-     - 0 warnings
-     - 3 hints (en archivos de test existentes)
-     ```
-   - `node --test tests/*.test.mjs`:
-     ```
-     # tests 183
-     # suites 46
-     # pass 150
-     # fail 0
-     # cancelled 0
-     # skipped 33
-     # todo 0
-     # duration_ms 142.886959
-     ```
-     (Los tests T1.10.4 y T1.11.5 pasaron de skipped a passed).
-   - `node --test tests/adversarial_contracts_config_m2_2.test.mjs tests/adversarial_matte_cls_m2_1.test.mjs`:
-     ```
-     # tests 33
-     # suites 6
-     # pass 33
-     # fail 0
-     ```
-   - Pruebas adversariales en Python (`python3 tests/adversarial_assets_config_m2_2.py` y `python3 tests/adversarial_cities_m1_2.py`):
-     ```
-     Total Errors: 0
-     Total Warnings: 0
-     VERDICT: CONFIRM_CORRECTNESS
-     ```
-   - Auditoría de estilo visual sólido mate con `tests/helpers/mate_style_checker.mjs`:
-     `WhatsAppQuizModal.tsx`: `Audit Passed: true Violations: []`.
-     `BaseLayout.astro`: `Audit Passed: true Violations: []`.
+5. **Resultados de las Pruebas de Verificación**:
+   - `npm run check`: 0 errors, 0 warnings.
+   - `npm run build`: 160 páginas generadas en 2.16s.
+   - `npm test`: **150 pass, 0 fail** (40 suites).
+   - `node --test tests/adversarial_*.test.mjs`: **244 pass, 0 fail** (70 suites).
+   - `python3 tests/adversarial_m6_stress_harness.py`: **CONFIRM_CORRECTNESS** (160 páginas, 0 enlaces rotos, 0 errores CLS).
+   - `python3 tests/adversarial_m5_sitemaps_schema.py`: **CONFIRM_CORRECTNESS**.
+   - `python3 tests/adversarial_assets_config_m2_2.py`: **CONFIRM_CORRECTNESS**.
 
 ---
 
-## 2. Logic Chain
+## 2. Logic Chain (Cadena de Razonamiento)
 
-1. **Conexión entre Requisitos y Máquina de Estados**:
-   - Observación 1 exige 4 pasos interactivos + 1 paso de diagnóstico con derivación a WhatsApp.
-   - Se diseñó el componente React con estado explícito para `step` (1 a 5), `symptom`, `duration`, `priorTreatments` y `location`, admitiendo selección rápida desde catálogos basados en los datasets del proyecto o entrada de texto libre.
-   - En el paso 5, se genera el párrafo de diagnóstico con el texto exacto estipulado en T1.10.2: `Identificamos un patrón relacionado con ${effectiveSymptom} de ${effectiveDuration} de evolución.` y se genera el enlace de WhatsApp usando la función central `buildWhatsAppUrl()` de `src/config/site.ts`.
+1. **De los Requisitos R3/R4 a los Microdatos Semánticos HTML5**:
+   - *Premisa*: El requerimiento R3 solicitaba tablas comparativas legibles para aliviar el texto denso, y R4 solicitaba datos estructurados indexables por motores de IA.
+   - *Restricción*: Las pruebas adversariales `MR3-ADV-4.1` y `MR3-CH2-4.5` prohíben explícitamente cualquier `<script type="application/ld+json">` en `dist/index.html`, mientras que `ADV-M5.2.2` impone un censo de exactamente 361 scripts JSON-LD en todo el sitio.
+   - *Deducción*: No era admisible inyectar scripts JSON-LD en la home. La solución técnica óptima fue utilizar microdatos nativos HTML5 (`<table itemscope itemtype="https://schema.org/Table">`, `<caption>`, `<thead>`, `<tbody>`, `<th scope="col">`, `<th scope="row">`, `<td>`), permitiendo que tanto Google como ChatGPT Search y Perplexity lean y extraigan la información directamente del DOM sin violar ninguna aserción de prueba.
 
-2. **Garantía de Resiliencia y Progressive Enhancement**:
-   - Observación 1 y los tests T1.11.1-T1.11.4 exigen interceptación sin romper enlaces nativos si se usan modificadores de teclado o si ocurre un fallo.
-   - Se implementó delegación global en `document` que verifica `event.button === 0` y ausencia de modificadores (`metaKey`, `ctrlKey`, `shiftKey`, `altKey`).
-   - Se utilizó `closest()` para garantizar que clics en hijos como `<svg>` o `<span>` dentro de los botones de WhatsApp de Navbar o Footer sean detectados correctamente y extraigan `data-symptom` o `data-city` del trigger o sus contenedores.
-   - Se añadió la salvaguarda de no interceptar el enlace final del propio modal (`data-quiz-final`) para que al pulsar "Agendar Sesión de Diagnóstico por WhatsApp" se navegue fluidamente a WhatsApp sin bucles.
-   - Al detectar `data-symptom` no vacío, el modal precarga el síntoma y avanza directamente al paso 2 (tiempo de evolución), cumpliendo con el contrato del Journey B (T4.2.1).
+2. **De los Requisitos R2 al Blindaje Anti-CLS**:
+   - *Premisa*: Las ilustraciones deben integrarse rompiendo la densidad textual sin ocasionar Cumulative Layout Shift (`CLS = 0`).
+   - *Restricción*: El test `ADV-GEN3.6` y el arnés `adversarial_m6_stress_harness.py` inspeccionan cada tag `<img>` en busca de atributos numéricos literales `width` y `height`.
+   - *Deducción*: Se insertaron las 3 ilustraciones con dimensiones fijas (`width="800" height="600"`, `width="800" height="500"`, `width="900" height="450"`), `loading="lazy"` y `decoding="async"`, garantizando que el navegador reserve el espacio exacto y eliminando cualquier salto de diseño.
 
-3. **Cumplimiento Estricto de Diseño Sólido Mate y A11y**:
-   - Observación 1 y 4 prohíben glassmorphism, desenfoques (`backdrop-blur`) y transparencias.
-   - El modal utiliza un backdrop de `#060A1A` 100% sólido mate, tarjetas en Midnight Navy `#0A1226` y elementos interactivos en `#0E172F` con bordes `#1E293B`, botones en `#38BDF8` y acentos en `#D4AF37`.
-   - Se verificó mediante `auditMateStyleContent()` obteniendo 0 violaciones.
-   - Se implementó cierre accesible por `Escape`, clic en backdrop, bloqueo de scroll en `body` compensando el ancho del scrollbar para evitar layout shift.
+3. **De la Paleta Semántica Biológica (M1) a la Interfaz de la Home**:
+   - *Premisa*: Las tarjetas de dolencias debían reflejar la diferenciación cromática según la familia biológica.
+   - *Restricción*: Están terminantemente prohibidas las clases `amber-*`, `yellow-*`, `gold` y colores `#F59E0B`, `#D4AF37`.
+   - *Deducción*: Se emplearon las funciones helper `getBiologicalBorderClass(item.sistema)` y `getBiologicalBadgeClass(item.sistema)` desarrolladas en M1, aplicando bordes superiores de 3px (`.bio-border-*`) y badges opacos (`.bio-badge-*`) con contraste WCAG AAA en las 12 tarjetas de la home y en el catálogo, manteniendo la clase `.home-dolencia-card` intacta.
 
-4. **Preservación de Contratos de BaseLayout**:
-   - Observación 1 y 3 constataron que el test adversarial `ADV-M2.2.10` busca verbatim `<slot name="quiz-modal" />` autocerrado.
-   - En lugar de envolver el componente dentro del slot, se renderizó como hermano adyacente dentro de `#quiz-modal-container`:
-     `<slot name="quiz-modal" />`
-     `<WhatsAppQuizModal client:load />`
-   - Esto satisface tanto `ADV-M2.2.9`, `ADV-M2.2.10` como `T1.10.5` (`client:load`).
+4. **De la Contención Móvil a la Responsividad (320px - 4K)**:
+   - *Premisa*: Las tablas comparativas contienen columnas densas que en pantallas móviles pequeñas podrían provocar desbordamiento horizontal (`overflow-x`).
+   - *Deducción*: Cada tabla fue envuelta en un contenedor con `w-full max-w-full overflow-x-auto` con scrollbar sutil estilizada y un micro-indicador visual explicativo que alerta al usuario móvil sobre el desplazamiento horizontal disponible.
 
 ---
 
-## 3. Caveats
+## 3. Caveats (Advertencias y Supuestos)
 
-- **No caveats**: Todos los requerimientos de M3 especificados en `ORIGINAL_REQUEST.md`, `DISPATCH.md` y `PROJECT.md` fueron implementados y verificados exhaustivamente contra la suite completa de pruebas unitarias, de integración y adversariales.
-
----
-
-## 4. Conclusion
-
-El hito M3 (WhatsApp Quiz Funnel Modal) está completamente implementado y verificado con éxito:
-1. `src/components/react/WhatsAppQuizModal.tsx` opera como un componente React 19 genuino, interactivo y accesible, con 4 pasos de calificación + diagnóstico preliminar exacto + derivación estructurada a WhatsApp.
-2. La delegación global intercepta `wa.me`, `whatsapp.com`, `[data-open-quiz]` y el evento `alma:open-quiz`, con precarga de contexto (`data-symptom`, `data-city`) y autoavance a paso 2.
-3. El diseño cumple al 100% con la estética sólida mate (cero transparencias, cero backdrop-blur, colores de marca sobrios).
-4. `src/layouts/BaseLayout.astro` integra el modal con `client:load` preservando intacto el slot autocerrado `<slot name="quiz-modal" />`.
-5. Todas las pruebas automatizadas (`astro check`, `node --test tests/*.test.mjs`, suites adversariales JS y Python) pasan con 0 errores y 0 fallos.
+- **No Caveats**: Todos los entregables fueron implementados respetando estrictamente los límites de archivos asignados (`src/components/ClinicalApproachTable.astro`, `src/components/BiologicalMatrixTable.astro`, `src/components/AccompanimentStagesTable.astro`, `src/pages/index.astro`, `src/pages/biodescodificacion/index.astro`).
+- Todas las suites de pruebas (394 pruebas automatizadas en JavaScript + 3 arneses de estrés en Python) pasan con 0 fallos.
 
 ---
 
-## 5. Verification Method
+## 4. Conclusion (Evaluación Final)
 
-Para verificar independientemente esta implementación:
+El Hito M3 ha sido implementado y verificado en su totalidad:
+1. Se crearon los 3 componentes de tablas clínicas con marcado semántico HTML5 y microdatos Schema.org/Table.
+2. Se integraron las 3 ilustraciones vectoriales en `src/pages/index.astro` con dimensiones fijas anti-CLS.
+3. Se integraron las 3 tablas en `src/pages/index.astro`, aliviando la densidad de texto en el Manifiesto, Fundamento Terapéutico y Proceso Clínico.
+4. Se aplicaron los bordes superiores de 3px y badges biológicos en las tarjetas de dolencias de la home y del catálogo.
+5. Se preservaron al 100% todos los invariantes técnicos (0 JSON-LD en home, 361 en dist, 12 tarjetas canónicas, 113 ciudades, >=4 WhatsApp, 0 clases prohibidas).
+6. El proyecto compila limpiamente a 160 páginas SSG y supera todas las pruebas de regresión y adversariales con 0 fallos.
 
-1. **Comprobación estricta de tipos de Astro y TypeScript**:
+---
+
+## 5. Verification Method (Método de Verificación Independiente)
+
+Para que el parent o auditor verifique de forma independiente y reproducible:
+
+1. **Verificar tipado y sintaxis en Astro**:
    ```bash
-   npx astro check
+   npm run check
    ```
-   *Criterio de éxito*: 0 errores, 0 advertencias.
+   *Criterio de éxito*: 0 errors, 0 warnings.
 
-2. **Ejecución de la suite completa de pruebas Node.js**:
+2. **Compilar el sitio SSG completo**:
    ```bash
-   node --test tests/*.test.mjs
+   npm run build
    ```
-   *Criterio de éxito*: 150 pruebas pasando, 0 fallos (0 failed). Tests T1.10.4 y T1.11.5 pasan activamente.
+   *Criterio de éxito*: 160 páginas construidas exitosamente en `dist/`.
 
-3. **Ejecución de suites adversariales**:
+3. **Ejecutar la suite de pruebas unitarias de regresión**:
    ```bash
-   node --test tests/adversarial_contracts_config_m2_2.test.mjs tests/adversarial_matte_cls_m2_1.test.mjs
-   python3 tests/adversarial_assets_config_m2_2.py
-   python3 tests/adversarial_cities_m1_2.py
+   npm test
    ```
-   *Criterio de éxito*: 33/33 pruebas en JS pasando; veredicto `CONFIRM_CORRECTNESS` en scripts Python.
+   *Criterio de éxito*: 150/150 tests aprobados (40 suites).
 
-4. **Auditoría de estilo visual sólido mate**:
+4. **Ejecutar la suite completa de pruebas adversariales**:
+   ```bash
+   node --test tests/adversarial_*.test.mjs
+   ```
+   *Criterio de éxito*: 244/244 tests aprobados (70 suites).
+
+5. **Ejecutar el arnés de estrés de QA final**:
+   ```bash
+   python3 tests/adversarial_m6_stress_harness.py
+   ```
+   *Criterio de éxito*: 160 páginas analizadas, 0 enlaces rotos, 0 fallos de CLS, VERDICT: CONFIRM_CORRECTNESS.
+
+6. **Verificar ausencia de JSON-LD en dist/index.html**:
    ```bash
    node -e '
-   (async () => {
-     const { auditMateStyleContent } = await import("./tests/helpers/mate_style_checker.mjs");
-     const fs = await import("fs");
-     const modal = fs.readFileSync("src/components/react/WhatsAppQuizModal.tsx", "utf8");
-     const layout = fs.readFileSync("src/layouts/BaseLayout.astro", "utf8");
-     console.log("Modal Mate Audit:", auditMateStyleContent(modal, "WhatsAppQuizModal.tsx"));
-     console.log("Layout Mate Audit:", auditMateStyleContent(layout, "BaseLayout.astro"));
-   })();
+   const fs = require("fs");
+   const html = fs.readFileSync("dist/index.html", "utf8");
+   const scripts = html.match(/<script[^>]*type=["\x27]application\/ld\+json["\x27][^>]*>/gi);
+   if (scripts) throw new Error("Found JSON-LD scripts in home: " + scripts.length);
+   console.log("PASS: 0 JSON-LD scripts in dist/index.html");
    '
    ```
-   *Criterio de éxito*: `passed: true` y `violations: []` para ambos archivos.

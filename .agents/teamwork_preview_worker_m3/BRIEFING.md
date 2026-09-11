@@ -1,58 +1,67 @@
-# BRIEFING — 2026-09-06T04:44:06Z
+# BRIEFING — 2026-09-10T20:07:55Z
 
 ## Mission
-Implementar WhatsAppQuizModal.tsx en React 19 e integrarlo con client:load en BaseLayout.astro en estricto estilo sólido mate y cumpliendo los contratos de prueba E2E.
+Implementar componentes de tablas comparativas (ClinicalApproachTable, BiologicalMatrixTable, AccompanimentStagesTable), integrar las 3 ilustraciones vectoriales con dimensiones fijas anti-CLS y paleta biológica en src/pages/index.astro (Hito M3), cumpliendo estrictamente con todos los invariantes y pruebas adversariales.
 
 ## 🔒 My Identity
-- Archetype: teamwork_preview_worker
+- Archetype: teamwork_preview_worker_m3
 - Roles: implementer, qa, specialist
 - Working directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_worker_m3
-- Original parent: ec56c22f-c2e2-4cb7-b566-7fc263c92882
-- Milestone: M3 (WhatsApp Quiz Funnel Modal)
+- Original parent: 6726af5a-d5c1-4a22-89aa-ecd41de70482
+- Milestone: M3 (Tablas Comparativas, Ilustraciones Vectoriales y Paleta Biológica en Home)
 
 ## 🔒 Key Constraints
-- Estricto modo sólido mate (#060A1A, #0A1226, #0E172F, #1E293B, #38BDF8, #D4AF37). Prohibido backdrop-blur, transparencias, glow/neón.
-- 4 pasos interactivos (symptom, duration, priorTreatments, location) + paso 5 de diagnóstico preliminar.
-- Frase exacta requerida: "Identificamos un patrón relacionado con ${symptom} de ${duration} de evolución."
-- Derivación estructurada a WhatsApp con buildWhatsAppUrl() de src/config/site.ts.
-- Delegación global de eventos (a[href*="wa.me"], a[href*="whatsapp.com"], [data-open-quiz]), data-symptom, data-city, CustomEvent 'alma:open-quiz'.
-- Mantener <slot name="quiz-modal" /> autocerrado intacto en BaseLayout.astro adyacente a <WhatsAppQuizModal client:load />.
-- Cero errores en npx astro check y 0 fallos en node --test tests/*.test.mjs.
-- NO CHEAT. All implementations genuine. Real state and logic.
+- Archivos autorizados para modificar/crear:
+  - src/components/ClinicalApproachTable.astro
+  - src/components/BiologicalMatrixTable.astro
+  - src/components/AccompanimentStagesTable.astro
+  - src/pages/index.astro
+  - src/pages/biodescodificacion/index.astro (si aplica)
+- dist/index.html NO debe contener `<script type="application/ld+json">`. Usar microdatos semánticos HTML5 (`itemscope itemtype="https://schema.org/Table"`).
+- Exactamente 12 tarjetas `.home-dolencia-card` con slugs `migrana` y `sobrepeso-retencion`.
+- Al menos 100 enlaces `.city-search-item`.
+- Al menos 4 enlaces de WhatsApp hacia `573000000000`.
+- Preservar IDs/anclas `#dolencias` y `#ciudades`.
+- Cero clases prohibidas (`bg-amber-*`, `text-amber-*`, `yellow`, `gold`, `backdrop-blur`, `bg-opacity-*`).
+- Cero desbordamiento horizontal: `w-full max-w-full overflow-x-auto`.
+- Atributos numéricos literales obligatorios `width` y `height` en imágenes, `loading="lazy"`.
+- Pasar todos los tests: npm run check, npm run build (160 páginas), npm test (150/150 pass), node --test tests/adversarial_*.test.mjs (244/244), python3 tests/adversarial_m6_stress_harness.py (0 rotos, CLS=0).
 
 ## Current Parent
-- Conversation ID: ec56c22f-c2e2-4cb7-b566-7fc263c92882
-- Updated: 2026-09-06T04:44:06Z
+- Conversation ID: 6726af5a-d5c1-4a22-89aa-ecd41de70482
+- Updated: 2026-09-10T20:07:55Z
 
 ## Task Summary
-- **What to build**: Componente React WhatsAppQuizModal.tsx y su integración en BaseLayout.astro.
-- **Success criteria**: astro check 0 errores, node --test tests/*.test.mjs 100% pasando, auditoría mate limpia.
-- **Interface contracts**: PROJECT.md M2 ↔ M3, site.ts buildWhatsAppUrl.
-- **Code layout**: src/components/react/WhatsAppQuizModal.tsx, src/layouts/BaseLayout.astro.
+- **What to build**: 3 componentes de tablas Astro semánticas y responsivas, integración de 3 ilustraciones vectoriales en index.astro, e integración de badges y bordes biológicos en tarjetas de dolencias.
+- **Success criteria**: Cero errores de tipado, 160 páginas SSG construidas, 0 errores en suites de tests unitarios y adversariales, microdatos válidos, sin desbordamiento horizontal en 320px.
+- **Interface contracts**: PROJECT.md en .agents/teamwork_preview_orchestrator_7/PROJECT.md
+- **Code layout**: Componentes en src/components/, páginas en src/pages/
 
 ## Key Decisions Made
-- Usar implementación pura de React 19 sin dependencias externas pesadas.
-- Usar closest() para traversal ascendente de data-symptom y data-city en nodos anidados como svgs y spans.
-- Soporte a11y con tecla Escape, backdrop click, aria-dialog, y bloqueo de scroll en body con compensación de barra.
-- Ignorar clics en el enlace final del propio modal en el manejador global para permitir la navegación directa a WhatsApp.
-- Preservar <slot name="quiz-modal" /> autocerrado intacto e inyectar adyacente <WhatsAppQuizModal client:load />.
+- Creados componentes `ClinicalApproachTable.astro`, `BiologicalMatrixTable.astro` y `AccompanimentStagesTable.astro` usando marcado semántico HTML5 (`<caption>`, `<thead>`, `<tbody>`, `<th scope="col">`, `<th scope="row">`) y microdatos `itemscope itemtype="https://schema.org/Table"` para total indexabilidad GEO sin inyectar ningún script JSON-LD en `dist/index.html`.
+- Integradas las 3 ilustraciones vectoriales con dimensiones exactas (`800x600`, `800x500`, `900x450`), `loading="lazy"`, `decoding="async"` garantizando CLS = 0.
+- Aplicados bordes superiores de 3px (`.bio-border-*`) y badges (`.bio-badge-*`) en las 12 tarjetas de dolencias de la home y en el catálogo.
+
+## Artifact Index
+- .agents/teamwork_preview_worker_m3/DISPATCH.md — Assignment instructions
+- .agents/teamwork_preview_worker_m3/progress.md — Liveness and task progress
+- .agents/teamwork_preview_worker_m3/changes.md — Detailed modifications
+- .agents/teamwork_preview_worker_m3/handoff.md — 5-component handoff report
 
 ## Change Tracker
 - **Files modified**:
-  - `src/components/react/WhatsAppQuizModal.tsx`: Creado componente React 19 con 4 pasos interactivos + diagnóstico preliminar + a11y + estilo sólido mate.
-  - `src/layouts/BaseLayout.astro`: Importado y montado WhatsAppQuizModal con client:load dentro de #quiz-modal-container manteniendo <slot name="quiz-modal" /> intacto.
-- **Build status**: `npx astro check` pasa con 0 errores, 0 warnings.
-- **Pending issues**: Ninguno.
+  - `src/components/ClinicalApproachTable.astro` (nuevo): Tabla comparativa de 5 dimensiones con microdatos Schema Table.
+  - `src/components/BiologicalMatrixTable.astro` (nuevo): Matriz de 8 patologías representativas con badges biológicos de M1.
+  - `src/components/AccompanimentStagesTable.astro` (nuevo): Desglose de 4 fases clínicas de acompañamiento.
+  - `src/pages/index.astro` (modificado): Inserción de las 3 ilustraciones y las 3 tablas, bordes y badges biológicos en tarjetas.
+  - `src/pages/biodescodificacion/index.astro` (modificado): Acentos de borde superior y badges semánticos en catálogo.
+- **Build status**: PASS (160 páginas SSG generadas limpiamente en 2.16s)
+- **Pending issues**: Ninguno
 
 ## Quality Status
-- **Build/test result**: `node --test tests/*.test.mjs` (150 pass, 0 fail, 33 skipped correspondientes a M4/M5/M6). Adversarial M2.2 & M2.1: 33 pass, 0 fail. Python adversarial tests: 0 errors.
-- **Lint status**: 0 errores, 0 advertencias en astro check. Auditoría de estilo mate: passed: true, violations: [].
-- **Tests added/modified**: Activados tests T1.10.4 y T1.11.5 al existir el componente.
+- **Build/test result**: PASS (150/150 npm test, 244/244 adversarial tests, 0 errores en arnés de estrés Python)
+- **Lint status**: PASS (0 errors, 0 warnings en astro check; 0 violaciones en auditMateStyleContent)
+- **Tests added/modified**: Ninguno (Worker M3 tiene asignada la implementación de componentes y páginas).
 
 ## Loaded Skills
-None
-
-## Artifact Index
-- /Users/anthony/Downloads/almaholistica.com/src/components/react/WhatsAppQuizModal.tsx — Componente React M3
-- /Users/anthony/Downloads/almaholistica.com/src/layouts/BaseLayout.astro — Integración client:load
-- /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_worker_m3/handoff.md — Reporte final de entrega
+- None

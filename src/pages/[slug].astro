@@ -139,6 +139,14 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
           </div>
         </div>
 
+        <!-- Píldoras rápidas de síntomas atendidos -->
+        <div class="mb-6 flex flex-wrap gap-2 items-center">
+          <span class="text-xs text-slate-400 py-1 font-medium">Consultas frecuentes en {cityName}:</span>
+          <a href="/biodescodificacion/ansiedad" class="px-3 py-1 rounded-full bg-[#0E172F] text-[#38BDF8] border border-slate-800 text-xs hover:border-[#38BDF8] transition-colors">🧠 Estrés & Ansiedad</a>
+          <a href="/biodescodificacion/gastritis" class="px-3 py-1 rounded-full bg-[#0E172F] text-emerald-400 border border-slate-800 text-xs hover:border-emerald-400 transition-colors">🫁 Gastritis & Digestivo</a>
+          <a href="/biodescodificacion/lumbalgia" class="px-3 py-1 rounded-full bg-[#0E172F] text-[#F97316] border border-slate-800 text-xs hover:border-[#F97316] transition-colors">🦴 Espalda & Tensión</a>
+        </div>
+
         <!-- Acciones Principales con Interceptación Global de WhatsApp Quiz Modal -->
         <div class="flex flex-wrap items-center gap-4">
           <a
@@ -168,9 +176,9 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
     </header>
 
     <!-- SECCIÓN PUENTE EXPLICATIVA "¿QUÉ ES LA BIODESCODIFICACIÓN?" -->
-    <section class="card-matte-elevated p-6 sm:p-8 mb-12 border-l-4 border-l-[#38BDF8] bg-[#0A1226]/90" aria-label="Introducción a la Biodescodificación">
+    <section class="card-matte-elevated p-6 sm:p-8 mb-12 border-l-4 border-l-[#38BDF8] bg-[#0A1226]" aria-label="Introducción a la Biodescodificación">
       <div class="flex items-start gap-4">
-        <div class="w-10 h-10 rounded-xl bg-[#38BDF8]/10 border border-[#38BDF8]/30 flex items-center justify-center shrink-0 text-[#38BDF8] mt-1">
+        <div class="w-10 h-10 rounded-xl bg-[#0E172F] border border-[#38BDF8]/40 flex items-center justify-center shrink-0 text-[#38BDF8] mt-1">
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
@@ -179,9 +187,23 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
           <h2 class="text-lg sm:text-xl font-bold text-white mb-2 font-mono">
             ¿Buscas Terapia Holística en {cityName}?
           </h2>
-          <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+          <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
             Si buscas terapia holística en {cityName}, la <strong class="text-white font-semibold">biodescodificación</strong> es el enfoque biológico que va más allá de la relajación: identifica el choque emocional exacto detrás de tu dolencia y desactiva el programa biológico de alerta que sostiene el síntoma.
           </p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs text-slate-300 border-t border-slate-800/60">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-[#38BDF8]"></span>
+              <span>1 sesión para hallar el origen</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span>100% online sin desplazamientos</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-[#F97316]"></span>
+              <span>Enfoque complementario y seguro</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

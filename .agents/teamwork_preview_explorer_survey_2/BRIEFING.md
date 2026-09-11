@@ -1,38 +1,44 @@
-# BRIEFING — 2026-09-06T01:34:00Z
+# BRIEFING — 2026-09-10T19:53:40Z
 
 ## Mission
-Inspeccionar y auditar el repositorio, activos (especialmente logo-mariposa-con-fondo-completo.svg), archivos de configuración (package.json, astro, tailwind), datasets y versiones de entorno para Alma Holística.
+Investigar exhaustivamente los activos visuales, ilustraciones requeridas (R2) y estructura de layout para Alma Holística.
 
 ## 🔒 My Identity
 - Archetype: explorer
-- Roles: read-only investigation, repository survey
-- Working directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_2/
-- Original parent: f77d1a94-c021-4fed-9bbe-9a2cc5b5d8bc
-- Milestone: survey
+- Roles: investigation, synthesis
+- Working directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_2
+- Original parent: 6726af5a-d5c1-4a22-89aa-ecd41de70482
+- Milestone: preview_explorer_survey_2
 
 ## 🔒 Key Constraints
 - Read-only investigation — do NOT implement
-- Exclusive working directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_2/
-- Always speak Spanish
-- Never open visual browser windows
+- Hablar siempre en español
+- No modificar ni crear archivos fuera de .agents/teamwork_preview_explorer_survey_2/
+- Entregar analysis.md y handoff.md de 5 componentes
 
 ## Current Parent
-- Conversation ID: f77d1a94-c021-4fed-9bbe-9a2cc5b5d8bc
+- Conversation ID: 6726af5a-d5c1-4a22-89aa-ecd41de70482
 - Updated: not yet
 
 ## Investigation State
-- **Explored paths**: /Users/anthony/Downloads/almaholistica.com/ (raíz, archivos de assets, .agents)
+- **Explored paths**: `public/`, `src/pages/index.astro`, `src/pages/biodescodificacion/[slug].astro`, `src/layouts/BaseLayout.astro`, `src/components/Navbar.astro`, `src/components/Footer.astro`, `src/styles/global.css`, `tailwind.config.mjs`, `tests/` (150 tests regresión, 244 tests adversariales)
 - **Key findings**:
-  - Repositorio "Greenfield", sin `package.json`, sin configs Astro/Tailwind ni TypeScript.
-  - `logo-mariposa-con-fondo-completo.svg` presente en la raíz (~1.54 MB) con animaciones de anillos y alas en hover.
-  - Solo existe `dataset_fluffy_stories.csv` (100 ciudades en 18 países latinos con temática de perros); faltan `dataset_almaholistica_ciudades.csv` (20 países, >100 ciudades) y `dataset_biodescodificacion_dolencias.json` (45 dolencias).
-  - Entorno: Node v22.21.0, npm 10.9.4, Python 3.14.6, git 2.39.3.
-- **Unexplored areas**: Ninguna dentro del alcance de inspección del repositorio.
+  1. `public/images/` no existe y debe crearse para alojar los 3 SVGs.
+  2. Identificación de la monotonía en `index.astro` (1093 líneas de texto y tarjetas sin diagramas clínicos).
+  3. Especificación completa de las 3 ilustraciones vectoriales (Eje Mente-Cuerpo 800x600, 3 Pilares 800x500, Fases del Proceso 900x450).
+  4. Mapeo de 7 tests de auditoría exhaustiva de CLS e imágenes en las 160 páginas HTML (exigencia de `width` y `height` numéricos y archivos físicos existentes en `dist/`).
+  5. Verificación de línea base: 150/150 regresión y 244/244 adversariales pasando en verde.
+- **Unexplored areas**: Ninguna dentro del alcance de Survey 2.
 
 ## Key Decisions Made
-- Completado el informe estructurado de 5 componentes en `handoff.md`.
+- Diseñar las 3 ilustraciones como SVGs vectoriales autoportantes sin dependencias externas ni scripts.
+- Asignar proporciones de aspecto fijas para preservar `CLS = 0` (4:3, 16:10 y 2:1).
+- Definir puntos de anclaje precisos en `src/pages/index.astro` (Secciones 2, 3 y 6).
+- Documentar reporte exhaustivo en `analysis.md` y handoff formal en `handoff.md`.
 
 ## Artifact Index
-- handoff.md — Informe de inspección y estado del repositorio (5 secciones)
-- progress.md — Liveness heartbeat y registro de hitos
-- DISPATCH.md — Registro de instrucciones recibidas
+- DISPATCH.md — Registro de instrucciones de despacho
+- BRIEFING.md — Memoria de trabajo situacional
+- progress.md — Heartbeat de liveness
+- analysis.md — Análisis detallado técnico, visual y de layout
+- handoff.md — Reporte final de entrega (5 componentes)

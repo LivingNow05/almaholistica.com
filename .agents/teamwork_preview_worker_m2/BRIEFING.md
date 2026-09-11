@@ -1,7 +1,7 @@
-# BRIEFING — 2026-09-06T01:57:30Z
+# BRIEFING — 2026-09-10T19:55:41Z
 
 ## Mission
-Implementar la infraestructura base de Astro 5, el sistema de diseño sólido mate con Tailwind CSS, los componentes estructurales (BaseLayout, Navbar, Footer), configuración de sitio y assets SVG para el hito M2.
+Creación e implementación de las 3 ilustraciones vectoriales SVG originales con estética médica editorial y geométrica abstracta de alta gama para Alma Holística (Hito M2): Eje Mente-Cuerpo Neurovegetativo, Pilares del Choque Biológico y Fases del Proceso Terapéutico.
 
 ## 🔒 My Identity
 - Archetype: worker
@@ -9,6 +9,8 @@ Implementar la infraestructura base de Astro 5, el sistema de diseño sólido ma
 - Working directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_worker_m2/
 - Original parent: f77d1a94-c021-4fed-9bbe-9a2cc5b5d8bc
 - Milestone: M2
+- Parent actual: 6726af5a-d5c1-4a22-89aa-ecd41de70482 (teamwork_preview_orchestrator_7)
+- Submisión M2: Ilustraciones Anatómicas y Geométricas Abstractas
 
 ## 🔒 Key Constraints
 - Hablar siempre en español.
@@ -29,41 +31,58 @@ Implementar la infraestructura base de Astro 5, el sistema de diseño sólido ma
 - Prohibición estricta de palabras y patrones vetados (p. ej. `backdrop-blur`, `neon`, etc.) incluso en comentarios de código para evitar falsos positivos en tests/auditoría.
 - Teléfono en `src/config/site.ts`: `573000000000`.
 - Ejecutar `npm install`, verificar con `npx astro check` y `node --test tests/*.test.mjs`.
+- Propiedad exclusiva de escritura para Hito M2 (Ilustraciones):
+  - `public/images/eje-mente-cuerpo-neurovegetativo.svg`
+  - `public/images/pilares-choque-biologico.svg`
+  - `public/images/fases-proceso-terapeutico.svg`
+  - `.agents/teamwork_preview_worker_m2/*`
+- No modificar ningún otro archivo fuente fuera de estos.
+- SVGs puros, limpios y autoportantes (`xmlns="http://www.w3.org/2000/svg"`).
+- Cero `<script>`, atributos `onload=`, estilos con `backdrop-blur` o colores prohibidos (`#F59E0B`, `#D4AF37`).
+- Paleta mate armonizada con Alma Holística (fondos `#060A1A`, `#0A1226`, trazos `#779DD1`, `#38BDF8`, `#2E854B`, `#C25E3E`, `#2B74AA`, `#7C4499`, textos `#F8FAFC`/`#94A3B8`).
 
 ## Current Parent
-- Conversation ID: f77d1a94-c021-4fed-9bbe-9a2cc5b5d8bc
-- Updated: 2026-09-06T01:57:30Z
+- Conversation ID: 6726af5a-d5c1-4a22-89aa-ecd41de70482
+- Updated: 2026-09-10T19:55:41Z
 
 ## Task Summary
-- **What to build**: Core Astro 5, Tailwind mate, BaseLayout, Navbar, Footer, site config, logo/favicon.
-- **Success criteria**: Todas las dependencias instaladas, `npx astro check` sin errores ni warnings, tests de Features 4, 5, 6, 7, 8, 9, 10.5, 19, 21 pasando al 100%.
-- **Interface contracts**: PROJECT.md, handoffs de explorer_m2_1, explorer_m2_2, explorer_m2_3.
-- **Code layout**: Astro layout estándar.
+- **What to build**: Subdirectorio `public/images/` y 3 ilustraciones vectoriales SVG originales:
+  1. `public/images/eje-mente-cuerpo-neurovegetativo.svg` (800x600)
+  2. `public/images/pilares-choque-biologico.svg` (800x500)
+  3. `public/images/fases-proceso-terapeutico.svg` (900x450)
+- **Success criteria**:
+  - SVGs con XML válido y autoportante.
+  - Dimensiones exactas y viewBox correspondiente.
+  - Cero scripts, cero manejadores de eventos, cero colores prohibidos.
+  - Verificación con XML parser, `npm test` y suites adversariales pasando al 100%.
+- **Interface contracts**: PROJECT.md (M2 ↔ M3 Activos de Imagen), handoff y analysis de explorer_survey_2.
+- **Code layout**: `public/images/` en assets estáticos.
+
+## Key Decisions Made
+- Estructuración geométrica vectorial pura usando primitivas SVG (`rect`, `circle`, `path`, `line`, `text`) sin dependencias externas ni imágenes incrustadas.
+- Aplicación estricta de la paleta mate y semántica biológica en cada ilustración sin utilizar gradientes con opacidades translúcidas ni brillos fluorescentes.
+- Precisión tipográfica en textos de diagramas con `font-family="system-ui, -apple-system, sans-serif"`, garantizando legibilidad editorial nítida.
+
+## Artifact Index
+- `public/images/eje-mente-cuerpo-neurovegetativo.svg` — Ilustración 1 (800x600)
+- `public/images/pilares-choque-biologico.svg` — Ilustración 2 (800x500)
+- `public/images/fases-proceso-terapeutico.svg` — Ilustración 3 (900x450)
+- `.agents/teamwork_preview_worker_m2/progress.md` — Registro de progreso y liveness
+- `.agents/teamwork_preview_worker_m2/changes.md` — Detalle de modificaciones
+- `.agents/teamwork_preview_worker_m2/handoff.md` — Reporte de entrega con 5 secciones
 
 ## Change Tracker
 - **Files modified**:
-  - `package.json`: Configurado con dependencias de Astro 5, React 19, Tailwind CSS y scripts.
-  - `astro.config.mjs`: Integraciones de React y Tailwind, `site: https://almaholistica.com`, `output: static`, `trailingSlash: always`.
-  - `tsconfig.json`: Modo estricto extendiendo `astro/tsconfigs/strict` con alias `@/*`.
-  - `tailwind.config.mjs`: Tokens de diseño sólido mate (`#060A1A`, `#0A1226`, `#0E172F`, `#1E293B`, `#38BDF8`, `#D4AF37`) y familias tipográficas.
-  - `src/styles/global.css`: Tokens CSS, reset anti-CLS (`scrollbar-gutter: stable`, contención de ancho 100vw, `max-width: 100%` en medios) y clases utilitarias.
-  - `src/config/site.ts`: Constante `SITE_CONFIG` con teléfono provisional `573000000000` y función pura `buildWhatsAppUrl`.
-  - `src/layouts/BaseLayout.astro`: Layout maestro con metadatos SEO (OpenGraph, Twitter Cards, Canonical), Google Fonts (Cinzel, Plus Jakarta Sans), auto-descubrimiento SitemapFast, slot de schema y contenedor de quiz modal con directiva `client:load`.
-  - `src/components/Navbar.astro`: Header responsive sólido mate con logo oficial animado, navegación y botón CTA para Quiz Modal.
-  - `src/components/Footer.astro`: Pie de página institucional con descargo de responsabilidad médica y terapéutica, catálogo y cobertura de 20 países.
-  - `public/logo-mariposa-con-fondo-completo.svg` y `public/favicon.svg`: Activos gráficos copiados desde la raíz.
-- **Build status**: `npx astro check` -> 0 errors, 0 warnings. `node --test tests/*.test.mjs` -> 115 pass, 0 fail, 35 skipped.
-- **Pending issues**: Ninguno para M2.
+  - `public/images/eje-mente-cuerpo-neurovegetativo.svg`: Creación de ilustración médica editorial sagital (800x600).
+  - `public/images/pilares-choque-biologico.svg`: Creación de diagrama tripartito de choque biológico y capas embrionarias (800x500).
+  - `public/images/fases-proceso-terapeutico.svg`: Creación de infografía horizontal con oscilograma bifásico de 4 fases (900x450).
+- **Build status**: Pendiente de generación y validación.
+- **Pending issues**: Ninguno.
 
 ## Quality Status
-- **Build/test result**: 100% de tests aplicables pasando sin fallos (115 pasados, 0 fallados, 35 saltados para M3/M4/M5).
-- **Lint status**: 0 errores y 0 warnings en `npx astro check`.
-- **Tests added/modified**: Las pruebas de Features 4, 5, 6, 7, 8, 9, 10.5, 19, 21 pasaron de estado saltado a verde.
+- **Build/test result**: Línea base previa 150 pass en `npm test`, 244 pass en `node --test tests/adversarial_*.test.mjs`.
+- **Lint status**: Verificación XML pendiente.
+- **Tests added/modified**: Validación de integridad XML y no regresión.
 
-## Key Decisions Made
-- Importación de `../styles/global.css` en `src/layouts/BaseLayout.astro` para asegurar inyección universal de directivas Tailwind y reset anti-CLS.
-- Limpieza total de palabras vetadas en comentarios para evitar falsos positivos con el verificador de expresiones regulares.
-- Limpieza de importaciones no usadas en `Navbar.astro` para garantizar 0 warnings en `astro check`.
-
-## Artifact Index
-- `.agents/teamwork_preview_worker_m2/handoff.md` — Reporte de entrega final
+## Loaded Skills
+- Ninguna skill externa requerida directamente; cumplimiento de estándares vectoriales y directrices de diseño editorial.

@@ -1,180 +1,152 @@
-# Handoff Report — Milestone M1: Programmatic Datasets & Validation
+# Handoff Report — Implementación de la Paleta Cromática Biológica Semántica (Hito M1)
 
-**Agente**: `teamwork_preview_worker_m1`  
-**Directorio de trabajo**: `/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_worker_m1/`  
-**Destinatario**: `teamwork_preview_orchestrator_1` (id: `f77d1a94-c021-4fed-9bbe-9a2cc5b5d8bc`)  
-**Fecha**: 2026-09-05T20:43:20Z  
-**Tipo de Handoff**: Hard (Misión M1 completada al 100% y verificada de forma determinista)
+**Agente:** `teamwork_preview_worker_m1` (Teamwork Implementer / QA / Specialist)  
+**Parent:** `teamwork_preview_orchestrator_7` (`6726af5a-d5c1-4a22-89aa-ecd41de70482`)  
+**Fecha:** 2026-09-10  
+**Hito:** M1 — Paleta Cromática Biológica Semántica  
+**Ruta del Reporte:** `/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_worker_m1/handoff.md`  
 
 ---
 
-## 1. Observation
+## 1. Observation (Observaciones Directas y Empíricas)
 
-Durante la ejecución e implementación del Hito M1 se realizaron observaciones directas y comprobaciones empíricas sobre el repositorio:
-
-### 1.1 Insumos y Artefactos de Explorers y E2E Test Track
-- Se revisaron `ORIGINAL_REQUEST.md`, `PROJECT.md` y los handoffs de los tres exploradores:
-  - `teamwork_preview_explorer_m1_1`: Proveyó el generador verificado `/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_m1_1/generate_almaholistica_ciudades.py` y `preview_dataset_almaholistica_ciudades.csv`.
-  - `teamwork_preview_explorer_m1_2`: Proveyó el catálogo completo de 45 patologías en `/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_m1_2/proposed_dataset_biodescodificacion_dolencias.json`.
-  - `teamwork_preview_explorer_m1_3`: Proveyó las interfaces TypeScript en `proposed_city.ts`, `proposed_dolencia.ts` y el validador en `proposed_validate_datasets.py`.
-  - `teamwork_preview_test_writer_e2e_1`: Publicó la infraestructura formal de pruebas E2E en `TEST_INFRA.md`, `TEST_READY.md` y la suite modular en `tests/tier1_features.test.mjs`, `tests/tier2_edge_cases.test.mjs`, `tests/tier3_cross_feature.test.mjs` y `tests/tier4_user_journeys.test.mjs`.
-
-### 1.2 Ejecución del Generador de Ciudades
-- **Comando ejecutado**:
-  ```bash
-  python3 /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_m1_1/generate_almaholistica_ciudades.py --output /Users/anthony/Downloads/almaholistica.com/src/data/dataset_almaholistica_ciudades.csv
-  ```
-- **Salida verbatim**:
-  ```
-  Generando dataset de ciudades desde: /Users/anthony/Downloads/almaholistica.com/dataset_fluffy_stories.csv
-  Destino: /Users/anthony/Downloads/almaholistica.com/src/data/dataset_almaholistica_ciudades.csv
-  Read 100 source rows from /Users/anthony/Downloads/almaholistica.com/dataset_fluffy_stories.csv
-  Successfully generated 113 cities in /Users/anthony/Downloads/almaholistica.com/src/data/dataset_almaholistica_ciudades.csv
-
-  --- Validating /Users/anthony/Downloads/almaholistica.com/src/data/dataset_almaholistica_ciudades.csv ---
-  Headers match exactly (9 columns): ['Dominio', 'Categoría', 'URL Final (Slug)', 'H1 Título', 'Meta Descripción', 'País', 'Moneda', 'Rango_Precio_Sesion', 'Historia_Local']
-  Total rows: 113 (100 LATAM + 6 España + 7 EE.UU.)
-  Total countries: 20 (20 approved countries)
-  All 113 slugs are unique and match ^[a-z0-9-]+$
-  Zero empty cells and ZERO canine terms found across all 113 rows!
-  All currencies match authentic national currencies (COP, MXN, EUR, USD, ARS, CLP, PEN, BOB, BRL, CRC, DOP, GTQ, HNL, NIO, PYG, UYU)!
-  DATASET VALIDATION 100% PASSED!
-  ```
-- **Código de salida**: `0`.
-
-### 1.3 Copia y Verificación del Dataset de Dolencias
-- Se copió el archivo a `src/data/dataset_biodescodificacion_dolencias.json`.
-- **Verificación en Python**:
-  ```bash
-  python3 -c "import json; d = json.load(open('src/data/dataset_biodescodificacion_dolencias.json')); print('Items:', len(d))"
-  ```
-- **Resultado verbatim**:
-  ```
-  Items: 45
-  ```
-
-### 1.4 Creación de Tipos TypeScript
-- Se crearon exitosamente:
-  - `src/types/city.ts`: Define `SupportedCountry`, `SupportedCurrency`, `RawCityRow`, `CityData`, `CityRouteProps`, `CityStaticPath`.
-  - `src/types/dolencia.ts`: Define `BodilySystem`, `FAQItem`, `DolenciaData`, `DolenciaRouteProps`, `DolenciaStaticPath`, `DolenciaSummary`.
-- Se verificó la ausencia total del tipo `any` y el uso de atributos inmutables `readonly`.
-
-### 1.5 Instalación de `scripts/validate_datasets.py`
-- Se instaló el script en `scripts/validate_datasets.py` y se otorgaron permisos de ejecución.
-- **Ejecución de validación integral**:
-  ```bash
-  python3 scripts/validate_datasets.py
-  ```
-- **Salida verbatim**:
-  ```
-  ======================================================================
-   VALIDACIÓN ESTRICTA DE DATASETS — ALMA HOLÍSTICA (HITO M1)
-  ======================================================================
-  -> Ciudades CSV:  src/data/dataset_almaholistica_ciudades.csv
-  -> Dolencias JSON: src/data/dataset_biodescodificacion_dolencias.json
-  ----------------------------------------------------------------------
-
-  --- RESUMEN DE ESTADÍSTICAS ---
-  • Ciudades procesadas: 113 (Únicas: 113)
-  • Países detectados (20/20): Argentina, Bolivia, Brasil, Chile, Colombia, Costa Rica, Ecuador, El Salvador, España, Estados Unidos, Guatemala, Honduras, México, Nicaragua, Panamá, Paraguay, Perú, República Dominicana, Uruguay, Venezuela
-  • Monedas detectadas (16): ARS, BOB, BRL, CLP, COP, CRC, DOP, EUR, GTQ, HNL, MXN, NIO, PEN, PYG, USD, UYU
-  • Dolencias procesadas: 45/45 (Únicas: 45)
-  • Sistemas corporales (7/7): Dermatológico, Digestivo, Endocrino / Metabólico, Inmunológico / Circulatorio, Nervioso / Emocional, Osteoarticular, Respiratorio
-  ----------------------------------------------------------------------
-
-   [PASS] ¡VALIDACIÓN 100% EXITOSA! Todos los datasets cumplen los requisitos del Gate M1.
-  ======================================================================
-  ```
-- **Código de salida**: `0`.
-
-### 1.6 Ejecución de Verificaciones de Pruebas Automatizadas
-1. **Comando solicitado en DISPATCH**:
-   ```bash
-   node --test tests/01_datasets_r1.test.mjs
-   ```
-   - **Salida verbatim**:
+1. **Requisitos de la Paleta Biológica y Restricciones Estrictas**:
+   - `ORIGINAL_REQUEST.md` (líneas 123-130) y `PROJECT.md` (líneas 46-57) establecieron la necesidad de diferenciar las dolencias según 4 familias biológicas:
+     - Sistema Digestivo (Verde Salvia / Esmeralda Sereno)
+     - Sistema Osteoarticular (Arcilla / Terracota Cálido — prohibición estricta de amarillo/ámbar)
+     - Sistema Respiratorio (Azul Zafiro / Celeste Nórdico)
+     - Sistema Nervioso / Psicosomático (Amatista Suave / Lavanda Profundo)
+   - Los tests adversariales `adversarial_mr3_challenger.test.mjs`, `adversarial_mr3_challenger_2.test.mjs` y `adversarial_challenger_mr2.test.mjs` prohíben de forma absoluta clases `amber-*`, `yellow-*`, `*-gold-*` y los códigos hexadecimales `#F59E0B`, `#D4AF37`, `#B45309`, `#D97706`, `#FBBF24`, `#FFE58F`, `#E5B33A`.
+   - La prueba `tests/adversarial_challenger_m4_2.test.mjs:200-207` (`ADV-M4.2.8`) exige de manera taxativa que `getSistemas()` retorne exactamente 7 sistemas biológicos:
+     ```javascript
+     test('ADV-M4.2.8: getSistemas() returns exactly the 7 bodily systems', () => {
+       const sistemas = dolenciasMod.getSistemas();
+       assert.strictEqual(sistemas.length, 7, 'Must have exactly 7 bodily systems');
      ```
-     Could not find 'tests/01_datasets_r1.test.mjs'
+   - El auditor `auditMateStyleContent` (`tests/helpers/mate_style_checker.mjs`) veta de manera estricta cualquier transparencia en fondos (`rgba(...)`, `bg-opacity-*`), efectos de desenfoque (`backdrop-blur`) y resplandores luminiscentes (`shadow-neon`, `shadow-glow`).
+
+2. **Creación de `src/lib/bio_theme.ts`**:
+   - Se implementó el módulo exportando:
+     - Tipo `BiologicalFamily = 'digestivo' | 'osteoarticular' | 'respiratorio' | 'nervioso'`
+     - Interfaz `BiologicalTheme`
+     - Diccionario constante `BIOLOGICAL_THEMES` con tokens 100% sólidos mates (WCAG AAA)
+     - Función `resolveBiologicalFamily(sistema: string): BiologicalFamily`
+     - Función `getBiologicalTheme(sistema: string): BiologicalFamily` (con sobrecarga para `full: true`)
+     - Funciones auxiliares `getBiologicalThemeDetails`, `getBiologicalBorderClass`, `getBiologicalBadgeClass`
+
+3. **Modificación de `src/lib/dolencias.ts`**:
+   - Se integraron las exportaciones de `BiologicalFamily`, `BiologicalTheme`, `BIOLOGICAL_THEMES`, `getBiologicalTheme`, `getBiologicalThemeDetails`, `getBiologicalBorderClass`, `getBiologicalBadgeClass` y `resolveBiologicalFamily`.
+   - La función preexistente `getSistemas()` permaneció 100% inalterada, devolviendo exactamente los 7 sistemas requeridos.
+   - Ejecución empírica con Node:
      ```
-   - **Código de salida**: `1`.
-   - **Causa observada**: El agente arquitecto de pruebas (`teamwork_preview_test_writer_e2e_1`) consolidó las pruebas unitarias y funcionales del proyecto en `tests/tier1_features.test.mjs` (Features 1 a 23), tal como certifica `TEST_READY.md`.
+     Sistemas length: 7
+     Sistemas: [ 'Digestivo', 'Nervioso / Emocional', 'Osteoarticular', 'Dermatológico', 'Respiratorio', 'Endocrino / Metabólico', 'Inmunológico / Circulatorio' ]
+     getBiologicalTheme(Digestivo): digestivo
+     getBiologicalTheme(Osteoarticular): osteoarticular
+     getBiologicalTheme(Respiratorio): respiratorio
+     getBiologicalTheme(Nervioso / Emocional): nervioso
+     ```
 
-2. **Ejecución de las pruebas oficiales de Features 1, 2 y 3 (Tier 1)**:
-   ```bash
-   node --test --test-name-pattern="Feature 1:" tests/tier1_features.test.mjs
-   node --test --test-name-pattern="Feature 2:" tests/tier1_features.test.mjs
-   node --test --test-name-pattern="Feature 3:" tests/tier1_features.test.mjs
-   ```
-   - **Salida Feature 1**: 5 tests ejecutados, 5 pass, 0 fail, 0 skipped (Código: `0`).
-   - **Salida Feature 2**: 5 tests ejecutados, 5 pass, 0 fail, 0 skipped (Código: `0`).
-   - **Salida Feature 3**: 5 tests ejecutados, 5 pass, 0 fail, 0 skipped (Código: `0`).
+4. **Modificación de `tailwind.config.mjs`**:
+   - Se extendió `theme.extend.colors` con el objeto `bio` (`digestivo`, `osteoarticular`, `respiratorio`, `nervioso`).
+   - Se preservaron intactos todos los tokens preexistentes: `abisal: '#060A1A'`, `midnight` (`#0A1226`, `#0E172F`), `border` (`#1E293B`, `#1E3A5F`), `cyan` (`#779DD1`, `legacy: '#38BDF8'`), `pill-white`, `matte-sm`, `matte-md`, `matte-lg`.
 
-3. **Ejecución de la suite completa E2E (`node --test tests/*.test.mjs`)**:
-   - **Antes de la implementación de M1**: 91 pass, 59 skipped, 0 fail.
-   - **Después de la implementación de M1**: 95 pass, 55 skipped, 0 fail.
-   - Los 4 tests en disco de inspección física (`T1.1.5`, `T1.2.5`, `T1.3.4`, `T1.3.5`) se activaron de inmediato y pasaron al 100%.
-   - **Código de salida**: `0`.
+5. **Modificación de `src/styles/global.css`**:
+   - **Bordes Superiores de 3px**:
+     - `.bio-border-digestivo`: `border-top: 3px solid #2E854B` (Claro) / `#3E9B67` (Oscuro)
+     - `.bio-border-osteoarticular`: `border-top: 3px solid #C25E3E` (Claro) / `#C86241` (Oscuro)
+     - `.bio-border-respiratorio`: `border-top: 3px solid #2B74AA` (Claro) / `#3688C7` (Oscuro)
+     - `.bio-border-nervioso`: `border-top: 3px solid #7C4499` (Claro) / `#8E55B0` (Oscuro)
+   - **Badges de Categoría Sólidos Mates**:
+     - `.bio-badge` base con tipografía 12px, tracking-wider, uppercase, padding 0.25rem 0.75rem.
+     - `.bio-badge-digestivo`: fondo `#E8F5EC`, borde `#A8D8B6`, texto `#13522E` (Claro) / fondo `#0C1F16`, borde `#1A3D2C`, texto `#6AC894` (Oscuro).
+     - `.bio-badge-osteoarticular`: fondo `#FDF0EA`, borde `#ECC3B2`, texto `#8A3618` (Claro) / fondo `#24120D`, borde `#4A2419`, texto `#E88F71` (Oscuro).
+     - `.bio-badge-respiratorio`: fondo `#EAF2F9`, borde `#AECBE5`, texto `#124B73` (Claro) / fondo `#0B1A28`, borde `#19354E`, texto `#6BAEE3` (Oscuro).
+     - `.bio-badge-nervioso`: fondo `#F4EFF9`, borde `#D0BEE0`, texto `#532A78` (Claro) / fondo `#1B0F28`, borde `#392051`, texto `#BC91DF` (Oscuro).
+   - **Micro-Dots Circulares**:
+     - Clases `.bio-dot`, `.bio-dot-digestivo`, etc. y soporte para pseudo-elementos fallback `::before` con regla `:has(.bio-dot)` para evitar duplicidad si el dot se añade de forma explícita en el DOM.
+   - **Sección de Journey Steps**:
+     - Actualizada para armonizar con la paleta de 4 etapas: Paso 1 (Celeste/Respiratorio), Paso 2 (Amatista/Psicosomático), Paso 3 (Terracota/Osteoarticular), Paso 4 (Esmeralda/Digestivo).
+     - Se sustituyeron los bordes translúcidos anteriores `rgba(...)` por bordes sólidos de 3px y conectores desktop sólidos `#779DD1`.
 
----
-
-## 2. Logic Chain
-
-1. **Premisa**: El Hito M1 tiene como objetivo proveer la base de datos estructurada y validada para los dos clústeres de búsqueda programática de Alma Holística (ciudades y dolencias), junto con los contratos de tipos TypeScript y el mecanismo ejecutable de validación de integridad.
-2. **Generación del Dataset de Ciudades**:
-   - A partir de la observación 1.2, se ejecutó `generate_almaholistica_ciudades.py`, integrando las 100 ciudades de LATAM (limpiando todo residuo canino y corrigiendo la moneda colombiana a `COP`) con 6 ciudades de España y 7 ciudades de EE.UU.
-   - La colisión en `valencia` se resolvió según el estándar de desambiguación pactado: España adopta `valencia` y Venezuela adopta `valencia-ve`, resultando en 113 slugs únicos validados con `^[a-z0-9-]+$`.
-3. **Integración del Catálogo de Dolencias**:
-   - A partir de la observación 1.3, se integraron las 45 patologías con sus 9 campos completos, cubriendo los 7 sistemas biológicos aprobados, con un mínimo de 3 preguntas de reflexión y 3 preguntas frecuentes por patología.
-   - Se verificó la no-intersección entre los 113 slugs de ciudades y los 45 slugs de dolencias (intersección = conjunto vacío).
-4. **Tipado Estricto TypeScript**:
-   - A partir de la observación 1.4, se implementaron `src/types/city.ts` y `src/types/dolencia.ts`, asegurando tipos inmutables (`readonly`), uniones estrictas para países y sistemas, y cero declaraciones `any`.
-5. **Validación Automática e Integración con Tests E2E**:
-   - A partir de la observación 1.5, `scripts/validate_datasets.py` confirmó 0 errores de integridad.
-   - A partir de la observación 1.6, las pruebas de Features 1, 2 y 3 en `tests/tier1_features.test.mjs` pasaron de SKIP a PASS en el ejecutor nativo de Node.js, confirmando el cumplimiento pleno de los criterios de aceptación sin alterar el aislamiento de roles.
-
----
-
-## 3. Caveats
-
-- **No caveats funcionales**: Los datasets y tipos cumplen con todos los requerimientos de `ORIGINAL_REQUEST.md`, `PROJECT.md` y `TEST_INFRA.md`.
-- **Nombre del archivo de test**: El prompt de despacho solicitaba ejecutar `node --test tests/01_datasets_r1.test.mjs`. Debido a que el agente del E2E Testing Track estructuró la suite en `tests/tier1_features.test.mjs`, el comando original reporta `Could not find file`, mientras que la suite oficial `tests/tier1_features.test.mjs` valida exactamente las 3 características de M1 con resultado 15/15 PASS.
+6. **Resultados de Verificación Automatizada**:
+   - `auditMateStyleContent` sobre `src/styles/global.css`: `{ passed: true, violations: [] }`.
+   - `astro check`: 0 errors, 0 warnings.
+   - `npm test`: 150/150 tests aprobados (40 suites).
+   - `node --test tests/adversarial_*.test.mjs`: 244/244 tests aprobados (70 suites).
+   - `python3 tests/adversarial_assets_config_m2_2.py`: TEST 4 PASS (tokens de Tailwind validados con 0 errores).
+   - `npm run build`: 160 páginas estáticas SSG generadas limpiamente en 2.12s.
 
 ---
 
-## 4. Conclusion
+## 2. Logic Chain (Cadena de Razonamiento)
 
-El Milestone M1 está **100% completado, verificado y listo para entrega**:
-1. `src/data/dataset_almaholistica_ciudades.csv`: 113 ciudades, 20 países, 9 columnas exactas, precios y monedas auténticos, historias locales empáticas, 0 términos caninos y slugs desambiguados.
-2. `src/data/dataset_biodescodificacion_dolencias.json`: 45 patologías completas con 9 campos cada una (conflicto, sentido biológico, reprogramación, preguntas de reflexión, FAQs y gancho).
-3. `src/types/city.ts` y `src/types/dolencia.ts`: Tipos TypeScript rigurosos sin `any`.
-4. `scripts/validate_datasets.py`: Script de validación con salida limpia (código 0).
-5. Suite de pruebas E2E en verde con 95 pruebas pasando y 0 fallos.
+1. **Premisa 1 (Contrato de 7 Sistemas vs Mapeo a 4 Familias):** Por la Observación 1, `ADV-M4.2.8` audita estrictamente que `getSistemas()` retorne 7 elementos. Por tanto, no era admisible reducir el dataset ni alterar `getSistemas()`. La solución arquitectónica consistió en mapear los 7 sistemas biológicos hacia las 4 familias requeridas por R1 a través de `resolveBiologicalFamily` y `getBiologicalTheme`.
+2. **Premisa 2 (Blindaje Anti-Amarillo en Osteoarticular):** Por la Observación 1, el uso de clases `amber-*` o códigos como `#F59E0B` rompería los tests adversariales. Por ende, para el Sistema Osteoarticular se adoptaron tokens puros de Arcilla/Terracota Cálida (`#C25E3E`, `#C86241`, `#8A3618`, `#E88F71`), garantizando cero colisiones.
+3. **Premisa 3 (Cumplimiento Sólido Mate y WCAG AAA):** Por las Observaciones 1 y 5, todas las superficies y badges debían ser 100% opacos sin `rgba(...)` translúcidos. Cada combinación texto/fondo fue calculada matemáticamente, logrando contrastes superiores a 7.18:1 (estándar WCAG AAA).
+4. **Premisa 4 (Compatibilidad ESM en Node v22):** Durante las pruebas, se observó que Node v22 ejecutando `--experimental-strip-types` requiere resolución estricta sin omisión de extensiones si se importa localmente. Para evitar cualquier inconsistencia durante la ejecución de pruebas unitarias o adversariales, las utilidades y tipos se colocaron de forma directa en `src/lib/dolencias.ts` y en `src/lib/bio_theme.ts`.
+5. **Premisa 5 (Preservación Absoluta de Tokens):** Por las Observaciones 1 y 4, la extensión de `theme.extend.colors` en `tailwind.config.mjs` bajo la clave `bio` no tocó ninguno de los tokens requeridos por `adversarial_matte_cls_m2_1.test.mjs` ni `adversarial_assets_config_m2_2.py`.
 
 ---
 
-## 5. Verification Method
+## 3. Caveats (Advertencias y Supuestos)
+
+- **No caveats:** Todos los contratos de interfaz definidos en `PROJECT.md` fueron satisfechos con precisión. La suite completa de 150 pruebas unitarias, 244 pruebas adversariales y la compilación SSG de 160 páginas pasan limpiamente con 0 fallos.
+
+---
+
+## 4. Conclusion (Evaluación Final)
+
+El Hito M1 ha sido implementado y validado en su totalidad:
+1. La paleta cromática semántica biológica está completamente definida en `tailwind.config.mjs` y `src/styles/global.css`.
+2. Las clases de borde superior de 3px (`.bio-border-*`), badges de categoría (`.bio-badge-*`) y micro-dots (`.bio-dot*`) están disponibles para Modo Claro y Modo Oscuro con contraste WCAG AAA y 100% sólido mate.
+3. La sección de números de paso (`journey-step`) está armonizada con la paleta de 4 etapas sin transparencias.
+4. Las funciones `getBiologicalTheme(sistema)` y utilidades asociadas están exportadas tanto en `src/lib/dolencias.ts` como en `src/lib/bio_theme.ts`, preservando `getSistemas()` intacto con 7 sistemas.
+
+---
+
+## 5. Verification Method (Método de Verificación Independiente)
 
 Para verificar independientemente el trabajo realizado:
 
-1. **Ejecutar el validador estricto de datasets**:
+1. **Ejecutar la suite de pruebas unitarias**:
    ```bash
-   python3 scripts/validate_datasets.py
+   npm test
    ```
-   *Salida esperada*: Código de salida 0, 113 ciudades en 20 países, 45 dolencias en 7 sistemas, `[PASS] ¡VALIDACIÓN 100% EXITOSA!`.
+   *Resultado esperado:* 150 tests pasan, 0 fallos.
 
-2. **Ejecutar las pruebas unitarias y funcionales de M1**:
+2. **Ejecutar la suite completa de pruebas adversariales**:
    ```bash
-   node --test --test-name-pattern="Feature [123]:" tests/tier1_features.test.mjs
+   node --test tests/adversarial_*.test.mjs
    ```
-   *Salida esperada*: 15 tests pasados, 0 fallos, 0 omitidos, código de salida 0.
+   *Resultado esperado:* 244 tests pasan, 0 fallos.
 
-3. **Ejecutar la suite completa de pruebas E2E**:
+3. **Verificar tokens de diseño en Tailwind**:
    ```bash
-   node --test tests/*.test.mjs
+   python3 tests/adversarial_assets_config_m2_2.py
    ```
-   *Salida esperada*: 95 tests pass, 0 fail, 55 skipped (correspondientes a artefactos de UI de M2-M5), código de salida 0.
+   *Resultado esperado:* 0 errores, veredicto CONFIRM_CORRECTNESS.
 
-4. **Condiciones de invalidación**:
-   - Si `dataset_almaholistica_ciudades.csv` no tiene 113 filas o difiere de 9 columnas.
-   - Si `dataset_biodescodificacion_dolencias.json` no contiene 45 patologías.
-   - Si existe colisión de slugs o términos residuales de crianza canina.
+4. **Verificar ausencia de errores tipográficos y sintácticos**:
+   ```bash
+   npm run check
+   ```
+   *Resultado esperado:* 0 errors, 0 warnings.
+
+5. **Compilar el sitio estático SSG completo**:
+   ```bash
+   npm run build
+   ```
+   *Resultado esperado:* 160 páginas HTML generadas exitosamente.
+
+6. **Verificar auditoría de estilo sólido mate en CSS**:
+   ```bash
+   node --input-type=module -e '
+   import { auditMateStyleContent } from "./tests/helpers/mate_style_checker.mjs";
+   import fs from "node:fs";
+   const css = fs.readFileSync("src/styles/global.css", "utf8");
+   const res = auditMateStyleContent(css, "src/styles/global.css");
+   if (!res.passed) throw new Error(JSON.stringify(res.violations));
+   console.log("auditMateStyleContent: PASS (0 violations)");
+   '
+   ```
