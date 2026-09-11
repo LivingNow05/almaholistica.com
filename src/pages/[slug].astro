@@ -38,7 +38,7 @@ const cityName = rawH1
   .trim() || (rawSlug ? rawSlug.replace(/^biodescodificacion-/i, '').charAt(0).toUpperCase() + rawSlug.replace(/^biodescodificacion-/i, '').slice(1) : 'Tu Ciudad');
 
 const pageTitle = `Biodescodificación y Terapia Holística en ${cityName} | ${SITE_CONFIG.name}`;
-const h1Title = `Terapia de Biodescodificación Biológica en ${cityName}`;
+const h1Title = `Biodescodificación y Terapia Holística ${cityName}`;
 const subtitleText = 'Acompañamiento holístico para decodificar el origen emocional de tus síntomas físicos.';
 const metaDesc = city.metaDescripcion || (city as any)['Meta Descripción'] || `Sesiones online de biodescodificación y terapia holística en ${cityName}, ${city.pais}. Sanación emocional profunda, equilibrio mente-cuerpo y alivio de síntomas. Agenda tu sesión.`;
 const moneda = city.moneda || (city as any)['Moneda'] || 'USD';
