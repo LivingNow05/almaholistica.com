@@ -122,14 +122,27 @@ export default {
             surfaceDark: '#211332',
           },
         },
+
+        // Paleta Térmica Biológica (Estrés Activo vs. Reparación Celular)
+        thermal: {
+          stress: '#F97316',
+          stressLight: '#FB923C',
+          stressDark: '#C2410C',
+          healing: '#38BDF8',
+          healingDark: '#0284C7',
+          healingSurface: '#0E2032',
+          stressSurface: '#28150F',
+        },
       },
       fontFamily: {
         serif: ['"Cormorant Garamond"', 'Cinzel', 'Playfair Display', 'serif'],
-        sans: ['Inter', '"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
         cormorant: ['"Cormorant Garamond"', 'serif'],
         cinzel: ['Cinzel', 'Playfair Display', 'serif'],
         inter: ['Inter', 'sans-serif'],
-        body: ['Inter', '"Plus Jakarta Sans"', 'sans-serif'],
+        body: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+        mono: ['"JetBrains Mono"', '"Space Mono"', 'monospace'],
+        grotesk: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
       },
       borderRadius: {
         'card-editorial': '2.5rem',

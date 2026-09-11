@@ -1,0 +1,420 @@
+---
+/**
+ * src/components/BioBodyScanner.astro — Bio-Escáner Anatómico Interactivo
+ *
+ * Estética: Swiss Bio-Tech Contemporáneo (Dark High-End).
+ * - Silueta anatómica vectorial de precisión con 6 zonas interactivas.
+ * - Esquema térmico: Naranja (#F97316) para estrés activo y Azul (#38BDF8) para curación.
+ * - Despliega en tiempo real la ficha preliminar del conflicto biológico.
+ * - Disparador data-open-quiz="true" con data-symptom para abrir el WhatsAppQuizModal.
+ * - 100% Sólido Mate (Cero efecto vidrio, cero transparencias, cero CLS).
+ */
+
+import { buildWhatsAppUrl } from '../config/site';
+
+interface Hotspot {
+  id: string;
+  code: string;
+  label: string;
+  organ: string;
+  layer: 'Endodermo' | 'Mesodermo' | 'Ectodermo';
+  conflict: string;
+  phase: 'stress' | 'healing';
+  phaseText: string;
+  slug: string;
+  symptoms: string[];
+  coords: { cx: number; cy: number; r: number };
+}
+
+const hotspots: Hotspot[] = [
+  {
+    id: 'craneo',
+    code: 'ZONA-01 // CEPHALIC',
+    label: 'Cráneo y Sistema Nervioso',
+    organ: 'Corteza Cerebral y Vasos Craneales',
+    layer: 'Ectodermo',
+    conflict: 'Miedo frontal, sobreexigencia intelectual, impotencia o rabia no expresada retenida en el pensamiento.',
+    phase: 'stress',
+    phaseText: 'Fase Activa (Simpaticotonía / Estrés)',
+    slug: 'migrana',
+    symptoms: ['Migraña', 'Insomnio', 'Bruxismo', 'Ansiedad'],
+    coords: { cx: 140, cy: 52, r: 12 }
+  },
+  {
+    id: 'tiroides',
+    code: 'ZONA-02 // LARYNGEAL',
+    label: 'Garganta y Glándula Tiroides',
+    organ: 'Tiroides y Conductos Faríngeos',
+    layer: 'Endodermo',
+    conflict: 'Urgencia de tiempo: "El tiempo pasa demasiado rápido y no llego" o impotencia para atrapar o expulsar la palabra.',
+    phase: 'stress',
+    phaseText: 'Fase Activa (Conflicto de Tiempo)',
+    slug: 'hipotiroidismo',
+    symptoms: ['Hipotiroidismo', 'Nódulo Tiroideo', 'Afonía'],
+    coords: { cx: 140, cy: 98, r: 10 }
+  },
+  {
+    id: 'torax',
+    code: 'ZONA-03 // THORACIC',
+    label: 'Tórax, Pulmones y Corazón',
+    organ: 'Alvéolos Pulmonares y Miocardio',
+    layer: 'Endodermo',
+    conflict: 'Miedo visceral a la asfixia o pérdida de territorio: "Siento que me quitan el aire o el sustento".',
+    phase: 'healing',
+    phaseText: 'Fase de Reparación (Vagotonía)',
+    slug: 'ansiedad',
+    symptoms: ['Opresión Torácica', 'Ansiedad', 'Asma'],
+    coords: { cx: 140, cy: 146, r: 14 }
+  },
+  {
+    id: 'digestivo',
+    code: 'ZONA-04 // GASTRIC',
+    label: 'Abdomen y Aparato Digestivo',
+    organ: 'Estómago, Duodeno y Colon',
+    layer: 'Endodermo',
+    conflict: 'Bocado indigesto: una situación o traición que no puedes tolerar, digerir ni expulsar de tu vida.',
+    phase: 'healing',
+    phaseText: 'Fase de Reparación (Inflamación Regenerativa)',
+    slug: 'gastritis',
+    symptoms: ['Gastritis', 'Colon Irritable', 'Sobrepeso / Retención'],
+    coords: { cx: 140, cy: 206, r: 15 }
+  },
+  {
+    id: 'columna',
+    code: 'ZONA-05 // LUMBAR',
+    label: 'Columna Vertebral y Lumbar',
+    organ: 'Vértebras Lumbares y Músculos Espinales',
+    layer: 'Mesodermo',
+    conflict: 'Desvalorización estructural: "No puedo sostener esta carga económica o familiar por mí mismo".',
+    phase: 'healing',
+    phaseText: 'Fase de Reparación (Dolor Post-Estrés)',
+    slug: 'lumbalgia',
+    symptoms: ['Lumbalgia', 'Ciática', 'Hernia Discal'],
+    coords: { cx: 140, cy: 262, r: 13 }
+  },
+  {
+    id: 'epidermis',
+    code: 'ZONA-06 // DERMAL',
+    label: 'Piel y Tejido Tegumentario',
+    organ: 'Epidermis y Capa Basal Cutánea',
+    layer: 'Ectodermo',
+    conflict: 'Conflicto de separación: ruptura involuntaria de contacto físico, afectivo o protección con alguien vital.',
+    phase: 'healing',
+    phaseText: 'Fase de Reparación (Eccema / Prurito)',
+    slug: 'dermatitis',
+    symptoms: ['Dermatitis', 'Eccema', 'Psoriasis'],
+    coords: { cx: 80, cy: 195, r: 11 }
+  }
+];
+
+const initialHotspot = hotspots[3]; // Digestivo por defecto
+const initialWhatsAppUrl = buildWhatsAppUrl({
+  symptom: initialHotspot.symptoms[0],
+  location: 'hero-bio-scanner'
+});
+---
+
+<div class="bio-scanner-container w-full max-w-5xl mx-auto rounded-[2.5rem] bg-[#0A1226] border border-slate-800/60 p-6 sm:p-8 lg:p-12 shadow-2xl relative z-20">
+  <!-- Encabezado técnico de laboratorio -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-8 border-b border-slate-800/60">
+    <div class="space-y-1">
+      <div class="inline-flex items-center gap-2 text-xs font-mono tracking-widest text-[#38BDF8] uppercase">
+        <span class="w-2 h-2 rounded-full bg-[#38BDF8] animate-pulse"></span>
+        <span>SYS // BIO-SCANNER ANATÓMICO v2.4</span>
+      </div>
+      <p class="text-sm text-slate-400 font-sans">
+        Interactúa con la silueta biológica para decodificar el conflicto subyacente a tu síntoma físico
+      </p>
+    </div>
+    
+    <!-- Leyenda térmica funcional -->
+    <div class="flex items-center gap-4 text-xs font-mono shrink-0">
+      <div class="flex items-center gap-1.5 text-slate-300">
+        <span class="w-2.5 h-2.5 rounded-full bg-[#F97316]"></span>
+        <span>Estrés Activo</span>
+      </div>
+      <div class="flex items-center gap-1.5 text-slate-300">
+        <span class="w-2.5 h-2.5 rounded-full bg-[#38BDF8]"></span>
+        <span>Reparación</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rejilla de dos columnas: Silueta Interactiva (Izq) + Ficha Bio-Decoder HUD (Der) -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+    
+    <!-- Columna 1: Silueta Anatómica Vectorial -->
+    <div class="lg:col-span-5 flex flex-col items-center justify-center p-4 bg-[#060A1A] rounded-[2rem] border border-slate-800/40 relative">
+      <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest absolute top-3 left-4">
+        RAD // CORONAL PLANE
+      </div>
+      
+      <!-- SVG con dimensiones fijas rígidas (280x440) para prevenir CLS -->
+      <svg 
+        class="w-full max-w-[280px] h-auto select-none" 
+        viewBox="0 0 280 440" 
+        width="280" 
+        height="440"
+        aria-label="Silueta anatómica humana con puntos biológicos interactivos"
+      >
+        <defs>
+          <!-- Retícula técnica de fondo -->
+          <pattern id="scanner-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1E293B" stroke-width="0.5" opacity="0.4"/>
+          </pattern>
+        </defs>
+
+        <!-- Fondo cuadriculado médico -->
+        <rect width="280" height="440" fill="url(#scanner-grid)" />
+
+        <!-- Silueta Humana Esquemática (Trazo técnico mate) -->
+        <g stroke="#334155" stroke-width="1.5" fill="none" stroke-linejoin="round" opacity="0.85">
+          <!-- Cabeza -->
+          <ellipse cx="140" cy="52" rx="26" ry="32" stroke="#475569" stroke-width="1.5" fill="#0E172F"/>
+          <!-- Cuello -->
+          <path d="M 131 82 L 131 98 M 149 82 L 149 98" />
+          <!-- Hombros y Torso -->
+          <path d="M 131 98 C 110 102, 85 116, 76 138 L 72 205 L 82 208 L 88 152 L 102 152 L 102 245 L 112 285 L 126 410 L 136 410 L 138 300 L 142 300 L 144 410 L 154 410 L 168 285 L 178 245 L 178 152 L 192 152 L 198 208 L 208 205 L 204 138 C 195 116, 170 102, 149 98 Z" fill="#0A1226" />
+          <!-- Eje Vertebral de Precisión -->
+          <line x1="140" y1="84" x2="140" y2="280" stroke="#38BDF8" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>
+        </g>
+
+        <!-- Hotspots interactivos sobre la silueta -->
+        {hotspots.map((hs) => {
+          const isStress = hs.phase === 'stress';
+          const nodeColor = isStress ? '#F97316' : '#38BDF8';
+          const isActive = hs.id === initialHotspot.id;
+          
+          return (
+            <g 
+              class="bio-hotspot-node cursor-pointer transition-all duration-300 group"
+              data-hotspot-id={hs.id}
+              role="button"
+              tabindex="0"
+              aria-label={`Seleccionar ${hs.label}`}
+            >
+              <!-- Anillo exterior de detección -->
+              <circle 
+                cx={hs.coords.cx} 
+                cy={hs.coords.cy} 
+                r={hs.coords.r + 8} 
+                fill={nodeColor}
+                opacity={isActive ? "0.2" : "0.08"}
+                class="hotspot-pulse transition-all duration-300"
+              />
+              <!-- Círculo interactivo principal -->
+              <circle 
+                cx={hs.coords.cx} 
+                cy={hs.coords.cy} 
+                r={hs.coords.r} 
+                fill="#060A1A"
+                stroke={nodeColor}
+                stroke-width={isActive ? "2.5" : "1.5"}
+                class="hotspot-core transition-all duration-300 group-hover:stroke-white"
+              />
+              <!-- Punto central emisor -->
+              <circle 
+                cx={hs.coords.cx} 
+                cy={hs.coords.cy} 
+                r="4" 
+                fill={nodeColor}
+                class="hotspot-dot"
+              />
+            </g>
+          );
+        })}
+      </svg>
+
+      <!-- Selector de zonas táctiles para móvil -->
+      <div class="mt-4 flex flex-wrap gap-1.5 justify-center lg:hidden">
+        {hotspots.map((hs) => (
+          <button
+            type="button"
+            class="bio-zone-pill text-[11px] font-mono px-2.5 py-1 rounded-full border border-slate-700 bg-[#0E172F] text-slate-300 hover:border-slate-500 transition-colors"
+            data-hotspot-target={hs.id}
+          >
+            {hs.label.split(' ')[0]}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Columna 2: Ficha Bio-Decoder HUD (Resultados en tiempo real) -->
+    <div class="lg:col-span-7 flex flex-col justify-between h-full bg-[#0E172F] rounded-[2rem] border border-slate-800/60 p-6 sm:p-8 space-y-6">
+      
+      <!-- Metadatos de la zona activa -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between gap-2">
+          <span id="hud-code" class="text-xs font-mono tracking-widest text-[#38BDF8] uppercase font-bold">
+            {initialHotspot.code}
+          </span>
+          <span 
+            id="hud-phase-badge" 
+            class="text-[11px] font-mono px-3 py-1 rounded-full bg-[#0A1226] border border-slate-700 text-[#38BDF8] font-medium"
+          >
+            {initialHotspot.phaseText}
+          </span>
+        </div>
+
+        <h3 id="hud-title" class="text-2xl sm:text-3xl font-sans font-bold text-white tracking-tight">
+          {initialHotspot.label}
+        </h3>
+        
+        <div class="flex items-center gap-3 text-xs font-mono text-slate-400">
+          <span class="text-slate-500">ÓRGANO:</span>
+          <span id="hud-organ" class="text-slate-200">{initialHotspot.organ}</span>
+          <span class="text-slate-600">|</span>
+          <span class="text-slate-500">CAPA:</span>
+          <span id="hud-layer" class="text-slate-200">{initialHotspot.layer}</span>
+        </div>
+      </div>
+
+      <!-- Decodificación biológica del conflicto -->
+      <div class="p-4 sm:p-5 rounded-xl bg-[#060A1A] border border-slate-800/80 space-y-2">
+        <div class="text-[11px] font-mono text-slate-500 uppercase tracking-widest flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#F97316]"></span>
+          <span>Conflicto Biológico Raíz (Sentido de Supervivencia)</span>
+        </div>
+        <p id="hud-conflict" class="text-sm sm:text-base text-slate-200 font-sans leading-relaxed">
+          "{initialHotspot.conflict}"
+        </p>
+      </div>
+
+      <!-- Patologías y síntomas asociados -->
+      <div class="space-y-2">
+        <span class="text-[11px] font-mono text-slate-400 uppercase tracking-widest">
+          Síntomas frecuentes en este eje:
+        </span>
+        <div id="hud-symptoms" class="flex flex-wrap gap-2">
+          {initialHotspot.symptoms.map((sym) => (
+            <span class="px-3 py-1 text-xs font-mono rounded-lg bg-[#0A1226] border border-slate-800 text-slate-300">
+              {sym}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Disparador directo hacia Consulta Privada / Modal de Triaje -->
+      <div class="pt-4 border-t border-slate-800/60 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+        <div class="text-xs text-slate-400 font-sans">
+          ¿Presentas alguno de estos síntomas? Puedes evaluar tu caso ahora.
+        </div>
+
+        <a 
+          id="hud-cta-button"
+          href={initialWhatsAppUrl}
+          data-open-quiz="true"
+          data-symptom={initialHotspot.slug}
+          data-location="bio-body-scanner-cta"
+          class="inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full bg-white text-[#060A1A] font-sans font-bold text-sm tracking-wide shadow-pill-white hover:bg-slate-100 transition-all text-center shrink-0"
+        >
+          <span>Iniciar Triaje de Mi Síntoma</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- Dataset embebido en JSON para interacción instantánea del cliente sin peticiones de red -->
+<script is:inline define:vars={{ hotspotsJson: JSON.stringify(hotspots) }}>
+  (function() {
+    const rawData = hotspotsJson;
+    const hotspots = JSON.parse(rawData);
+    const dataMap = new Map(hotspots.map(h => [h.id, h]));
+
+    function updateHUD(hotspotId) {
+      const data = dataMap.get(hotspotId);
+      if (!data) return;
+
+      const codeEl = document.getElementById('hud-code');
+      const badgeEl = document.getElementById('hud-phase-badge');
+      const titleEl = document.getElementById('hud-title');
+      const organEl = document.getElementById('hud-organ');
+      const layerEl = document.getElementById('hud-layer');
+      const conflictEl = document.getElementById('hud-conflict');
+      const symptomsEl = document.getElementById('hud-symptoms');
+      const ctaBtn = document.getElementById('hud-cta-button');
+
+      if (codeEl) codeEl.textContent = data.code;
+      if (titleEl) titleEl.textContent = data.label;
+      if (organEl) organEl.textContent = data.organ;
+      if (layerEl) layerEl.textContent = data.layer;
+      if (conflictEl) conflictEl.textContent = `"${data.conflict}"`;
+
+      if (badgeEl) {
+        badgeEl.textContent = data.phaseText;
+        if (data.phase === 'stress') {
+          badgeEl.className = 'text-[11px] font-mono px-3 py-1 rounded-full bg-[#0A1226] border border-[#F97316] text-[#F97316] font-medium';
+        } else {
+          badgeEl.className = 'text-[11px] font-mono px-3 py-1 rounded-full bg-[#0A1226] border border-[#38BDF8] text-[#38BDF8] font-medium';
+        }
+      }
+
+      if (symptomsEl) {
+        symptomsEl.innerHTML = data.symptoms.map(s => 
+          `<span class="px-3 py-1 text-xs font-mono rounded-lg bg-[#0A1226] border border-slate-800 text-slate-300">${s}</span>`
+        ).join('');
+      }
+
+      if (ctaBtn) {
+        ctaBtn.setAttribute('data-symptom', data.slug);
+      }
+
+      // Actualizar estados visuales de los nodos SVG
+      document.querySelectorAll('.bio-hotspot-node').forEach(node => {
+        const id = node.getAttribute('data-hotspot-id');
+        const pulse = node.querySelector('.hotspot-pulse');
+        const core = node.querySelector('.hotspot-core');
+        if (id === hotspotId) {
+          if (pulse) pulse.setAttribute('opacity', '0.35');
+          if (core) core.setAttribute('stroke-width', '3');
+        } else {
+          if (pulse) pulse.setAttribute('opacity', '0.08');
+          if (core) core.setAttribute('stroke-width', '1.5');
+        }
+      });
+
+      // Actualizar botones móviles
+      document.querySelectorAll('.bio-zone-pill').forEach(btn => {
+        const target = btn.getAttribute('data-hotspot-target');
+        if (target === hotspotId) {
+          btn.classList.add('border-[#38BDF8]', 'text-[#38BDF8]', 'bg-[#1E293B]');
+        } else {
+          btn.classList.remove('border-[#38BDF8]', 'text-[#38BDF8]', 'bg-[#1E293B]');
+        }
+      });
+    }
+
+    // Delegación de eventos para clicks en hotspots SVG
+    document.addEventListener('click', (e) => {
+      const hotspotNode = e.target.closest('.bio-hotspot-node');
+      if (hotspotNode) {
+        const id = hotspotNode.getAttribute('data-hotspot-id');
+        if (id) updateHUD(id);
+      }
+
+      const zonePill = e.target.closest('.bio-zone-pill');
+      if (zonePill) {
+        const target = zonePill.getAttribute('data-hotspot-target');
+        if (target) updateHUD(target);
+      }
+    });
+
+    // Soporte para teclado (Enter o Espacio)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const hotspotNode = e.target.closest('.bio-hotspot-node');
+        if (hotspotNode) {
+          e.preventDefault();
+          const id = hotspotNode.getAttribute('data-hotspot-id');
+          if (id) updateHUD(id);
+        }
+      }
+    });
+  })();
+</script>
