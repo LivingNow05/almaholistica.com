@@ -181,24 +181,30 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
 
         </div>
 
-        <!-- Columna Derecha: Contenedor Circular con Arte Conceptual de Biodescodificación -->
-        <div class="lg:col-span-5 xl:col-span-4 flex justify-center items-center relative">
-          <div class="hero-floating-aura absolute -inset-6 bg-[#38BDF8]/10 rounded-full blur-2xl pointer-events-none" aria-hidden="true"></div>
-
-          <!-- Contenedor Circular Rígido de Precisión (CLS = 0) -->
-          <div class="relative w-64 h-64 sm:w-80 sm:h-80 md:w-88 md:h-88 lg:w-96 lg:h-96 rounded-full p-2.5 bg-gradient-to-b from-[#38BDF8]/25 via-slate-800/40 to-transparent border border-slate-700/60 shadow-2xl flex items-center justify-center shrink-0">
-            <div class="w-full h-full rounded-full overflow-hidden border border-[#38BDF8]/20 bg-[#060A1A] relative flex items-center justify-center">
+        <!-- Columna Derecha: Fotografía Realista en Contenedor Circular de Sesión Online -->
+        <div class="lg:col-span-5 xl:col-span-4 flex flex-col justify-center items-center relative">
+          
+          <!-- Contenedor Circular Rígido de Alta Gama (CLS = 0, Cero Neón) -->
+          <div class="relative w-64 h-64 sm:w-80 sm:h-80 md:w-88 md:h-88 lg:w-96 lg:h-96 rounded-full p-2 bg-[#0A1226] border-2 border-slate-800 shadow-2xl flex items-center justify-center shrink-0">
+            <div class="w-full h-full rounded-full overflow-hidden border border-slate-700/60 bg-[#060A1A] relative flex items-center justify-center">
               <img
                 src="/images/terapia-holistica-ciudades.webp"
-                alt={`Terapia de Biodescodificación y Acompañamiento Holístico en ${cityName}`}
+                alt={`Sesión online de biodescodificación y terapia holística en ${cityName}`}
                 width="1024"
                 height="1024"
                 loading="eager"
                 decoding="async"
-                class="w-full h-full object-cover rounded-full filter drop-shadow-[0_12px_30px_rgba(0,0,0,0.6)] transform hover:scale-105 transition-transform duration-700 ease-out"
+                class="w-full h-full object-cover rounded-full filter drop-shadow-[0_10px_25px_rgba(0,0,0,0.5)] transform hover:scale-105 transition-transform duration-700 ease-out"
               />
             </div>
+
+            <!-- Insignia Técnica Inferior: 100% Online en Vivo -->
+            <div class="absolute -bottom-2 bg-[#0A1226] border border-slate-700 rounded-full px-4 py-1.5 shadow-lg flex items-center gap-2 text-xs font-mono text-slate-300">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="font-medium tracking-wide uppercase">100% Online en Vivo</span>
+            </div>
           </div>
+
         </div>
 
       </div>
