@@ -658,11 +658,44 @@ html.light #mobile-menu {
 }
 
 /* WhatsAppQuizModal y Diálogos */
-html:not(.dark) [role="dialog"],
-html.light [role="dialog"] {
+html:not(.dark) [data-quiz-card],
+html.light [data-quiz-card] {
   background-color: #FFFFFF !important;
   color: #0F172A !important;
   border-color: #E2E8F0 !important;
+}
+
+html:not(.dark) [data-quiz-card] h3,
+html.light [data-quiz-card] h3,
+html:not(.dark) [data-quiz-card] span.font-extrabold,
+html.light [data-quiz-card] span.font-extrabold {
+  color: #0F172A !important;
+}
+
+html:not(.dark) [data-quiz-card] p,
+html.light [data-quiz-card] p {
+  color: #334155 !important;
+}
+
+html:not(.dark) [data-quiz-card] .bg-\[\#0E172F\],
+html.light [data-quiz-card] .bg-\[\#0E172F\],
+html:not(.dark) [data-quiz-card] .bg-\[\#060A1A\],
+html.light [data-quiz-card] .bg-\[\#060A1A\] {
+  background-color: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+  color: #0F172A !important;
+}
+
+html:not(.dark) [data-quiz-card] input,
+html.light [data-quiz-card] input {
+  background-color: #F8FAFC !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
+}
+
+html:not(.dark) [data-quiz-card] input::placeholder,
+html.light [data-quiz-card] input::placeholder {
+  color: #94A3B8 !important;
 }
 
 html:not(.dark) .quiz-option-button,
@@ -676,6 +709,13 @@ html:not(.dark) .quiz-option-button:hover,
 html.light .quiz-option-button:hover {
   background-color: #EEF2F6 !important;
   color: #0F172A !important;
+}
+
+html:not(.dark) .quiz-option-button[class*="border-[#38BDF8]"],
+html.light .quiz-option-button[class*="border-[#38BDF8]"] {
+  background-color: #F0F9FF !important;
+  border-color: #0284C7 !important;
+  color: #0369A1 !important;
 }
 
 /* Barras de scroll limpias */
@@ -796,16 +836,22 @@ html.dark #mobile-menu {
   border-color: rgba(30, 41, 59, 0.6) !important;
 }
 
-html.dark [role="dialog"] {
+html.dark [data-quiz-card] {
   background-color: #0A1226 !important;
   color: #F8FAFC !important;
-  border-color: rgba(30, 41, 59, 0.6) !important;
+  border-color: rgba(30, 41, 59, 0.8) !important;
 }
 
-html.dark .quiz-option-button {
+html.dark .quiz-option-button:not([class*="border-[#38BDF8]"]) {
   background-color: #060A1A !important;
   color: #CBD5E1 !important;
   border-color: rgba(30, 41, 59, 0.6) !important;
+}
+
+html.dark .quiz-option-button[class*="border-[#38BDF8]"] {
+  background-color: #0E172F !important;
+  border-color: #38BDF8 !important;
+  color: #FFFFFF !important;
 }
 
 html.dark .quiz-option-button:hover {
