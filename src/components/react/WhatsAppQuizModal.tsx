@@ -265,7 +265,7 @@ export function WhatsAppQuizModal({
                   ONLINE
                 </span>
               </div>
-              <span className="text-[11px] uppercase tracking-wider text-[#38BDF8] font-sans font-semibold block">
+              <span className="text-[11px] uppercase tracking-wider text-[#779DD1] font-sans font-semibold block">
                 Evaluación &amp; Agendamiento
               </span>
             </div>
@@ -288,7 +288,7 @@ export function WhatsAppQuizModal({
         */}
         <div className="w-full mb-6">
           <div className="flex items-center justify-between mb-2 text-xs font-sans">
-            <span className="font-semibold uppercase tracking-wider text-[#38BDF8]">
+            <span className="font-semibold uppercase tracking-wider text-[#779DD1]">
               {step <= 4 ? `PASO 0${step} / 04` : 'DIAGNÓSTICO COMPLETADO'}
             </span>
             <span className="text-slate-400 font-medium text-[11px] uppercase tracking-wide">
@@ -618,7 +618,7 @@ export function WhatsAppQuizModal({
                     }}
                     className={`quiz-option-button px-3.5 py-2 rounded-full text-xs sm:text-sm font-sans active:scale-[0.96] transition-all duration-200 cursor-pointer min-h-[40px] ${
                       isSelected
-                        ? 'bg-[#0E172F] border-2 border-[#38BDF8] text-[#38BDF8] font-bold shadow-sm'
+                        ? 'bg-[#0E172F] border-2 border-[#779DD1] text-[#779DD1] font-bold shadow-sm'
                         : 'bg-[#060A1A] hover:bg-[#0E172F] border border-slate-800 text-slate-300 hover:text-white'
                     }`}
                   >
@@ -748,7 +748,7 @@ export function WhatsAppQuizModal({
               <button
                 type="button"
                 onClick={() => setStep(4)}
-                className="group inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-[#38BDF8] active:scale-[0.96] transition-all cursor-pointer font-sans font-semibold uppercase tracking-wider"
+                className="group inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-[#779DD1] active:scale-[0.96] transition-all cursor-pointer font-sans font-semibold uppercase tracking-wider"
               >
                 &larr; Modificar respuestas
               </button>

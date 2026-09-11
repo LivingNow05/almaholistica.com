@@ -118,8 +118,8 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
   <!-- Encabezado técnico de laboratorio -->
   <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-8 border-b border-slate-800/60">
     <div class="space-y-1">
-      <div class="inline-flex items-center gap-2 text-xs font-sans font-bold tracking-wider text-[#38BDF8] uppercase">
-        <span class="w-2 h-2 rounded-full bg-[#38BDF8] animate-pulse"></span>
+      <div class="inline-flex items-center gap-2 text-xs font-sans font-bold tracking-wider text-[#779DD1] uppercase">
+        <span class="w-2 h-2 rounded-full bg-[#779DD1] animate-pulse"></span>
         <span>SYS // BIO-SCANNER ANATÓMICO v2.4</span>
       </div>
       <p class="text-sm text-slate-400 font-sans">
@@ -134,7 +134,7 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
         <span>Estrés Activo</span>
       </div>
       <div class="flex items-center gap-1.5 text-slate-300">
-        <span class="w-2.5 h-2.5 rounded-full bg-[#38BDF8]"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-[#779DD1]"></span>
         <span>Reparación</span>
       </div>
     </div>
@@ -245,12 +245,12 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
       <!-- Metadatos de la zona activa -->
       <div class="space-y-3">
         <div class="flex items-center justify-between gap-2">
-          <span id="hud-code" class="text-xs font-sans tracking-wider text-[#38BDF8] uppercase font-bold">
+          <span id="hud-code" class="text-xs font-sans tracking-wider text-[#779DD1] uppercase font-bold">
             {initialHotspot.code}
           </span>
           <span 
             id="hud-phase-badge" 
-            class="text-[11px] font-sans px-3 py-1 rounded-full bg-[#0A1226] border border-slate-700 text-[#38BDF8] font-medium"
+            class="text-[11px] font-sans px-3 py-1 rounded-full bg-[#0A1226] border border-slate-700 text-[#779DD1] font-medium"
           >
             {initialHotspot.phaseText}
           </span>
@@ -351,7 +351,7 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
         if (data.phase === 'stress') {
           badgeEl.className = 'text-[11px] font-sans px-3 py-1 rounded-full bg-[#0A1226] border border-[#F97316] text-[#F97316] font-medium';
         } else {
-          badgeEl.className = 'text-[11px] font-sans px-3 py-1 rounded-full bg-[#0A1226] border border-[#38BDF8] text-[#38BDF8] font-medium';
+          badgeEl.className = 'text-[11px] font-sans px-3 py-1 rounded-full bg-[#0A1226] border border-[#779DD1] text-[#779DD1] font-medium';
         }
       }
 
@@ -383,9 +383,9 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
       document.querySelectorAll('.bio-zone-pill').forEach(btn => {
         const target = btn.getAttribute('data-hotspot-target');
         if (target === hotspotId) {
-          btn.classList.add('border-[#38BDF8]', 'text-[#38BDF8]', 'bg-[#1E293B]');
+          btn.classList.add('border-[#779DD1]', 'text-[#779DD1]', 'bg-[#1E293B]');
         } else {
-          btn.classList.remove('border-[#38BDF8]', 'text-[#38BDF8]', 'bg-[#1E293B]');
+          btn.classList.remove('border-[#779DD1]', 'text-[#779DD1]', 'bg-[#1E293B]');
         }
       });
     }

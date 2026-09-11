@@ -554,9 +554,19 @@ html.light [class*="text-slate-700"] {
   font-weight: 450;
 }
 
-/* Acentos de marca en modo claro: azul zafiro accesible AAA */
+/* Acentos de marca en modo claro: azul zafiro accesible AAA (contraste > 8.5:1) */
 html:not(.dark) [class*="text-[#779DD1]"],
-html.light [class*="text-[#779DD1]"] {
+html.light [class*="text-[#779DD1]"],
+html:not(.dark) [class*="text-[#38BDF8]"],
+html.light [class*="text-[#38BDF8]"],
+html:not(.dark) [class*="text-sky-400"],
+html.light [class*="text-sky-400"],
+html:not(.dark) [class*="text-sky-500"],
+html.light [class*="text-sky-500"],
+html:not(.dark) [class*="text-cyan-400"],
+html.light [class*="text-cyan-400"],
+html:not(.dark) [class*="text-cyan-500"],
+html.light [class*="text-cyan-500"] {
   color: #1E40AF !important;
   font-weight: 600;
 }
