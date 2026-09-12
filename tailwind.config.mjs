@@ -135,7 +135,7 @@ export default {
         },
       },
       fontFamily: {
-        serif: ['"Cormorant Garamond"', 'Cinzel', 'Playfair Display', 'serif'],
+        serif: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
         sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
         cormorant: ['"Cormorant Garamond"', 'serif'],
         cinzel: ['Cinzel', 'Playfair Display', 'serif'],

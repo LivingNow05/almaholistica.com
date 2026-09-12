@@ -38,8 +38,9 @@
   --font-mono: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Forzado universal de legibilidad: erradicar monospace en todo el portal */
-.font-mono {
+/* Forzado universal de legibilidad: erradicar monospace y serif en favor de Plus Jakarta Sans */
+.font-mono,
+.font-serif {
   font-family: var(--font-sans) !important;
 }
 
@@ -244,11 +245,12 @@ img, svg, video, canvas, audio, iframe, embed, object {
     text-transform: uppercase;
   }
 
-  /* Encabezados Solemnes (Cinzel / Cormorant Garamond) */
+  /* Encabezados de Sección (Plus Jakarta Sans) */
   .heading-solemn {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
+    font-weight: 700;
     color: #F8FAFC;
-    letter-spacing: 0.02em;
+    letter-spacing: -0.01em;
   }
 
   /* Subtítulos Acentuados Cyan */
