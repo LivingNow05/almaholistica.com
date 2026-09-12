@@ -139,13 +139,137 @@ const evaluationWhatsAppUrl = buildWhatsAppUrl({
             La biodescodificación demuestra que tu síntoma físico es la respuesta biológica de tu cuerpo ante un estrés o vivencia no resuelta. Identifica tu síntoma y descubre en una sesión privada 1 a 1 cómo desactivar la señal de alarma y recuperar tu calma.
           </p>
 
-          <!-- Píldoras de acceso rápido a dolencias -->
-          <div class="gsap-hero-el flex flex-wrap gap-2 mb-8 items-center">
-            <span class="text-xs text-slate-400 font-sans mr-1">Consultas frecuentes:</span>
-            <a href="#dolencias" class="px-3.5 py-1.5 rounded-full bg-[#0A1226] text-[#779DD1] border border-slate-800 text-xs font-sans hover:border-[#779DD1] transition-colors">🧠 Estrés & Migraña</a>
-            <a href="#dolencias" class="px-3.5 py-1.5 rounded-full bg-[#0A1226] text-emerald-400 border border-slate-800 text-xs font-sans hover:border-emerald-400 transition-colors">🫁 Gastritis & Colon</a>
-            <a href="#dolencias" class="px-3.5 py-1.5 rounded-full bg-[#0A1226] text-[#F97316] border border-slate-800 text-xs font-sans hover:border-[#F97316] transition-colors">🦴 Espalda & Tensión</a>
-            <a href="#dolencias" class="px-3.5 py-1.5 rounded-full bg-[#0A1226] text-indigo-400 border border-slate-800 text-xs font-sans hover:border-indigo-400 transition-colors">✨ Emociones & Piel</a>
+          <!-- Consultas Frecuentes: Bloque Fotográfico de Identificación de Síntomas -->
+          <div class="gsap-hero-el w-full max-w-3xl mb-8 p-4 sm:p-5 rounded-2xl bg-[#0A1226] border border-slate-800/40">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                <span class="text-xs font-bold uppercase tracking-wider text-[#779DD1]">
+                  Consultas Frecuentes // Identifica tu Síntoma:
+                </span>
+              </div>
+              <span class="text-xs text-slate-400 font-sans hidden sm:inline">
+                Toca una dolencia para ver su origen biológico &rarr;
+              </span>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <!-- 1. Estrés & Ansiedad -->
+              <a
+                href="/biodescodificacion/ansiedad"
+                class="group rounded-xl border border-slate-800 bg-[#0E172F] p-2.5 flex flex-col justify-between transition-all duration-300 hover:scale-[1.02] hover:border-blue-500/50 block overflow-hidden"
+              >
+                <div class="w-full aspect-square rounded-lg overflow-hidden mb-2.5 relative bg-[#060A1A]">
+                  <img
+                    src="/images/sintoma-estres-ansiedad.webp"
+                    alt="Biodescodificación de estrés y ansiedad"
+                    width="400"
+                    height="400"
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <span class="absolute top-1.5 left-1.5 px-2 py-0.5 rounded text-[10px] font-bold bg-[#1E3A8A] text-[#93C5FD] border border-blue-700/50">
+                    Nervioso
+                  </span>
+                </div>
+                <div class="space-y-0.5">
+                  <span class="text-xs sm:text-sm font-bold text-white block group-hover:text-[#779DD1] transition-colors">
+                    Estrés & Ansiedad
+                  </span>
+                  <span class="text-[11px] text-slate-400 block font-normal leading-tight">
+                    Opresión en pecho
+                  </span>
+                </div>
+              </a>
+
+              <!-- 2. Gastritis & Digestivo -->
+              <a
+                href="/biodescodificacion/gastritis"
+                class="group rounded-xl border border-slate-800 bg-[#0E172F] p-2.5 flex flex-col justify-between transition-all duration-300 hover:scale-[1.02] hover:border-emerald-500/50 block overflow-hidden"
+              >
+                <div class="w-full aspect-square rounded-lg overflow-hidden mb-2.5 relative bg-[#060A1A]">
+                  <img
+                    src="/images/sintoma-gastritis-digestivo.webp"
+                    alt="Biodescodificación de gastritis y sistema digestivo"
+                    width="400"
+                    height="400"
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <span class="absolute top-1.5 left-1.5 px-2 py-0.5 rounded text-[10px] font-bold bg-[#064E3B] text-[#6EE7B7] border border-emerald-700/50">
+                    Digestivo
+                  </span>
+                </div>
+                <div class="space-y-0.5">
+                  <span class="text-xs sm:text-sm font-bold text-white block group-hover:text-emerald-400 transition-colors">
+                    Gastritis & Colon
+                  </span>
+                  <span class="text-[11px] text-slate-400 block font-normal leading-tight">
+                    Ardor y pesadez
+                  </span>
+                </div>
+              </a>
+
+              <!-- 3. Espalda & Tensión -->
+              <a
+                href="/biodescodificacion/lumbalgia"
+                class="group rounded-xl border border-slate-800 bg-[#0E172F] p-2.5 flex flex-col justify-between transition-all duration-300 hover:scale-[1.02] hover:border-[#F97316]/50 block overflow-hidden"
+              >
+                <div class="w-full aspect-square rounded-lg overflow-hidden mb-2.5 relative bg-[#060A1A]">
+                  <img
+                    src="/images/sintoma-espalda-tension.webp"
+                    alt="Biodescodificación de dolor de espalda y tensión lumbar"
+                    width="400"
+                    height="400"
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <span class="absolute top-1.5 left-1.5 px-2 py-0.5 rounded text-[10px] font-bold bg-[#7C2D12] text-[#FFEDD5] border border-[#9A3412]/50">
+                    Osteoarticular
+                  </span>
+                </div>
+                <div class="space-y-0.5">
+                  <span class="text-xs sm:text-sm font-bold text-white block group-hover:text-[#F97316] transition-colors">
+                    Espalda & Tensión
+                  </span>
+                  <span class="text-[11px] text-slate-400 block font-normal leading-tight">
+                    Carga lumbar
+                  </span>
+                </div>
+              </a>
+
+              <!-- 4. Migrañas & Cefalea -->
+              <a
+                href="/biodescodificacion/migrana"
+                class="group rounded-xl border border-slate-800 bg-[#0E172F] p-2.5 flex flex-col justify-between transition-all duration-300 hover:scale-[1.02] hover:border-purple-500/50 block overflow-hidden"
+              >
+                <div class="w-full aspect-square rounded-lg overflow-hidden mb-2.5 relative bg-[#060A1A]">
+                  <img
+                    src="/images/sintoma-migrana-cefalea.webp"
+                    alt="Biodescodificación de migraña y dolor de cabeza"
+                    width="400"
+                    height="400"
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <span class="absolute top-1.5 left-1.5 px-2 py-0.5 rounded text-[10px] font-bold bg-[#581C87] text-[#D8B4FE] border border-purple-700/50">
+                    Cefaleas
+                  </span>
+                </div>
+                <div class="space-y-0.5">
+                  <span class="text-xs sm:text-sm font-bold text-white block group-hover:text-purple-400 transition-colors">
+                    Migrañas & Cefalea
+                  </span>
+                  <span class="text-[11px] text-slate-400 block font-normal leading-tight">
+                    Presión en sienes
+                  </span>
+                </div>
+              </a>
+            </div>
           </div>
 
           <!-- Botones de Acción de Alta Gama -->
