@@ -245,16 +245,13 @@ def run_dimension_6_html_head_audit():
                 canon_match = canonical_pattern.search(content)
                 assert canon_match, f"Falta canonical tag en {fpath}"
                 canon_url = canon_match.group(1)
-                # 159 de 160 páginas tienen trailing slash estricto; biodescodificacion/index.astro fijó canonical sin barra en M4
-                if rel != os.path.join('biodescodificacion', 'index.html'):
-                    assert canon_url.endswith('/'), f"Canonical sin trailing slash en {fpath}: {canon_url}"
-                else:
-                    assert canon_url == f"{DOMAIN}/biodescodificacion", f"Canonical inesperada en catálogo: {canon_url}"
+                # Las 160 páginas tienen trailing slash estricto conforme a astro.config.mjs
+                assert canon_url.endswith('/'), f"Canonical sin trailing slash en {fpath}: {canon_url}"
 
                 checked += 1
 
     print(f"  ✓ 160 páginas HTML contienen <link rel=\"sitemap\" href=\"/sitemap-index.xml\" />")
-    print(f"  ✓ 160 páginas HTML contienen <link rel=\"canonical\" href=\"https://almaholistica.com/...\" /> (159 con barra final, 1 catálogo)")
+    print(f"  ✓ 160 páginas HTML contienen <link rel=\"canonical\" href=\"https://almaholistica.com/...\" /> (100% con barra final estricta)")
     print("✅ DIMENSION 6 PASSED: Metadatos de auto-descubrimiento y canonicalización 100% correctos")
 
 
