@@ -25,3 +25,10 @@ Thumbs.db
 # Python cache
 __pycache__/
 *.pyc
+
+# Google Credentials & Tokens
+token*.json
+client_secret*.json
+service-account*.json
+credentials*.json
+indexing_log*.json
