@@ -370,7 +370,7 @@ describe('MR2 Challenger - Dimensión 2: Eventos y Despacho del Modal de Quiz', 
     const harness = createModalHarness();
 
     const triggerLink = new MockDOMElement('A', {
-      'href': 'https://wa.me/573000000000',
+      'href': 'https://wa.me/573151206985',
       'data-open-quiz': 'true',
       'data-symptom': 'Gastritis',
       'data-city': 'Miami'
@@ -397,7 +397,7 @@ describe('MR2 Challenger - Dimensión 2: Eventos y Despacho del Modal de Quiz', 
     const harness = createModalHarness();
 
     const triggerLink = new MockDOMElement('A', {
-      'href': 'https://wa.me/573000000000',
+      'href': 'https://wa.me/573151206985',
       'data-open-quiz': 'true',
       'data-location': 'footer-cta'
     });
@@ -426,7 +426,7 @@ describe('MR2 Challenger - Dimensión 2: Eventos y Despacho del Modal de Quiz', 
     const harness = createModalHarness();
 
     const triggerLink = new MockDOMElement('A', {
-      'href': 'https://wa.me/573000000000',
+      'href': 'https://wa.me/573151206985',
       'data-open-quiz': 'true'
     });
 
@@ -460,7 +460,7 @@ describe('MR2 Challenger - Dimensión 2: Eventos y Despacho del Modal de Quiz', 
 
     const modalContainer = new MockDOMElement('DIV', { 'data-quiz-modal': 'true' });
     const finalLink = new MockDOMElement('A', {
-      'href': 'https://wa.me/573000000000?text=test',
+      'href': 'https://wa.me/573151206985?text=test',
       'data-quiz-final': 'true'
     });
     modalContainer.appendChild(finalLink);
@@ -494,7 +494,7 @@ describe('MR2 Challenger - Dimensión 2: Eventos y Despacho del Modal de Quiz', 
       'data-city': 'Buenos Aires'
     });
     const innerCTA = new MockDOMElement('A', {
-      'href': 'https://wa.me/573000000000',
+      'href': 'https://wa.me/573151206985',
       'data-open-quiz': 'true'
     });
     cardWrapper.appendChild(innerCTA);
@@ -514,7 +514,7 @@ describe('MR2 Challenger - Dimensión 2: Eventos y Despacho del Modal de Quiz', 
   });
 
   test('ADV-MR2.2.10: Integración de SITE_CONFIG y buildWhatsAppUrl produce enlaces WhatsApp conformes', () => {
-    assert.equal(SITE_CONFIG.whatsappNumber, '573000000000');
+    assert.equal(SITE_CONFIG.whatsappNumber, '573151206985');
     const url = buildWhatsAppUrl({
       phone: SITE_CONFIG.whatsappNumber,
       symptom: 'Gastritis severa',
@@ -526,7 +526,7 @@ describe('MR2 Challenger - Dimensión 2: Eventos y Despacho del Modal de Quiz', 
     const parsed = new URL(url);
     assert.equal(parsed.protocol, 'https:');
     assert.equal(parsed.hostname, 'wa.me');
-    assert.equal(parsed.pathname, '/573000000000');
+    assert.equal(parsed.pathname, '/573151206985');
     assert.ok(parsed.searchParams.has('text'));
 
     const text = parsed.searchParams.get('text');

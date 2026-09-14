@@ -250,7 +250,7 @@ def verify_funnel_page(rel_path, page_type):
         funnel_issues.append({"file": rel_path, "issue": "No WhatsApp CTA links found"})
     else:
         for wa_url in wa_links:
-            if "573000000000" not in wa_url:
+            if "573151206985" not in wa_url:
                 funnel_issues.append({"file": rel_path, "issue": f"WhatsApp URL does not use site phone number: {wa_url}"})
             if "text=" not in wa_url:
                 funnel_issues.append({"file": rel_path, "issue": f"WhatsApp URL missing text parameter: {wa_url}"})

@@ -349,7 +349,7 @@ describe('Challenger M4-2: Home Experience Verification (CLS, Links, Styling)', 
 
     // In the compiled dist/index.html, verify that all wa.me links match the Quiz modal trigger selector
     // (either via [data-open-quiz="true"] or via href*="wa.me")
-    const waLinks = [...homeHtml.matchAll(/<a[^>]*href="https:\/\/wa\.me\/573000000000[^"]*"[^>]*>/g)].map((m) => m[0]);
+    const waLinks = [...homeHtml.matchAll(/<a[^>]*href="https:\/\/wa\.me\/573151206985[^"]*"[^>]*>/g)].map((m) => m[0]);
     assert.ok(waLinks.length >= 4, `Home must contain multiple WhatsApp conversion points (found ${waLinks.length})`);
 
     // All primary CTA buttons in Home HTML have data-open-quiz="true"

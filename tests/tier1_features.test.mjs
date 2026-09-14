@@ -225,8 +225,8 @@ describe('Tier 1 — Cobertura por Característica (Features 1 - 23)', () => {
   describe('Feature 5: Configuración Central del Sitio (site.ts)', () => {
     const siteConfigPath = path.join(PROJECT_ROOT, 'src/config/site.ts');
 
-    test('T1.5.1: Teléfono provisional genérico obligatorio es 573000000000', () => {
-      assert.equal(PROVISIONAL_WHATSAPP_NUMBER, '573000000000');
+    test('T1.5.1: Teléfono oficial obligatorio es 573151206985', () => {
+      assert.equal(PROVISIONAL_WHATSAPP_NUMBER, '573151206985');
     });
 
     test('T1.5.2: URL canónica oficial es https://almaholistica.com', () => {
@@ -239,7 +239,7 @@ describe('Tier 1 — Cobertura por Característica (Features 1 - 23)', () => {
         return;
       }
       const code = fs.readFileSync(siteConfigPath, 'utf8');
-      assert.ok(code.includes('573000000000'), 'Debe parametrizar el número 573000000000');
+      assert.ok(code.includes('573151206985'), 'Debe parametrizar el número 573151206985');
       assert.ok(code.includes('almaholistica.com'), 'Debe parametrizar la URL base');
     });
 
@@ -525,7 +525,7 @@ describe('Tier 1 — Cobertura por Característica (Features 1 - 23)', () => {
   describe('Feature 12: Generación Mensaje WhatsApp', () => {
     test('T1.12.1: Construye URL con protocolo https y dominio wa.me', () => {
       const url = buildWhatsAppUrl({ symptom: 'Gastritis' });
-      assert.ok(url.startsWith('https://wa.me/573000000000?text='));
+      assert.ok(url.startsWith('https://wa.me/573151206985?text='));
     });
 
     test('T1.12.2: Codifica caracteres especiales mediante encodeURIComponent', () => {
@@ -1093,8 +1093,8 @@ describe('Tier 1 — Cobertura por Característica (Features 1 - 23)', () => {
     });
 
     test('T1.23.5: Parsing de WhatsApp maneja números con símbolos y espacios sin corromperse', () => {
-      const url = buildWhatsAppUrl({ phone: '+57 (300) 000-0000', symptom: 'Ansiedad' });
-      assert.ok(url.includes('573000000000'));
+      const url = buildWhatsAppUrl({ phone: '+57 (315) 120-6985', symptom: 'Ansiedad' });
+      assert.ok(url.includes('573151206985'));
     });
   });
 

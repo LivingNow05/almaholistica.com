@@ -27,7 +27,7 @@ export interface SiteConfig {
 
 /**
  * Constante oficial SITE_CONFIG requerida por los contratos de arquitectura y pruebas
- * Nota: El número 573000000000 es provisional genérico para desarrollo y pruebas.
+ * Nota: El número 573151206985 es el oficial de WhatsApp de Alma Holística.
  */
 export const SITE_CONFIG: SiteConfig = {
   name: 'Alma Holística',
@@ -35,7 +35,7 @@ export const SITE_CONFIG: SiteConfig = {
   description:
     'Plataforma de biodescodificación y terapia holística online en más de 20 países. Identifica el origen emocional de tus dolencias y agenda tu sesión inicial de diagnóstico.',
   url: 'https://almaholistica.com',
-  whatsappNumber: '573000000000',
+  whatsappNumber: '573151206985',
   defaultOgImage: '/logo-mariposa-con-fondo-completo.svg',
   author: 'Alma Holística',
   locale: 'es',
@@ -44,7 +44,7 @@ export const SITE_CONFIG: SiteConfig = {
     { label: 'Inicio', href: '/' },
     { label: 'Biodescodificación', href: '/biodescodificacion' },
     { label: 'Ciudades', href: '/#ciudades' },
-    { label: 'Agendar Evaluación', href: 'https://wa.me/573000000000', isCta: true }
+    { label: 'Agendar Evaluación', href: 'https://wa.me/573151206985', isCta: true }
   ]
 } as const;
 

@@ -163,8 +163,8 @@ describe('MR3 Challenger Oracle: Verificación Adversarial Integral', () => {
   // REQUISITO 3: >= 4 ENLACES WHATSAPP Y >= 3 DISPARADORES data-open-quiz="true"
   // ==========================================================================
   describe('Criterio 3: Funnel de Conversión (WhatsApp y Quiz Modal)', () => {
-    test('MR3-ADV-3.1: dist/index.html contiene al menos 4 enlaces de WhatsApp hacia 573000000000', () => {
-      const waLinks = [...distIndexContent.matchAll(/href="https:\/\/wa\.me\/573000000000[^"]*"/g)];
+    test('MR3-ADV-3.1: dist/index.html contiene al menos 4 enlaces de WhatsApp hacia 573151206985', () => {
+      const waLinks = [...distIndexContent.matchAll(/href="https:\/\/wa\.me\/573151206985[^"]*"/g)];
       assert.ok(
         waLinks.length >= 4,
         `Expected at least 4 WhatsApp links in dist/index.html, found ${waLinks.length}`

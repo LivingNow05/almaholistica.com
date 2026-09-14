@@ -275,8 +275,8 @@ describe('Adversarial Challenge M4.4: Integridad del Funnel de WhatsApp (Patrón
         `La ciudad ${city.slug} no tiene el atributo data-city="${city.slug}"`
       );
       assert.ok(
-        html.includes('wa.me/573000000000'),
-        `La ciudad ${city.slug} no incluye el fallback directo a WhatsApp con número provisional`
+        html.includes('wa.me/573151206985'),
+        `La ciudad ${city.slug} no incluye el fallback directo a WhatsApp con número oficial`
       );
       assert.ok(
         html.includes('id="quiz-modal-container"'),
@@ -300,7 +300,7 @@ describe('Adversarial Challenge M4.4: Integridad del Funnel de WhatsApp (Patrón
         `La dolencia ${dolencia.slug} no tiene el atributo data-symptom="${dolencia.nombre}"`
       );
       assert.ok(
-        html.includes('wa.me/573000000000'),
+        html.includes('wa.me/573151206985'),
         `La dolencia ${dolencia.slug} no incluye el fallback directo a WhatsApp`
       );
       assert.ok(

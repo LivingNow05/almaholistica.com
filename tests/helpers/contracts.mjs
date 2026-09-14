@@ -62,7 +62,7 @@ export const COLOR_PALETTE = {
   slate: '#94A3B8'
 };
 
-export const PROVISIONAL_WHATSAPP_NUMBER = '573000000000';
+export const PROVISIONAL_WHATSAPP_NUMBER = '573151206985';
 export const CANONICAL_BASE_URL = 'https://almaholistica.com';
 
 /**

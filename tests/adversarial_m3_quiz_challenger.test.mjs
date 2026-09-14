@@ -88,7 +88,7 @@ describe('Adversarial M3.2: Exact Preliminary Diagnosis Formula Stress-Testing',
 
 describe('Adversarial M3.2: buildWhatsAppUrl() Derivation and Sanitization', () => {
   test('ADV-M3.2.6: Generates valid wa.me URL with default config phone', () => {
-    assert.equal(SITE_CONFIG.whatsappNumber, '573000000000');
+    assert.equal(SITE_CONFIG.whatsappNumber, '573151206985');
     const url = buildWhatsAppUrl({
       symptom: 'Gastritis',
       duration: '1 año',
@@ -98,21 +98,21 @@ describe('Adversarial M3.2: buildWhatsAppUrl() Derivation and Sanitization', () 
     const parsed = new URL(url);
     assert.equal(parsed.protocol, 'https:');
     assert.equal(parsed.hostname, 'wa.me');
-    assert.equal(parsed.pathname, '/573000000000');
+    assert.equal(parsed.pathname, '/573151206985');
     assert.ok(parsed.searchParams.has('text'));
   });
 
   test('ADV-M3.2.7: Phone number sanitization removes all non-digit formatting', () => {
     const unformattedPhones = [
-      '+57 (300) 000-0000',
-      '57 300 000 0000',
-      ' +57-300-000-0000 ',
-      'tel:573000000000'
+      '+57 (315) 120-6985',
+      '57 315 120 6985',
+      ' +57-315-120-6985 ',
+      'tel:573151206985'
     ];
     for (const phone of unformattedPhones) {
       const url = buildWhatsAppUrl({ phone, symptom: 'Ansiedad' });
       const parsed = new URL(url);
-      assert.equal(parsed.pathname, '/573000000000');
+      assert.equal(parsed.pathname, '/573151206985');
     }
   });
 

@@ -38,7 +38,7 @@ const PROJECT_ROOT = path.resolve(__dirname, '..');
 describe('Adversarial M2.2: buildWhatsAppUrl() Stress Testing with Conflictive Inputs', () => {
 
   test('ADV-M2.2.0: SITE_CONFIG export integrity and required architectural contract constants', () => {
-    assert.equal(SITE_CONFIG.whatsappNumber, '573000000000', 'Provisional phone must be exact 573000000000');
+    assert.equal(SITE_CONFIG.whatsappNumber, '573151206985', 'Official phone must be exact 573151206985');
     assert.equal(SITE_CONFIG.url, 'https://almaholistica.com', 'Canonical base URL must match');
     assert.equal(SITE_CONFIG.name, 'Alma Holística', 'Official site name must match');
     assert.equal(SITE_CONFIG.defaultOgImage, '/logo-mariposa-con-fondo-completo.svg', 'OG image must point to butterfly logo');
@@ -52,7 +52,7 @@ describe('Adversarial M2.2: buildWhatsAppUrl() Stress Testing with Conflictive I
     const parsed = new URL(urlStr);
     assert.equal(parsed.protocol, 'https:');
     assert.equal(parsed.hostname, 'wa.me');
-    assert.equal(parsed.pathname, '/573000000000');
+    assert.equal(parsed.pathname, '/573151206985');
     assert.equal(parsed.hash, '', 'URL hash must be empty');
 
     const decoded = decodeURIComponent(parsed.searchParams.get('text') || '');
@@ -172,11 +172,11 @@ describe('Adversarial M2.2: buildWhatsAppUrl() Stress Testing with Conflictive I
 
     // Empty string phone falls back to SITE_CONFIG.whatsappNumber
     const input4 = buildWhatsAppUrl({ phone: '' });
-    assert.ok(input4.startsWith('https://wa.me/573000000000?text='), 'Empty phone string falls back to default');
+    assert.ok(input4.startsWith('https://wa.me/573151206985?text='), 'Empty phone string falls back to default');
 
     // Undefined phone falls back to SITE_CONFIG.whatsappNumber
     const input5 = buildWhatsAppUrl({ phone: undefined });
-    assert.ok(input5.startsWith('https://wa.me/573000000000?text='), 'Undefined phone falls back to default');
+    assert.ok(input5.startsWith('https://wa.me/573151206985?text='), 'Undefined phone falls back to default');
   });
 
   test('ADV-M2.2.8: Extreme long strings and boundary input combinations', () => {

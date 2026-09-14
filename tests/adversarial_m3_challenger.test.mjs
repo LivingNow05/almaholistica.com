@@ -253,7 +253,7 @@ describe('Adversarial M3: WhatsApp Quiz Modal & Global Event Delegation Stress',
 
     test('ADV-M3.1: Clic sobre <path> dentro de <svg> anidado en CTA wa.me intercepta y previene default', () => {
       const ctaAnchor = new MockElement('A', {
-        href: 'https://wa.me/573000000000',
+        href: 'https://wa.me/573151206985',
         'data-open-quiz': 'true',
         'data-symptom': 'Gastritis Aguda',
         'data-city': 'Bogotá',
@@ -278,7 +278,7 @@ describe('Adversarial M3: WhatsApp Quiz Modal & Global Event Delegation Stress',
 
     test('ADV-M3.2: Clic sobre <span> de texto dentro de CTA con whatsapp.com intercepta correctamente', () => {
       const ctaAnchor = new MockElement('A', {
-        href: 'https://api.whatsapp.com/send?phone=573000000000',
+        href: 'https://api.whatsapp.com/send?phone=573151206985',
         'data-open-quiz': 'true',
       });
       const span = new MockElement('SPAN');
@@ -338,7 +338,7 @@ describe('Adversarial M3: WhatsApp Quiz Modal & Global Event Delegation Stress',
 
     test('ADV-M3.5: Clics con modificadores de teclado (Meta, Ctrl, Shift, Alt) preservan navegación nativa', () => {
       const ctaAnchor = new MockElement('A', {
-        href: 'https://wa.me/573000000000',
+        href: 'https://wa.me/573151206985',
         'data-open-quiz': 'true',
       });
       mockDoc.body.appendChild(ctaAnchor);
@@ -361,7 +361,7 @@ describe('Adversarial M3: WhatsApp Quiz Modal & Global Event Delegation Stress',
 
     test('ADV-M3.6: Clics secundarios (botón derecho / central) no abren el modal', () => {
       const ctaAnchor = new MockElement('A', {
-        href: 'https://wa.me/573000000000',
+        href: 'https://wa.me/573151206985',
         'data-open-quiz': 'true',
       });
       mockDoc.body.appendChild(ctaAnchor);
@@ -518,7 +518,7 @@ describe('Adversarial M3: WhatsApp Quiz Modal & Global Event Delegation Stress',
         role: 'dialog',
       });
       const finalLink = new MockElement('A', {
-        href: 'https://wa.me/573000000000?text=Consulta',
+        href: 'https://wa.me/573151206985?text=Consulta',
         'data-quiz-final': 'true',
         target: '_blank',
       });
@@ -538,7 +538,7 @@ describe('Adversarial M3: WhatsApp Quiz Modal & Global Event Delegation Stress',
     test('ADV-M3.12: Clic en <span> o <svg> hijo del enlace final NO es interceptado', () => {
       const modalRoot = new MockElement('DIV', { 'data-quiz-modal': 'true' });
       const finalLink = new MockElement('A', {
-        href: 'https://wa.me/573000000000?text=Consulta',
+        href: 'https://wa.me/573151206985?text=Consulta',
         'data-quiz-final': 'true',
       });
       const svgIcon = new MockElement('SVG');
@@ -566,7 +566,7 @@ describe('Adversarial M3: WhatsApp Quiz Modal & Global Event Delegation Stress',
 
     test('ADV-M3.13: Enlace data-quiz-final fuera de data-quiz-modal sigue protegido por atributo directo', () => {
       const standaloneFinalLink = new MockElement('A', {
-        href: 'https://wa.me/573000000000',
+        href: 'https://wa.me/573151206985',
         'data-quiz-final': 'true',
       });
       const span = new MockElement('SPAN');

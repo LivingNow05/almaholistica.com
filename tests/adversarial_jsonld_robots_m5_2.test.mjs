@@ -118,7 +118,7 @@ describe('Adversarial Challenger M5-2: JSON-LD Stress-Testing across 160 dist HT
       assert.ok(businessSchema.url.endsWith('/'), `URL must have trailing slash in ${relPath}`);
       assert.ok(businessSchema.currenciesAccepted, `Missing currenciesAccepted in ${relPath}`);
       assert.ok(businessSchema.priceRange, `Missing priceRange in ${relPath}`);
-      assert.equal(businessSchema.telephone, '+573000000000', `Telephone must match site config in ${relPath}`);
+      assert.equal(businessSchema.telephone, '+573151206985', `Telephone must match site config in ${relPath}`);
       assert.equal(businessSchema.address?.['@type'], 'PostalAddress', `Missing PostalAddress in ${relPath}`);
       assert.ok(businessSchema.address?.addressLocality, `Missing addressLocality in ${relPath}`);
       assert.ok(businessSchema.address?.addressCountry, `Missing addressCountry in ${relPath}`);

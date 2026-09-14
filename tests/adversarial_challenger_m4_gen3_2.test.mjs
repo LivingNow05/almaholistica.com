@@ -87,9 +87,9 @@ describe('Adversarial Challenger M4-Gen3-2: Conversion Funnel Triggers', () => {
       totalWaLinks += waLinks.length;
       totalQuizTriggers += quizTriggers.length;
 
-      // Every single WA link must have a valid phone number 573000000000
+      // Every single WA link must have a valid phone number 573151206985
       for (const link of waLinks) {
-        assert.ok(link.includes('573000000000'), `WA link in ${file} does not use standard phone: ${link}`);
+        assert.ok(link.includes('573151206985'), `WA link in ${file} does not use standard phone: ${link}`);
       }
     }
 

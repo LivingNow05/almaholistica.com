@@ -6,7 +6,7 @@ Validates:
 1. public/logo-mariposa-con-fondo-completo.svg exists, >1MB, valid XML/SVG, square viewBox, hover CSS/keyframes, no malicious scripts.
 2. public/favicon.svg exists, valid XML/SVG.
 3. src/config/site.ts exports SITE_CONFIG with required contract fields:
-   - whatsappNumber: '573000000000'
+   - whatsappNumber: '573151206985'
    - url: 'https://almaholistica.com'
    - name: 'Alma Holística'
    - defaultOgImage: '/logo-mariposa-con-fondo-completo.svg'
@@ -140,8 +140,8 @@ def run_tests():
         else:
             phone_val = match_phone.group(1)
             print(f"Found whatsappNumber: '{phone_val}'")
-            if phone_val != "573000000000":
-                t3_errors.append(f"whatsappNumber is '{phone_val}', expected exact '573000000000'")
+            if phone_val != "573151206985":
+                t3_errors.append(f"whatsappNumber is '{phone_val}', expected exact '573151206985'")
 
         # URL check
         match_url = re.search(r"url:\s*['\"]([^'\"]+)['\"]", cfg_code)
