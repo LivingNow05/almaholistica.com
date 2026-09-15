@@ -438,6 +438,25 @@ html.light section {
   background-color: #F8FAFC !important;
 }
 
+/* Cabecera / Header y Menú Móvil en Modo Claro (Blanco Puro Editorial y Contraste Sólido) */
+html:not(.dark) header,
+html.light header,
+html:not(.dark) #mobile-menu,
+html.light #mobile-menu {
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+}
+
+/* Título de Marca Alma Holística en Header en Modo Claro (Negro Editorial Sólido) */
+html:not(.dark) .brand-title,
+html.light .brand-title {
+  color: #000000 !important;
+  font-weight: 800 !important;
+}
+html.dark .brand-title {
+  color: #FFFFFF !important;
+}
+
 /* Superficies de tarjetas, cajas y contenedores a blanco puro (#FFFFFF) */
 html:not(.dark) [class*="bg-[#0A1226]"],
 html.light [class*="bg-[#0A1226]"],
