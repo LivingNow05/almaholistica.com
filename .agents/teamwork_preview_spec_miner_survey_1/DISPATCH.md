@@ -1,41 +1,34 @@
-# DISPATCH — teamwork_preview_spec_miner_survey_1
+# DISPATCH
 
-## Objective
-Read ORIGINAL_REQUEST.md and extract the exhaustive specification of all requirements (R1 datasets, R2 design and routes, R3 WhatsApp funnel, R4 SEO and SitemapFast).
+## Task
+You are teamwork_preview_spec_miner_survey_1.
+Working directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_spec_miner_survey_1
+Parent: teamwork_preview_orchestrator_8 (Conv ID: dee5921c-c2ce-44d0-97b2-5ec780197d61)
 
-## Working Directory
-/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_spec_miner_survey_1/
+Read:
+- /Users/anthony/Downloads/almaholistica.com/.agents/ORIGINAL_REQUEST.md (specifically '## Follow-up — 2026-09-16T00:16:05Z')
+- Existing test suites:
+  - tests/ (check what tests exist, especially tests/adversarial_*.test.mjs, tests/adversarial_assets_config_m2_2.py, tests/adversarial_m6_stress_harness.py, package.json test scripts)
+  - Look for specific assertions regarding llms.txt, phone numbers (+57 315 1206985 vs +57 300 000 0000), trailing slashes in city URLs, index.html JSON-LD restriction (MR3-CH2-4.5), RAG block assertions, E-E-A-T assertions.
 
-## Output
-Write your findings and specification inventory to `handoff.md` in your working directory.
+Deliver a comprehensive specification report in:
+/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_spec_miner_survey_1/report.md
+and handoff.md. Include exact constraints, test expectations, and edge cases.
 
-## 2026-09-06T01:32:31Z
-Tu identidad es teamwork_preview_spec_miner_survey_1.
-Tu directorio de trabajo exclusivo es: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_spec_miner_survey_1/
-Tu tarea asignada está en: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_spec_miner_survey_1/DISPATCH.md
+## 2026-09-16T00:17:37Z
+You are teamwork_preview_spec_miner_survey_1.
+Working directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_spec_miner_survey_1.
+Your parent is teamwork_preview_orchestrator_8 (Conv ID: dee5921c-c2ce-44d0-97b2-5ec780197d61).
 
-Debes leer OBLIGATORIAMENTE antes de empezar:
-/Users/anthony/Downloads/almaholistica.com/ORIGINAL_REQUEST.md
+Read:
+- /Users/anthony/Downloads/almaholistica.com/.agents/ORIGINAL_REQUEST.md (specifically '## Follow-up — 2026-09-16T00:16:05Z')
+- /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_spec_miner_survey_1/DISPATCH.md
+- Investigate tests/ directory, package.json scripts, adversarial tests (tests/adversarial_*.test.mjs, tests/adversarial_assets_config_m2_2.py, tests/adversarial_m6_stress_harness.py).
+- Identify all existing test expectations, assertions, edge cases, and constraints regarding llms.txt, phone numbers, city URL trailing slashes, index.html JSON-LD restrictions (MR3-CH2-4.5), RAG citability blocks, E-E-A-T data, and build requirements.
 
-Extrae minuciosamente todas las especificaciones y requisitos:
-1. Requisitos R1: Datasets programáticos:
-   - dataset_almaholistica_ciudades.csv (>100 ciudades, 20 países aprobados, columnas exactas, nombres, formatos).
-   - dataset_biodescodificacion_dolencias.json / .csv (45 patologías validadas, campos exactos: slug, nombre, conflicto_emocional, sentido_biologico, reprogramacion, preguntas_reflexion, faqs).
-2. Requisitos R2: Arquitectura web y diseño:
-   - Astro + Tailwind CSS + React/TSX.
-   - Diseño mate sólido estricto: CERO glassmorphism, CERO backdrop-blur, CERO resplandores neón/glow.
-   - Paleta de colores exacta: #060A1A, #0A1226, #0E172F, #1E293B/#1E3A5F, #38BDF8, #D4AF37/#F59E0B.
-   - Tipografías: Cinzel/Playfair Display (títulos) + Plus Jakarta Sans (cuerpo).
-   - Integración del logo SVG oficial: logo-mariposa-con-fondo-completo.svg.
-   - Rutas dinámicas: /[slug] (ciudades), /biodescodificacion/[slug] (dolencias), home /, listings.
-3. Requisitos R3: Embudo de conversión:
-   - WhatsApp Quiz Modal (3-4 pasos interactivos: síntoma, duración, intentos previos, ubicación).
-   - Teléfono genérico provisional 573000000000 configurado en src/config/site.ts.
-   - Generación de enlace de WhatsApp con mensaje estructurado dinámico.
-4. Requisitos R4: SEO y SitemapFast:
-   - Meta tags, OpenGraph, Twitter Cards, canonical URL.
-   - JSON-LD schemas: MedicalWebPage, FAQPage, BreadcrumbList.
-   - Arquitectura SitemapFast: scripts/generate_sitemap.py generando sitemap-index.xml, sitemap-0.xml y robots.txt.
-5. Criterios de aceptación y calidad (npm run build limpio, cero errores TS/Astro, layout responsive y cero CLS).
+Write your report to:
+/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_spec_miner_survey_1/report.md
+and write a handoff to:
+/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_spec_miner_survey_1/handoff.md
 
-Escribe tu informe completo en /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_spec_miner_survey_1/handoff.md y envía un mensaje al orquestador al terminar.
+When done, send a message to parent with summary and file paths.

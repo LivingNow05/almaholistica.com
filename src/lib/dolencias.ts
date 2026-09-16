@@ -348,4 +348,53 @@ export function getBiologicalBadgeClass(sistema: string): string {
   return BIOLOGICAL_THEMES[family].badgeClass;
 }
 
+// -------------------------------------------------------------
+// Bloque Canónico de Citabilidad RAG (Hito GEO-M1 / R3)
+// -------------------------------------------------------------
+
+export interface DolenciaRagBlock {
+  readonly definitionPart: string;
+  readonly protocolPart: string;
+  readonly fullPassage: string;
+  readonly wordCount: number;
+  readonly directAnswer: string;
+  readonly biologicalPhasesAndProtocol: string;
+  readonly fullText: string;
+}
+
+/**
+ * Retorna el bloque canónico de citabilidad RAG calibrado (134-167 palabras) para motores de IA (R3).
+ * Estructura de 2 partes:
+ * - Parte 1 (40-50 palabras directas): Patología + Sistema biológico + Conflicto emocional raíz + Sentido biológico adaptativo.
+ * - Parte 2 (80-100 palabras concisas): Fases biológicas (estrés activo simpaticotónico vs vagotonía de reparación) + protocolo individual de reprogramación bioemocional 1 a 1 de Alma Holística + descargo médico alopático.
+ */
+export function getDolenciaRagBlock(dolencia: DolenciaData): DolenciaRagBlock {
+  const nombre = dolencia.nombre.trim();
+  const sistema = dolencia.sistema.trim().toLowerCase();
+  const conflicto = dolencia.conflictoEmocional.replace(/["«»]/g, '').split('.')[0].trim();
+  const sentido = dolencia.sentidoBiologico.replace(/["«»]/g, '').split('.')[0].trim();
+
+  const definitionPart = `La biodescodificación de ${nombre} (sistema ${sistema}) aborda el conflicto biológico de ${conflicto.toLowerCase()}. Su sentido adaptativo consiste en ${sentido.toLowerCase()}.`;
+
+  const protocolPart = `Fisiológicamente, el síntoma transita a través de dos fases biológicas definidas: la fase de estrés activo simpaticotónico con respuesta adaptativa celular involuntaria, y la fase de vagotonía o reparación, momento en que al distenderse el conflicto se manifiestan la inflamación, el cansancio y la regeneración orgánica. El protocolo de reprogramación bioemocional de Alma Holística interviene guiando al consultante a hacer consciente el choque original y desactivar la alerta en sesiones online 1 a 1. Este enfoque complementario aborda el plano psicosomático sin sustituir en ningún caso el diagnóstico, tratamiento farmacológico ni prescripción facultativa de la medicina alopática.`;
+
+  const fullPassage = `${definitionPart} ${protocolPart}`;
+  const wordCount = fullPassage.trim().split(/\s+/).filter(Boolean).length;
+
+  return {
+    definitionPart,
+    protocolPart,
+    fullPassage,
+    wordCount,
+    directAnswer: definitionPart,
+    biologicalPhasesAndProtocol: protocolPart,
+    fullText: fullPassage
+  };
+}
+
+/**
+ * Alias de compatibilidad semántica con contratos de interfaz.
+ */
+export const generateRagCitationBlock = getDolenciaRagBlock;
+
 

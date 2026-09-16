@@ -1,15 +1,15 @@
-# Progreso de Investigación - teamwork_preview_explorer_survey_2
+# Progress — teamwork_preview_explorer_survey_2
 
-- **Estado**: Investigación completada con éxito
-- **Última visita**: 2026-09-10T19:53:45Z
-- **Fase actual**: Handoff y notificación al parent
+Last visited: 2026-09-16T00:23:30Z
+Status: Survey completed successfully. Artifacts ready and verified.
 
-## Tareas
-- [x] Inicializar DISPATCH.md, BRIEFING.md, progress.md
-- [x] Leer ORIGINAL_REQUEST.md y contexto relevante en .agents/
-- [x] Inspeccionar public/images/ y activos existentes (logos, SVGs, iconos, formato, dimensiones)
-- [x] Analizar especificaciones de las 3 ilustraciones (R2: Hero, Metodología, Fases)
-- [x] Analizar integración en páginas/componentes Astro y prevención de CLS
-- [x] Revisar suite de tests para imágenes/CLS (394 pruebas pasadas)
-- [x] Redactar analysis.md
-- [x] Redactar handoff.md y notificar al parent
+- [x] Read ORIGINAL_REQUEST.md and DISPATCH.md
+- [x] Setup BRIEFING.md and DISPATCH.md
+- [x] Investigate `src/pages/biodescodificacion/[slug].astro` and dolencias dataset (R3)
+- [x] Investigate `dataset_almaholistica_ciudades_eeat_geo.json` and E-E-A-T structure (R4)
+- [x] Verify Schema.org preservation (`MedicalWebPage`, `FAQPage`, `BreadcrumbList`)
+- [x] Inspect existing tests (150 regression tests, 244 adversarial tests, Python harnesses)
+- [x] Compile comprehensive `report.md`
+- [x] Write 5-component `handoff.md`
+- [x] Update BRIEFING.md
+- [x] Send final message to parent

@@ -14,6 +14,7 @@ import { getCities } from '../lib/cities';
 import type { CityData, CityStaticPath } from '../types/city';
 import { SITE_CONFIG, buildWhatsAppUrl } from '../config/site';
 import { buildLocalServiceSchema, buildBreadcrumbSchema } from '../lib/schema';
+import eeatCitiesData from '../data/dataset_almaholistica_ciudades_eeat_geo.json';
 
 export async function getStaticPaths(): Promise<CityStaticPath[]> {
   const cities = getCities();
@@ -45,6 +46,28 @@ const moneda = city.moneda || (city as any)['Moneda'] || 'USD';
 const precio = city.rangoPrecio || (city as any)['Rango_Precio_Sesion'] || `Consultar tarifas locales (${moneda})`;
 const historiaLocal = city.historiaLocal || (city as any)['Historia_Local'] || '';
 const pais = city.pais || (city as any)['País'] || '';
+
+// Mapeo e integración E-E-A-T y Autoridad Clínica (Hito GEO-M1 / R4)
+const cleanCitySlug = rawSlug.replace(/^biodescodificacion-/i, '').toLowerCase().trim();
+const eeatRecord = (eeatCitiesData as any[]).find(
+  (item: any) => item['URL Final (Slug)'].toLowerCase().trim() === cleanCitySlug
+) || eeatCitiesData[0];
+
+const especialistaNombre = eeatRecord.EEAT_Especialista_Nombre || 'Lic. Sofía Alarcón Valdés';
+const especialistaCargo = eeatRecord.EEAT_Especialista_Cargo || 'Especialista Senior en Biodescodificación y Psicosomática Clínica';
+const especialistaRegistro = eeatRecord.EEAT_Especialista_Registro || 'Reg. ITH-8492 (Asociación Internacional de Terapias Holísticas)';
+const especialistaExperiencia = eeatRecord.EEAT_Especialista_Experiencia || '+9 años de práctica clínica y más de 1.400 sesiones individuales de biodescodificación guiadas.';
+const especialistaFormacion = eeatRecord.EEAT_Especialista_Formacion || 'Diplomada en Descodificación Biológica de los Síntomas (Escuela Francesa), Máster en Psiconeuroinmunología Clínica y Acompañamiento Transgeneracional.';
+const autoridadCientifica = eeatRecord.EEAT_Autoridad_Cientifica || 'Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton.';
+const confiabilidadDescargo = eeatRecord.EEAT_Confiabilidad_Descargo || 'Descargo de Responsabilidad Médica y Compromiso Ético: Las sesiones de biodescodificación y terapia holística ofrecidas por Alma Holística son intervenciones de acompañamiento emocional y bienestar complementario. En ningún caso sustituyen, reemplazan ni modifican el diagnóstico, prescripción médica o tratamiento facultativo alopático.';
+const casosLocales = eeatRecord.EEAT_Experiencia_Casos_Locales || `Casos Clínicos Observados en ${cityName}: Los consultantes atendidos desde ${cityName} reportan con frecuencia somatizaciones gastrointestinales y sobrecarga tensional.`;
+const especialistaIniciales = especialistaNombre
+  .replace(/^(Lic\.|Dr\.|Dra\.)\s*/i, '')
+  .split(' ')
+  .filter(Boolean)
+  .slice(0, 2)
+  .map((w: string) => w[0])
+  .join('') || 'AH';
 
 // URL Canónica oficial con trailing slash (conforme a astro.config.mjs)
 const canonicalUrl = `https://almaholistica.com/${rawSlug}/`;
@@ -552,6 +575,121 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
             </li>
           </ul>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- EQUIPO CLÍNICO, AVAL CIENTÍFICO Y AUTORIDAD E-E-A-T                      -->
+  <!-- ========================================================================= -->
+  <section class="w-full bg-[#060A1A] py-16 sm:py-24 border-b border-slate-800/40" aria-labelledby="eeat-authority-heading">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="max-w-3xl mb-12">
+        <div class="inline-flex items-center gap-2 text-xs font-sans font-bold tracking-wider text-[#38BDF8] uppercase mb-3">
+          <span class="w-2 h-2 rounded-full bg-[#38BDF8]"></span>
+          <span>AUTORIDAD CLÍNICA & RESPALDO CIENTÍFICO // {cityName.toUpperCase()}</span>
+        </div>
+        <h2 id="eeat-authority-heading" class="font-sans font-extrabold text-2xl sm:text-4xl text-white uppercase tracking-tight">
+          Especialista Asignado y Fundamentación Metodológica
+        </h2>
+        <p class="text-base text-slate-300 font-sans mt-2 leading-relaxed">
+          Atención clínica individual guiada por terapeutas acreditados en medicina mente-cuerpo, psiconeuroinmunología y descodificación biológica.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-10">
+        <!-- Ficha del Especialista Asignado (7 cols) -->
+        <div class="lg:col-span-7 card-matte p-6 sm:p-8 rounded-2xl border border-slate-800">
+          <div class="flex flex-col sm:flex-row items-start gap-5 mb-6">
+            <div class="w-16 h-16 rounded-2xl bg-[#0E172F] border border-slate-700 flex items-center justify-center shrink-0">
+              <span class="text-xl font-bold text-[#38BDF8] font-mono">
+                {especialistaIniciales}
+              </span>
+            </div>
+            <div>
+              <span class="text-xs font-mono font-semibold uppercase tracking-wider text-[#38BDF8] block mb-1">
+                {especialistaRegistro}
+              </span>
+              <h3 class="text-xl sm:text-2xl font-bold font-sans text-white mb-1">
+                {especialistaNombre}
+              </h3>
+              <p class="text-sm text-slate-300 font-medium">
+                {especialistaCargo}
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-4 text-sm text-slate-300 font-sans leading-relaxed border-t border-slate-800/80 pt-5">
+            <div>
+              <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Experiencia Clínica</span>
+              <p>{especialistaExperiencia}</p>
+            </div>
+            <div>
+              <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Formación y Acreditaciones</span>
+              <p>{especialistaFormacion}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Casos Clínicos Locales Observados (5 cols) -->
+        <div class="lg:col-span-5 card-matte p-6 sm:p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-sans font-bold tracking-wider text-[#779DD1] uppercase mb-3">
+              <span class="w-2 h-2 rounded-full bg-[#779DD1]"></span>
+              <span>EXPERIENCIA CLÍNICA LOCAL</span>
+            </div>
+            <h3 class="text-lg font-bold font-sans text-white mb-3">
+              Casos en {cityName}
+            </h3>
+            <p class="text-sm text-slate-300 font-sans leading-relaxed">
+              {casosLocales}
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-800/80">
+            <span class="text-xs text-slate-400 font-sans block">
+              Modalidad de consulta: 100% Online en vivo con acompañamiento individual confidencial en {pais}.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aval Científico y Metodológico (PNI, Hamer, Flèche, Lipton) -->
+      <div class="card-matte p-6 sm:p-8 rounded-2xl border border-slate-800 mb-8">
+        <div class="inline-flex items-center gap-2 text-xs font-sans font-bold tracking-wider text-[#38BDF8] uppercase mb-3">
+          <span class="w-2 h-2 rounded-full bg-[#38BDF8]"></span>
+          <span>MARCO CIENTÍFICO Y BASES BIOLÓGICAS</span>
+        </div>
+        <h3 class="text-lg sm:text-xl font-bold font-sans text-white mb-3">
+          Pilares Metodológicos de la Consulta
+        </h3>
+        <p class="text-sm sm:text-base text-slate-300 font-sans leading-relaxed mb-4">
+          {autoridadCientifica}
+        </p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-slate-800/80 text-xs font-mono text-slate-300">
+          <div class="p-2.5 rounded-lg bg-[#0E172F] border border-slate-800 text-center">
+            <span class="text-[#38BDF8] font-semibold block">PNI Clínica</span>
+            <span class="text-[11px] text-slate-400">Psiconeuroinmunología</span>
+          </div>
+          <div class="p-2.5 rounded-lg bg-[#0E172F] border border-slate-800 text-center">
+            <span class="text-[#38BDF8] font-semibold block">Dr. R.G. Hamer</span>
+            <span class="text-[11px] text-slate-400">5 Leyes Biológicas</span>
+          </div>
+          <div class="p-2.5 rounded-lg bg-[#0E172F] border border-slate-800 text-center">
+            <span class="text-[#38BDF8] font-semibold block">Christian Flèche</span>
+            <span class="text-[11px] text-slate-400">Descodificación Biológica</span>
+          </div>
+          <div class="p-2.5 rounded-lg bg-[#0E172F] border border-slate-800 text-center">
+            <span class="text-[#38BDF8] font-semibold block">Dr. Bruce Lipton</span>
+            <span class="text-[11px] text-slate-400">Epigenética y Célula</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Descargo de Responsabilidad Médica y Compromiso Ético -->
+      <div class="card-matte p-6 rounded-2xl border-l-4 border-l-slate-600 border border-slate-800">
+        <p class="text-xs sm:text-sm text-slate-400 font-sans leading-relaxed">
+          <strong class="text-slate-200">Compromiso Ético y Descargo de Responsabilidad Médica:</strong> {confiabilidadDescargo}
+        </p>
       </div>
     </div>
   </section>

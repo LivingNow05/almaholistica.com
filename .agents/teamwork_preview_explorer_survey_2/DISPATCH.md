@@ -1,33 +1,36 @@
-## 2026-09-10T19:50:24Z
-Eres teamwork_preview_explorer_survey_2, un agente de exploración de código para Alma Holística.
+# DISPATCH
 
-Tu directorio de trabajo es:
-/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_2
+## Task
+You are teamwork_preview_explorer_survey_2.
+Working directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_2
+Parent: teamwork_preview_orchestrator_8 (Conv ID: dee5921c-c2ce-44d0-97b2-5ec780197d61)
 
-El archivo con los requerimientos originales del usuario es:
-/Users/anthony/Downloads/almaholistica.com/.agents/ORIGINAL_REQUEST.md
-(DEBES leer este archivo antes de comenzar tu trabajo).
+Read:
+- /Users/anthony/Downloads/almaholistica.com/.agents/ORIGINAL_REQUEST.md (specifically '## Follow-up — 2026-09-16T00:16:05Z')
+- Focus on Requirements R3 and R4:
+  - R3: Inspect `src/pages/biodescodificacion/[slug].astro`, data sources like `src/data/dataset_biodescodificacion_dolencias.json` or CSVs. How are the 45 symptoms generated? Where is the content currently placed? How to structure the canonical RAG citability block (134-167 words, first 40-50 words direct definition of pathology + biological system + root emotional conflict + adaptive biological meaning; next 80-100 words symptom phases active vs repair and bioemotional reprogramming protocol without replacing allopathic medicine).
+  - R4: Inspect `src/data/dataset_almaholistica_ciudades_eeat_geo.json`, specialists and methodological validation (Psiconeuroinmunología, Hamer, Flèche, Lipton), and where E-E-A-T and medical disclaimer are displayed or should be displayed (e.g. in index, dolencia pages, city pages, or layout).
+  - Check schema preservation (`MedicalWebPage`, `FAQPage`, `BreadcrumbList`).
 
-El directorio raíz del proyecto es:
-/Users/anthony/Downloads/almaholistica.com
+Deliver your findings and recommended implementation strategy in:
+/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_2/report.md
+and handoff.md.
 
-Tu misión es investigar exhaustivamente los activos visuales, ilustraciones y la estructura del layout para el requerimiento R2 del último follow-up:
-1. Inspeccionar public/images/ y activos existentes (logos, SVGs, iconos).
-2. Analizar las especificaciones de las 3 ilustraciones requeridas con estética médica editorial / geométrica abstracta:
-   - Ilustración 1 (Hero/Enfoque): Eje mente-cuerpo y correlación neurovegetativa.
-   - Ilustración 2 (Metodología): Los 3 pilares del choque biológico y la respuesta adaptativa.
-   - Ilustración 3 (Fases del Proceso): Rango de etapas terapéuticas desde el diagnóstico preliminar hasta la autorregulación.
-3. Analizar cómo deben implementarse estas ilustraciones:
-   - Formato óptimo (SVG vectorial limpio, autoportante, colores acordes a la paleta mate de Alma Holística).
-   - Estructura visual exacta y elementos gráficos requeridos para cada una.
-   - Dónde y cómo se integrarán en las páginas y componentes (ej. src/pages/index.astro, secciones de metodología, proceso o dolencias) para romper bloques continuos de texto.
-   - Requisitos técnicos indispensables: dimensiones fijas (width y height explícitos), alt text descriptivo para SEO/accesibilidad, loading="lazy", y prevención absoluta de Cumulative Layout Shift (CLS = 0).
-4. Revisar si existen tests o utilidades que validen imágenes o CLS en la suite de pruebas.
+## 2026-09-16T00:17:37Z
+You are teamwork_preview_explorer_survey_2.
+Working directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_2.
+Your parent is teamwork_preview_orchestrator_8 (Conv ID: dee5921c-c2ce-44d0-97b2-5ec780197d61).
 
-REGLAS Y ENTREGABLES:
-- Eres un agente de SOLO LECTURA. NO modifiques ni crees archivos de código fuente.
-- Documenta todos tus hallazgos detallados en:
-  /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_2/analysis.md
-- Genera un reporte de handoff completo en:
-  /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_2/handoff.md
-- Cuando termines, envía un mensaje a tu parent (conversation ID actual) usando send_message resumiendo tus conclusiones e indicando las rutas de tus archivos.
+Read:
+- /Users/anthony/Downloads/almaholistica.com/.agents/ORIGINAL_REQUEST.md (specifically '## Follow-up — 2026-09-16T00:16:05Z')
+- /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_2/DISPATCH.md
+- Survey R3: src/pages/biodescodificacion/[slug].astro, dataset_biodescodificacion_dolencias.json, how dolencias pages are generated. How to design the modular RAG citability block (134-167 words, 40-50 words definition, 80-100 words phase/protocol) placed before detailed breakdown.
+- Survey R4: src/data/dataset_almaholistica_ciudades_eeat_geo.json. How specialists and methodological validation (Psiconeuroinmunología, Hamer, Flèche, Lipton) and medical disclaimers are structured, and where they should be displayed.
+- Check schema preservation (MedicalWebPage, FAQPage, BreadcrumbList).
+
+Write your report to:
+/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_2/report.md
+and write a handoff to:
+/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_2/handoff.md
+
+When done, send a message to parent with summary and file paths.

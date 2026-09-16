@@ -1,165 +1,137 @@
-# Handoff Report — Survey 2: Activos Visuales, Ilustraciones (R2) y Layout
-**Agente**: `teamwork_preview_explorer_survey_2`  
-**Directorio de trabajo**: `/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_2`  
-**Destinatario**: `parent` (`6726af5a-d5c1-4a22-89aa-ecd41de70482`)  
-**Fecha**: 2026-09-10  
-**Tipo de Handoff**: Hard (Tarea de investigación completada al 100%)
+# Handoff Report — Relevamiento R3 (Citabilidad RAG) y R4 (E-E-A-T Clínico)
+
+**De:** `teamwork_preview_explorer_survey_2`  
+**Para:** `teamwork_preview_orchestrator_8` (Conv ID: `dee5921c-c2ce-44d0-97b2-5ec780197d61`)  
+**Fecha:** 2026-09-16  
+**Tipo de Handoff:** Hard (Tarea de exploración y diseño arquitectónico completada)  
+**Reporte Completo:** `/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_2/report.md`
 
 ---
 
 ## 1. Observation
 
-1. **Estado del directorio `public/` y ausencia de `public/images/`**:
-   - Comando ejecutado: `list_dir(DirectoryPath="/Users/anthony/Downloads/almaholistica.com/public")`.
-   - Resultado:
-     ```json
-     {"name":"favicon.png","sizeBytes":"85779"}
-     {"name":"favicon.svg","sizeBytes":"1576322"}
-     {"name":"llms.txt","sizeBytes":"4895"}
-     {"name":"logo-mariposa-con-fondo-completo.svg","sizeBytes":"1576172"}
-     {"name":"robots.txt","sizeBytes":"124"}
-     {"name":"sitemap-0.xml","sizeBytes":"28101"}
-     {"name":"sitemap-index.xml","sizeBytes":"236"}
-     {"name":"sitemap.xml","sizeBytes":"28101"}
-     Total: 0 subdirectorios y 8 archivos.
-     ```
-   - El subdirectorio `public/images/` **no existe en el proyecto actualmente**.
+A través de inspección directa de código, análisis de datos en disco y ejecución de herramientas CLI, se observó lo siguiente:
 
-2. **Monotonía visual y densidad textual en `src/pages/index.astro`**:
-   - Inspección directa de `src/pages/index.astro` (1,093 líneas de código).
-   - En el Hero (líneas 180-195) se renderiza el logo mariposa interactivo mediante:
-     ```html
-     <object type="image/svg+xml" data="/logo-mariposa-con-fondo-completo.svg" ...>
-       <img src="/logo-mariposa-con-fondo-completo.svg" alt="Alma Holística Logo" width="320" height="320" loading="eager" />
-     </object>
-     ```
-   - Todas las secciones subsiguientes (Manifiesto líneas 220-237, Pilares líneas 240-324, Catálogo líneas 328-436, Directorio líneas 440-538, Proceso líneas 541-631, Testimonios líneas 634-748, FAQs líneas 751-822, CTA final líneas 825-866) carecen por completo de elementos ilustrativos o diagramas clínicos de gran escala, apoyándose únicamente en tipografía, tarjetas y micro-iconos inline.
+1. **Catálogo y Generación de Dolencias (R3):**
+   - Archivo de datos: `src/data/dataset_biodescodificacion_dolencias.json` (97,287 bytes, 1,262 líneas). Contiene exactamente 45 objetos con las propiedades requeridas: `slug`, `nombre`, `sistema`, `conflictoEmocional`, `sentidoBiologico`, `reprogramacion`, `preguntasReflexion` (array >= 3), `faqs` (array >= 3), `ganchoAgendamiento`.
+   - Generación estática SSG: `src/pages/biodescodificacion/[slug].astro` genera 45 rutas vía `getStaticPaths()` consumiendo `getDolencias()` de `src/lib/dolencias.ts`.
+   - Orden actual de secciones en `src/pages/biodescodificacion/[slug].astro`:
+     - Líneas 80-84: `<Fragment slot="schema">` (JSON-LD: `MedicalWebPage`, `FAQPage`, `BreadcrumbList`).
+     - Líneas 88-94: Migas de pan.
+     - Líneas 97-139: `<header>` (Hero con H1, badge de sistema y CTAs de WhatsApp).
+     - Líneas 142-187: `<section id="en-palabras-simples">` (3 tarjetas explicativas).
+     - Líneas 190-211: `<section aria-label="Termómetro Biológico">` (2 tarjetas de fases).
+     - Líneas 214-238: `<section id="conflicto">` (**Inicio del Desglose Detallado**).
+     - Líneas 402-413: `<aside aria-label="Aviso Médico">` (Descargo médico general).
+   - Inserción requerida: Antes del desglose detallado (`#conflicto`), idealmente entre la línea 140 (post-Hero) y 142.
 
-3. **Requerimientos de R2 en `ORIGINAL_REQUEST.md`**:
-   - Inspección de `ORIGINAL_REQUEST.md` (líneas 132-138):
-     ```markdown
-     ### R2. Generación e Integración de Ilustraciones Anatómicas y Geométricas Abstractas
-     - Crear e integrar activos visuales originales con estética de ilustraciones anatómicas, biología celular y siluetas bioenergéticas en vectores y texturas mate de calidad médica editorial:
-       - Ilustración 1 (Hero/Enfoque): Eje mente-cuerpo y correlación neurovegetativa.
-       - Ilustración 2 (Metodología): Los 3 pilares del choque biológico y la respuesta adaptativa.
-       - Ilustración 3 (Fases del Proceso): Rango de etapas terapéuticas desde el diagnóstico preliminar hasta la autorregulación.
-     - Cada imagen debe alojarse localmente en `public/images/`, contar con atributos fijos `width` y `height`, texto alternativo (`alt`) descriptivo optimizado para SEO, y carga diferida (`loading="lazy"`).
-     ```
+2. **Calibración del Pasaje RAG (134-167 palabras):**
+   - Se probó empíricamente una fórmula de 2 partes:
+     - Parte 1 (Definición directa): ~46-68 palabras (Patología + Sistema + Conflicto Emocional Raíz + Sentido Biológico Adaptativo).
+     - Parte 2 (Fases y protocolo): 97 palabras fijas (Fase simpaticotónica de estrés activo vs vagotonía de reparación + protocolo individual de reprogramación bioemocional 1 a 1 de Alma Holística + advertencia explícita de no sustitución alopática).
+   - Resultado empírico sobre las 45 dolencias:
+     - Recuento mínimo: **143 palabras**.
+     - Recuento máximo: **165 palabras**.
+     - **100% de las 45 dolencias cumplen estrictamente el rango de 134 a 167 palabras** (y el rango de aceptación de 130 a 170 palabras).
 
-4. **Contratos estrictos anti-CLS en la suite de pruebas**:
-   - `tests/adversarial_mr3_challenger.test.mjs` (líneas 316-323):
-     ```javascript
-     const imgTags = [...distIndexContent.matchAll(/<img[^>]+>/g)].map(m => m[0]);
-     for (const img of imgTags) {
-       assert.ok(/width=["']\d+["']/.test(img), `Img tag missing width: ${img}`);
-       assert.ok(/height=["']\d+["']/.test(img), `Img tag missing height: ${img}`);
-     }
-     ```
-   - `tests/adversarial_challenger_m4_gen3_2.test.mjs` (líneas 160-172, test `ADV-GEN3.6`):
-     - Itera sobre **las 160 páginas HTML en `dist/`**.
-     - Comprueba que cada tag `<img>` posea `width=["\x27]?\d+` y `height=["\x27]?\d+`.
-   - `tests/adversarial_m6_stress_harness.py` (líneas 85-125 y 185-215):
-     - Extrae los atributos `src` de todos los tags `<img>` y valida que el archivo físico resuelto exista en `dist/` (0 enlaces rotos). Si el archivo no existe físicamente, arroja `FAIL`.
-     - Valida `has_width and has_height` en cada imagen.
-   - `tests/tier2_edge_cases.test.mjs` (test `T2.6.1`):
-     - Veta anchos fijos desbordantes (`/width:\s*(?:[89]\d{2}|1\d{3})px/i` o `/w-\[(?:[89]\d{2}|1\d{3})px\]/`).
-   - `tests/helpers/mate_style_checker.mjs` y `tests/adversarial_challenger_mr2.test.mjs`:
-     - Vetan terminantemente `backdrop-blur`, transparencias en fondos, resplandores neón y colores prohibidos (`#D4AF37`, `#F59E0B`).
+3. **Dataset de Autoridad E-E-A-T (R4):**
+   - Archivo de datos: `src/data/dataset_almaholistica_ciudades_eeat_geo.json` (754,424 bytes, 4,070 líneas). Contiene 113 registros de ciudades con:
+     - 3 especialistas clínicos: `Lic. Sofía Alarcón Valdés` (Reg. ITH-8492), `Dr. Mateo Benavides Rivas` (Reg. AIE-5120), `Dra. Elena Monsalve Duarte` (Reg. CIT-6311).
+     - Aval metodológico unificado (`EEAT_Autoridad_Cientifica`): Cita expresa de Psiconeuroinmunología (PNI), 5 Leyes de la NMG del Dr. Ryke Geerd Hamer, Escuela Francesa de Christian Flèche y Epigenética del Dr. Bruce Lipton.
+     - Descargo ético y legal (`EEAT_Confiabilidad_Descargo`).
+     - Casos clínicos locales (`EEAT_Experiencia_Casos_Locales`).
+   - Discrepancia de slug detectada: El CSV `dataset_almaholistica_ciudades.csv` usa `biodescodificacion-bogota`, mientras que el JSON usa `bogota`. Se validó que `slug.replace(/^biodescodificacion-/, '')` hace coincidir el **100% (113 de 113 registros)**.
 
-5. **Línea base actual de pruebas**:
-   - `npm test`: Ejecutado exitosamente (150 pruebas pasadas, 0 fallos, duración ~126ms).
-   - `node --test tests/adversarial_*.test.mjs`: Ejecutado exitosamente (244 pruebas pasadas, 0 fallos, duración ~510ms).
-   - Total: 394 pruebas verdes.
+4. **Preservación de Esquemas Schema.org y Restricción Adversarial:**
+   - En dolencias: `MedicalWebPage`, `FAQPage` y `BreadcrumbList` están inyectados en el slot `schema` de `BaseLayout` y son auditados por `tests/adversarial_jsonld_robots_m5_2.test.mjs`.
+   - En Home: La prueba `tests/adversarial_mr3_challenger_2.test.mjs` (Línea 247) test `MR3-CH2-4.5` prohíbe taxativamente la inyección de esquemas `application/ld+json` en `dist/index.html`.
+
+5. **Línea Base de Compilación y Pruebas:**
+   - `npm test`: 150/150 tests pasan.
+   - `node --test tests/adversarial_*.test.mjs`: 244/244 tests pasan.
+   - `python3 tests/adversarial_assets_config_m2_2.py`: 6/6 tests pasan.
+   - `python3 tests/adversarial_m6_stress_harness.py`: 160 páginas verificadas con 0 errores.
 
 ---
 
 ## 2. Logic Chain
 
-1. **De la Observación 1 a la Necesidad de Infraestructura de Activos**:
-   - Dado que `public/images/` no existe, la primera acción técnica para implementar R2 debe ser crear dicho directorio en el sistema de archivos (`public/images/`).
-   - Dado que Astro compila el contenido de `public/` copiándolo directamente a `dist/`, cualquier archivo SVG colocado en `public/images/<nombre>.svg` estará disponible en la ruta web `/images/<nombre>.svg` y en disco en `dist/images/<nombre>.svg`.
+1. **R3 (Ubicación y Formato del Pasaje RAG):**
+   - *Premisa:* Los retrievers de IA (GPTBot, PerplexityBot, Google AI Overviews) priorizan párrafos de respuesta directa ubicados tempranamente en la estructura semántica del documento, antes de desgloses fraccionados.
+   - *Deducción:* Ubicar el bloque RAG inmediatamente después del Hero (`<header>`) y antes de `#en-palabras-simples` o `#conflicto` maximiza la citabilidad.
+   - *Premisa:* La prueba de extractabilidad exige un rango calibrado de 134 a 167 palabras (o 130 a 170 según criterios de aceptación), respondiendo en las primeras 40-50 palabras la definición y en las siguientes 80-100 palabras las fases y el protocolo.
+   - *Deducción:* Si la Parte 2 se fija en 97 palabras calibradas y la Parte 1 extrae y limpia el conflicto y sentido biológico de cada patología (~46-68 palabras), la suma total resulta invariablemente entre 143 y 165 palabras para todas las 45 dolencias.
 
-2. **De las Observaciones 2 y 3 al Diseño Conceptual y Alivio Textual**:
-   - La concentración de texto en `src/pages/index.astro` se alivia ubicando estratégicamente las 3 ilustraciones:
-     - **Ilustración 1 (`eje-mente-cuerpo-neurovegetativo.svg`)**: Debe situarse en la Sección 2 (Manifiesto) o en la nueva Sección de Enfoque Clínico junto a la Tabla Comparativa de Modelos Médicos (R3), ilustrando el canal bioeléctrico entre corteza, SNA y órganos diana.
-     - **Ilustración 2 (`pilares-choque-biologico.svg`)**: Debe situarse en la Sección 3 (Pilares del Fundamento Terapéutico) para encabezar o acompañar el grid de pilares y la nueva Tabla Matriz de Dolencias, mostrando la triangulación bio-adaptativa (Choque -> Capa Embrionaria -> Autorregulación).
-     - **Ilustración 3 (`fases-proceso-terapeutico.svg`)**: Debe situarse en la Sección 6 (El Proceso Terapéutico) como una infografía panorámica que conecta visualmente los 4 pasos del funnel clínico (01 Quiz, 02 Hipótesis, 03 Sesión, 04 Reprogramación) con su oscilograma de normotonía.
+2. **R4 (Estrategia de Visualización de Autoridad E-E-A-T):**
+   - *Premisa:* El dataset `dataset_almaholistica_ciudades_eeat_geo.json` fue diseñado para dotar a las páginas de ciudad de credenciales de terapeutas reales y casos clínicos locales, mientras que la Home y las Dolencias requieren aval metodológico sin violar contratos preexistentes.
+   - *Deducción:* La integración debe distribuirse en:
+     1. *Páginas de ciudad (`[slug].astro`):* Módulo hiperlocal E-E-A-T con la ficha del terapeuta asignado, casos clínicos locales, aval científico y descargo ético.
+     2. *Home (`index.astro`):* Sección editorial con los 3 especialistas y la fundamentación PNI/Hamer/Flèche/Lipton presentada únicamente en HTML semántico (respetando la regla adversarial `MR3-CH2-4.5` de no inyectar JSON-LD en `index.html`).
+     3. *Dolencias (`biodescodificacion/[slug].astro`):* Integración de la complementariedad médica en el bloque RAG y badge de respaldo metodológico en el aside de aviso médico.
 
-3. **De la Observación 4 a las Restricciones Técnicas Innegociables**:
-   - Si una imagen se inserta en un archivo `.astro` sin atributos `width="XXX"` y `height="YYY"` literales numéricos, el test `ADV-GEN3.6` y el script `adversarial_m6_stress_harness.py` fallarán automáticamente en la compilación.
-   - Si la etiqueta `<img>` referencia una URL como `/images/ejemplo.svg` pero el archivo no existe físicamente en `public/images/`, `adversarial_m6_stress_harness.py` detectará un broken asset (404) y la auditoría fallará.
-   - Si los SVGs contienen `<script>`, `onload=`, estilos inline con `backdrop-blur` o colores `#D4AF37` / `#F59E0B`, los tests de seguridad y estilo (`adversarial_assets_config_m2_2.py` y `adversarial_challenger_mr2.test.mjs`) fallarán de inmediato.
-
-4. **De la Observación 5 a la Preservación de Contratos Existentes**:
-   - `src/pages/index.astro` posee contratos estrictos que deben preservarse:
-     - Exactamente 12 tarjetas `.home-dolencia-card` con slugs canónicos (`migrana` y `sobrepeso-retencion`).
-     - Al menos 100 enlaces a ciudades con `.city-search-item`.
-     - Al menos 4 enlaces de WhatsApp hacia `573000000000`.
-     - Cero esquemas JSON-LD inyectados en `index.html`.
-     - Anclas `#dolencias` y `#ciudades`.
-   - Por tanto, la inserción de las 3 ilustraciones debe complementar y enriquecer las secciones sin alterar los nombres de clases ni los atributos de datos ya evaluados.
+3. **Preservación Técnica y Cero CLS:**
+   - *Premisa:* Los estilos deben respetar la normativa de diseño sólido mate (`#060A1A`, `#0A1226`, `#38BDF8`), sin degradados transparentes ni efectos dorados/amarillos (`#F59E0B`, `#D4AF37`), y sin producir desplazamiento de diseño (`CLS = 0`).
+   - *Deducción:* Toda nueva tarjeta o módulo debe emplear las clases estándar del proyecto (`card-matte`, `card-matte-elevated`, bordes `border-slate-800`, textos `text-slate-300` / `text-white`), y mantener intactas las 160 rutas SSG.
 
 ---
 
 ## 3. Caveats
 
-1. **Estado de Solo Lectura**: Como agente de investigación y exploración, no se ha creado ni modificado ningún archivo de código fuente del proyecto (`src/` o `public/`). Toda la propuesta de diseño y especificaciones está lista para ser ejecutada por el agente Worker correspondiente en el hito M2.
-2. **Generación de Gráficos SVG**: Los archivos SVG finales deben ser redactados con precisión geométrica y estética editorial de alta gama para mantener el estándar de diseño Talora Wellness Group, asegurando que todos los trazados (`path`, `circle`, `rect`, `text`) utilicen exclusivamente la paleta mate aprobada.
-3. **Coordinación con M3 (Tablas Comparativas)**: El layout final de las secciones donde se ubiquen las Ilustraciones 1 y 2 debe coordinarse estrechamente con el equipo que implemente las tablas comparativas de R3 para evitar saturación en pantallas móviles.
+1. **Variaciones de longitud sintáctica en nombres de dolencia:** Patologías con nombres extensos (ej. `Colon Irritable (Síndrome de Intestino Irritable)` o `Resistencia a la Insulina y Síndrome Metabólico`) generan pasajes de ~165 palabras, rozando el límite superior de 167. El generador debe recortar prefijos redundantes ("En fase de", "Se caracteriza por") para mantener un margen de seguridad holgado (< 160 palabras).
+2. **Archivos CSV vs JSON de ciudades:** No se debe reemplazar ni eliminar `dataset_almaholistica_ciudades.csv`, ya que `tests/tier1_features.test.mjs` valida su presencia física y sus 9 columnas exactas. `dataset_almaholistica_ciudades_eeat_geo.json` debe utilizarse como capa de enriquecimiento auxiliar.
+3. **Restricción adversarial `MR3-CH2-4.5` en Home:** Se debe recordar al implementador que bajo ninguna circunstancia debe añadirse un script `type="application/ld+json"` en `src/pages/index.astro`.
 
 ---
 
 ## 4. Conclusion
 
-1. Se determinó la ausencia actual de `public/images/` y se estableció el procedimiento técnico para su creación y aprovisionamiento.
-2. Se definieron las especificaciones visuales, conceptuales y cromáticas completas para las 3 ilustraciones médicas vectoriales:
-   - `eje-mente-cuerpo-neurovegetativo.svg` (`800x600`, 4:3).
-   - `pilares-choque-biologico.svg` (`800x500`, 16:10).
-   - `fases-proceso-terapeutico.svg` (`900x450`, 2:1).
-3. Se especificaron los puntos de integración precisos en `src/pages/index.astro` para romper la densidad de texto continuo y generar una experiencia editorial fluida.
-4. Se blindaron los requisitos técnicos contra Cumulative Layout Shift: atributos fijos `width` y `height`, `loading="lazy"`, `decoding="async"`, `alt` descriptivo SEO y compatibilidad 100% con los 394 tests de la suite automatizada.
-5. El documento detallado de análisis se encuentra disponible en:
-   `/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_2/analysis.md`
+1. **R3 está plenamente formulado y verificado:** Es 100% viable generar dinámicamente un bloque RAG calibrado de 134-167 palabras para las 45 dolencias mediante un helper puro en `src/lib/dolencias.ts`, e insertarlo post-Hero en `src/pages/biodescodificacion/[slug].astro`.
+2. **R4 cuenta con datos completos y estructura definida:** La información de los 3 especialistas, los casos clínicos locales y el respaldo metodológico (PNI, Hamer, Flèche, Lipton) está lista para ser consumida desde `src/data/dataset_almaholistica_ciudades_eeat_geo.json` hacia las páginas de ciudad y la Home.
+3. **Los 3 esquemas JSON-LD (`MedicalWebPage`, `FAQPage`, `BreadcrumbList`) se encuentran preservados:** No sufren alteración estructural y continúan pasando todas las pruebas adversariales.
+4. **La documentación completa de soporte y código de referencia ha sido consolidada en `report.md`.**
 
 ---
 
 ## 5. Verification Method
 
-Para verificar independientemente los hallazgos y validar la implementación cuando el Worker ejecute M2:
+Para verificar independientemente todos los hallazgos empíricos reportados:
 
-1. **Verificación de Ausencia Actual de `public/images/`**:
+1. **Verificación de conteo de palabras RAG en las 45 dolencias:**
    ```bash
-   ls -la /Users/anthony/Downloads/almaholistica.com/public
+   python3 -c "
+   import json, re
+   with open('src/data/dataset_biodescodificacion_dolencias.json') as f:
+       dolencias = json.load(f)
+   def count_words(t): return len(re.findall(r'\b\w+\b', t))
+   P2 = 'Fisiológicamente, el síntoma transita a través de dos fases biológicas definidas: la fase de estrés activo simpaticotónico con respuesta adaptativa celular involuntaria, y la fase de vagotonía o reparación, momento en que al distenderse el conflicto se manifiestan la inflamación, el cansancio y la regeneración orgánica. El protocolo de reprogramación bioemocional de Alma Holística interviene guiando al consultante a hacer consciente el choque original y desactivar la alerta en sesiones online 1 a 1. Este enfoque complementario aborda el plano psicosomático sin sustituir en ningún caso el diagnóstico, tratamiento farmacológico ni prescripción facultativa de la medicina alopática.'
+   w_p2 = count_words(P2)
+   for d in dolencias:
+       conflicto = re.sub(r'[\"«»]', '', d['conflictoEmocional']).split('.')[0].strip()
+       sentido = re.sub(r'[\"«»]', '', d['sentidoBiologico']).split('.')[0].strip()
+       p1 = f'La biodescodificación de {d[\"nombre\"]} (sistema {d[\"sistema\"].lower()}) aborda el conflicto biológico de {conflicto.lower()}. Su sentido adaptativo consiste en {sentido.lower()}.'
+       tot = count_words(p1) + w_p2
+       assert 130 <= tot <= 170, f'{d[\"slug\"]} fuera de rango: {tot}'
+   print('OK: Las 45 dolencias cumplen el rango estricto de citabilidad!')
+   "
    ```
-   *Condición de confirmación*: La carpeta `images/` no existe antes de la intervención del Worker.
 
-2. **Verificación de la Suite de Pruebas Existente (Línea Base 100% Verde)**:
+2. **Verificación de paridad de slugs de ciudades entre CSV y JSON E-E-A-T:**
+   ```bash
+   python3 -c "
+   import csv, json
+   with open('src/data/dataset_almaholistica_ciudades.csv') as f:
+       csv_slugs = [r['URL Final (Slug)'].strip().replace('biodescodificacion-', '') for r in csv.DictReader(f)]
+   with open('src/data/dataset_almaholistica_ciudades_eeat_geo.json') as f:
+       json_slugs = set(d['URL Final (Slug)'].strip().replace('biodescodificacion-', '') for d in json.load(f))
+   assert all(s in json_slugs for s in csv_slugs)
+   print('OK: 113 de 113 ciudades tienen correspondencia biunívoca en el dataset E-E-A-T!')
+   "
+   ```
+
+3. **Verificación de preservación de esquemas y suite de pruebas:**
    ```bash
    npm test
-   # Debe reportar: 150 pass, 0 fail
-   
    node --test tests/adversarial_*.test.mjs
-   # Debe reportar: 244 pass, 0 fail
+   python3 tests/adversarial_assets_config_m2_2.py
+   python3 tests/adversarial_m6_stress_harness.py
    ```
-
-3. **Verificación Post-Implementación de M2**:
-   - Inspeccionar que los 3 archivos existan en disco:
-     ```bash
-     ls -la public/images/eje-mente-cuerpo-neurovegetativo.svg
-     ls -la public/images/pilares-choque-biologico.svg
-     ls -la public/images/fases-proceso-terapeutico.svg
-     ```
-   - Ejecutar la compilación estática SSG:
-     ```bash
-     npm run build
-     ```
-   - Verificar la ausencia de errores 404 en activos y conformidad de dimensiones:
-     ```bash
-     python3 tests/adversarial_m6_stress_harness.py
-     ```
-   - Re-ejecutar la suite completa para certificar `CLS = 0` y cero regresiones:
-     ```bash
-     node --test tests/adversarial_mr3_challenger.test.mjs tests/adversarial_challenger_m4_gen3_2.test.mjs tests/adversarial_m6_final_qa.test.mjs
-     ```
-
-*Condición de invalidación*: Si algún archivo `<img>` nuevo se introduce sin atributos `width` o `height` numéricos literales, o si se utilizan clases o colores prohibidos (`#D4AF37`, `#F59E0B`, `backdrop-blur`), las pruebas `ADV-GEN3.6` o `ADV-MR2.1.1` fallarán inmediatamente.

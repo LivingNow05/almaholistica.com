@@ -175,3 +175,62 @@ Integrity mode: development
 - [ ] `node --test tests/adversarial_*.test.mjs` pasa 244 pruebas con 0 fallos.
 - [ ] El despliegue a producción vía Easypanel se sincroniza exitosamente a través del repositorio GitHub.
 
+## Follow-up — 2026-09-16T00:16:05Z
+
+Implementación integral de las optimizaciones y mejoras recomendadas por el Consejo de IA para SEO-GEO (Generative Engine Optimization) en Alma Holística (almaholistica.com), maximizando la citabilidad y recomendación en ChatGPT, Perplexity y Google AI Overviews.
+
+Working directory: /Users/anthony/Downloads/almaholistica.com
+Integrity mode: development
+
+## Requirements
+
+### R1. Sanitización Crítica y Sincronización de `public/llms.txt`
+- Corregir el teléfono oficial de WhatsApp reemplazando el número placeholder (`+57 300 000 0000`) por el número oficial verificado del portal: `+57 315 1206985`.
+- Corregir todos los enlaces de ciudades a sus URLs canónicas con trailing slash (ej. `https://almaholistica.com/biodescodificacion-bogota/`, `https://almaholistica.com/biodescodificacion-madrid/`, etc.).
+- Sincronizar las directrices para crawlers de IA con la metodología clínica real, el catálogo de 45 patologías y la cobertura en 20 países.
+
+### R2. Anclaje de Entidad en el Primer Párrafo de la Home (`src/pages/index.astro`)
+- Reformular el primer párrafo visible del Hero para declarar inequívocamente la entidad como sujeto gramatical en los primeros 200 caracteres:
+  *"Alma Holística es una plataforma clínica de biodescodificación y terapia bioemocional integrativa con atención online 1 a 1 en más de 20 países..."*
+- Preservar la estética Swiss Bio-Tech sólida mate y las animaciones GSAP existentes.
+- Respetar la restricción adversarial de `MR3-CH2-4.5` (no inyectar scripts JSON-LD en `dist/index.html`).
+
+### R3. Bloque Canónico de Citabilidad RAG en las 45 Dolencias (`src/pages/biodescodificacion/[slug].astro`)
+- Diseñar e integrar un bloque modular de citabilidad para motores de IA que cumpla el estándar de oro de `/seo-geo`:
+  - Extensión calibrada: entre 134 y 167 palabras.
+  - Respuesta directa en las primeras 40-50 palabras definiendo: *Patología + Sistema Biológico Afectado + Conflicto Emocional Raíz + Sentido Biológico Adaptativo*.
+  - Explicación concisa en las siguientes 80-100 palabras de las fases del síntoma (estrés activo vs reparación) y el protocolo de reprogramación bioemocional sin sustituir la medicina alopática.
+- Ubicarlo estratégicamente antes del desglose detallado para máxima extractabilidad por retrievers.
+
+### R4. Visibilidad de Autoridad y E-E-A-T Clínico
+- Integrar la información de los especialistas y el aval metodológico (Psiconeuroinmunología, Hamer, Flèche, Lipton) disponible en el dataset del proyecto (`src/data/dataset_almaholistica_ciudades_eeat_geo.json`).
+- Asegurar que la presentación sea sobria, elegante, médica y coherente con el descargo de responsabilidad médica.
+
+### R5. Blindaje Técnico y Cero Regresiones
+- Mantener estrictamente el pase del 100% de la suite de pruebas:
+  - 150/150 tests unitarios y de integración (`npm test`).
+  - 244/244 tests adversariales (`node --test tests/adversarial_*.test.mjs`).
+  - Suite de activos y configuración M2.2 (`python3 tests/adversarial_assets_config_m2_2.py`).
+  - Arnés de estrés estático M6 (`python3 tests/adversarial_m6_stress_harness.py`).
+- Cero Cumulative Layout Shift (CLS = 0) y compilación limpia de las 160 páginas en `npm run build`.
+
+## Acceptance Criteria
+
+### Integridad de llms.txt
+- [ ] `public/llms.txt` contiene el número telefónico oficial `+57 315 1206985` y no contiene ningún número placeholder (`300 000 0000`).
+- [ ] Todos los enlaces a ciudades en `public/llms.txt` utilizan el prefijo canónico `/biodescodificacion-{ciudad}/`.
+- [ ] `dist/llms.txt` refleja exactamente el mismo contenido tras `npm run build`.
+
+### Entidad en la Home
+- [ ] El primer párrafo de texto visible en `src/pages/index.astro` contiene la frase explícita "Alma Holística es" en sus primeros 50 caracteres.
+- [ ] `dist/index.html` no contiene scripts de tipo `application/ld+json` (cumpliendo con `MR3-CH2-4.5`).
+
+### Extractabilidad en Dolencias
+- [ ] Cada una de las 45 páginas de dolencias renderiza un bloque de citabilidad RAG de entre 130 y 170 palabras con definición directa del síntoma y su conflicto biológico.
+- [ ] Las 45 páginas de dolencias conservan sus esquemas `MedicalWebPage`, `FAQPage` y `BreadcrumbList`.
+
+### Calidad y Compilación
+- [ ] `npm test` finaliza con 150 pruebas pasadas y 0 fallos.
+- [ ] `node --test tests/adversarial_*.test.mjs` pasa 244 pruebas con 0 fallos.
+- [ ] `python3 tests/adversarial_m6_stress_harness.py` verifica 160 páginas con 0 enlaces rotos y 0 CLS.
+- [ ] `npm run build` genera las 160 páginas SSG en tiempo óptimo sin advertencias.

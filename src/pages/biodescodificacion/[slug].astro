@@ -10,7 +10,7 @@
  */
 
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getDolencias } from '../../lib/dolencias';
+import { getDolencias, getDolenciaRagBlock } from '../../lib/dolencias';
 import type { DolenciaData, DolenciaStaticPath } from '../../types/dolencia';
 import { SITE_CONFIG, buildWhatsAppUrl } from '../../config/site';
 import {
@@ -42,6 +42,7 @@ const reprogramacion = dolencia.reprogramacion;
 const preguntasReflexion = dolencia.preguntasReflexion || [];
 const faqs = dolencia.faqs || [];
 const ganchoAgendamiento = dolencia.ganchoAgendamiento;
+const ragBlock = getDolenciaRagBlock(dolencia);
 
 // Metadatos SEO y URL Canónica oficial con trailing slash (conforme a astro.config.mjs)
 const pageTitle = `Biodescodificación de ${nombre} | Conflicto Emocional y Sanación | ${SITE_CONFIG.name}`;
@@ -137,6 +138,27 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
         </div>
       </div>
     </header>
+
+    <!-- BLOQUE CANÓNICO DE CITABILIDAD RAG (GEO AI OVERVIEWS / CHATGPT / PERPLEXITY) -->
+    <section id="definicion-citabilidad-rag" class="card-matte-elevated p-6 sm:p-8 md:p-10 mb-10 border border-slate-800" aria-label="Definición Clínica y Citabilidad RAG">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="w-2 h-2 rounded-full bg-[#38BDF8]"></span>
+        <span class="text-xs uppercase tracking-widest text-[#38BDF8] font-semibold font-mono">
+          SÍNTESIS CLÍNICA BIOEMOCIONAL // CITABILIDAD AI
+        </span>
+      </div>
+      <h2 class="heading-solemn text-2xl sm:text-3xl font-normal mb-4 text-slate-100">
+        ¿Qué es la Biodescodificación de {nombre}?
+      </h2>
+      <div class="text-slate-300 font-sans leading-relaxed space-y-4 text-base sm:text-lg">
+        <p class="font-medium text-slate-200">
+          {ragBlock.definitionPart}
+        </p>
+        <p class="text-slate-300 font-normal">
+          {ragBlock.protocolPart}
+        </p>
+      </div>
+    </section>
 
     <!-- MÓDULO DIDÁCTICO "EN PALABRAS SIMPLES: ¿QUÉ ESTÁS VIVIENDO?" -->
     <section id="en-palabras-simples" class="mb-10" aria-label="En palabras simples">
@@ -408,6 +430,7 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
         </svg>
         <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
           <strong class="text-slate-300">Aviso Importante:</strong> La biodescodificación y la terapia holística son herramientas complementarias orientadas a la comprensión emocional y no constituyen un acto médico. No reemplazan el diagnóstico, pronóstico ni tratamiento indicado por profesionales de la salud debidamente colegiados. Nunca descontinúes ni modifiques un tratamiento médico sin la autorización de tu médico tratante.
+          <span class="block mt-2 text-slate-500 text-xs">Fundamentación clínica en Psiconeuroinmunología Clínica (PNI), 5 Leyes Biológicas de la NMG (Dr. Ryke Geerd Hamer), Descodificación Biológica (Christian Flèche) y Epigenética Conductual (Dr. Bruce Lipton).</span>
         </p>
       </div>
     </aside>
