@@ -1,46 +1,43 @@
-# BRIEFING — 2026-09-10T14:54:35-05:00
+# BRIEFING — 2026-09-24T05:13:45Z
 
 ## Mission
-Investigar exhaustivamente los requerimientos R3 (Tablas Comparativas y Alivio Estructural), R4 (SEO, GEO y Datos Estructurados) y R5 (Suite de Pruebas y Aseguramiento Técnico) para Alma Holística.
+Investigate sitemap generator, public/llms.txt, and all test suites to catalog every hardcoded page census or route assertion needing update from 160 to 180 pages.
 
 ## 🔒 My Identity
 - Archetype: explorer
-- Roles: investigation, synthesis
-- Working directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_3
-- Original parent: 6726af5a-d5c1-4a22-89aa-ecd41de70482
-- Milestone: Survey 3 (R3, R4, R5 Investigation)
+- Roles: investigator, synthesizer
+- Working directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_3/
+- Original parent: d7cc0e4e-ca72-4f92-8cc3-fe1d13741ae2
+- Milestone: Survey
 
 ## 🔒 Key Constraints
 - Read-only investigation — do NOT implement
-- Never modify or create source code files outside of .agents/teamwork_preview_explorer_survey_3/
-- Hablar siempre en español
-- Reference exact paths and line numbers
-- Document findings in analysis.md and handoff.md
+- Must inspect sitemap generation, llms.txt, test suites for 160 -> 180 page census changes
+- Do not modify source code or test files outside .agents/teamwork_preview_explorer_survey_3/
 
 ## Current Parent
-- Conversation ID: 6726af5a-d5c1-4a22-89aa-ecd41de70482
+- Conversation ID: d7cc0e4e-ca72-4f92-8cc3-fe1d13741ae2
 - Updated: not yet
 
 ## Investigation State
 - **Explored paths**:
-  - `src/pages/index.astro`, `src/pages/[slug].astro`, `src/pages/biodescodificacion/[slug].astro`, `src/pages/biodescodificacion/index.astro`
-  - `src/lib/schema.ts`, `src/layouts/BaseLayout.astro`, `src/styles/global.css`, `tailwind.config.mjs`
-  - `src/data/dataset_biodescodificacion_dolencias.json`
-  - 4 suites de `npm test` y 14 suites de `tests/adversarial_*.test.mjs`
+  - `scripts/generate_sitemap.py`
+  - `public/llms.txt`
+  - `package.json`
+  - `tests/*.test.mjs` (15 test files)
+  - `tests/*.py` (6 test files)
+  - `tests/helpers/*.mjs` (3 helper files)
 - **Key findings**:
-  - R3: Secciones densas mapeadas y 3 tablas clínicas redactadas con tipados exactos TypeScript y contenido exhaustivo.
-  - R4: Identificado oráculo crítico que exige 0 scripts JSON-LD en `dist/index.html` (MR3-ADV-4.1, MR3-CH2-4.5) y 361 scripts JSON-LD globales exactos (ADV-M5.2.2). Solución: microdatos HTML5 semánticos en tablas y sub-esquemas anidados en dolencias.
-  - R5: Mapeo 100% verificado: 150 tests en `npm test` y 244 tests en `node --test tests/adversarial_*.test.mjs`. Todos pasan con 0 fallos.
-- **Unexplored areas**: None. All objectives for R3, R4, and R5 investigated and documented.
+  - `scripts/generate_sitemap.py` reads datasets directly (CSV for cities, JSON for dolencias); requires country hub slug loading and check update `160 -> 180`.
+  - `public/llms.txt` lists 20 countries in plain text and 113 cities as markdown links; requires updating country entries to links and updating regex assertions in `tests/adversarial_r1_r2_challenger.py`.
+  - Identified 8 primary test files with explicit `160` page/URL assertions + schema census assertions (`361` schemas -> 401 or 421 depending on BreadcrumbList inclusion) + subtle routing filter traps where `rel.startsWith('biodescodificacion-')` collides with country hubs.
+- **Unexplored areas**: None within the survey scope.
 
 ## Key Decisions Made
-- Diseñar las 3 tablas completas en `analysis.md` con contenido clínico riguroso (Enfoque Clínico, Matriz de Dolencias y Etapas del Acompañamiento).
-- Formular el estándar de Microdatos HTML5 (`<table itemscope itemtype="https://schema.org/Table">`) para evitar romper los tests de conteo de JSON-LD.
-- Sintetizar la matriz de salvaguardas y puntos de fricción para los agentes implementadores.
+- Cataloged all line numbers, code snippets, collision pitfalls, and required updates for 180-page census transition.
 
 ## Artifact Index
-- DISPATCH.md — Incoming message log
-- BRIEFING.md — Persistent memory
-- progress.md — Heartbeat and activity log
-- analysis.md — Detailed analysis report
-- handoff.md — Final 5-component handoff
+- DISPATCH.md — Dispatch instructions
+- BRIEFING.md — Working memory and status
+- progress.md — Liveness heartbeat
+- handoff.md — Final 5-component report

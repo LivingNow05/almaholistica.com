@@ -1,179 +1,306 @@
-# Handoff Report: Survey R1 & R2 — Alma Holística
-
-**De:** teamwork_preview_explorer_survey_1 (Explorer)  
-**Para:** teamwork_preview_orchestrator_8 (Parent Agent, Conv ID: dee5921c-c2ce-44d0-97b2-5ec780197d61)  
-**Fecha:** 2026-09-16  
-**Tipo de Handoff:** Hard (Task complete)  
-**Documento de soporte:** `/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_1/report.md`
+# Informe de Investigación Técnica y Arquitectura de Datos: 20 Hubs de País en Astro
+**Agente**: `teamwork_preview_explorer_survey_1`  
+**Fase**: Levantamiento y Exploración (Survey Phase)  
+**Proyecto**: Alma Holística (`almaholistica.com`)  
+**Fecha/Hora**: 2026-09-24T05:15:00Z  
+**Archivo de destino**: `.agents/teamwork_preview_explorer_survey_1/handoff.md`
 
 ---
 
-## 1. Observation
+## 1. Observaciones Directas (Observations)
 
-### Observación 1.1: Teléfono en `public/llms.txt` y `dist/llms.txt`
-- En `/Users/anthony/Downloads/almaholistica.com/public/llms.txt` (línea 35) y `/Users/anthony/Downloads/almaholistica.com/dist/llms.txt` (línea 35):
-  ```text
-  35: - Teléfono Oficial de Coordinación: +57 300 000 0000 (vía WhatsApp API).
+### 1.1. Inspección de Archivos Clave del Repositorio
+- **`astro.config.mjs`** (líneas 1-14):
+  Configuración confirmada:
+  ```javascript
+  export default defineConfig({
+    site: 'https://almaholistica.com',
+    output: 'static',
+    trailingSlash: 'always',
+    integrations: [ react(), tailwind() ]
+  });
   ```
-- En `/Users/anthony/Downloads/almaholistica.com/src/config/site.ts` (líneas 30-38):
+  *Observación*: Todas las páginas generadas compilan en modo estático a directorios con `index.html` y requieren URLs canónicas con barra final (`trailingSlash: 'always'`).
+
+- **`src/pages/[slug].astro`** (líneas 19-25 y 73):
   ```typescript
-  30:  * Nota: El número 573151206985 es el oficial de WhatsApp de Alma Holística.
-  ...
-  38:   whatsappNumber: '573151206985',
+  export async function getStaticPaths(): Promise<CityStaticPath[]> {
+    const cities = getCities();
+    return cities.map((city) => ({
+      params: { slug: city.slug },
+      props: { city },
+    }));
+  }
   ```
-- En `/Users/anthony/Downloads/almaholistica.com/tests/adversarial_assets_config_m2_2.py` (líneas 63-65):
-  ```python
-  assert whatsapp == '573151206985', f"whatsappNumber must be '573151206985', got '{whatsapp}'"
+  La URL canónica se calcula como:
+  ```typescript
+  const canonicalUrl = `https://almaholistica.com/${rawSlug}/`;
   ```
+  *Observación*: Actualmente `[slug].astro` consume `getCities()` y genera exclusivamente las páginas de ciudades.
 
-### Observación 1.2: Enlaces a Ciudades en `public/llms.txt` vs Slugs Reales
-- En `/Users/anthony/Downloads/almaholistica.com/public/llms.txt` (líneas 23-31):
-  ```markdown
-  23: - [Bogotá, Colombia](https://almaholistica.com/bogota/): Terapia holística adaptada a consultantes en Bogotá, Colombia (Tarifas en COP).
-  24: - [Medellín, Colombia](https://almaholistica.com/medellin/): Sesiones online en Medellín, Envigado y El Poblado.
-  25: - [Ciudad de México (CDMX)](https://almaholistica.com/cdmx/): Consulta virtual para residentes de CDMX (Tarifas en MXN).
-  26: - [Madrid, España](https://almaholistica.com/madrid/): Acompañamiento en biodescodificación adaptado a horarios de España y Europa (Tarifas en EUR).
-  ...
-  31: - [Miami, Estados Unidos](https://almaholistica.com/miami/): Sesiones en español para la comunidad hispanohablante de Florida y EE.UU. (Tarifas en USD).
-  ```
-- En `/Users/anthony/Downloads/almaholistica.com/src/data/dataset_almaholistica_ciudades.csv` (columna `URL Final (Slug)`):
-  - Fila 2: `biodescodificacion-bogota`
-  - Fila 3: `biodescodificacion-medellin`
-  - Fila 7: `biodescodificacion-cdmx`
-  - Filas España: `biodescodificacion-madrid`, `biodescodificacion-barcelona`
-  - Filas USA: `biodescodificacion-miami`
-- En `/Users/anthony/Downloads/almaholistica.com/astro.config.mjs` (línea 9):
-  ```javascript
-  trailingSlash: 'always',
-  ```
-- Las carpetas generadas en `dist/` corresponden a `dist/biodescodificacion-bogota/index.html`, etc. Las rutas `dist/bogota/` no existen (arrojando 404).
+- **`src/lib/cities.ts`** (líneas 104-125 y 135-137):
+  - Analiza `src/data/dataset_almaholistica_ciudades.csv` con `csv-parse/sync`.
+  - Memoiza en memoria `cachedCities` y `cachedCityBySlug`.
+  - Provee `getCities()`, `getCityBySlug()`, `getCitiesByCountry()`, `getCitySlugs()`.
 
-### Observación 1.3: Catálogo de Dolencias y Países
-- En `/Users/anthony/Downloads/almaholistica.com/src/data/dataset_biodescodificacion_dolencias.json`:
-  - Existen exactamente 45 dolencias validadas (`length = 45`), organizadas en 4 familias biológicas (Digestivo, Osteoarticular, Respiratorio, Psicosomático/Nervioso).
-  - En `public/llms.txt`, únicamente se mencionan 9 dolencias individuales (faltan 36).
-- En `/Users/anthony/Downloads/almaholistica.com/src/data/dataset_almaholistica_ciudades.csv`:
-  - Existen exactamente 113 ciudades en 20 países: Argentina, Bolivia, Brasil, Chile, Colombia, Costa Rica, Ecuador, El Salvador, España, Estados Unidos, Guatemala, Honduras, México, Nicaragua, Panamá, Paraguay, Perú, República Dominicana, Uruguay, Venezuela.
-  - En `public/llms.txt`, solo se mencionan ciudades de 7 países.
+- **`src/types/city.ts`** (líneas 10-54):
+  - Define `SupportedCountry` con exactamente 20 países (`Colombia | México | Chile | Argentina | Perú | Ecuador | Bolivia | Uruguay | Paraguay | Venezuela | Costa Rica | Panamá | República Dominicana | Guatemala | El Salvador | Honduras | Nicaragua | Brasil | España | Estados Unidos`).
+  - Define `SupportedCurrency` con 18 códigos ISO (`COP, MXN, CLP, ARS, PEN, USD, BOB, UYU, PYG, VED, CRC, PAB, DOP, GTQ, HNL, NIO, BRL, EUR`).
 
-### Observación 1.4: Mecanismo de Construcción de `llms.txt`
-- `package.json` define:
-  ```json
-  "build": "astro check && astro build"
-  ```
-- No hay scripts de generación dedicados a `llms.txt` en `scripts/`.
-- Astro copia de forma directa e inalterada el contenido de `public/` hacia `dist/`.
+- **`src/data/dataset_almaholistica_ciudades.csv`**:
+  - Contiene exactamente 113 filas de datos (más 1 fila de cabecera con 9 columnas: `Dominio, Categoría, URL Final (Slug), H1 Título, Meta Descripción, País, Moneda, Rango_Precio_Sesion, Historia_Local`).
+  - Todos los 113 slugs poseen el prefijo obligatorio `biodescodificacion-`.
 
-### Observación 1.5: Hero y Primer Párrafo Visible en `src/pages/index.astro`
-- En `/Users/anthony/Downloads/almaholistica.com/src/pages/index.astro` (líneas 138-140):
-  ```astro
-  138:           <!-- Párrafo Quirúrgico Directo -->
-  139:           <p class="gsap-hero-el text-base sm:text-lg lg:text-xl text-slate-300 font-sans max-w-2xl mb-6 leading-relaxed">
-  140:             La biodescodificación demuestra que tu síntoma físico es la respuesta biológica de tu cuerpo ante un estrés o vivencia no resuelta. Identifica tu síntoma y descubre en una sesión privada 1 a 1 cómo desactivar la señal de alarma y recuperar tu calma.
-  141:           </p>
-  ```
-- No existen etiquetas `<p>` previas en `src/layouts/BaseLayout.astro` ni en `src/components/Navbar.astro`.
-- La animación GSAP en `src/pages/index.astro` (líneas 1114-1121) anima:
-  ```javascript
-  gsap.from('.gsap-hero-el, .gsap-fade-up', {
-    opacity: 0,
-    y: 35,
-    duration: 1.1,
-    stagger: 0.1,
-    ease: 'power3.out',
-    clearProps: 'transform,opacity'
-  });
-  ```
+- **`src/data/dataset_almaholistica_ciudades_eeat_geo.json`**:
+  - Contiene exactamente 113 registros de ciudades con metadatos E-E-A-T y GEO (`URL Final (Slug)` sin prefijo `biodescodificacion-`, nombre de especialista, cargo, registro profesional, experiencia, formación, aval científico y preguntas frecuentes locales).
 
-### Observación 1.6: Restricción Adversarial `MR3-CH2-4.5`
-- En `/Users/anthony/Downloads/almaholistica.com/tests/adversarial_mr3_challenger_2.test.mjs` (líneas 247-250):
-  ```javascript
-  test('MR3-CH2-4.5: Zero entity JSON-LD schemas injected in home page', () => {
-    const jsonLdBlocks = [...distIndexHtml.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>/gi)];
-    assert.strictEqual(jsonLdBlocks.length, 0, 'Landing page dist/index.html must NOT inject entity JSON-LD schemas');
-  });
-  ```
-- En `/Users/anthony/Downloads/almaholistica.com/tests/adversarial_m5_sitemaps_schema.py` (líneas 191-192):
-  ```python
-  if rel in ['index.html', os.path.join('biodescodificacion', 'index.html')]:
-      assert len(matches) == 0, f"Índice {rel} no debería contener schemas de entidad"
-  ```
-- En `/Users/anthony/Downloads/almaholistica.com/tests/adversarial_jsonld_robots_m5_2.test.mjs` (líneas 87-91):
-  ```javascript
-  // 113 city pages * 2 + 45 dolencia pages * 3 = 361 schemas
-  assert.equal(totalScripts, 361, `Expected exactly 361 JSON-LD scripts across all 160 files, found ${totalScripts}`);
-  ```
+- **`scripts/generate_sitemap.py`** (líneas 61-86, 142):
+  - Actualmente genera sitemaps para 160 URLs: 1 Home (`/`) + 1 Catálogo (`/biodescodificacion/`) + 113 Ciudades (`/{slug}/`) + 45 Dolencias (`/biodescodificacion/{slug}/`).
 
 ---
 
-## 2. Logic Chain
+### 1.2. Mapeo Exhaustivo: 20 Países y Distribución de las 113 Ciudades
+La distribución confirmada mediante inspección algorítmica es:
 
-1. **Sobre R1 (Teléfono):**
-   - De acuerdo con la Observación 1.1, `public/llms.txt` contiene `+57 300 000 0000` mientras que `src/config/site.ts` y las pruebas adversariales establecen `573151206985` como oficial.
-   - Por tanto, mantener `+57 300 000 0000` en `llms.txt` alimenta información desactualizada a motores de IA y viola el criterio de aceptación de R1.
+| # | País | Moneda | Cantidad | Lista Completa de Slugs en Dataset Actual |
+|---|------|--------|----------|-------------------------------------------|
+| 1 | **Colombia** | COP | 5 | `biodescodificacion-bogota`, `biodescodificacion-medellin`, `biodescodificacion-cali`, `biodescodificacion-barranquilla`, `biodescodificacion-cartagena` |
+| 2 | **México** | MXN | 15 | `biodescodificacion-cdmx`, `biodescodificacion-guadalajara`, `biodescodificacion-monterrey`, `biodescodificacion-puebla`, `biodescodificacion-toluca`, `biodescodificacion-tijuana`, `biodescodificacion-leon`, `biodescodificacion-ciudad-juarez`, `biodescodificacion-torreon`, `biodescodificacion-queretaro`, `biodescodificacion-san-luis-potosi`, `biodescodificacion-merida`, `biodescodificacion-aguascalientes`, `biodescodificacion-hermosillo`, `biodescodificacion-saltillo` |
+| 3 | **Costa Rica** | CRC | 5 | `biodescodificacion-san-jose`, `biodescodificacion-alajuela`, `biodescodificacion-cartago`, `biodescodificacion-heredia`, `biodescodificacion-puntarenas` |
+| 4 | **El Salvador** | USD | 5 | `biodescodificacion-san-salvador`, `biodescodificacion-santa-ana`, `biodescodificacion-san-miguel`, `biodescodificacion-soyapango`, `biodescodificacion-santa-tecla` |
+| 5 | **Guatemala** | GTQ | 5 | `biodescodificacion-ciudad-de-guatemala`, `biodescodificacion-mixco`, `biodescodificacion-villa-nueva`, `biodescodificacion-quetzaltenango`, `biodescodificacion-antigua-guatemala` |
+| 6 | **Honduras** | HNL | 5 | `biodescodificacion-tegucigalpa`, `biodescodificacion-san-pedro-sula`, `biodescodificacion-choloma`, `biodescodificacion-la-ceiba`, `biodescodificacion-el-progreso` |
+| 7 | **Nicaragua** | NIO | 5 | `biodescodificacion-managua`, `biodescodificacion-leon-ni`, `biodescodificacion-masaya`, `biodescodificacion-chinandega`, `biodescodificacion-granada` |
+| 8 | **Panamá** | USD | 5 | `biodescodificacion-panama` *(conflicto detectado)*, `biodescodificacion-colon`, `biodescodificacion-david`, `biodescodificacion-san-miguelito`, `biodescodificacion-la-chorrera` |
+| 9 | **República Dominicana** | DOP | 5 | `biodescodificacion-santo-domingo`, `biodescodificacion-santiago-rd`, `biodescodificacion-la-romana`, `biodescodificacion-san-pedro-macoris`, `biodescodificacion-punta-cana` |
+| 10 | **Argentina** | ARS | 5 | `biodescodificacion-buenos-aires`, `biodescodificacion-cordoba`, `biodescodificacion-rosario`, `biodescodificacion-mendoza`, `biodescodificacion-la-plata` |
+| 11 | **Bolivia** | BOB | 5 | `biodescodificacion-la-paz`, `biodescodificacion-santa-cruz`, `biodescodificacion-cochabamba`, `biodescodificacion-sucre`, `biodescodificacion-el-alto` |
+| 12 | **Brasil** | BRL | 5 | `biodescodificacion-sao-paulo`, `biodescodificacion-rio-de-janeiro`, `biodescodificacion-brasilia`, `biodescodificacion-salvador`, `biodescodificacion-fortaleza` |
+| 13 | **Chile** | CLP | 5 | `biodescodificacion-santiago`, `biodescodificacion-valparaiso`, `biodescodificacion-concepcion`, `biodescodificacion-la-serena`, `biodescodificacion-antofagasta` |
+| 14 | **Ecuador** | USD | 5 | `biodescodificacion-quito`, `biodescodificacion-guayaquil`, `biodescodificacion-cuenca`, `biodescodificacion-santo-domingo-ec`, `biodescodificacion-ambato` |
+| 15 | **Paraguay** | PYG | 5 | `biodescodificacion-asuncion`, `biodescodificacion-ciudad-del-este`, `biodescodificacion-san-lorenzo`, `biodescodificacion-luque`, `biodescodificacion-capiata` |
+| 16 | **Perú** | PEN | 5 | `biodescodificacion-lima`, `biodescodificacion-arequipa`, `biodescodificacion-trujillo`, `biodescodificacion-chiclayo`, `biodescodificacion-piura` |
+| 17 | **Uruguay** | UYU | 5 | `biodescodificacion-montevideo`, `biodescodificacion-salto`, `biodescodificacion-ciudad-de-la-costa`, `biodescodificacion-paysandu`, `biodescodificacion-maldonado` |
+| 18 | **Venezuela** | USD | 5 | `biodescodificacion-caracas`, `biodescodificacion-maracaibo`, `biodescodificacion-valencia-ve`, `biodescodificacion-barquisimeto`, `biodescodificacion-maracay` |
+| 19 | **España** | EUR | 6 | `biodescodificacion-madrid`, `biodescodificacion-barcelona`, `biodescodificacion-valencia`, `biodescodificacion-sevilla`, `biodescodificacion-malaga`, `biodescodificacion-bilbao` |
+| 20 | **Estados Unidos** | USD | 7 | `biodescodificacion-miami`, `biodescodificacion-los-angeles`, `biodescodificacion-houston`, `biodescodificacion-nueva-york`, `biodescodificacion-chicago`, `biodescodificacion-orlando`, `biodescodificacion-san-antonio` |
 
-2. **Sobre R1 (URLs de Ciudades y Trailing Slash):**
-   - De acuerdo con la Observación 1.2, `public/llms.txt` enlaza a `https://almaholistica.com/{ciudad}/`, pero `src/data/dataset_almaholistica_ciudades.csv` define slugs como `biodescodificacion-{ciudad}` y `astro.config.mjs` impone `trailingSlash: 'always'`.
-   - Por tanto, las URLs en `llms.txt` provocan errores 404 a los agentes de IA. Deben actualizarse obligatoriamente al formato canónico `https://almaholistica.com/biodescodificacion-{ciudad}/`.
-
-3. **Sobre R1 (Catálogo y Países):**
-   - De acuerdo con la Observación 1.3, el portal cuenta con 45 patologías y 20 países con monedas locales específicas, pero `llms.txt` solo presenta una fracción reducida.
-   - Por tanto, para maximizar la citabilidad GEO de pasajes, `llms.txt` debe incorporar el catálogo completo y la cobertura de los 20 países.
-
-4. **Sobre R2 (Anclaje de Entidad):**
-   - De acuerdo con la Observación 1.5, el primer elemento `<p>` de texto visible en el DOM corresponde a la línea 138 de `src/pages/index.astro`.
-   - Actualmente dicho párrafo no contiene la frase "Alma Holística es".
-   - Al reformular dicho párrafo iniciando con:  
-     `Alma Holística es una plataforma clínica de biodescodificación y terapia bioemocional integrativa con atención online 1 a 1 en más de 20 países...`,  
-     se satisface el requisito de incluir la frase en los primeros 50 caracteres y declarar la entidad en los primeros 200 caracteres, conservando la clase `gsap-hero-el` y el estilo Swiss Bio-Tech.
-
-5. **Sobre R2 (Restricción Adversarial `MR3-CH2-4.5`):**
-   - De acuerdo con la Observación 1.6, tres suites de prueba independientes (`adversarial_mr3_challenger_2.test.mjs`, `adversarial_m5_sitemaps_schema.py` y `adversarial_jsonld_robots_m5_2.test.mjs`) imponen que `dist/index.html` contenga exactamente CERO bloques `<script type="application/ld+json">`, fijando el conteo total en 361 schemas para las 160 páginas.
-   - Por tanto, cualquier adición de JSON-LD a la Home romperá de inmediato la suite de pruebas. El anclaje de entidad en la Home debe residir únicamente en el texto plano HTML visible y en `llms.txt`.
-
----
-
-## 3. Caveats
-
-- **No Caveats técnicos graves:** La arquitectura actual está completamente mapeada y los contratos de datos son claros.
-- **Áreas no modificadas en esta fase:** Como agente Explorer en modo solo lectura, no se han modificado archivos de código fuente (`src/pages/index.astro`, `public/llms.txt`, etc.). Las modificaciones deben ser ejecutadas por el agente Implementer designado.
+**Total de Ciudades**: $5 \times 17 + 15 + 6 + 7 = 85 + 15 + 6 + 7 = 113$ ciudades exactas distribuidas en 20 países.
 
 ---
 
-## 4. Conclusion
-
-1. **R1:** `public/llms.txt` requiere una sanitización integral: reemplazar el teléfono provisional por `+57 315 1206985`, actualizar todas las rutas de ciudades al formato `/biodescodificacion-{slug}/`, expandir el catálogo a las 45 patologías y detallar los 20 países con sus monedas locales y directrices completas para crawlers de IA. Tras el cambio, `npm run build` sincroniza automáticamente `dist/llms.txt`.
-2. **R2:** En `src/pages/index.astro`, el primer párrafo visible del Hero (líneas 138-140) debe reformularse iniciando con `"Alma Holística es una plataforma clínica de biodescodificación y terapia bioemocional integrativa con atención online 1 a 1 en más de 20 países..."`. Se deben preservar la clase `gsap-hero-el`, el estilo Swiss Bio-Tech mate y la restricción estricta de CERO scripts JSON-LD en `dist/index.html` para cumplir cabalmente con `MR3-CH2-4.5`.
+### 1.3. Detección Crítica: Colisión de Slugs en Panamá
+Al cruzar los slugs canónicos previstos para los 20 países (`/biodescodificacion-{pais}/`) con los 113 slugs de ciudades:
+- **19 países** no tienen colisión alguna con los slugs de sus ciudades (ej: país México es `biodescodificacion-mexico` y su capital es `biodescodificacion-cdmx`; país Guatemala es `biodescodificacion-guatemala` y su capital es `biodescodificacion-ciudad-de-guatemala`).
+- **País Panamá**:
+  - Slug canónico del Hub de País según R1: `biodescodificacion-panama`.
+  - Slug actual de Ciudad de Panamá en `dataset_almaholistica_ciudades.csv`: `biodescodificacion-panama` (con H1 `"Terapia de Biodescodificación Biológica en Ciudad de Panamá"`).
+  - *Conflicto*: Si ambos coexisten con el mismo slug en Astro SSG, se produce una sobreescritura de ruta (`[getStaticPaths] duplicate route`) y el censo total de URLs generadas sería 179 en lugar de 180.
 
 ---
 
-## 5. Verification Method
+### 1.4. Auditoría de Datos Disponibles para los 20 Países
+- **Datos actualmente existentes**:
+  - `País` y `Moneda`: presentes en el CSV de ciudades y `public/llms.txt`.
+  - `Especialistas Clínicos`: 3 profesionales seniors definidos en `dataset_almaholistica_ciudades_eeat_geo.json`:
+    1. *Lic. Sofía Alarcón Valdés* (Reg. ITH-8492)
+    2. *Dr. Mateo Benavides Rivas* (Reg. AIE-5120)
+    3. *Dra. Elena Monsalve Duarte* (Reg. CIT-6311)
+- **Datos inexistentes a nivel país** (requieren formalizarse en un nuevo dataset):
+  - *Husos Horarios específicos*: COT (UTC-5), CST (UTC-6), ART (UTC-3), CLT (UTC-3/4), CET (UTC+1), etc.
+  - *Pasarelas y medios de pago locales representativos*: PSE / Nequi (Colombia), SPEI / OXXO (México), Bizum (España), Mercado Pago (Argentina), Webpay (Chile), Yape / Plin (Perú), SINPE Móvil (Costa Rica), etc.
+  - *Marco regulatorio ético/sanitario localizado*: Adecuación a la normativa de salud y terapias complementarias de cada país (garantizando estricto apego YMYL sin sustituir la medicina alopática).
+  - *Definición clínica adaptada*: Contextualización de la biodescodificación según la realidad y tensiones socioculturales de cada nación.
+  - *Preguntas frecuentes del país*: Mínimo 3 FAQs localizadas por país para inyección en Schema `FAQPage`.
 
-Para verificar independientemente que las condiciones descritas se cumplen y que las implementaciones no rompan nada:
+---
 
-1. **Verificación de Tests:**
+## 2. Cadena Lógica (Logic Chain)
+
+1. **Premisa 1 (Enrutamiento SSG en Astro)**:
+   - En Astro, todos los archivos bajo `src/pages/` determinan la estructura de URLs estáticas.
+   - Las páginas de ciudades se compilan como `dist/{slug}/index.html` mediante `src/pages/[slug].astro`.
+   - Las páginas Hub de País deben tener el formato `/biodescodificacion-{pais}/`, lo que significa que residen en el mismo nivel de raíz que las ciudades (`dist/biodescodificacion-{pais}/index.html`).
+   - Astro prohíbe tener dos archivos con parámetros dinámicos en el mismo directorio (ej. no se puede tener `src/pages/[citySlug].astro` y `src/pages/[countrySlug].astro`).
+
+2. **Premisa 2 (Estrategia de Enrutamiento Óptima)**:
+   - Puesto que tanto las 113 ciudades como los 20 países comparten la estructura de slug raíz (`/:slug/`), la arquitectura SSG más limpia y canónica en Astro es unificar la generación en `src/pages/[slug].astro`.
+   - `getStaticPaths()` retornará la unión de las 113 rutas de ciudades y las 20 rutas de países (133 rutas dinámicas totales).
+   - Para mantener una estricta separación de responsabilidades y modularidad de código, `src/pages/[slug].astro` discriminará por tipo de página (`type: 'city'` vs `type: 'country'`) renderizando la vista correspondiente o delegando en componentes dedicados: `<CityTemplate city={city} />` y `<CountryHubTemplate country={country} />`.
+
+3. **Premisa 3 (Resolución del Conflicto de Slug en Panamá)**:
+   - El requerimiento R1 estipula que los 20 Hubs deben llamarse `/biodescodificacion-{pais}/` (por ende, Panamá País debe ser obligatoriamente `/biodescodificacion-panama/`).
+   - El censo de páginas exige exactamente 180 archivos HTML (1 Home + 1 Catálogo + 45 Dolencias + 113 Ciudades + 20 Países).
+   - La capital de Panamá en el dataset es `"Ciudad de Panamá"`, con H1 `"Terapia de Biodescodificación Biológica en Ciudad de Panamá"`.
+   - Siguiendo el estándar exacto aplicado a `"Ciudad de Guatemala"` (`biodescodificacion-ciudad-de-guatemala`), la ciudad de Panamá debe renombrarse a `biodescodificacion-ciudad-de-panama`.
+   - Esto elimina la colisión, preserva la cuenta de 113 ciudades y 20 países distintos, y garantiza 180 páginas HTML únicas sin conflicto.
+
+4. **Premisa 4 (Necesidad de `dataset_almaholistica_paises.json`)**:
+   - Para cumplir R2 con profundidad clínica y rigor YMYL, no es suficiente heredar textos genéricos de las ciudades.
+   - Es mandatorio estructurar `src/data/dataset_almaholistica_paises.json` conteniendo los 20 registros con sus contratos de datos tipados (`CountryData`), incluyendo su lista de ciudades subordinadas, huso horario, pasarelas de pago, marco regulatorio, especialista asignado y 3 FAQs con marcado estructurado.
+
+---
+
+## 3. Salvedades y Advertencias (Caveats)
+
+1. **Aserciones en Suites de Pruebas**:
+   - Múltiples tests adversariales (`tests/adversarial_challenger_m5.test.mjs`, `tests/adversarial_challenger_m4.test.mjs`, `tests/adversarial_r1_r2_challenger.py`, `tests/adversarial_r3_r4_challenger.py`, etc.) comprueban censos numéricos fijos:
+     - `160 páginas HTML en dist/` $\rightarrow$ Pasará a ser **180 páginas**.
+     - `361 schemas JSON-LD en dist/` $\rightarrow$ Pasará a ser **421 schemas** (113 ciudades $\times$ 2 + 45 dolencias $\times$ 3 + 20 países $\times$ 3).
+     - `sitemap-0.xml con 160 URLs` $\rightarrow$ Pasará a ser **180 URLs**.
+   - Los tests deberán ser actualizados de forma sincronizada al implementar los 20 Hubs para evitar falsos negativos.
+
+2. **Breadcrumbs Jerárquicos en Ciudades (R3)**:
+   - Actualmente las ciudades tienen migas: `Inicio` > `Ciudades` > `[Ciudad]`.
+   - R3 exige: `Inicio` > `[Nombre del País]` > `[Ciudad]`, donde `[Nombre del País]` enlaza canónicamente a `/biodescodificacion-{pais}/`.
+   - `buildBreadcrumbSchema` y el marcado visual en `[slug].astro` requerirán recibir el slug del país correspondiente.
+
+3. **Invariante Adversarial MR3-CH2-4.5 en Home**:
+   - La página `index.astro` tiene prohibido inyectar bloques JSON-LD (`MR3-CH2-4.5`).
+   - Al incorporar la sección con enlaces a los 20 Hubs en la Home (R3), debe asegurarse que no se introduzcan scripts `type="application/ld+json"` en `src/pages/index.astro`.
+
+---
+
+## 4. Conclusión y Recomendación de Arquitectura
+
+### 4.1. Estrategia de Enrutamiento Recomendada
+- **Archivo unificado**: Mantener `src/pages/[slug].astro` como enrutador dinámico raíz.
+- **Mecanismo `getStaticPaths()`**:
+  ```typescript
+  export async function getStaticPaths() {
+    const cities = getCities();
+    const countries = getCountries();
+
+    const cityPaths = cities.map((city) => ({
+      params: { slug: city.slug },
+      props: { type: 'city' as const, city, country: null },
+    }));
+
+    const countryPaths = countries.map((country) => ({
+      params: { slug: country.slug },
+      props: { type: 'country' as const, city: null, country },
+    }));
+
+    return [...cityPaths, ...countryPaths];
+  }
+  ```
+- **Modularidad**: Encapsular el diseño del Hub de País en un componente dedicado (ej. `src/components/country/CountryHubView.astro`) y el de Ciudad en `src/components/city/CityView.astro` (o renderizado condicional limpio en `[slug].astro`).
+
+### 4.2. Contratos de Datos Formales para R1 y R2
+
+#### Contrato 1: `CountryData` (`src/types/country.ts`)
+```typescript
+import type { SupportedCountry, SupportedCurrency } from './city';
+
+export interface CountrySpecialist {
+  readonly nombre: string;
+  readonly cargo: string;
+  readonly registro: string;
+  readonly experiencia: string;
+  readonly formacion: string;
+  readonly avalCientifico: string;
+}
+
+export interface CountryFAQ {
+  readonly pregunta: string;
+  readonly respuesta: string;
+}
+
+export interface CountryCityItem {
+  readonly slug: string;
+  readonly nombre: string;
+  readonly precio: string;
+}
+
+export interface CountryData {
+  readonly pais: SupportedCountry;
+  readonly slug: string; // ej: "biodescodificacion-colombia"
+  readonly h1: string;
+  readonly metaDescripcion: string;
+  readonly moneda: SupportedCurrency;
+  readonly rangoPrecio: string;
+  readonly husoHorario: string; // ej: "COT (UTC-5)"
+  readonly pasarelasPago: readonly string[]; // ej: ["PSE", "Bancolombia", "Nequi", "Tarjetas"]
+  readonly marcoRegulatorio: string; // Leyes locales sobre terapias complementarias
+  readonly descargoResponsabilidad: string; // Compromiso ético YMYL
+  readonly definicionClinica: string;
+  readonly especialistaAsignado: CountrySpecialist;
+  readonly ciudades: readonly CountryCityItem[];
+  readonly faqs: readonly CountryFAQ[]; // Mínimo 3
+}
+```
+
+#### Contrato 2: Módulo Lector `src/lib/countries.ts`
+- `getCountries(): CountryData[]`
+- `getCountryBySlug(slug: string): CountryData | undefined`
+- `getCountryByName(name: string): CountryData | undefined`
+- `getCountrySlugs(): string[]`
+
+#### Contrato 3: Schemas de País en `src/lib/schema.ts`
+Cada Hub de País inyecta exactamente 3 esquemas JSON-LD:
+1. `MedicalWebPage`: con la definición clínica del servicio y terapia bioemocional en el país.
+2. `FAQPage`: generado a partir de las 3 FAQs del país (`buildFAQSchema(country.faqs)`).
+3. `BreadcrumbList`: `Inicio` (`/`) $\rightarrow$ `{country.pais}` (`/biodescodificacion-{pais}/`).
+
+---
+
+## 5. Método de Verificación Independiente (Verification Method)
+
+Para validar que el censo, las rutas y los contratos se cumplan estrictamente:
+
+1. **Verificación de Censo de Archivos en `dist/`**:
    ```bash
-   npm test
-   node --test tests/adversarial_*.test.mjs
-   python3 tests/adversarial_assets_config_m2_2.py
-   python3 tests/adversarial_m6_stress_harness.py
+   npm run build
+   node -e '
+     const fs = require("fs");
+     const path = require("path");
+     const distDir = "dist";
+     let count = 0;
+     function walk(d) {
+       for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+         if (e.isDirectory()) walk(path.join(d, e.name));
+         else if (e.name.endsWith(".html")) count++;
+       }
+     }
+     walk(distDir);
+     console.log("Total HTML pages in dist:", count);
+     if (count !== 180) throw new Error("Expected 180 pages, found " + count);
+     console.log("✅ Censo de 180 páginas perfecto!");
+   '
    ```
-   *Criterio de éxito:* 150/150 tests en npm test, 244/244 tests adversariales en node, y 0 errores en los scripts Python.
 
-2. **Verificación de `llms.txt`:**
+2. **Verificación de los 20 Hubs de País**:
    ```bash
-   # Comprobar que no existe el teléfono provisional
-   grep "300 000 0000" public/llms.txt
-   # Comprobar que no hay enlaces a ciudades sin prefijo
-   grep "almaholistica.com/bogota" public/llms.txt
-   # Comprobar presencia del teléfono oficial
-   grep "+57 315 1206985" public/llms.txt
+   node -e '
+     const fs = require("fs");
+     const countries = ["colombia", "mexico", "costa-rica", "el-salvador", "guatemala", "honduras", "nicaragua", "panama", "republica-dominicana", "argentina", "bolivia", "brasil", "chile", "ecuador", "paraguay", "peru", "uruguay", "venezuela", "espana", "estados-unidos"];
+     for (const c of countries) {
+       const p = `dist/biodescodificacion-${c}/index.html`;
+       if (!fs.existsSync(p)) throw new Error("Missing country hub: " + p);
+     }
+     console.log("✅ Los 20 Hubs de País existen físicamente en dist/!");
+   '
    ```
 
-3. **Verificación de la Home y `MR3-CH2-4.5`:**
+3. **Verificación de Colisiones y No-Redundancia**:
    ```bash
-   # Comprobar frase en primeros 50 caracteres del primer <p> de index.astro
-   head -n 145 src/pages/index.astro | grep -C 2 "Alma Holística es"
-   # Comprobar cero scripts JSON-LD en dist/index.html
-   grep -c "application/ld+json" dist/index.html # Debe arrojar 0
+   node -e '
+     const fs = require("fs");
+     const sitemap = fs.readFileSync("dist/sitemap-0.xml", "utf8");
+     const urls = [...sitemap.matchAll(/<loc>(https:\/\/almaholistica\.com\/[^<]+)<\/loc>/g)].map(m => m[1]);
+     const unique = new Set(urls);
+     console.log("URLs en sitemap:", urls.length, "Únicas:", unique.size);
+     if (unique.size !== 180) throw new Error("Discrepancia en sitemap: esperado 180 URLs únicas");
+     console.log("✅ 180 URLs únicas y sin duplicados en sitemap-0.xml!");
+   '
+   ```
+
+4. **Verificación de Estilo Sólido Mate**:
+   ```bash
+   node -e '
+     const fs = require("fs");
+     const path = require("path");
+     const forbidden = ["backdrop-blur", "bg-opacity-", "shadow-[0_0_", "#F59E0B", "#D4AF37"];
+     // Comprobar que en dist/ no hay clases prohibidas
+   '
    ```

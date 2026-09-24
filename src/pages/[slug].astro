@@ -11,26 +11,67 @@
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCities } from '../lib/cities';
-import type { CityData, CityStaticPath } from '../types/city';
+import { getCountries, countryNameToSlug } from '../lib/countries';
+import type { CityData } from '../types/city';
+import type { CountryData } from '../types/country';
+import CountryHubView from '../components/country/CountryHubView.astro';
 import { SITE_CONFIG, buildWhatsAppUrl } from '../config/site';
-import { buildLocalServiceSchema, buildBreadcrumbSchema } from '../lib/schema';
+import {
+  buildLocalServiceSchema,
+  buildBreadcrumbSchema,
+  buildCountryMedicalWebPageSchema,
+  buildFAQSchema
+} from '../lib/schema';
 import eeatCitiesData from '../data/dataset_almaholistica_ciudades_eeat_geo.json';
 
-export async function getStaticPaths(): Promise<CityStaticPath[]> {
+export async function getStaticPaths() {
   const cities = getCities();
-  return cities.map((city) => ({
+  const countries = getCountries();
+
+  const cityPaths = cities.map((city) => ({
     params: { slug: city.slug },
-    props: { city },
+    props: { type: 'city' as const, city, country: null },
   }));
+
+  const countryPaths = countries.map((country) => ({
+    params: { slug: country.slug },
+    props: { type: 'country' as const, city: null, country },
+  }));
+
+  return [...cityPaths, ...countryPaths];
 }
 
 export interface Props {
-  city: CityData;
+  type?: 'city' | 'country';
+  city?: CityData | null;
+  country?: CountryData | null;
 }
 
-const { city } = Astro.props;
+const { type, city: propCity, country: propCountry } = Astro.props;
+const isCountry = type === 'country' || (!propCity && Boolean(propCountry));
 
-// Normalización y fallbacks para máxima resiliencia ante variaciones de datos
+// Variables específicas para Country Hub
+const country = propCountry;
+const countrySlug = country?.slug || '';
+const countryCanonicalUrl = `https://almaholistica.com/${countrySlug}/`;
+const countryPageTitle = country ? `${country.h1} | ${SITE_CONFIG.name}` : '';
+const countryMetaDesc = country?.metaDescripcion || '';
+
+const countryMedicalSchema = country ? buildCountryMedicalWebPageSchema(country, countryCanonicalUrl) : null;
+const countryFaqSchema = country ? buildFAQSchema(country.faqs) : null;
+const countryBreadcrumbSchema = country ? buildBreadcrumbSchema([
+  {
+    name: 'Inicio',
+    url: 'https://almaholistica.com/',
+  },
+  {
+    name: country.pais,
+    url: countryCanonicalUrl,
+  },
+]) : null;
+
+// Variables específicas para City Page
+const city = propCity || ({} as CityData);
 const rawSlug = city.slug || (city as any)['URL Final (Slug)'] || '';
 const rawH1 = city.h1 || (city as any)['H1 Título'] || '';
 const cityName = rawH1
@@ -75,14 +116,18 @@ const canonicalUrl = `https://almaholistica.com/${rawSlug}/`;
 // Schemas JSON-LD Estructurados (HealthAndBeautyBusiness + BreadcrumbList) conforme a Cruce 1
 const localBusinessSchema = buildLocalServiceSchema(city, canonicalUrl);
 
+// Silo Piramidal: Vinculación Canónica del Hub de País
+const cityCountrySlug = countryNameToSlug(pais);
+const countryHubUrl = `https://almaholistica.com/biodescodificacion-${cityCountrySlug}/`;
+
 const breadcrumbSchema = buildBreadcrumbSchema([
   {
     name: 'Inicio',
     url: 'https://almaholistica.com/',
   },
   {
-    name: 'Ciudades',
-    url: 'https://almaholistica.com/#ciudades',
+    name: pais,
+    url: countryHubUrl,
   },
   {
     name: cityName,
@@ -96,32 +141,53 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
 });
 ---
 
-<BaseLayout
-  title={pageTitle}
-  description={metaDesc}
-  canonical={canonicalUrl}
->
-  <Fragment slot="schema">
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-  </Fragment>
+{isCountry && country ? (
+  <BaseLayout
+    title={countryPageTitle}
+    description={countryMetaDesc}
+    canonical={countryCanonicalUrl}
+  >
+    <Fragment slot="schema">
+      {countryMedicalSchema && (
+        <script is:inline type="application/ld+json" set:html={JSON.stringify(countryMedicalSchema)} />
+      )}
+      {countryFaqSchema && (
+        <script is:inline type="application/ld+json" set:html={JSON.stringify(countryFaqSchema)} />
+      )}
+      {countryBreadcrumbSchema && (
+        <script is:inline type="application/ld+json" set:html={JSON.stringify(countryBreadcrumbSchema)} />
+      )}
+    </Fragment>
 
-  <!-- ========================================================================= -->
-  <!-- HERO HIPERLOCAL SWISS BIO-TECH // ESTADO EN VIVO Y ALTA CONVERSIÓN       -->
-  <!-- ========================================================================= -->
-  <section class="relative w-full bg-[#060A1A] pt-8 pb-16 sm:pt-12 sm:pb-24 border-b border-slate-800/40 overflow-hidden">
-    <div class="hero-floating-aura absolute -top-40 left-1/4 w-[35rem] h-[35rem] bg-[#779DD1]/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+    <CountryHubView country={country} />
+  </BaseLayout>
+) : (
+  <BaseLayout
+    title={pageTitle}
+    description={metaDesc}
+    canonical={canonicalUrl}
+  >
+    <Fragment slot="schema">
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    </Fragment>
 
-    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-      
-      <!-- Migas de pan modernas -->
-      <nav class="flex items-center gap-2 text-xs font-sans tracking-wide text-slate-400 mb-8" aria-label="Breadcrumb">
-        <a href="/" class="hover:text-[#779DD1] transition-colors">INICIO</a>
-        <span class="text-slate-600">/</span>
-        <a href="/#ciudades" class="hover:text-[#779DD1] transition-colors">CIUDADES</a>
-        <span class="text-slate-600">/</span>
-        <span class="text-[#779DD1] font-semibold uppercase">{cityName}</span>
-      </nav>
+    <!-- ========================================================================= -->
+    <!-- HERO HIPERLOCAL SWISS BIO-TECH // ESTADO EN VIVO Y ALTA CONVERSIÓN       -->
+    <!-- ========================================================================= -->
+    <section class="relative w-full bg-[#060A1A] pt-8 pb-16 sm:pt-12 sm:pb-24 border-b border-slate-800/40 overflow-hidden">
+      <div class="hero-floating-aura absolute -top-40 left-1/4 w-[35rem] h-[35rem] bg-[#779DD1]/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+        
+        <!-- Migas de pan modernas (Silo Piramidal: Inicio > País > Ciudad) -->
+        <nav class="flex items-center gap-2 text-xs font-sans tracking-wide text-slate-400 mb-8" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-[#779DD1] transition-colors">INICIO</a>
+          <span class="text-slate-600">/</span>
+          <a href={`/biodescodificacion-${cityCountrySlug}/`} class="hover:text-[#779DD1] transition-colors uppercase">{pais}</a>
+          <span class="text-slate-600">/</span>
+          <span class="text-[#779DD1] font-semibold uppercase">{cityName}</span>
+        </nav>
 
       <!-- Bloque Hero en Retícula de 2 Columnas: Contenido a la izquierda + Arte Circular a la derecha -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center min-h-[40vh] mb-12">
@@ -778,3 +844,4 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
     </div>
   </section>
 </BaseLayout>
+)}

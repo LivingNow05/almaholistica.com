@@ -1,34 +1,18 @@
-# Auditor 1 Workspace Setup
-Parent: teamwork_preview_orchestrator_7
-Working Directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_auditor_1
-Role: Forensic Integrity Auditor
+# Task Assignment — Forensic Auditor (Integrity Verification)
+Path to ORIGINAL_REQUEST.md: /Users/anthony/Downloads/almaholistica.com/.agents/ORIGINAL_REQUEST.md
+Working directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_auditor_1/
 
-## 2026-09-10T20:08:48Z
-Eres teamwork_preview_auditor_1, el Auditor Forense de Integridad para Alma Holística.
-
-Tu directorio de trabajo exclusivo es:
-/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_auditor_1
-
-El archivo con los requerimientos originales del usuario es:
-/Users/anthony/Downloads/almaholistica.com/.agents/ORIGINAL_REQUEST.md
-(DEBES leer este archivo antes de comenzar tu trabajo).
-
-El documento maestro del proyecto es:
-/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_orchestrator_7/PROJECT.md
-
-TU MISIÓN DE AUDITORÍA FORENSE (CERO TOLERANCIA):
-Realizar una auditoría forense rigurosa y completa para verificar la autenticidad genuina de la solución:
-1. Comprobar que NO existan resultados de prueba cableados/hardcodeados en el código fuente.
-2. Comprobar que NO existan implementaciones dummy, de fachada o vacías:
-   - Las 3 tablas en `src/components/` deben tener datos clínicos completos y reales de biodescodificación y medicina integrativa.
-   - Las 3 ilustraciones en `public/images/` deben ser archivos SVG vectoriales auténticos, detallados y visualmente ricos, no rectángulos vacíos ni marcadores de posición.
-   - `src/lib/dolencias.ts` y `src/lib/bio_theme.ts` deben implementar lógica real de resolución y mapeo biológico.
-   - `src/styles/global.css` debe contener definiciones reales de CSS con reglas sólidas mates y contraste WCAG AAA.
-3. Comprobar que NO se hayan modificado pruebas en `tests/` para ocultar errores o falsificar resultados (`git status` o `git diff tests/`).
-4. Comprobar que la compilación `npm run build` y la suite de pruebas se ejecuten de manera genuina contra el código real.
-5. Emitir un veredicto binario e innegociable: **CLEAN** o **INTEGRITY VIOLATION**.
-
-ENTREGABLES:
-- Escribir tu reporte forense con la evidencia en `/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_auditor_1/handoff.md`.
-- Notificar al parent vía `send_message` con tu veredicto (CLEAN / INTEGRITY VIOLATION).
+## 2026-09-24T05:47:08Z
+Perform a strict forensic integrity audit on all changes made for the 20 Country Hubs and 180-page expansion:
+1. Code Authenticity Audit:
+   - Check `src/data/dataset_almaholistica_paises.json` and `src/lib/countries.ts`. Are the 20 country records genuinely implemented with authentic content, or are they fake placeholders / stub mocks?
+   - Check `src/components/country/CountryHubView.astro`. Is it a genuine 7-section template with real content, specialist data, and WhatsApp/Quiz triggers, or a facade?
+   - Check `src/pages/[slug].astro` and `src/pages/index.astro`. Is Astro SSG genuinely compiling 180 static HTML files?
+2. Integrity Forensics:
+   - Search for hardcoded bypasses, dummy test return values, conditional test dodging (e.g. `if (process.env.TEST) return true`), or fabrication of outputs.
+   - Verify that test files in `tests/` were synchronized legitimately to reflect the new census (180 pages, 421 schemas) rather than weakened, commented out, or bypassed.
+   - Verify that the sitemap generator genuinely computes 180 URLs and writes valid XML.
+3. Static & Runtime Tracing:
+   - Run `npm test`, `python3 tests/adversarial_r1_r2_challenger.py`, and `python3 tests/adversarial_m5_sitemaps_schema.py`.
+   - Confirm that the system passes tests through genuine behavior.
 

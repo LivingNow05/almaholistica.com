@@ -1,0 +1,1410 @@
+[
+  {
+    "pais": "Colombia",
+    "slug": "biodescodificacion-colombia",
+    "h1": "Biodescodificación y Terapia Bioemocional en Colombia",
+    "metaDescripcion": "Sesiones online de biodescodificación y terapia bioemocional en Colombia. Desactiva el origen biológico y emocional de tus síntomas con especialistas certificados.",
+    "moneda": "COP",
+    "rangoPrecio": "$140.000 - $220.000 COP",
+    "husoHorario": "COT (UTC-5)",
+    "pasarelasPago": [
+      "PSE",
+      "Bancolombia",
+      "Nequi",
+      "Daviplata",
+      "Tarjetas de Crédito y Débito"
+    ],
+    "marcoRegulatorio": "En Colombia, la práctica de terapias complementarias e integrativas se enmarca bajo las disposiciones de la Ley 1164 de 2007 (Talento Humano en Salud) y la Resolución 2003 de 2014 del Ministerio de Salud y Protección Social, que reconocen el derecho de los ciudadanos a acceder a métodos complementarios de bienestar bioemocional sin menoscabo del diagnóstico y prescripción médica alopática obligatoria.",
+    "descargoResponsabilidad": "Descargo de Responsabilidad Médica y Compromiso Ético: Las sesiones de biodescodificación en Colombia son intervenciones de acompañamiento bioemocional y bienestar complementario. En ningún caso sustituyen, reemplazan ni modifican el diagnóstico, prescripción médica o tratamiento facultativo alopático.",
+    "definicionClinica": "La biodescodificación clínica en Colombia es un método terapéutico integrativo que identifica el conflicto biológico inconsciente y el impacto emocional (DHS) detonante de patologías psicosomáticas, permitiendo a los consultantes desactivar programas adaptativos de estrés crónico y recuperar la homeostasis neurovegetativa mediante sesiones virtuales personalizadas.",
+    "especialistaAsignado": {
+      "nombre": "Lic. Sofía Alarcón Valdés",
+      "cargo": "Especialista Senior en Biodescodificación y Psicosomática Clínica",
+      "registro": "Reg. ITH-8492 (Asociación Internacional de Terapias Holísticas)",
+      "experiencia": "+9 años de práctica clínica y más de 1.400 sesiones individuales de biodescodificación guiadas.",
+      "formacion": "Diplomada en Descodificación Biológica de los Síntomas (Escuela Francesa), Máster en Psiconeuroinmunología Clínica y Acompañamiento Transgeneracional.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-bogota",
+        "nombre": "Bogotá",
+        "precio": "120.000 - 180.000 COP"
+      },
+      {
+        "slug": "biodescodificacion-medellin",
+        "nombre": "Medellín",
+        "precio": "120.000 - 180.000 COP"
+      },
+      {
+        "slug": "biodescodificacion-cali",
+        "nombre": "Cali",
+        "precio": "120.000 - 180.000 COP"
+      },
+      {
+        "slug": "biodescodificacion-barranquilla",
+        "nombre": "Barranquilla",
+        "precio": "120.000 - 180.000 COP"
+      },
+      {
+        "slug": "biodescodificacion-cartagena",
+        "nombre": "Cartagena",
+        "precio": "120.000 - 180.000 COP"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en Colombia?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (COT (UTC-5)). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en Colombia?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de $140.000 - $220.000 COP (COP). Ponemos a tu disposición medios de pago locales e internacionales habituales como PSE, Bancolombia, Nequi, Daviplata, Tarjetas de Crédito y Débito, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en Colombia reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  },
+  {
+    "pais": "México",
+    "slug": "biodescodificacion-mexico",
+    "h1": "Biodescodificación y Terapia Bioemocional en México",
+    "metaDescripcion": "Sesiones online de biodescodificación y medicina integrativa en México. Identifica el conflicto biológico raíz y sana tus síntomas físicos desde casa.",
+    "moneda": "MXN",
+    "rangoPrecio": "$800 - $1,400 MXN",
+    "husoHorario": "CST (UTC-6) / Tiempo del Centro",
+    "pasarelasPago": [
+      "SPEI",
+      "OXXO Pay",
+      "Mercado Pago",
+      "BBVA",
+      "Tarjetas Visa / Mastercard"
+    ],
+    "marcoRegulatorio": "En los Estados Unidos Mexicanos, las terapias bioemocionales y holísticas operan de conformidad con el Artículo 4° Constitucional y las directrices de la Dirección de Medicina Tradicional y Desarrollo Intercultural de la Secretaría de Salud (SSA), promoviendo la integración respetuosa y no sustitutiva de modelos terapéuticos para el bienestar integral de la persona.",
+    "descargoResponsabilidad": "Descargo de Responsabilidad Médica y Compromiso Ético: Las sesiones de biodescodificación en México son intervenciones de acompañamiento bioemocional y bienestar complementario. En ningún caso sustituyen, reemplazan ni modifican el diagnóstico, prescripción médica o tratamiento facultativo alopático.",
+    "definicionClinica": "La biodescodificación en México proporciona un marco clínico riguroso para desentrañar las memorias somatizadas derivadas de exigencias laborales, dinámicas familiares y tensiones cotidianas, facilitando la toma de conciencia del sentido biológico de supervivencia de cada síntoma orgánico.",
+    "especialistaAsignado": {
+      "nombre": "Dr. Mateo Benavides Rivas",
+      "cargo": "Director Clínico en Psicosomática y Biología Integrativa",
+      "registro": "Reg. AIE-5120 (Asociación Iberoamericana de Epigenética y Psicosomática)",
+      "experiencia": "+11 años de experiencia clínica y más de 2.100 horas de intervención terapéutica individual.",
+      "formacion": "Licenciado en Psicología, Especialista en Neurobiología del Comportamiento y Posgrado en Descodificación Biológica Original.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-cdmx",
+        "nombre": "CDMX",
+        "precio": "$800 - $1,400 MXN"
+      },
+      {
+        "slug": "biodescodificacion-guadalajara",
+        "nombre": "Guadalajara",
+        "precio": "$800 - $1,400 MXN"
+      },
+      {
+        "slug": "biodescodificacion-monterrey",
+        "nombre": "Monterrey",
+        "precio": "$800 - $1,400 MXN"
+      },
+      {
+        "slug": "biodescodificacion-puebla",
+        "nombre": "Puebla",
+        "precio": "$800 - $1,400 MXN"
+      },
+      {
+        "slug": "biodescodificacion-toluca",
+        "nombre": "Toluca",
+        "precio": "$800 - $1,400 MXN"
+      },
+      {
+        "slug": "biodescodificacion-tijuana",
+        "nombre": "Tijuana",
+        "precio": "$800 - $1,400 MXN"
+      },
+      {
+        "slug": "biodescodificacion-leon",
+        "nombre": "León",
+        "precio": "$800 - $1,400 MXN"
+      },
+      {
+        "slug": "biodescodificacion-ciudad-juarez",
+        "nombre": "Ciudad Juárez",
+        "precio": "$800 - $1,400 MXN"
+      },
+      {
+        "slug": "biodescodificacion-torreon",
+        "nombre": "Torreón",
+        "precio": "$800 - $1,400 MXN"
+      },
+      {
+        "slug": "biodescodificacion-queretaro",
+        "nombre": "Querétaro",
+        "precio": "$800 - $1,400 MXN"
+      },
+      {
+        "slug": "biodescodificacion-san-luis-potosi",
+        "nombre": "San Luis Potosí",
+        "precio": "$800 - $1,400 MXN"
+      },
+      {
+        "slug": "biodescodificacion-merida",
+        "nombre": "Mérida",
+        "precio": "$800 - $1,400 MXN"
+      },
+      {
+        "slug": "biodescodificacion-aguascalientes",
+        "nombre": "Aguascalientes",
+        "precio": "$800 - $1,400 MXN"
+      },
+      {
+        "slug": "biodescodificacion-hermosillo",
+        "nombre": "Hermosillo",
+        "precio": "$800 - $1,400 MXN"
+      },
+      {
+        "slug": "biodescodificacion-saltillo",
+        "nombre": "Saltillo",
+        "precio": "$800 - $1,400 MXN"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en México?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (CST (UTC-6) / Tiempo del Centro). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en México?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de $800 - $1,400 MXN (MXN). Ponemos a tu disposición medios de pago locales e internacionales habituales como SPEI, OXXO Pay, Mercado Pago, BBVA, Tarjetas Visa / Mastercard, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en México reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  },
+  {
+    "pais": "Costa Rica",
+    "slug": "biodescodificacion-costa-rica",
+    "h1": "Biodescodificación y Terapia Bioemocional en Costa Rica",
+    "metaDescripcion": "Sesiones online de biodescodificación en Costa Rica. Decodifica el sentido biológico de tus síntomas con especialistas en psiconeuroinmunología.",
+    "moneda": "CRC",
+    "rangoPrecio": "₡25.000 - ₡40.000 CRC",
+    "husoHorario": "CST (UTC-6)",
+    "pasarelasPago": [
+      "SINPE Móvil",
+      "BAC Credomatic",
+      "Tarjetas de Crédito / Débito",
+      "PayPal"
+    ],
+    "marcoRegulatorio": "En Costa Rica, el marco regulatorio del Ministerio de Salud y el Decreto Ejecutivo N° 35439-S contemplan las terapias complementarias como herramientas de apoyo al equilibrio psicosomático y autocuidado, reafirmando que no constituyen ejercicio ilegal de la medicina ni sustituyen los tratamientos de la Caja Costarricense de Seguro Social (CCSS).",
+    "descargoResponsabilidad": "Descargo de Responsabilidad Médica y Compromiso Ético: Las sesiones de biodescodificación en Costa Rica son intervenciones de acompañamiento bioemocional y bienestar complementario. En ningún caso sustituyen, reemplazan ni modifican el diagnóstico, prescripción médica o tratamiento facultativo alopático.",
+    "definicionClinica": "La biodescodificación en Costa Rica aborda la correlación entre estrés vivencial y somatización biológica, permitiendo a los consultantes resolver bloqueos emocionales no exteriorizados que comprometen el sistema inmune y los órganos diana.",
+    "especialistaAsignado": {
+      "nombre": "Dra. Elena Monsalve Duarte",
+      "cargo": "Especialista Senior en Descodificación Biológica y Transgeneracional",
+      "registro": "Reg. CIT-6311 (Colegio Internacional de Terapeutas Bioemocionales)",
+      "experiencia": "+8 años de trayectoria clínica acompañando a más de 1.200 consultantes en procesos de sanación psicosomática.",
+      "formacion": "Especialista en Reprogramación Bioemocional, Árbol Genealógico y Dinámicas Transgeneracionales del Síntoma Físico.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-san-jose",
+        "nombre": "San José",
+        "precio": "₡25.000 - ₡40.000 CRC"
+      },
+      {
+        "slug": "biodescodificacion-alajuela",
+        "nombre": "Alajuela",
+        "precio": "₡25.000 - ₡40.000 CRC"
+      },
+      {
+        "slug": "biodescodificacion-cartago",
+        "nombre": "Cartago",
+        "precio": "₡25.000 - ₡40.000 CRC"
+      },
+      {
+        "slug": "biodescodificacion-heredia",
+        "nombre": "Heredia",
+        "precio": "₡25.000 - ₡40.000 CRC"
+      },
+      {
+        "slug": "biodescodificacion-puntarenas",
+        "nombre": "Puntarenas",
+        "precio": "₡25.000 - ₡40.000 CRC"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en Costa Rica?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (CST (UTC-6)). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en Costa Rica?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de ₡25.000 - ₡40.000 CRC (CRC). Ponemos a tu disposición medios de pago locales e internacionales habituales como SINPE Móvil, BAC Credomatic, Tarjetas de Crédito / Débito, PayPal, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en Costa Rica reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  },
+  {
+    "pais": "El Salvador",
+    "slug": "biodescodificacion-el-salvador",
+    "h1": "Biodescodificación y Terapia Bioemocional en El Salvador",
+    "metaDescripcion": "Terapia de biodescodificación online en El Salvador. Sanación profunda del conflicto biológico detrás de afecciones crónicas y psicosomáticas.",
+    "moneda": "USD",
+    "rangoPrecio": "$40 - $65 USD",
+    "husoHorario": "CST (UTC-6)",
+    "pasarelasPago": [
+      "Chivo Wallet",
+      "Banco Agrícola",
+      "Transferencia 365",
+      "Tarjetas Internacionales"
+    ],
+    "marcoRegulatorio": "En El Salvador, la biodescodificación online se ejerce en apego a los lineamientos del Consejo Superior de Salud Pública (CSSP) y el Código de Salud, estableciendo con claridad meridiana que la intervención bioemocional tiene carácter estrictamente complementario y psicoeducativo.",
+    "descargoResponsabilidad": "Descargo de Responsabilidad Médica y Compromiso Ético: Las sesiones de biodescodificación en El Salvador son intervenciones de acompañamiento bioemocional y bienestar complementario. En ningún caso sustituyen, reemplazan ni modifican el diagnóstico, prescripción médica o tratamiento facultativo alopático.",
+    "definicionClinica": "La biodescodificación en El Salvador investiga el impacto del choque biológico agudo y la respuesta adaptativa orgánica en consultantes que experimentan somatizaciones gastrointestinales, osteomusculares y metabólicas.",
+    "especialistaAsignado": {
+      "nombre": "Lic. Sofía Alarcón Valdés",
+      "cargo": "Especialista Senior en Biodescodificación y Psicosomática Clínica",
+      "registro": "Reg. ITH-8492 (Asociación Internacional de Terapias Holísticas)",
+      "experiencia": "+9 años de práctica clínica y más de 1.400 sesiones individuales de biodescodificación guiadas.",
+      "formacion": "Diplomada en Descodificación Biológica de los Síntomas (Escuela Francesa), Máster en Psiconeuroinmunología Clínica y Acompañamiento Transgeneracional.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-san-salvador",
+        "nombre": "San Salvador",
+        "precio": "$35 - $55 USD"
+      },
+      {
+        "slug": "biodescodificacion-santa-ana",
+        "nombre": "Santa Ana",
+        "precio": "$35 - $55 USD"
+      },
+      {
+        "slug": "biodescodificacion-san-miguel",
+        "nombre": "San Miguel",
+        "precio": "$35 - $55 USD"
+      },
+      {
+        "slug": "biodescodificacion-soyapango",
+        "nombre": "Soyapango",
+        "precio": "$35 - $55 USD"
+      },
+      {
+        "slug": "biodescodificacion-santa-tecla",
+        "nombre": "Santa Tecla",
+        "precio": "$35 - $55 USD"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en El Salvador?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (CST (UTC-6)). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en El Salvador?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de $40 - $65 USD (USD). Ponemos a tu disposición medios de pago locales e internacionales habituales como Chivo Wallet, Banco Agrícola, Transferencia 365, Tarjetas Internacionales, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en El Salvador reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  },
+  {
+    "pais": "Guatemala",
+    "slug": "biodescodificacion-guatemala",
+    "h1": "Biodescodificación y Terapia Bioemocional en Guatemala",
+    "metaDescripcion": "Sesiones online de biodescodificación en Guatemala. Descubre el origen emocional de tus síntomas físicos con atención clínica 1 a 1.",
+    "moneda": "GTQ",
+    "rangoPrecio": "Q300 - Q500 GTQ",
+    "husoHorario": "CST (UTC-6)",
+    "pasarelasPago": [
+      "BI en Línea (Banco Industrial)",
+      "Banrural",
+      "G&T Continental",
+      "Tarjetas Visa / Mastercard"
+    ],
+    "marcoRegulatorio": "En Guatemala, de acuerdo con el Código de Salud (Decreto 90-97) y las políticas de interculturalidad en salud del Ministerio de Salud Pública y Asistencia Social (MSPAS), las terapias integrativas y bioemocionales son reconocidas como prácticas de acompañamiento al bienestar que coexisten armónicamente con la atención clínica formal.",
+    "descargoResponsabilidad": "Descargo de Responsabilidad Médica y Compromiso Ético: Las sesiones de biodescodificación en Guatemala son intervenciones de acompañamiento bioemocional y bienestar complementario. En ningún caso sustituyen, reemplazan ni modifican el diagnóstico, prescripción médica o tratamiento facultativo alopático.",
+    "definicionClinica": "La biodescodificación en Guatemala integra la psicosomática moderna y el estudio transgeneracional para transformar vivencias de desvalorización y alarma biológica en factores de reprogramación celular y autorregulación orgánica.",
+    "especialistaAsignado": {
+      "nombre": "Dr. Mateo Benavides Rivas",
+      "cargo": "Director Clínico en Psicosomática y Biología Integrativa",
+      "registro": "Reg. AIE-5120 (Asociación Iberoamericana de Epigenética y Psicosomática)",
+      "experiencia": "+11 años de experiencia clínica y más de 2.100 horas de intervención terapéutica individual.",
+      "formacion": "Licenciado en Psicología, Especialista en Neurobiología del Comportamiento y Posgrado en Descodificación Biológica Original.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-ciudad-de-guatemala",
+        "nombre": "Ciudad de Guatemala",
+        "precio": "280 - 450 GTQ"
+      },
+      {
+        "slug": "biodescodificacion-mixco",
+        "nombre": "Mixco",
+        "precio": "280 - 450 GTQ"
+      },
+      {
+        "slug": "biodescodificacion-villa-nueva",
+        "nombre": "Villa Nueva",
+        "precio": "280 - 450 GTQ"
+      },
+      {
+        "slug": "biodescodificacion-quetzaltenango",
+        "nombre": "Quetzaltenango",
+        "precio": "280 - 450 GTQ"
+      },
+      {
+        "slug": "biodescodificacion-antigua-guatemala",
+        "nombre": "Antigua Guatemala",
+        "precio": "280 - 450 GTQ"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en Guatemala?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (CST (UTC-6)). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en Guatemala?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de Q300 - Q500 GTQ (GTQ). Ponemos a tu disposición medios de pago locales e internacionales habituales como BI en Línea (Banco Industrial), Banrural, G&T Continental, Tarjetas Visa / Mastercard, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en Guatemala reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  },
+  {
+    "pais": "Honduras",
+    "slug": "biodescodificacion-honduras",
+    "h1": "Biodescodificación y Terapia Bioemocional en Honduras",
+    "metaDescripcion": "Terapia de biodescodificación y medicina integrativa en Honduras. Acompañamiento online experto para decodificar dolencias físicas.",
+    "moneda": "HNL",
+    "rangoPrecio": "L1.000 - L1.600 HNL",
+    "husoHorario": "CST (UTC-6)",
+    "pasarelasPago": [
+      "Ficohsa",
+      "Banco Atlántida",
+      "BAC Honduras",
+      "Tarjetas de Crédito / Débito"
+    ],
+    "marcoRegulatorio": "En Honduras, las intervenciones holísticas y de biodescodificación se alinean con la normativa de la Secretaría de Salud (SESAL), enfocadas en la autorregulación emocional y el alivio de tensiones somatizadas, sin invadir el ámbito diagnóstico de la medicina médica oficial.",
+    "descargoResponsabilidad": "Descargo de Responsabilidad Médica y Compromiso Ético: Las sesiones de biodescodificación en Honduras son intervenciones de acompañamiento bioemocional y bienestar complementario. En ningún caso sustituyen, reemplazan ni modifican el diagnóstico, prescripción médica o tratamiento facultativo alopático.",
+    "definicionClinica": "La biodescodificación en Honduras ayuda a identificar los desencadenantes emocionales de síntomas crónicos, liberando la carga neurovegetativa acumulada en tejidos y órganos por vivencias de conflicto silenciadas.",
+    "especialistaAsignado": {
+      "nombre": "Dra. Elena Monsalve Duarte",
+      "cargo": "Especialista Senior en Descodificación Biológica y Transgeneracional",
+      "registro": "Reg. CIT-6311 (Colegio Internacional de Terapeutas Bioemocionales)",
+      "experiencia": "+8 años de trayectoria clínica acompañando a más de 1.200 consultantes en procesos de sanación psicosomática.",
+      "formacion": "Especialista en Reprogramación Bioemocional, Árbol Genealógico y Dinámicas Transgeneracionales del Síntoma Físico.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-tegucigalpa",
+        "nombre": "Tegucigalpa",
+        "precio": "850 - 1.400 HNL"
+      },
+      {
+        "slug": "biodescodificacion-san-pedro-sula",
+        "nombre": "San Pedro Sula",
+        "precio": "850 - 1.400 HNL"
+      },
+      {
+        "slug": "biodescodificacion-choloma",
+        "nombre": "Choloma",
+        "precio": "850 - 1.400 HNL"
+      },
+      {
+        "slug": "biodescodificacion-la-ceiba",
+        "nombre": "La Ceiba",
+        "precio": "850 - 1.400 HNL"
+      },
+      {
+        "slug": "biodescodificacion-el-progreso",
+        "nombre": "El Progreso",
+        "precio": "850 - 1.400 HNL"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en Honduras?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (CST (UTC-6)). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en Honduras?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de L1.000 - L1.600 HNL (HNL). Ponemos a tu disposición medios de pago locales e internacionales habituales como Ficohsa, Banco Atlántida, BAC Honduras, Tarjetas de Crédito / Débito, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en Honduras reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  },
+  {
+    "pais": "Nicaragua",
+    "slug": "biodescodificacion-nicaragua",
+    "h1": "Biodescodificación y Terapia Bioemocional en Nicaragua",
+    "metaDescripcion": "Sesiones online de biodescodificación biológica en Nicaragua. Comprende la raíz emocional de tu enfermedad con terapeutas acreditados.",
+    "moneda": "NIO",
+    "rangoPrecio": "C$1.400 - C$2.300 NIO",
+    "husoHorario": "CST (UTC-6)",
+    "pasarelasPago": [
+      "Lafise Bancentro",
+      "BAC Credomatic",
+      "Billetera Móvil",
+      "Tarjetas de Crédito"
+    ],
+    "marcoRegulatorio": "En Nicaragua, la Ley N° 774 (Ley de Medicina Natural, Terapias Complementarias y Medicinas Alternativas) respalda la coexistencia de modelos terapéuticos holísticos bajo la rectoría del Ministerio de Salud (MINSA), enfatizando la complementariedad y el respeto a la salud psicobiológica.",
+    "descargoResponsabilidad": "Descargo de Responsabilidad Médica y Compromiso Ético: Las sesiones de biodescodificación en Nicaragua son intervenciones de acompañamiento bioemocional y bienestar complementario. En ningún caso sustituyen, reemplazan ni modifican el diagnóstico, prescripción médica o tratamiento facultativo alopático.",
+    "definicionClinica": "La biodescodificación en Nicaragua propone una vía de indagación bioemocional precisa para restablecer la armonía mente-cuerpo ante afecciones respiratorias, gástricas y musculares ligadas al estrés persistente.",
+    "especialistaAsignado": {
+      "nombre": "Lic. Sofía Alarcón Valdés",
+      "cargo": "Especialista Senior en Biodescodificación y Psicosomática Clínica",
+      "registro": "Reg. ITH-8492 (Asociación Internacional de Terapias Holísticas)",
+      "experiencia": "+9 años de práctica clínica y más de 1.400 sesiones individuales de biodescodificación guiadas.",
+      "formacion": "Diplomada en Descodificación Biológica de los Síntomas (Escuela Francesa), Máster en Psiconeuroinmunología Clínica y Acompañamiento Transgeneracional.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-managua",
+        "nombre": "Managua",
+        "precio": "C$ 1,200 - C$ 1,900 NIO"
+      },
+      {
+        "slug": "biodescodificacion-leon-ni",
+        "nombre": "León (NI)",
+        "precio": "C$ 1,200 - C$ 1,900 NIO"
+      },
+      {
+        "slug": "biodescodificacion-masaya",
+        "nombre": "Masaya",
+        "precio": "C$ 1,200 - C$ 1,900 NIO"
+      },
+      {
+        "slug": "biodescodificacion-chinandega",
+        "nombre": "Chinandega",
+        "precio": "C$ 1,200 - C$ 1,900 NIO"
+      },
+      {
+        "slug": "biodescodificacion-granada",
+        "nombre": "Granada",
+        "precio": "C$ 1,200 - C$ 1,900 NIO"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en Nicaragua?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (CST (UTC-6)). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en Nicaragua?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de C$1.400 - C$2.300 NIO (NIO). Ponemos a tu disposición medios de pago locales e internacionales habituales como Lafise Bancentro, BAC Credomatic, Billetera Móvil, Tarjetas de Crédito, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en Nicaragua reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  },
+  {
+    "pais": "Panamá",
+    "slug": "biodescodificacion-panama",
+    "h1": "Biodescodificación y Terapia Bioemocional en Panamá",
+    "metaDescripcion": "Centro online de biodescodificación y psicosomática en Panamá. Identifica el conflicto biológico y restaura tu salud integral 1 a 1.",
+    "moneda": "USD",
+    "rangoPrecio": "$40 - $65 USD",
+    "husoHorario": "EST (UTC-5)",
+    "pasarelasPago": [
+      "Yappy (Banco General)",
+      "Transferencia ACH",
+      "Banco Nacional",
+      "Tarjetas Internacionales"
+    ],
+    "marcoRegulatorio": "En la República de Panamá, el Ministerio de Salud (MINSA) a través del Código Sanitario y la normativa sobre terapias de medicina alternativa y complementaria reconoce la labor de facilitación bioemocional como soporte preventivo y complementario a la atención hospitalaria y facultativa.",
+    "descargoResponsabilidad": "Descargo de Responsabilidad Médica y Compromiso Ético: Las sesiones de biodescodificación en Panamá son intervenciones de acompañamiento bioemocional y bienestar complementario. En ningún caso sustituyen, reemplazan ni modifican el diagnóstico, prescripción médica o tratamiento facultativo alopático.",
+    "definicionClinica": "La biodescodificación en Panamá atiende con especial precisión el impacto de la hiperactividad urbana y financiera sobre el eje hipotálamo-hipófisis-adrenal, asistiendo al consultante en la desactivación del programa somático.",
+    "especialistaAsignado": {
+      "nombre": "Dr. Mateo Benavides Rivas",
+      "cargo": "Director Clínico en Psicosomática y Biología Integrativa",
+      "registro": "Reg. AIE-5120 (Asociación Iberoamericana de Epigenética y Psicosomática)",
+      "experiencia": "+11 años de experiencia clínica y más de 2.100 horas de intervención terapéutica individual.",
+      "formacion": "Licenciado en Psicología, Especialista en Neurobiología del Comportamiento y Posgrado en Descodificación Biológica Original.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-ciudad-de-panama",
+        "nombre": "Ciudad de Panamá",
+        "precio": "$40 - $65 USD"
+      },
+      {
+        "slug": "biodescodificacion-colon",
+        "nombre": "Colón",
+        "precio": "$40 - $65 USD"
+      },
+      {
+        "slug": "biodescodificacion-david",
+        "nombre": "David",
+        "precio": "$40 - $65 USD"
+      },
+      {
+        "slug": "biodescodificacion-san-miguelito",
+        "nombre": "San Miguelito",
+        "precio": "$40 - $65 USD"
+      },
+      {
+        "slug": "biodescodificacion-la-chorrera",
+        "nombre": "La Chorrera",
+        "precio": "$40 - $65 USD"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en Panamá?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (EST (UTC-5)). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en Panamá?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de $40 - $65 USD (USD). Ponemos a tu disposición medios de pago locales e internacionales habituales como Yappy (Banco General), Transferencia ACH, Banco Nacional, Tarjetas Internacionales, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en Panamá reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  },
+  {
+    "pais": "República Dominicana",
+    "slug": "biodescodificacion-republica-dominicana",
+    "h1": "Biodescodificación y Terapia Bioemocional en República Dominicana",
+    "metaDescripcion": "Sesiones online de biodescodificación en República Dominicana. Alivia el conflicto emocional detrás del síntoma físico con expertos certificados.",
+    "moneda": "DOP",
+    "rangoPrecio": "RD$2.500 - RD$3.800 DOP",
+    "husoHorario": "AST (UTC-4)",
+    "pasarelasPago": [
+      "Banreservas",
+      "Banco Popular Dominicano",
+      "BHD",
+      "Tarjetas Visa / Mastercard"
+    ],
+    "marcoRegulatorio": "En República Dominicana, en concordancia con la Ley General de Salud N° 42-01 del Ministerio de Salud Pública (MISPAS), la biodescodificación se posiciona como una práctica de acompañamiento psicosomático y bienestar humano que respeta escrupulosamente los límites del acto médico oficial.",
+    "descargoResponsabilidad": "Descargo de Responsabilidad Médica y Compromiso Ético: Las sesiones de biodescodificación en República Dominicana son intervenciones de acompañamiento bioemocional y bienestar complementario. En ningún caso sustituyen, reemplazan ni modifican el diagnóstico, prescripción médica o tratamiento facultativo alopático.",
+    "definicionClinica": "La biodescodificación en República Dominicana facilita la liberación de lealtades invisibles transgeneracionales y bloqueos afectivos que se somatizan en dolor crónico, alergias o alteraciones digestivas recurrentes.",
+    "especialistaAsignado": {
+      "nombre": "Dra. Elena Monsalve Duarte",
+      "cargo": "Especialista Senior en Descodificación Biológica y Transgeneracional",
+      "registro": "Reg. CIT-6311 (Colegio Internacional de Terapeutas Bioemocionales)",
+      "experiencia": "+8 años de trayectoria clínica acompañando a más de 1.200 consultantes en procesos de sanación psicosomática.",
+      "formacion": "Especialista en Reprogramación Bioemocional, Árbol Genealógico y Dinámicas Transgeneracionales del Síntoma Físico.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-santo-domingo",
+        "nombre": "Santo Domingo",
+        "precio": "RD$ 2,200 - RD$ 3,500 DOP"
+      },
+      {
+        "slug": "biodescodificacion-santiago-rd",
+        "nombre": "Santiago (RD)",
+        "precio": "RD$ 2,200 - RD$ 3,500 DOP"
+      },
+      {
+        "slug": "biodescodificacion-la-romana",
+        "nombre": "La Romana",
+        "precio": "RD$ 2,200 - RD$ 3,500 DOP"
+      },
+      {
+        "slug": "biodescodificacion-san-pedro-macoris",
+        "nombre": "San Pedro de Macorís",
+        "precio": "RD$ 2,200 - RD$ 3,500 DOP"
+      },
+      {
+        "slug": "biodescodificacion-punta-cana",
+        "nombre": "Punta Cana",
+        "precio": "RD$ 2,200 - RD$ 3,500 DOP"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en República Dominicana?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (AST (UTC-4)). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en República Dominicana?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de RD$2.500 - RD$3.800 DOP (DOP). Ponemos a tu disposición medios de pago locales e internacionales habituales como Banreservas, Banco Popular Dominicano, BHD, Tarjetas Visa / Mastercard, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en República Dominicana reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  },
+  {
+    "pais": "Argentina",
+    "slug": "biodescodificacion-argentina",
+    "h1": "Biodescodificación y Terapia Bioemocional en Argentina",
+    "metaDescripcion": "Sesiones online de biodescodificación y biología integrativa en Argentina. Decodifica el sentido biológico de tu síntoma con atención personalizada.",
+    "moneda": "ARS",
+    "rangoPrecio": "$45.000 - $75.000 ARS",
+    "husoHorario": "ART (UTC-3)",
+    "pasarelasPago": [
+      "Mercado Pago",
+      "Transferencia Bancaria Inmediata (CBU/CVU)",
+      "Tarjetas de Crédito / Débito"
+    ],
+    "marcoRegulatorio": "En la República Argentina, las terapias bioemocionales y de descodificación biológica se desarrollan dentro del marco de la Ley de Derechos del Paciente (Ley 26.529) y las resoluciones del Ministerio de Salud de la Nación, operando como abordajes integrativos no invasivos que jamás deben desplazar el tratamiento médico convencional.",
+    "descargoResponsabilidad": "Descargo de Responsabilidad Médica y Compromiso Ético: Las sesiones de biodescodificación en Argentina son intervenciones de acompañamiento bioemocional y bienestar complementario. En ningún caso sustituyen, reemplazan ni modifican el diagnóstico, prescripción médica o tratamiento facultativo alopático.",
+    "definicionClinica": "La biodescodificación en Argentina combina el análisis riguroso de las leyes biológicas y la psicosomática con la comprensión del árbol genealógico, transformando patrones de angustia y somatización en autorregulación y salud integral.",
+    "especialistaAsignado": {
+      "nombre": "Lic. Sofía Alarcón Valdés",
+      "cargo": "Especialista Senior en Biodescodificación y Psicosomática Clínica",
+      "registro": "Reg. ITH-8492 (Asociación Internacional de Terapias Holísticas)",
+      "experiencia": "+9 años de práctica clínica y más de 1.400 sesiones individuales de biodescodificación guiadas.",
+      "formacion": "Diplomada en Descodificación Biológica de los Síntomas (Escuela Francesa), Máster en Psiconeuroinmunología Clínica y Acompañamiento Transgeneracional.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-buenos-aires",
+        "nombre": "Buenos Aires",
+        "precio": "$35.000 - $55.000 ARS"
+      },
+      {
+        "slug": "biodescodificacion-cordoba",
+        "nombre": "Córdoba",
+        "precio": "$35.000 - $55.000 ARS"
+      },
+      {
+        "slug": "biodescodificacion-rosario",
+        "nombre": "Rosario",
+        "precio": "$35.000 - $55.000 ARS"
+      },
+      {
+        "slug": "biodescodificacion-mendoza",
+        "nombre": "Mendoza",
+        "precio": "$35.000 - $55.000 ARS"
+      },
+      {
+        "slug": "biodescodificacion-la-plata",
+        "nombre": "La Plata",
+        "precio": "$35.000 - $55.000 ARS"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en Argentina?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (ART (UTC-3)). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en Argentina?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de $45.000 - $75.000 ARS (ARS). Ponemos a tu disposición medios de pago locales e internacionales habituales como Mercado Pago, Transferencia Bancaria Inmediata (CBU/CVU), Tarjetas de Crédito / Débito, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en Argentina reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  },
+  {
+    "pais": "Bolivia",
+    "slug": "biodescodificacion-bolivia",
+    "h1": "Biodescodificación y Terapia Bioemocional en Bolivia",
+    "metaDescripcion": "Terapia de biodescodificación online en Bolivia. Desactiva la raíz emocional de tus molestias físicas en sesiones individuales en vivo.",
+    "moneda": "BOB",
+    "rangoPrecio": "280 Bs - 450 Bs BOB",
+    "husoHorario": "BOT (UTC-4)",
+    "pasarelasPago": [
+      "QR Simple interoperable",
+      "Banco Nacional de Bolivia (BNB)",
+      "Banco Unión",
+      "Tigo Money"
+    ],
+    "marcoRegulatorio": "En el Estado Plurinacional de Bolivia, la Ley N° 459 (Ley de Medicina Tradicional Ancestral Boliviana) y la Constitución Política del Estado amparan la pluralidad de enfoques de salud y bienestar, garantizando que el acompañamiento bioemocional se brinde con ética, complementariedad y consentimiento informado.",
+    "descargoResponsabilidad": "Descargo de Responsabilidad Médica y Compromiso Ético: Las sesiones de biodescodificación en Bolivia son intervenciones de acompañamiento bioemocional y bienestar complementario. En ningún caso sustituyen, reemplazan ni modifican el diagnóstico, prescripción médica o tratamiento facultativo alopático.",
+    "definicionClinica": "La biodescodificación en Bolivia examina el choque biológico primario y los programas de supervivencia celular para ayudar al organismo a salir del estrés activo y propiciar la fase de reparación biológica.",
+    "especialistaAsignado": {
+      "nombre": "Dr. Mateo Benavides Rivas",
+      "cargo": "Director Clínico en Psicosomática y Biología Integrativa",
+      "registro": "Reg. AIE-5120 (Asociación Iberoamericana de Epigenética y Psicosomática)",
+      "experiencia": "+11 años de experiencia clínica y más de 2.100 horas de intervención terapéutica individual.",
+      "formacion": "Licenciado en Psicología, Especialista en Neurobiología del Comportamiento y Posgrado en Descodificación Biológica Original.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-la-paz",
+        "nombre": "La Paz",
+        "precio": "220 - 350 BOB"
+      },
+      {
+        "slug": "biodescodificacion-santa-cruz",
+        "nombre": "Santa Cruz",
+        "precio": "220 - 350 BOB"
+      },
+      {
+        "slug": "biodescodificacion-cochabamba",
+        "nombre": "Cochabamba",
+        "precio": "220 - 350 BOB"
+      },
+      {
+        "slug": "biodescodificacion-sucre",
+        "nombre": "Sucre",
+        "precio": "220 - 350 BOB"
+      },
+      {
+        "slug": "biodescodificacion-el-alto",
+        "nombre": "El Alto",
+        "precio": "220 - 350 BOB"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en Bolivia?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (BOT (UTC-4)). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en Bolivia?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de 280 Bs - 450 Bs BOB (BOB). Ponemos a tu disposición medios de pago locales e internacionales habituales como QR Simple interoperable, Banco Nacional de Bolivia (BNB), Banco Unión, Tigo Money, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en Bolivia reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  },
+  {
+    "pais": "Brasil",
+    "slug": "biodescodificacion-brasil",
+    "h1": "Biodescodificação e Terapia Bioemocional no Brasil",
+    "metaDescripcion": "Sessões online de biodescodificação biológica no Brasil em espanhol e português. Decodifique a raiz emocional de seus sintomas com especialistas.",
+    "moneda": "BRL",
+    "rangoPrecio": "R$ 220 - R$ 380 BRL",
+    "husoHorario": "BRT (UTC-3)",
+    "pasarelasPago": [
+      "PIX Instantâneo",
+      "Boleto Bancário",
+      "Cartões de Crédito (Visa / Mastercard)",
+      "PicPay"
+    ],
+    "marcoRegulatorio": "No Brasil, a Política Nacional de Práticas Integrativas e Complementares (PNPIC) do Ministério da Saúde reconhece institucionalmente as abordagens mente-corpo e integrativas como apoio legítimo à saúde e bem-estar, mantendo estreita distinção ética em relação aos procedimentos da medicina alopática privativa.",
+    "descargoResponsabilidad": "Aviso de Responsabilidade Médica e Compromisso Ético: As sessões de biodescodificação no Brasil são intervenções de apoio bioemocional e bem-estar complementar. Em nenhum caso substituem, alteram ou suspendem diagnósticos ou tratamentos médicos alopáticos.",
+    "definicionClinica": "A biodescodificação no Brasil investiga a conexão neurovegetativa e celular entre o choque traumático vivido em solidão e a resposta orgânica compensatória, promovendo a integração emocional e o reequilíbrio fisiológico.",
+    "especialistaAsignado": {
+      "nombre": "Dra. Elena Monsalve Duarte",
+      "cargo": "Especialista Senior en Descodificación Biológica y Transgeneracional",
+      "registro": "Reg. CIT-6311 (Colegio Internacional de Terapeutas Bioemocionales)",
+      "experiencia": "+8 años de trayectoria clínica acompañando a más de 1.200 consultantes en procesos de sanación psicosomática.",
+      "formacion": "Especialista en Reprogramación Bioemocional, Árbol Genealógico y Dinámicas Transgeneracionales del Síntoma Físico.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-sao-paulo",
+        "nombre": "São Paulo",
+        "precio": "R$ 180 - R$ 280 BRL"
+      },
+      {
+        "slug": "biodescodificacion-rio-de-janeiro",
+        "nombre": "Rio de Janeiro",
+        "precio": "R$ 180 - R$ 280 BRL"
+      },
+      {
+        "slug": "biodescodificacion-brasilia",
+        "nombre": "Brasília",
+        "precio": "R$ 180 - R$ 280 BRL"
+      },
+      {
+        "slug": "biodescodificacion-salvador",
+        "nombre": "Salvador",
+        "precio": "R$ 180 - R$ 280 BRL"
+      },
+      {
+        "slug": "biodescodificacion-fortaleza",
+        "nombre": "Fortaleza",
+        "precio": "R$ 180 - R$ 280 BRL"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en Brasil?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (BRT (UTC-3)). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en Brasil?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de R$ 220 - R$ 380 BRL (BRL). Ponemos a tu disposición medios de pago locales e internacionales habituales como PIX Instantâneo, Boleto Bancário, Cartões de Crédito (Visa / Mastercard), PicPay, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en Brasil reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  },
+  {
+    "pais": "Chile",
+    "slug": "biodescodificacion-chile",
+    "h1": "Biodescodificación y Terapia Bioemocional en Chile",
+    "metaDescripcion": "Sesiones online de biodescodificación y psicosomática en Chile. Encuentra el origen biológico de tus síntomas con especialistas acreditados.",
+    "moneda": "CLP",
+    "rangoPrecio": "$38.000 - $62.000 CLP",
+    "husoHorario": "CLT (UTC-3)",
+    "pasarelasPago": [
+      "Webpay Plus (Transbank)",
+      "Transferencia Electrónica (Khipu / BancoEstado / Banco de Chile)",
+      "Tarjetas"
+    ],
+    "marcoRegulatorio": "En la República de Chile, el Decreto N° 42 de 2004 del Ministerio de Salud (MINSAL), que reglamenta el ejercicio de las prácticas médicas alternativas o complementarias, define las bases éticas y de seguridad del consultante, estableciendo la obligatoriedad de informar que estas sesiones no sustituyen la interconsulta médica especializada.",
+    "descargoResponsabilidad": "Descargo de Responsabilidad Médica y Compromiso Ético: Las sesiones de biodescodificación en Chile son intervenciones de acompañamiento bioemocional y bienestar complementario. En ningún caso sustituyen, reemplazan ni modifican el diagnóstico, prescripción médica o tratamiento facultativo alopático.",
+    "definicionClinica": "La biodescodificación en Chile ofrece un protocolo estructurado de toma de conciencia celular y desactivación del bioshock, diseñado para liberar contracturas, inflamaciones y desajustes metabólicos crónicos.",
+    "especialistaAsignado": {
+      "nombre": "Lic. Sofía Alarcón Valdés",
+      "cargo": "Especialista Senior en Biodescodificación y Psicosomática Clínica",
+      "registro": "Reg. ITH-8492 (Asociación Internacional de Terapias Holísticas)",
+      "experiencia": "+9 años de práctica clínica y más de 1.400 sesiones individuales de biodescodificación guiadas.",
+      "formacion": "Diplomada en Descodificación Biológica de los Síntomas (Escuela Francesa), Máster en Psiconeuroinmunología Clínica y Acompañamiento Transgeneracional.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-santiago",
+        "nombre": "Santiago",
+        "precio": "$35.000 - $55.000 CLP"
+      },
+      {
+        "slug": "biodescodificacion-valparaiso",
+        "nombre": "Valparaíso",
+        "precio": "$35.000 - $55.000 CLP"
+      },
+      {
+        "slug": "biodescodificacion-concepcion",
+        "nombre": "Concepción",
+        "precio": "$35.000 - $55.000 CLP"
+      },
+      {
+        "slug": "biodescodificacion-la-serena",
+        "nombre": "La Serena",
+        "precio": "$35.000 - $55.000 CLP"
+      },
+      {
+        "slug": "biodescodificacion-antofagasta",
+        "nombre": "Antofagasta",
+        "precio": "$35.000 - $55.000 CLP"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en Chile?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (CLT (UTC-3)). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en Chile?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de $38.000 - $62.000 CLP (CLP). Ponemos a tu disposición medios de pago locales e internacionales habituales como Webpay Plus (Transbank), Transferencia Electrónica (Khipu / BancoEstado / Banco de Chile), Tarjetas, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en Chile reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  },
+  {
+    "pais": "Ecuador",
+    "slug": "biodescodificacion-ecuador",
+    "h1": "Biodescodificación y Terapia Bioemocional en Ecuador",
+    "metaDescripcion": "Sesiones de biodescodificación biológica online en Ecuador. Sanación integral y acompañamiento clínico 1 a 1 para síntomas físicos.",
+    "moneda": "USD",
+    "rangoPrecio": "$40 - $65 USD",
+    "husoHorario": "ECT (UTC-5)",
+    "pasarelasPago": [
+      "Banco Pichincha",
+      "Banco Guayaquil",
+      "Deuna!",
+      "Tarjetas Internacionales"
+    ],
+    "marcoRegulatorio": "En Ecuador, la Ley Orgánica de Salud y el Acuerdo Ministerial 00005001 del Ministerio de Salud Pública (MSP) regulan la incorporación y ejercicio de las terapias alternativas y complementarias, promoviendo un enfoque biopsicosocial y salvaguardando la primacía de la atención clínica facultativa.",
+    "descargoResponsabilidad": "Descargo de Responsabilidad Médica y Compromiso Ético: Las sesiones de biodescodificación en Ecuador son intervenciones de acompañamiento bioemocional y bienestar complementario. En ningún caso sustituyen, reemplazan ni modifican el diagnóstico, prescripción médica o tratamiento facultativo alopático.",
+    "definicionClinica": "La biodescodificación en Ecuador permite a los consultantes comprender el para qué de su sintomatología, facilitando la resignificación del conflicto originario y acelerando la respuesta curativa natural del cuerpo.",
+    "especialistaAsignado": {
+      "nombre": "Dr. Mateo Benavides Rivas",
+      "cargo": "Director Clínico en Psicosomática y Biología Integrativa",
+      "registro": "Reg. AIE-5120 (Asociación Iberoamericana de Epigenética y Psicosomática)",
+      "experiencia": "+11 años de experiencia clínica y más de 2.100 horas de intervención terapéutica individual.",
+      "formacion": "Licenciado en Psicología, Especialista en Neurobiología del Comportamiento y Posgrado en Descodificación Biológica Original.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-quito",
+        "nombre": "Quito",
+        "precio": "$35 - $55 USD"
+      },
+      {
+        "slug": "biodescodificacion-guayaquil",
+        "nombre": "Guayaquil",
+        "precio": "$35 - $55 USD"
+      },
+      {
+        "slug": "biodescodificacion-cuenca",
+        "nombre": "Cuenca",
+        "precio": "$35 - $55 USD"
+      },
+      {
+        "slug": "biodescodificacion-santo-domingo-ec",
+        "nombre": "Santo Domingo (EC)",
+        "precio": "$35 - $55 USD"
+      },
+      {
+        "slug": "biodescodificacion-ambato",
+        "nombre": "Ambato",
+        "precio": "$35 - $55 USD"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en Ecuador?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (ECT (UTC-5)). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en Ecuador?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de $40 - $65 USD (USD). Ponemos a tu disposición medios de pago locales e internacionales habituales como Banco Pichincha, Banco Guayaquil, Deuna!, Tarjetas Internacionales, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en Ecuador reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  },
+  {
+    "pais": "Paraguay",
+    "slug": "biodescodificacion-paraguay",
+    "h1": "Biodescodificación y Terapia Bioemocional en Paraguay",
+    "metaDescripcion": "Terapia online de biodescodificación en Paraguay. Desactiva el estrés biológico raíz de tus dolencias con atención confidencial en vivo.",
+    "moneda": "PYG",
+    "rangoPrecio": "₲300.000 - ₲500.000 PYG",
+    "husoHorario": "PYT (UTC-3)",
+    "pasarelasPago": [
+      "SIPAP / Transferencia Bancaria",
+      "Bancard / Pago Móvil",
+      "Billetera Personal",
+      "Tigo Money"
+    ],
+    "marcoRegulatorio": "En Paraguay, de conformidad con la Ley N° 836/80 (Código Sanitario) y las directrices del Ministerio de Salud Pública y Bienestar Social (MSPyBS), la biodescodificación se ofrece como una herramienta de apoyo emocional y psicosomático de libre elección por parte del usuario, sin atribuciones de diagnóstico médico o prescripción farmacéutica.",
+    "descargoResponsabilidad": "Descargo de Responsabilidad Médica y Compromiso Ético: Las sesiones de biodescodificación en Paraguay son intervenciones de acompañamiento bioemocional y bienestar complementario. En ningún caso sustituyen, reemplazan ni modifican el diagnóstico, prescripción médica o tratamiento facultativo alopático.",
+    "definicionClinica": "La biodescodificación en Paraguay explora la relación directa entre vivencias no metabolizadas y la activación de programas de alarma biológica en órganos específicos, permitiendo una liberación somatoemocional profunda.",
+    "especialistaAsignado": {
+      "nombre": "Dra. Elena Monsalve Duarte",
+      "cargo": "Especialista Senior en Descodificación Biológica y Transgeneracional",
+      "registro": "Reg. CIT-6311 (Colegio Internacional de Terapeutas Bioemocionales)",
+      "experiencia": "+8 años de trayectoria clínica acompañando a más de 1.200 consultantes en procesos de sanación psicosomática.",
+      "formacion": "Especialista en Reprogramación Bioemocional, Árbol Genealógico y Dinámicas Transgeneracionales del Síntoma Físico.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-asuncion",
+        "nombre": "Asunción",
+        "precio": "₲250.000 - ₲380.000 PYG"
+      },
+      {
+        "slug": "biodescodificacion-ciudad-del-este",
+        "nombre": "Ciudad del Este",
+        "precio": "₲250.000 - ₲380.000 PYG"
+      },
+      {
+        "slug": "biodescodificacion-san-lorenzo",
+        "nombre": "San Lorenzo",
+        "precio": "₲250.000 - ₲380.000 PYG"
+      },
+      {
+        "slug": "biodescodificacion-luque",
+        "nombre": "Luque",
+        "precio": "₲250.000 - ₲380.000 PYG"
+      },
+      {
+        "slug": "biodescodificacion-capiata",
+        "nombre": "Capiatá",
+        "precio": "₲250.000 - ₲380.000 PYG"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en Paraguay?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (PYT (UTC-3)). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en Paraguay?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de ₲300.000 - ₲500.000 PYG (PYG). Ponemos a tu disposición medios de pago locales e internacionales habituales como SIPAP / Transferencia Bancaria, Bancard / Pago Móvil, Billetera Personal, Tigo Money, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en Paraguay reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  },
+  {
+    "pais": "Perú",
+    "slug": "biodescodificacion-peru",
+    "h1": "Biodescodificación y Terapia Bioemocional en Perú",
+    "metaDescripcion": "Sesiones online de biodescodificación y psicosomática en Perú. Decodifica el sentido de tu enfermedad con expertos certificados.",
+    "moneda": "PEN",
+    "rangoPrecio": "S/ 150 - S/ 250 PEN",
+    "husoHorario": "PET (UTC-5)",
+    "pasarelasPago": [
+      "Yape",
+      "Plin",
+      "BCP (Banco de Crédito del Perú)",
+      "BBVA Perú",
+      "Tarjetas de Crédito / Débito"
+    ],
+    "marcoRegulatorio": "En el Perú, la Ley N° 26842 (Ley General de Salud) y la Resolución Ministerial N° 630-2015/MINSA sobre Medicina Complementaria respaldan el derecho de los usuarios a utilizar métodos integrativos para el equilibrio emocional, requiriendo siempre la advertencia formal de no interrumpir tratamientos médicos prescriptos.",
+    "descargoResponsabilidad": "Descargo de Responsabilidad Médica y Compromiso Ético: Las sesiones de biodescodificación en Perú son intervenciones de acompañamiento bioemocional y bienestar complementario. En ningún caso sustituyen, reemplazan ni modifican el diagnóstico, prescripción médica o tratamiento facultativo alopático.",
+    "definicionClinica": "La biodescodificación en Perú ayuda a destrabar patrones somatizados arraigados en la memoria biológica celular, brindando herramientas de integración bioemocional que complementan el restablecimiento fisiológico del organismo.",
+    "especialistaAsignado": {
+      "nombre": "Lic. Sofía Alarcón Valdés",
+      "cargo": "Especialista Senior en Biodescodificación y Psicosomática Clínica",
+      "registro": "Reg. ITH-8492 (Asociación Internacional de Terapias Holísticas)",
+      "experiencia": "+9 años de práctica clínica y más de 1.400 sesiones individuales de biodescodificación guiadas.",
+      "formacion": "Diplomada en Descodificación Biológica de los Síntomas (Escuela Francesa), Máster en Psiconeuroinmunología Clínica y Acompañamiento Transgeneracional.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-lima",
+        "nombre": "Lima",
+        "precio": "S/. 130 - S/. 220 PEN"
+      },
+      {
+        "slug": "biodescodificacion-arequipa",
+        "nombre": "Arequipa",
+        "precio": "S/. 130 - S/. 220 PEN"
+      },
+      {
+        "slug": "biodescodificacion-trujillo",
+        "nombre": "Trujillo",
+        "precio": "S/. 130 - S/. 220 PEN"
+      },
+      {
+        "slug": "biodescodificacion-chiclayo",
+        "nombre": "Chiclayo",
+        "precio": "S/. 130 - S/. 220 PEN"
+      },
+      {
+        "slug": "biodescodificacion-piura",
+        "nombre": "Piura",
+        "precio": "S/. 130 - S/. 220 PEN"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en Perú?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (PET (UTC-5)). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en Perú?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de S/ 150 - S/ 250 PEN (PEN). Ponemos a tu disposición medios de pago locales e internacionales habituales como Yape, Plin, BCP (Banco de Crédito del Perú), BBVA Perú, Tarjetas de Crédito / Débito, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en Perú reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  },
+  {
+    "pais": "Uruguay",
+    "slug": "biodescodificacion-uruguay",
+    "h1": "Biodescodificación y Terapia Bioemocional en Uruguay",
+    "metaDescripcion": "Sesiones online de biodescodificación en Uruguay. Comprende el conflicto biológico inconsciente de tus síntomas con especialistas senior.",
+    "moneda": "UYU",
+    "rangoPrecio": "$1.800 - $2.900 UYU",
+    "husoHorario": "UYT (UTC-3)",
+    "pasarelasPago": [
+      "RedPagos",
+      "Abitab",
+      "Prex Uruguay",
+      "e-Brou (Banco República)",
+      "Tarjetas"
+    ],
+    "marcoRegulatorio": "En la República Oriental del Uruguay, el Ministerio de Salud Pública (MSP) y la Ordenanza sobre Terapias Complementarias velan por la seguridad del paciente y la transparencia informativa, exigiendo que las intervenciones psicosomáticas y bioemocionales actúen de manera auxiliar y coordinada con la medicina científica.",
+    "descargoResponsabilidad": "Descargo de Responsabilidad Médica y Compromiso Ético: Las sesiones de biodescodificación en Uruguay son intervenciones de acompañamiento bioemocional y bienestar complementario. En ningún caso sustituyen, reemplazan ni modifican el diagnóstico, prescripción médica o tratamiento facultativo alopático.",
+    "definicionClinica": "La biodescodificación en Uruguay se enfoca en el análisis consciente de la fisiopatología asociada a vivencias de choque emocional, promoviendo una resolución pacífica y adaptativa del conflicto en el sistema nervioso.",
+    "especialistaAsignado": {
+      "nombre": "Dr. Mateo Benavides Rivas",
+      "cargo": "Director Clínico en Psicosomática y Biología Integrativa",
+      "registro": "Reg. AIE-5120 (Asociación Iberoamericana de Epigenética y Psicosomática)",
+      "experiencia": "+11 años de experiencia clínica y más de 2.100 horas de intervención terapéutica individual.",
+      "formacion": "Licenciado en Psicología, Especialista en Neurobiología del Comportamiento y Posgrado en Descodificación Biológica Original.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-montevideo",
+        "nombre": "Montevideo",
+        "precio": "$1.600 - $2.500 UYU"
+      },
+      {
+        "slug": "biodescodificacion-salto",
+        "nombre": "Salto",
+        "precio": "$1.600 - $2.500 UYU"
+      },
+      {
+        "slug": "biodescodificacion-ciudad-de-la-costa",
+        "nombre": "Ciudad de la Costa",
+        "precio": "$1.600 - $2.500 UYU"
+      },
+      {
+        "slug": "biodescodificacion-paysandu",
+        "nombre": "Paysandú",
+        "precio": "$1.600 - $2.500 UYU"
+      },
+      {
+        "slug": "biodescodificacion-maldonado",
+        "nombre": "Maldonado",
+        "precio": "$1.600 - $2.500 UYU"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en Uruguay?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (UYT (UTC-3)). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en Uruguay?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de $1.800 - $2.900 UYU (UYU). Ponemos a tu disposición medios de pago locales e internacionales habituales como RedPagos, Abitab, Prex Uruguay, e-Brou (Banco República), Tarjetas, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en Uruguay reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  },
+  {
+    "pais": "Venezuela",
+    "slug": "biodescodificacion-venezuela",
+    "h1": "Biodescodificación y Terapia Bioemocional en Venezuela",
+    "metaDescripcion": "Terapia online de biodescodificación en Venezuela. Desactiva el origen biológico y emocional de tus síntomas con acompañamiento clínico empático.",
+    "moneda": "USD",
+    "rangoPrecio": "$40 - $65 USD",
+    "husoHorario": "VET (UTC-4)",
+    "pasarelasPago": [
+      "Pago Móvil interbancario",
+      "Zelle",
+      "Binance Pay (USDT)",
+      "Transferencia Bancaria Nacional / Internacional"
+    ],
+    "marcoRegulatorio": "En la República Bolivariana de Venezuela, la Ley Orgánica de Salud y las resoluciones del Ministerio del Poder Popular para la Salud (MPPS) amparan el acceso a disciplinas complementarias para la salud psicofísica, bajo el principio de responsabilidad compartida y no suplantación de la práctica médica profesional.",
+    "descargoResponsabilidad": "Descargo de Responsabilidad Médica y Compromiso Ético: Las sesiones de biodescodificación en Venezuela son intervenciones de acompañamiento bioemocional y bienestar complementario. En ningún caso sustituyen, reemplazan ni modifican el diagnóstico, prescripción médica o tratamiento facultativo alopático.",
+    "definicionClinica": "La biodescodificación en Venezuela asiste a los consultantes en el procesamiento de vivencias de incertidumbre y sobreexigencia que impactan el sistema digestivo, inmune y cardiovascular, orientando hacia la recuperación del equilibrio vital.",
+    "especialistaAsignado": {
+      "nombre": "Dra. Elena Monsalve Duarte",
+      "cargo": "Especialista Senior en Descodificación Biológica y Transgeneracional",
+      "registro": "Reg. CIT-6311 (Colegio Internacional de Terapeutas Bioemocionales)",
+      "experiencia": "+8 años de trayectoria clínica acompañando a más de 1.200 consultantes en procesos de sanación psicosomática.",
+      "formacion": "Especialista en Reprogramación Bioemocional, Árbol Genealógico y Dinámicas Transgeneracionales del Síntoma Físico.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-caracas",
+        "nombre": "Caracas",
+        "precio": "$30 - $50 USD"
+      },
+      {
+        "slug": "biodescodificacion-maracaibo",
+        "nombre": "Maracaibo",
+        "precio": "$30 - $50 USD"
+      },
+      {
+        "slug": "biodescodificacion-valencia-ve",
+        "nombre": "Valencia (VE)",
+        "precio": "$30 - $50 USD"
+      },
+      {
+        "slug": "biodescodificacion-barquisimeto",
+        "nombre": "Barquisimeto",
+        "precio": "$30 - $50 USD"
+      },
+      {
+        "slug": "biodescodificacion-maracay",
+        "nombre": "Maracay",
+        "precio": "$30 - $50 USD"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en Venezuela?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (VET (UTC-4)). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en Venezuela?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de $40 - $65 USD (USD). Ponemos a tu disposición medios de pago locales e internacionales habituales como Pago Móvil interbancario, Zelle, Binance Pay (USDT), Transferencia Bancaria Nacional / Internacional, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en Venezuela reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  },
+  {
+    "pais": "España",
+    "slug": "biodescodificacion-espana",
+    "h1": "Biodescodificación y Terapia Bioemocional en España",
+    "metaDescripcion": "Centro online de biodescodificación y medicina psicosomática en España. Desactiva el origen biológico de tus dolencias con terapeutas colegiados.",
+    "moneda": "EUR",
+    "rangoPrecio": "50€ - 85€ EUR",
+    "husoHorario": "CET (UTC+1) / Hora Peninsular",
+    "pasarelasPago": [
+      "Bizum",
+      "Transferencia Bancaria SEPA",
+      "Tarjetas Visa / Mastercard",
+      "PayPal"
+    ],
+    "marcoRegulatorio": "En España, en observancia de la Ley 41/2002 de Autonomía del Paciente, el Real Decreto 1277/2003 y los criterios del Ministerio de Sanidad sobre terapias naturales y complementarias, la biodescodificación se imparte estrictamente como un proceso de autoconocimiento, gestión emocional y bienestar bioemocional que no constituye acto médico, diagnóstico ni tratamiento de enfermedades.",
+    "descargoResponsabilidad": "Descargo de Responsabilidad Médica y Compromiso Ético: Las sesiones de biodescodificación en España son intervenciones de acompañamiento bioemocional y bienestar complementario. En ningún caso sustituyen, reemplazan ni modifican el diagnóstico, prescripción médica o tratamiento facultativo alopático.",
+    "definicionClinica": "La biodescodificación en España estructura un espacio riguroso de psiconeuroinmunología aplicada y análisis transgeneracional, capacitando al consultante para comprender el sentido adaptativo de su síntoma y transformar el sufrimiento en evolución consciente.",
+    "especialistaAsignado": {
+      "nombre": "Lic. Sofía Alarcón Valdés",
+      "cargo": "Especialista Senior en Biodescodificación y Psicosomática Clínica",
+      "registro": "Reg. ITH-8492 (Asociación Internacional de Terapias Holísticas)",
+      "experiencia": "+9 años de práctica clínica y más de 1.400 sesiones individuales de biodescodificación guiadas.",
+      "formacion": "Diplomada en Descodificación Biológica de los Síntomas (Escuela Francesa), Máster en Psiconeuroinmunología Clínica y Acompañamiento Transgeneracional.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-madrid",
+        "nombre": "Madrid",
+        "precio": "45€ - 75€ EUR"
+      },
+      {
+        "slug": "biodescodificacion-barcelona",
+        "nombre": "Barcelona",
+        "precio": "45€ - 75€ EUR"
+      },
+      {
+        "slug": "biodescodificacion-valencia",
+        "nombre": "Valencia",
+        "precio": "45€ - 75€ EUR"
+      },
+      {
+        "slug": "biodescodificacion-sevilla",
+        "nombre": "Sevilla",
+        "precio": "45€ - 75€ EUR"
+      },
+      {
+        "slug": "biodescodificacion-malaga",
+        "nombre": "Málaga",
+        "precio": "45€ - 75€ EUR"
+      },
+      {
+        "slug": "biodescodificacion-bilbao",
+        "nombre": "Bilbao",
+        "precio": "45€ - 75€ EUR"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en España?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (CET (UTC+1) / Hora Peninsular). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en España?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de 50€ - 85€ EUR (EUR). Ponemos a tu disposición medios de pago locales e internacionales habituales como Bizum, Transferencia Bancaria SEPA, Tarjetas Visa / Mastercard, PayPal, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en España reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  },
+  {
+    "pais": "Estados Unidos",
+    "slug": "biodescodificacion-estados-unidos",
+    "h1": "Biodescodificación y Terapia Bioemocional en Estados Unidos",
+    "metaDescripcion": "Sesiones online de biodescodificación en español para residentes en Estados Unidos. Atención personalizada en tu zona horaria (EST, CST, PST).",
+    "moneda": "USD",
+    "rangoPrecio": "$65 - $110 USD",
+    "husoHorario": "EST / CST / PST (UTC-5 a UTC-8)",
+    "pasarelasPago": [
+      "Zelle",
+      "Venmo",
+      "PayPal",
+      "Apple Pay",
+      "Credit / Debit Cards"
+    ],
+    "marcoRegulatorio": "In the United States, complementary bioemotional coaching and holistic services operate under state-specific Health Freedom legislation (such as California Senate Bill SB-577 and Florida Complementary Care statutes) as non-licensed holistic wellness modalities. These educational and emotional support sessions do not diagnose, treat, cure, or prevent any physical or mental disease, and require clear informed consent.",
+    "descargoResponsabilidad": "Medical Disclaimer and Ethical Commitment: Biodescodification and bioemotional sessions in the United States are complementary wellness modalities. They do not replace, alter, or delay conventional medical diagnosis, psychiatric care, or prescribed pharmaceutical treatments.",
+    "definicionClinica": "La biodescodificación en Estados Unidos brinda a la comunidad hispanohablante un acompañamiento clínico de excelencia para decodificar las dolencias psicosomáticas generadas por el ritmo de vida acelerado, el desarraigo cultural y el estrés laboral, restableciendo la coherencia biológica y mental.",
+    "especialistaAsignado": {
+      "nombre": "Dr. Mateo Benavides Rivas",
+      "cargo": "Director Clínico en Psicosomática y Biología Integrativa",
+      "registro": "Reg. AIE-5120 (Asociación Iberoamericana de Epigenética y Psicosomática)",
+      "experiencia": "+11 años de experiencia clínica y más de 2.100 horas de intervención terapéutica individual.",
+      "formacion": "Licenciado en Psicología, Especialista en Neurobiología del Comportamiento y Posgrado en Descodificación Biológica Original.",
+      "avalCientifico": "Nuestra metodología clínica se fundamenta en los principios de la Psiconeuroinmunología (PNI), las leyes biológicas de la Nueva Medicina Germánica descritas por el Dr. Ryke Geerd Hamer, los modelos de descodificación biológica de Christian Flèche y la biología celular epigenética del Dr. Bruce Lipton. Comprendemos la enfermedad no como un error del organismo, sino como un Programa Biológico Especial con Pleno Sentido (SBS) diseñado para salvaguardar la supervivencia del individuo frente a un impacto emocional imprevisto, agudo y vivido en soledad."
+    },
+    "ciudades": [
+      {
+        "slug": "biodescodificacion-miami",
+        "nombre": "Miami",
+        "precio": "$60 - $100 USD"
+      },
+      {
+        "slug": "biodescodificacion-los-angeles",
+        "nombre": "Los Ángeles",
+        "precio": "$60 - $100 USD"
+      },
+      {
+        "slug": "biodescodificacion-houston",
+        "nombre": "Houston",
+        "precio": "$60 - $100 USD"
+      },
+      {
+        "slug": "biodescodificacion-nueva-york",
+        "nombre": "Nueva York",
+        "precio": "$60 - $100 USD"
+      },
+      {
+        "slug": "biodescodificacion-chicago",
+        "nombre": "Chicago",
+        "precio": "$60 - $100 USD"
+      },
+      {
+        "slug": "biodescodificacion-orlando",
+        "nombre": "Orlando",
+        "precio": "$60 - $100 USD"
+      },
+      {
+        "slug": "biodescodificacion-san-antonio",
+        "nombre": "San Antonio",
+        "precio": "$60 - $100 USD"
+      }
+    ],
+    "faqs": [
+      {
+        "pregunta": "¿Cómo se desarrollan las sesiones online de biodescodificación para consultantes en Estados Unidos?",
+        "respuesta": "Las sesiones se realizan en vivo a través de videollamada cifrada y segura (Google Meet o Zoom), adaptadas exactamente a tu huso horario (EST / CST / PST (UTC-5 a UTC-8)). Durante 60 a 75 minutos, un especialista senior indaga la cronología del síntoma, analiza el impacto bioemocional detonante y guía la desactivación del programa biológico de supervivencia sin necesidad de desplazamientos."
+      },
+      {
+        "pregunta": "¿Cuáles son las tarifas y medios de pago locales habilitados en Estados Unidos?",
+        "respuesta": "La inversión por sesión individual se ubica en el rango estimado de $65 - $110 USD (USD). Ponemos a tu disposición medios de pago locales e internacionales habituales como Zelle, Venmo, PayPal, Apple Pay, Credit / Debit Cards, con confirmación inmediata y pasarelas de alta seguridad."
+      },
+      {
+        "pregunta": "¿La biodescodificación en Estados Unidos reemplaza los tratamientos o diagnósticos médicos oficiales?",
+        "respuesta": "De ninguna manera. En Alma Holística aplicamos un marco ético riguroso: la biodescodificación es una disciplina integrativa y complementaria de acompañamiento psicoemocional. Jamás sugerimos descontinuar, postergar ni modificar prescripciones farmacológicas, consultas especializadas o procedimientos médicos alopáticos."
+      }
+    ]
+  }
+]

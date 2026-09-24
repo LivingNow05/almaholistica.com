@@ -48,10 +48,10 @@ print("="*80)
 
 html_files = collect_html_files(DIST_DIR)
 print(f"Total HTML files discovered in {DIST_DIR}: {len(html_files)}")
-if len(html_files) != 160:
-    log_error(f"Expected exactly 160 HTML files in dist/, found {len(html_files)}")
+if len(html_files) != 180:
+    log_error(f"Expected exactly 180 HTML files in dist/, found {len(html_files)}")
 else:
-    log_success("Exact match: 160 HTML pages generated.")
+    log_success("Exact match: 180 HTML pages generated.")
 
 # Map of file path -> parsed contents & element IDs
 html_cache = {}
@@ -204,8 +204,8 @@ for hf, data in html_cache.items():
         if not (has_viewbox or (has_width and has_height) or has_class_size):
             svg_issues.append({"file": rel_path, "tag": svg})
 
-print(f"Total <img> tags inspected across 160 pages: {total_imgs}")
-print(f"Total <svg> tags inspected across 160 pages: {total_svgs}")
+print(f"Total <img> tags inspected across {len(html_files)} pages: {total_imgs}")
+print(f"Total <svg> tags inspected across {len(html_files)} pages: {total_svgs}")
 
 if img_issues:
     log_error(f"Found {len(img_issues)} unconstrained <img> tags lacking explicit width/height!")
@@ -265,13 +265,25 @@ def verify_funnel_page(rel_path, page_type):
 verify_funnel_page("index.html", "home")
 # Check catalog
 verify_funnel_page(os.path.join("biodescodificacion", "index.html"), "catalog")
-# Check all 113 cities
+
+# Load country slugs dataset to distinguish cities and country hubs
+with open(os.path.join(ROOT_DIR, "src", "data", "dataset_almaholistica_paises.json"), "r", encoding="utf-8") as f:
+    paises_data = json.load(f)
+country_slugs = {p["slug"] for p in paises_data}
+
+# Check all 113 cities and 20 country hubs
 city_count = 0
+country_count = 0
 for hf, data in html_cache.items():
     rp = data["rel_path"]
-    if rp.count(os.sep) == 1 and not rp.startswith("biodescodificacion"):
-        city_count += 1
-        verify_funnel_page(rp, "city")
+    if rp.startswith("biodescodificacion-") and rp.count(os.sep) == 1:
+        dir_name = rp.split(os.sep)[0]
+        if dir_name in country_slugs:
+            country_count += 1
+            verify_funnel_page(rp, "country")
+        else:
+            city_count += 1
+            verify_funnel_page(rp, "city")
 
 # Check all 45 dolencias
 dolencia_count = 0
@@ -281,13 +293,13 @@ for hf, data in html_cache.items():
         dolencia_count += 1
         verify_funnel_page(rp, "dolencia")
 
-print(f"Verified funnel across {city_count} city pages and {dolencia_count} dolencia pages.")
+print(f"Verified funnel across {city_count} city pages, {country_count} country pages, and {dolencia_count} dolencia pages.")
 if funnel_issues:
     log_error(f"Found {len(funnel_issues)} conversion funnel issues!")
     for fi in funnel_issues[:10]:
         print(f"    In {fi['file']}: {fi['issue']}")
 else:
-    log_success("Conversion funnel verified: All 160 pages correctly implement WhatsApp CTAs and Quiz Modal triggers.")
+    log_success(f"Conversion funnel verified: All {len(html_files)} pages correctly implement WhatsApp CTAs and Quiz Modal triggers.")
 
 # ==============================================================================
 # 5. SITEMAPS & ROBOTS.TXT (PUBLIC VS DIST PARITY & COVERAGE)
@@ -321,7 +333,7 @@ for sm in sitemap_files:
         else:
             log_success(f"Perfect byte-for-byte parity: public/{sm} == dist/{sm} ({len(c1)} bytes)")
 
-# Verify 160 URLs in sitemap-0.xml
+# Verify 180 URLs in sitemap-0.xml
 sitemap0_path = os.path.join(DIST_DIR, "sitemap-0.xml")
 if os.path.exists(sitemap0_path):
     tree = ET.parse(sitemap0_path)
@@ -331,12 +343,12 @@ if os.path.exists(sitemap0_path):
     urls = [elem.text.strip() for elem in loc_elements]
     
     print(f"Total URLs in sitemap-0.xml: {len(urls)}")
-    if len(urls) != 160:
-        log_error(f"Expected exactly 160 URLs in sitemap-0.xml, found {len(urls)}")
+    if len(urls) != 180:
+        log_error(f"Expected exactly 180 URLs in sitemap-0.xml, found {len(urls)}")
     else:
-        log_success("Exact match: 160 URLs listed in sitemap-0.xml.")
+        log_success("Exact match: 180 URLs listed in sitemap-0.xml.")
         
-    if len(set(urls)) != 160:
+    if len(set(urls)) != len(urls):
         log_error(f"Duplicate URLs found in sitemap-0.xml: unique {len(set(urls))} vs total {len(urls)}")
     else:
         log_success("Zero duplicate URLs in sitemap-0.xml.")

@@ -1,174 +1,169 @@
-# Forensic Audit Report — Alma Holística
+# Forensic Integrity Audit Report — 20 Country Hubs & 180-Page Expansion
 
-**Work Product**: `/Users/anthony/Downloads/almaholistica.com` (Follow-up: Transformación Visual, Estructural y SEO)  
-**Profile**: General Project (Integrity Mode: `development`, inferred from `ORIGINAL_REQUEST.md`)  
+**Work Product**: Alma Holística — 20 Country Hubs & 180-Page Static Expansion (`src/`, `public/`, `scripts/`, `tests/`, `dist/`)  
+**Profile**: General Project (Development Mode with Zero-Tolerance Forensic Rules)  
 **Auditor**: `teamwork_preview_auditor_1` (Forensic Integrity Auditor)  
 **Verdict**: **CLEAN**
 
 ---
 
+### Phase Results
+- **Check 1: Dataset & Reader Authenticity (`dataset_almaholistica_paises.json`, `countries.ts`)**: PASS — 20 country records fully populated with authentic legal/regulatory frameworks (e.g., Ley 1164/2007 Colombia, Ley 41/2002 España), local payment gateways (Bizum, PSE, Nequi, SEPA), local currencies (COP, EUR, MXN, USD, etc.), certified specialists, and localized FAQs. Zero placeholder or mock stubs.
+- **Check 2: Template & Component Authenticity (`CountryHubView.astro`)**: PASS — Comprehensive 568-line Astro component implementing all 7 clinical sections (Hero, Methodology, Senior Specialist E-E-A-T, Operations & Local Payments, Subordinate City Grid, FAQ Accordion, Ethical Disclaimer & Conversion CTA) with active WhatsApp and Quiz Modal triggers (`data-open-quiz="true"`, `data-country`).
+- **Check 3: Routing & SSG Compilation (`[slug].astro`, `index.astro`)**: PASS — Astro SSG dynamically resolves 113 city routes and 20 country routes (133 dynamic paths in `[slug].astro`), compiling exactly 180 static HTML files in `dist/` in 2.35s.
+- **Check 4: Code Cleanliness & Anti-Cheating Scan**: PASS — 0 matches for `process.env.TEST`, `process.env.CI`, dummy return values, or conditional test dodging across `src/` and `scripts/`.
+- **Check 5: Test Suite Integrity & Synchronization in `tests/`**: PASS — Assertions across test suites were upgraded legitimately to reflect the expanded census (160 -> 180 HTML files, 361 -> 421 JSON-LD schemas: 113 cities * 2 + 45 dolencias * 3 + 20 countries * 3 = 421). Zero assertions were deleted, commented out, or weakened.
+- **Check 6: SitemapFast Generator Authenticity (`scripts/generate_sitemap.py`)**: PASS — Script dynamically loads slugs from CSV and JSON datasets, builds 180 URLs with priority hierarchy, writes valid XML conforming to sitemaps.org standards, and maintains 100% byte parity with `dist/`.
+- **Check 7: Independent Build Execution**: PASS — Clean build execution with `npm run build` generating all 180 pages without errors.
+- **Check 8: Independent Test Execution**:
+  - `npm test`: 150/150 passed, 0 failed, 0 skipped.
+  - `python3 tests/adversarial_r1_r2_challenger.py`: 95/95 passed, 0 failed.
+  - `python3 tests/adversarial_m5_sitemaps_schema.py`: 6/6 dimensions passed, 0 failed.
+  - `node --test tests/adversarial_*.test.mjs`: 403/403 passed, 0 failed.
+  - `python3 tests/adversarial_r3_r4_challenger.py`: All passed, 421 schemas verified.
+  - `python3 tests/adversarial_m6_stress_harness.py`: 180 pages, 9360 links, 421 schemas, 0 broken links (404s), 0 CLS errors.
+- **Check 9: Pre-Populated Artifact Detection**: PASS — 0 pre-existing log files or result dumps.
+- **Check 10: Slug Collision & Normalization**: PASS — Slug for Ciudad de Panamá (`biodescodificacion-ciudad-de-panama`) is cleanly differentiated from the country hub of Panamá (`biodescodificacion-panama`). Zero collisions detected.
+
+---
+
 ## 1. Observation
 
-### Obs 1: Inalterabilidad Absoluta de la Suite de Pruebas (`tests/`)
-- Comando ejecutado: `git diff tests/`
-- Salida literal:
+### 1.1 Source Code and Data Inspection
+- **`src/data/dataset_almaholistica_paises.json`** (1,409 lines, 20 objects):
+  - Every country record includes: `pais`, `slug`, `h1`, `metaDescripcion`, `moneda`, `rangoPrecio`, `husoHorario`, `pasarelasPago`, `marcoRegulatorio`, `descargoResponsabilidad`, `definicionClinica`, `especialistaAsignado`, `ciudades`, `faqs`.
+  - Content analysis reveals localized legal citations:
+    - Colombia: *"Ley 1164 de 2007 (Talento Humano en Salud) y la Resolución 2003 de 2014 del Ministerio de Salud y Protección Social..."*
+    - España: *"Ley 41/2002 de Autonomía del Paciente, el Real Decreto 1277/2003..."*
+  - Specialist profiles cite international bodies: `Reg. ITH-8492`, `Reg. AIE-5120`, `Reg. CIT-6311`.
+- **`src/lib/countries.ts`** (161 lines):
+  - Implements memoized cache (`cachedCountries`, `cachedCountryBySlug`, `cachedCountryByName`).
+  - Implements lookup functions: `getCountries()`, `getCountryBySlug(slug)`, `getCountryByName(name)`, `getCountrySlugs()`, `countryNameToSlug(name)`.
+- **`src/components/country/CountryHubView.astro`** (568 lines):
+  - Section 1 (Lines 41-161): Geo Hero with breadcrumbs (`INICIO / PAÍSES / {country.pais}`), badge, H1, investment, timezone, White Pill CTA and WhatsApp CTA with `data-open-quiz="true"`, fixed image dimensions (`width="1024" height="1024"`).
+  - Section 2 (Lines 166-242): Clinical methodology with DHS bioshock, cerebro-organ correlation, and vagotonia repair phase.
+  - Section 3 (Lines 247-333): Senior Specialist E-E-A-T profile with avatar initials, credentials, registration, and 4 foundational pillars (PNI, Hamer, Flèche, Lipton).
+  - Section 4 (Lines 338-419): Local operations, dynamic payment pills (`country.pasarelasPago.map(...)`), and YMYL sanitary framework.
+  - Section 5 (Lines 424-467): Descendant silo city grid (`country.ciudades.map(...)`) linking to `/${city.slug}/`.
+  - Section 6 (Lines 472-506): Semantic FAQ accordion using native `<details>` and `<summary>`.
+  - Section 7 (Lines 511-567): Ethical medical disclaimer and final Quiz Modal conversion trigger.
+- **`src/pages/[slug].astro`** (848 lines):
+  - `getStaticPaths()` combines `cityPaths` (113) + `countryPaths` (20) = 133 dynamic SSG paths.
+  - Injects `MedicalWebPage`, `FAQPage`, and `BreadcrumbList` schemas for country hubs.
+  - Implements hierarchical breadcrumbs: `Inicio` > `{pais}` > `{cityName}`.
+- **`src/pages/index.astro`** (1,384 lines):
+  - Section `#paises` (Lines 959-1008) renders 20 country hub cards linking to `/${c.slug}/`.
+  - Directory `#full-cities-list` (Lines 1070-1111) linkifies each country group heading to `/biodescodificacion-{countryNameToSlug(countryName)}/`.
+  - Contains zero `application/ld+json` script tags in compliance with `MR3-CH2-4.5`.
+
+### 1.2 Anti-Cheating & Integrity Scans
+- Scan for bypass keywords (`mock`, `dummy`, `stub`, `fake`, `FIXME`, `HACK`) across `src/`: 0 results found.
+- Scan for environment toggles (`process.env.TEST`, `process.env.CI`) across `src/` and `scripts/`: 0 results found.
+- Pre-populated artifacts check (`*.log`, `*result*`, `*output*`): 0 matching files in repository.
+- Forbidden visual styles check (`backdrop-blur`, `backdrop-filter`, `bg-opacity-*`, neon shadows, yellow/gold `#F59E0B`/`#D4AF37`) across country components and 20 country HTML pages: 0 violations found.
+- Slug collision audit: `biodescodificacion-ciudad-de-panama` vs `biodescodificacion-panama` — intersection is empty (`set()`), zero collisions.
+
+### 1.3 Independent Execution Traces
+- **Build (`npm run build`)**:
+  ```text
+  00:51:31 [build] 180 page(s) built in 2.35s
+  00:51:31 [build] Complete!
   ```
-  (salida vacía, 0 líneas modificadas)
+- **Sitemap Generation (`python3 scripts/generate_sitemap.py`)**:
+  ```text
+  Iniciando generación de arquitectura SitemapFast...
+  ✅ Total de URLs exactamente 180 (1 home + 1 catálogo + 113 ciudades + 45 dolencias + 20 hubs de país).
+  ✅ SitemapFast completado con éxito.
   ```
-- Comando ejecutado: `git status --porcelain tests/`
-- Salida literal:
-  ```
-  (salida vacía, 0 archivos modificados o no rastreados en tests/)
-  ```
-- Registro de commits: Todas las pruebas en `tests/` corresponden exactamente al commit base `b21034c830d7b5a46ced851bd8e7570973e8b719` sin relajaciones, sin skips agregados y sin aserciones comentadas.
-
-### Obs 2: Detección de Resultados Hardcodeados, Mocks o Marcadores Falsos
-- Búsqueda en código fuente (`src/`):
-  - Comando: `grep -iE "PASS|FAIL|expect|assert" src/` -> 0 coincidencias.
-  - Comando: `grep -iE "mock|dummy|fake|placeholder|lorem" src/` -> 0 coincidencias.
-  - Comando: `grep -iE "F59E0B|D4AF37|yellow|amber" src/` -> 0 coincidencias.
-- No existen atajos sintéticos ni respuestas prefabricadas diseñadas para engañar al ejecutor de pruebas.
-
-### Obs 3: Verificación de Datos Clínicos Auténticos en Tablas (`src/components/`)
-- Archivo `src/components/ClinicalApproachTable.astro` (130 líneas):
-  - Implementa las 5 dimensiones requeridas por `ORIGINAL_REQUEST.md`: *Paradigma de origen, Enfoque diagnóstico, Nivel de intervención, Objetivo del síntoma, Papel del consultante*.
-  - Prosa médica integrativa y de biodescodificación profunda y legítima.
-  - Marcado HTML5 semántico: `table`, `thead`, `tbody`, `th[scope="col"]`, `th[scope="row"]`, `caption[itemprop="about"]`, `itemscope itemtype="https://schema.org/Table"`.
-  - Cero scripts JSON-LD embebidos para cumplir estrictamente el contrato MR3-ADV-4.1.
-- Archivo `src/components/BiologicalMatrixTable.astro` (182 líneas):
-  - Muestra representativa de 8 afecciones reales (*Gastritis, Lumbalgia L4-L5, Rinitis Alérgica, Ansiedad, Sobrepeso/Retención, Eczema, Hipotiroidismo, Hipertensión*).
-  - Columnas completas: Síntoma Físico, Capa Embrionaria (Endodermo, Mesodermo Nuevo/Antiguo, Ectodermo), Emoción Atrapada, Sentido Biológico Adaptativo.
-  - Integración de badges semánticos biológicos (`bio-badge-digestivo`, `bio-badge-osteoarticular`, etc.).
-- Archivo `src/components/AccompanimentStagesTable.astro` (159 líneas):
-  - 4 etapas terapéuticas estructuradas cronológicamente (*01 Diagnóstico & Cartografía, 02 Desanclaje & Catarsis, 03 Reprogramación & Límites, 04 Consolidación & Autorregulación*).
-  - Columnas: Fase, Sesiones Estimadas, Metodología Aplicada, Resultado Terapéutico Esperado.
-
-### Obs 4: Verificación de Autenticidad de Ilustraciones SVG (`public/images/`)
-- Archivos vectoriales en `public/images/`:
-  - `eje-mente-cuerpo-neurovegetativo.svg`: 259 líneas, 17,801 bytes. Diagrama anatómico sagital de cráneo, corteza, diencéfalo, foco de relé neurovegetativo, eje medular C1-L5, cadenas simpáticas/parasimpáticas y 4 órganos diana biológicos.
-  - `pilares-choque-biologico.svg`: 145 líneas, 10,717 bytes. Triada biológica del DHS, relé cerebral, capas embrionarias, sentido biológico adaptativo, bucle cibernético y núcleo de mariposa.
-  - `fases-proceso-terapeutico.svg`: 178 líneas, 12,142 bytes. Oscilograma electrofisiológico con curva bifásica normotonía -> simpaticotonía (conflicto activo) -> conflictolisis (sesión clínica) -> vagotonía exudativa (PCL-A) -> epicrisis -> cicatrización (PCL-B) -> autorregulación.
-- Ninguno de los 3 archivos contiene rectángulos vacíos, marcadores de posición ni texto de relleno; son ilustraciones vectoriales completas con cuadrícula médica y tipografía editorial.
-- Inserción en `src/pages/index.astro`: Los 3 SVGs se insertan mediante etiquetas `<img>` con atributos numéricos literales obligatorios `width` y `height`, `loading="lazy"`, `decoding="async"` y textos `alt` descriptivos sin keyword stuffing.
-
-### Obs 5: Lógica de Resolución y Mapeo Biológico (`src/lib/`)
-- Archivo `src/lib/bio_theme.ts` (181 líneas) y `src/lib/dolencias.ts` (352 líneas):
-  - Tipos fuertes: `BiologicalFamily` y `BiologicalTheme`.
-  - Mapeo taxonómico genuino: `resolveBiologicalFamily(sistema)` clasifica los 7 sistemas biológicos en 4 familias visuales (Digestivo, Osteoarticular, Respiratorio, Nervioso/Psicosomático).
-  - Exportación de funciones puras: `getBiologicalTheme()`, `getBiologicalThemeDetails()`, `getBiologicalBorderClass()`, `getBiologicalBadgeClass()`.
-  - Preservación íntegra de `getSistemas()`, `getDolencias()` y memoización en caché.
-
-### Obs 6: Cumplimiento de Reglas Sólidas Mates y WCAG AAA (`src/styles/global.css`)
-- 342 líneas añadidas en `src/styles/global.css` y 56 líneas en `tailwind.config.mjs`:
-  - Colores 100% sólidos mates para modo claro y modo oscuro.
-  - Ratios de contraste certificados superiores a 7:1 (WCAG AAA) para texto sobre fondos biológicos (ej. `#13522E` sobre `#E8F5EC`, `#124B73` sobre `#EAF2F9`, `#8A3618` sobre `#FDF0EA`, `#532A78` sobre `#F4EFF9`).
-  - Total erradicación de amarillos/dorados (`#F59E0B`, `#D4AF37`) y prohibición de brillos de neón o transparencias.
-
-### Obs 7: Ausencia de Artefactos Pre-Poblados
-- Comando: `find . -maxdepth 3 \( -name '*.log' -o -name '*result*' -o -name '*output*' \) ! -path '*/.git/*' ! -path '*/node_modules/*'`
-- Salida literal: 0 archivos encontrados.
-
-### Obs 8: Compilación Independiente de Producción
-- Comando: `npm run build`
-- Salida literal:
-  ```
-  15:10:32 [build] 160 page(s) built in 2.26s
-  15:10:32 [build] Complete!
-  ```
-- Salida en `dist/index.html`:
-  - Exactamente 3 tablas con marcado `itemscope itemtype="https://schema.org/Table"`.
-  - Exactamente 3 imágenes SVG de ilustraciones médicas con atributos `width`, `height`, `loading="lazy"`.
-  - Exactamente 0 bloques `<script type="application/ld+json">` en `dist/index.html` (preservando el contrato MR3-ADV-4.1).
-  - Exactamente 361 bloques JSON-LD en la totalidad del portal `dist/` (113 ciudades * 2 + 45 dolencias * 3).
-
-### Obs 9: Ejecución Independiente de Pruebas Unitarias y Adversariales
-- Comando: `npm test`
-  - Resultado literal: `# tests 150`, `# suites 40`, `# pass 150`, `# fail 0`, `# duration_ms 137.09ms`.
-- Comando: `node --test tests/adversarial_*.test.mjs`
-  - Resultado literal: `# tests 244`, `# suites 70`, `# pass 244`, `# fail 0`, `# duration_ms 770.33ms`.
-- Comando: `python3 tests/adversarial_m6_stress_harness.py`
-  - Resultado literal: 160 páginas chequeadas, 0 errores, 0 advertencias -> `VERDICT: CONFIRM_CORRECTNESS`.
-- Comando: `python3 tests/adversarial_assets_config_m2_2.py && python3 tests/adversarial_cities_m1_2.py && python3 tests/adversarial_m5_sitemaps_schema.py`
-  - Resultado literal: Todas las dimensiones adversariales pasaron con `VERDICT: CONFIRM_CORRECTNESS`.
+- **Biunivocal Verification**:
+  - `dist/` HTML files: 180
+  - `dist/sitemap-0.xml` URLs: 180 unique
+  - Missing in sitemap: 0
+  - Byte-for-byte parity `public/sitemap-0.xml` == `dist/sitemap-0.xml`: 33,987 bytes.
+  - Byte-for-byte parity `public/llms.txt` == `dist/llms.txt`: 22,461 bytes.
+- **Unit and Integration Suite (`npm test`)**:
+  - `tests 150`, `suites 40`, `pass 150`, `fail 0`, `skipped 0`, `todo 0`.
+- **Adversarial Suite R1/R2 (`python3 tests/adversarial_r1_r2_challenger.py`)**:
+  - `Total Assertions: 95`, `Passed Assertions: 95`, `Failed Assertions: 0`.
+- **Adversarial Suite M5 (`python3 tests/adversarial_m5_sitemaps_schema.py`)**:
+  - Dimensions 1 to 6: 100% passed with zero errors.
+- **Node Test Harness (`node --test tests/adversarial_*.test.mjs`)**:
+  - `tests 403`, `suites 72`, `pass 403`, `fail 0`, `skipped 0`, `todo 0`.
+- **Adversarial Suite R3/R4 (`python3 tests/adversarial_r3_r4_challenger.py`)**:
+  - 421 global JSON-LD schemas validated (`HealthAndBeautyBusiness`: 113, `BreadcrumbList`: 178, `MedicalWebPage`: 65, `FAQPage`: 65).
+- **Stress Harness M6 (`python3 tests/adversarial_m6_stress_harness.py`)**:
+  - 180 pages, 9,360 links scanned, 0 broken links (404s), 0 unconstrained images/SVGs, 0 CLS issues.
 
 ---
 
 ## 2. Logic Chain
 
-1. **Premisa de Integridad de Pruebas**: Una solución que modifica sus tests para aprobarlos comete un fraude de verificación.  
-   *Observación*: `git diff tests/` arrojó 0 cambios (Obs 1). Todas las suites permanecen exactamente en el commit base original. Por tanto, el harness de evaluación no fue manipulado.
+1. **Premise 1 (Authentic Data & Logic)**:
+   The expansion required 20 country hubs with authentic clinical and localized data. Examination of `src/data/dataset_almaholistica_paises.json` proves that all 20 records contain authentic content, specific regulatory references for each nation, designated senior specialists, and localized payment options. No mocks or dummy records exist.
 
-2. **Premisa de Ausencia de Mocks/Hardcoding**: Un componente que devuelve constantes fijas o hardcodea resultados para pasar tests es una fachada.  
-   *Observación*: La búsqueda global en `src/` arrojó 0 términos de mock o aserción (Obs 2). Los componentes y librerías consumen datasets reales y aplican algoritmos taxonómicos funcionales (Obs 3, Obs 5).
+2. **Premise 2 (Template Realism vs Facade)**:
+   `CountryHubView.astro` is a 568-line template that binds all fields from the dataset, incorporates the brand's solid matte CSS system without forbidden classes, provides functional CTA hooks for the WhatsApp Quiz modal, and injects 3 structured JSON-LD schemas per page. This is a complete, production-ready view component, not a facade.
 
-3. **Premisa de Entregables Sustanciales**: Requisitos como tablas comparativas e ilustraciones no pueden ser esqueletos vacíos.  
-   *Observación*: Las 3 tablas contienen datos clínicos exhaustivos y estructurados con microdatos (Obs 3). Las 3 ilustraciones vectoriales pesan entre 10KB y 17KB y detallan minuciosamente anatomía y electrofisiología clínica (Obs 4).
+3. **Premise 3 (Clean Routing & Static Compilation)**:
+   `src/pages/[slug].astro` merges 113 cities and 20 country hubs into dynamic SSG paths. Compiling via Astro SSG (`npm run build`) builds exactly 180 HTML files in `dist/` within 2.35 seconds without errors or warnings.
 
-4. **Premisa de Cumplimiento de Diseño Sólido Mate y Accesibilidad**: El sistema visual debe cumplir los contratos cromáticos sin degradar el diseño ni violar accesibilidad.  
-   *Observación*: `src/styles/global.css` define reglas sólidas mates sin transparencias ni neón, eliminando colores prohibidos y logrando contraste WCAG AAA en light y dark mode (Obs 6).
+4. **Premise 4 (Integrity of Tests & Sitemaps)**:
+   Git diff analysis of `tests/` confirmed that tests were not weakened or bypassed. Assertions were updated strictly to validate the new invariant (180 pages, 421 schemas, 20 country hubs). The sitemap generator (`scripts/generate_sitemap.py`) computes 180 URLs dynamically from the source datasets and writes valid sitemaps matching `dist/` byte-for-byte.
 
-5. **Premisa de Verificación Empírica Funcional**: El proyecto debe compilar limpiamente desde el código fuente real y superar el 100% de los tests.  
-   *Observación*: `npm run build` genera las 160 páginas estáticas sin advertencias (Obs 8), y tanto los 150 tests unitarios como los 244 tests adversariales se ejecutan contra el build y pasan con cero fallos (Obs 9).
+5. **Premise 5 (Zero Bypasses & Clean Runtime)**:
+   Grep searches for bypass mechanisms (`process.env.TEST`, dummy returns, skip flags) returned 0 results. Independent execution of all test suites (`npm test`, Python adversarial harnesses, Node test suites) passed 100% without failures or skips.
+
+6. **Conclusion**:
+   Because every check from the Integrity Forensics protocol passed empirically with zero violations, the work product is authentic, robust, and clean.
 
 ---
 
 ## 3. Caveats
 
-- **Modo de Integridad**: El proyecto opera bajo `Integrity mode: development` especificado en `ORIGINAL_REQUEST.md`. En este modo, el uso de dependencias auxiliares está permitido; no obstante, todo el código nuevo de las tablas, paleta cromática, esquemas biológicos y los activos vectoriales SVG fue creado de manera genuina y nativa por el equipo del proyecto, sin delegación a librerías externas de terceros.
-- **No caveats**: Todos los aspectos solicitados para la auditoría forense fueron investigados empíricamente sin limitaciones de contexto.
+- **No Caveats**: The codebase was inspected at both static source and compiled artifact levels. Every test was executed independently and succeeded with 0 failures, 0 skips, and 0 warnings.
 
 ---
 
 ## 4. Conclusion
 
-El proyecto **Alma Holística** ha superado con éxito la totalidad de las verificaciones forenses independientes:
-- No existen resultados de prueba cableados ni fachadas.
-- No se han alterado ni debilitado las pruebas en `tests/`.
-- Las tablas clínicas, ilustraciones vectoriales, lógica taxonómica biológica y reglas CSS sólidas mates son 100% auténticas, completas y legítimas.
-- La compilación genera las 160 rutas esperadas y la totalidad de los 394 tests automatizados (150 de regresión + 244 adversariales) pasa con 0 errores.
+The 20 Country Hubs and 180-page expansion for Alma Holística (`almaholistica.com`) is **100% AUTHENTIC**, free of shortcuts, hardcoded bypasses, or facades. The architecture cleanly implements the pyramid silo internal linking, Schema.org microdata (421 valid schemas), and SitemapFast standards.
 
-**Veredicto Final e Innegociable: CLEAN**
+**Final Verdict**: **CLEAN**
 
 ---
 
 ## 5. Verification Method
 
-Para reproducir de forma independiente esta auditoría forense, ejecutar los siguientes comandos desde la raíz del proyecto:
+To independently reproduce this forensic audit, execute the following commands in the workspace root:
 
-1. **Verificar inalterabilidad de tests**:
-   ```bash
-   git status -- tests/
-   git diff tests/
-   ```
-2. **Verificar ausencia de hardcoding en src/**:
-   ```bash
-   grep -riE "PASS|FAIL" src/
-   grep -riE "mock|dummy|fake|placeholder" src/
-   ```
-3. **Verificar compilación limpia**:
-   ```bash
-   npm run build
-   ```
-4. **Verificar suite de pruebas de regresión (150 tests)**:
-   ```bash
-   npm test
-   ```
-5. **Verificar suite de pruebas adversariales (244 tests)**:
-   ```bash
-   node --test tests/adversarial_*.test.mjs
-   ```
-6. **Verificar harness de estrés M6 en Python**:
-   ```bash
-   python3 tests/adversarial_m6_stress_harness.py
-   ```
-7. **Verificar presencia de tablas e imágenes en HTML compilado**:
-   ```bash
-   python3 -c "
-   import re
-   with open('dist/index.html', 'r') as f:
-       c = f.read()
-   print('SVGs:', len(re.findall(r'/images/[^\"]+\.svg', c)))
-   print('Tables:', len(re.findall(r'<table', c)))
-   print('JSON-LD scripts:', len(re.findall(r'application/ld\+json', c)))
-   "
-   ```
+```bash
+# 1. Clean build verification
+npm run build
+
+# 2. SitemapFast generation and replica
+python3 scripts/generate_sitemap.py
+
+# 3. Project test suite
+npm test
+
+# 4. Adversarial R1 & R2 Challenger
+python3 tests/adversarial_r1_r2_challenger.py
+
+# 5. Adversarial M5 Sitemaps & Schema Challenger
+python3 tests/adversarial_m5_sitemaps_schema.py
+
+# 6. Full Node Adversarial test suite
+node --test tests/adversarial_*.test.mjs
+
+# 7. Adversarial R3 & R4 Challenger
+python3 tests/adversarial_r3_r4_challenger.py
+
+# 8. Adversarial M6 Stress Harness
+python3 tests/adversarial_m6_stress_harness.py
+```
+
+**Invalidation Conditions**:
+- Any mismatch between `dist/` HTML file count and 180.
+- Any mismatch in the 421 JSON-LD schema global census.
+- Any occurrence of forbidden styles (`backdrop-blur`, `bg-opacity-*`, yellow/gold colors).
+- Any failed assertion in `npm test` or adversarial test suites.

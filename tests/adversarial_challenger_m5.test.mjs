@@ -4,7 +4,7 @@
  * Agente: teamwork_preview_challenger_m5_1 (EMPIRICAL CHALLENGER)
  * 
  * Verifica con oráculos estrictos y pruebas de estrés adversariales:
- * 1. Mapeo biunívoco 1:1 entre URLs de public/sitemap-0.xml y archivos HTML en dist/ (160 URLs = 160 HTML)
+ * 1. Mapeo biunívoco 1:1 entre URLs de public/sitemap-0.xml y archivos HTML en dist/ (180 URLs = 180 HTML)
  * 2. Validación estructural de XML (sitemap-index.xml, sitemap-0.xml, sitemap.xml, robots.txt)
  * 3. Pruebas de estrés adversariales en src/lib/schema.ts con entradas malformadas, extremas y Unicode
  * 4. Censo e integridad de schemas JSON-LD en la totalidad de páginas generadas en dist/
@@ -54,32 +54,32 @@ const { SITE_CONFIG } = siteModule;
 // ============================================================================
 // SUITE 1: MAPEO BIUNÍVOCO 1:1 (SITEMAP-0.XML <-> DIST HTML)
 // ============================================================================
-describe('Adversarial Challenge M5.1: Mapeo Biunívoco 1:1 (160 URLs = 160 HTML)', () => {
+describe('Adversarial Challenge M5.1: Mapeo Biunívoco 1:1 (180 URLs = 180 HTML)', () => {
   const sitemap0Path = path.join(PUBLIC_DIR, 'sitemap-0.xml');
   const sitemapPath = path.join(PUBLIC_DIR, 'sitemap.xml');
 
-  test('ADV-M5.1.1: public/sitemap-0.xml contiene exactamente 160 URLs únicas', () => {
+  test('ADV-M5.1.1: public/sitemap-0.xml contiene exactamente 180 URLs únicas', () => {
     assert.ok(fs.existsSync(sitemap0Path), 'public/sitemap-0.xml debe existir');
     const content = fs.readFileSync(sitemap0Path, 'utf8');
     const matches = [...content.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);
 
-    assert.equal(matches.length, 160, `Se esperaban 160 URLs en sitemap-0.xml, se hallaron ${matches.length}`);
+    assert.equal(matches.length, 180, `Se esperaban 180 URLs en sitemap-0.xml, se hallaron ${matches.length}`);
     const uniqueSet = new Set(matches);
-    assert.equal(uniqueSet.size, 160, 'No deben existir URLs duplicadas en sitemap-0.xml');
+    assert.equal(uniqueSet.size, 180, 'No deben existir URLs duplicadas en sitemap-0.xml');
   });
 
-  test('ADV-M5.1.2: public/sitemap.xml contiene las mismas 160 URLs que sitemap-0.xml', () => {
+  test('ADV-M5.1.2: public/sitemap.xml contiene las mismas 180 URLs que sitemap-0.xml', () => {
     assert.ok(fs.existsSync(sitemapPath), 'public/sitemap.xml debe existir');
     const content0 = fs.readFileSync(sitemap0Path, 'utf8');
     const contentLegacy = fs.readFileSync(sitemapPath, 'utf8');
     const urls0 = [...content0.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);
     const urlsLegacy = [...contentLegacy.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);
 
-    assert.equal(urlsLegacy.length, 160);
+    assert.equal(urlsLegacy.length, 180);
     assert.deepEqual(urlsLegacy, urls0, 'sitemap.xml y sitemap-0.xml deben contener la secuencia exacta de URLs');
   });
 
-  test('ADV-M5.1.3: dist/ contiene exactamente 160 archivos HTML generados', () => {
+  test('ADV-M5.1.3: dist/ contiene exactamente 180 archivos HTML generados', () => {
     assert.ok(fs.existsSync(DIST_DIR), 'dist/ debe existir tras npm run build');
 
     function collectHtmlFiles(dir) {
@@ -97,7 +97,7 @@ describe('Adversarial Challenge M5.1: Mapeo Biunívoco 1:1 (160 URLs = 160 HTML)
     }
 
     const htmlFiles = collectHtmlFiles(DIST_DIR);
-    assert.equal(htmlFiles.length, 160, `Se esperaban 160 archivos HTML en dist/, pero se encontraron ${htmlFiles.length}`);
+    assert.equal(htmlFiles.length, 180, `Se esperaban 180 archivos HTML en dist/, pero se encontraron ${htmlFiles.length}`);
   });
 
   test('ADV-M5.1.4: Cada URL de sitemap-0.xml mapea 1:1 a un archivo HTML físico no vacío en dist/', () => {
@@ -145,7 +145,7 @@ describe('Adversarial Challenge M5.1: Mapeo Biunívoco 1:1 (160 URLs = 160 HTML)
     }
 
     const actualFiles = new Set(collectHtmlFiles(DIST_DIR));
-    assert.equal(actualFiles.size, 160);
+    assert.equal(actualFiles.size, 180);
 
     // Symmetric difference
     const diff1 = [...expectedFiles].filter(x => !actualFiles.has(x));
@@ -200,7 +200,7 @@ describe('Adversarial Challenge M5.2: Validación Estructural de XML y Protocolo
     assert.ok(content.endsWith('</urlset>'));
 
     const urlBlocks = [...content.matchAll(/<url>([\s\S]*?)<\/url>/g)];
-    assert.equal(urlBlocks.length, 160);
+    assert.equal(urlBlocks.length, 180);
 
     const validChangefreqs = new Set(['always', 'hourly', 'daily', 'weekly', 'monthly', 'yearly', 'never']);
 
@@ -478,10 +478,15 @@ describe('Adversarial Challenge M5.3: Stress Testing de src/lib/schema.ts', () =
 // SUITE 4: AUDITORÍA FORENSE DE SCHEMAS EN DIST/*.HTML
 // ============================================================================
 describe('Adversarial Challenge M5.4: Auditoría Forense de Schemas en Archivos HTML Compilados', () => {
-  test('ADV-M5.4.1: Censo exacto de schemas en las 160 páginas generadas', () => {
+  test('ADV-M5.4.1: Censo exacto de schemas en las 180 páginas generadas', () => {
     let totalSchemas = 0;
     let cityPagesCount = 0;
+    let countryPagesCount = 0;
     let dolenciaPagesCount = 0;
+
+    const countrySlugs = new Set(
+      JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'src/data/dataset_almaholistica_paises.json'), 'utf8')).map((c) => c.slug)
+    );
 
     const pattern = /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/g;
 
@@ -502,6 +507,11 @@ describe('Adversarial Challenge M5.4: Auditoría Forense de Schemas en Archivos 
             // Página de dolencia: MedicalWebPage + FAQPage + BreadcrumbList = 3
             assert.equal(matches.length, 3, `Página de dolencia ${rel} debe contener exactamente 3 schemas JSON-LD`);
             dolenciaPagesCount++;
+            totalSchemas += matches.length;
+          } else if (countrySlugs.has(rel.split(path.sep)[0])) {
+            // Página de hub de país: MedicalWebPage + FAQPage + BreadcrumbList = 3
+            assert.equal(matches.length, 3, `Página de hub de país ${rel} debe contener exactamente 3 schemas JSON-LD`);
+            countryPagesCount++;
             totalSchemas += matches.length;
           } else {
             // Página de ciudad: HealthAndBeautyBusiness + BreadcrumbList = 2
@@ -526,7 +536,8 @@ describe('Adversarial Challenge M5.4: Auditoría Forense de Schemas en Archivos 
     walk(DIST_DIR);
 
     assert.equal(cityPagesCount, 113, 'Deben existir exactamente 113 páginas de ciudades en dist/');
+    assert.equal(countryPagesCount, 20, 'Deben existir exactamente 20 páginas de hubs de país en dist/');
     assert.equal(dolenciaPagesCount, 45, 'Deben existir exactamente 45 páginas de dolencias en dist/');
-    assert.equal(totalSchemas, 361, 'Deben existir exactamente 361 bloques JSON-LD en todo el sitio compilado (113*2 + 45*3)');
+    assert.equal(totalSchemas, 421, 'Deben existir exactamente 421 bloques JSON-LD en todo el sitio compilado (113*2 + 45*3 + 20*3)');
   });
 });

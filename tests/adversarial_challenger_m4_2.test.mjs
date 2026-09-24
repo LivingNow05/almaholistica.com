@@ -318,13 +318,14 @@ describe('Challenger M4-2: Home Experience Verification (CLS, Links, Styling)', 
   });
 
   test('ADV-M4.2.15: Hyperlocal city links in Home directory all point to existing static pages', () => {
-    const hrefMatches = [...homeHtml.matchAll(/href="(\/[a-zA-Z0-9-]+)"/g)].map((m) => m[1]);
+    const hrefMatches = [...homeHtml.matchAll(/href="(\/[a-zA-Z0-9-]+\/?)"/g)].map((m) => m[1]);
     const cityLinks = hrefMatches.filter((h) => h.startsWith('/biodescodificacion-'));
 
     assert.ok(cityLinks.length >= 100, `Home must feature links to at least 100 cities (found ${cityLinks.length})`);
 
     for (const cityHref of cityLinks) {
-      const targetHtml = path.join(PROJECT_ROOT, 'dist', cityHref, 'index.html');
+      const cleanHref = cityHref.replace(/^\/|\/$/g, '');
+      const targetHtml = path.join(PROJECT_ROOT, 'dist', cleanHref, 'index.html');
       assert.ok(
         fs.existsSync(targetHtml),
         `City link ${cityHref} on Home leads to missing file: ${targetHtml}`

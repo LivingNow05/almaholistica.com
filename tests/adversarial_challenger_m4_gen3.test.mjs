@@ -27,18 +27,27 @@ function getAllHtmlFiles(dir) {
 describe('Challenger M4-Gen3: Static File Census and Build Verification', () => {
   const allHtml = getAllHtmlFiles(DIST_DIR);
 
-  test('GEN3-1: dist/ exists and contains exactly 160 HTML files', () => {
+  test('GEN3-1: dist/ exists and contains exactly 180 HTML files', () => {
     assert.strictEqual(
       allHtml.length,
-      160,
-      `Expected exactly 160 static HTML files in dist/, found ${allHtml.length}`
+      180,
+      `Expected exactly 180 static HTML files in dist/, found ${allHtml.length}`
     );
   });
 
-  test('GEN3-2: Categorical census: 113 city pages, 45 dolencia pages, 1 catalog, 1 home', () => {
+  test('GEN3-2: Categorical census: 113 city pages, 20 country hub pages, 45 dolencia pages, 1 catalog, 1 home', () => {
+    const countrySlugs = new Set(
+      JSON.parse(fs.readFileSync(path.join(PROJECT_ROOT, 'src/data/dataset_almaholistica_paises.json'), 'utf8')).map((c) => c.slug)
+    );
+    const countryPages = allHtml.filter((f) => {
+      const rel = path.relative(DIST_DIR, f);
+      const slug = rel.split(path.sep)[0];
+      return countrySlugs.has(slug);
+    });
     const cityPages = allHtml.filter((f) => {
       const rel = path.relative(DIST_DIR, f);
-      return rel.startsWith('biodescodificacion-');
+      const slug = rel.split(path.sep)[0];
+      return rel.startsWith('biodescodificacion-') && !countrySlugs.has(slug);
     });
     const dolenciaPages = allHtml.filter((f) => {
       const rel = path.relative(DIST_DIR, f);
@@ -48,16 +57,17 @@ describe('Challenger M4-Gen3: Static File Census and Build Verification', () => 
     const homePage = allHtml.filter((f) => path.relative(DIST_DIR, f) === 'index.html');
 
     assert.strictEqual(cityPages.length, 113, `Expected 113 city pages, found ${cityPages.length}`);
+    assert.strictEqual(countryPages.length, 20, `Expected 20 country hub pages, found ${countryPages.length}`);
     assert.strictEqual(dolenciaPages.length, 45, `Expected 45 dolencia pages, found ${dolenciaPages.length}`);
     assert.strictEqual(catalogPage.length, 1, 'Expected exactly 1 catalog page at dist/biodescodificacion/index.html');
     assert.strictEqual(homePage.length, 1, 'Expected exactly 1 home page at dist/index.html');
   });
 });
 
-describe('Challenger M4-Gen3: Zero Internal 404 Links Across All 160 Pages', () => {
+describe('Challenger M4-Gen3: Zero Internal 404 Links Across All 180 Pages', () => {
   const allHtml = getAllHtmlFiles(DIST_DIR);
 
-  test('GEN3-3: Automated link scraper across all 160 HTML files detects ZERO broken internal <a> links', () => {
+  test('GEN3-3: Automated link scraper across all 180 HTML files detects ZERO broken internal <a> links', () => {
     const brokenLinks = [];
     let totalAnchorTags = 0;
 

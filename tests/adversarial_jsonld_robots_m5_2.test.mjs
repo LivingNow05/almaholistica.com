@@ -3,18 +3,19 @@
  * Empirical Challenger M5-2 Verification Suite
  *
  * Exhaustively stress-tests:
- * 1. JSON-LD in all 160 production HTML files in dist/:
+ * 1. JSON-LD in all 180 production HTML files in dist/:
  *    - JSON.parse() clean execution (zero syntax errors)
  *    - @context === 'https://schema.org'
  *    - 113 City pages: HealthAndBeautyBusiness and BreadcrumbList (sequential positions 1,2,3)
  *    - 45 Dolencia pages: MedicalWebPage, FAQPage, and BreadcrumbList (sequential positions 1,2,3)
- *    - Total extracted scripts: 361
+ *    - 20 Country Hub pages: MedicalWebPage, FAQPage, and BreadcrumbList
+ *    - Total extracted scripts: 421
  * 2. robots.txt verification in both public/ and dist/:
  *    - User-agent: *
  *    - Allow: /
  *    - Sitemap pointers to https://almaholistica.com/sitemap-index.xml & https://almaholistica.com/sitemap.xml
  * 3. Exact bijection:
- *    - 160 sitemap URLs <-> 160 dist HTML files
+ *    - 180 sitemap URLs <-> 180 dist HTML files
  */
 
 import { describe, test } from 'node:test';
@@ -46,12 +47,12 @@ function getAllHtmlFiles(dir) {
 
 const HTML_FILES = getAllHtmlFiles(DIST_DIR);
 
-describe('Adversarial Challenger M5-2: JSON-LD Stress-Testing across 160 dist HTML files', () => {
-  test('ADV-M5.2.1: Exactly 160 production HTML files exist in dist/', () => {
+describe('Adversarial Challenger M5-2: JSON-LD Stress-Testing across 180 dist HTML files', () => {
+  test('ADV-M5.2.1: Exactly 180 production HTML files exist in dist/', () => {
     assert.equal(
       HTML_FILES.length,
-      160,
-      `Expected exactly 160 HTML files in dist/, found ${HTML_FILES.length}`
+      180,
+      `Expected exactly 180 HTML files in dist/, found ${HTML_FILES.length}`
     );
   });
 
@@ -83,19 +84,23 @@ describe('Adversarial Challenger M5-2: JSON-LD Stress-Testing across 160 dist HT
       }
     }
 
-    // 113 city pages * 2 + 45 dolencia pages * 3 = 361 schemas
+    // 113 city pages * 2 + 45 dolencia pages * 3 + 20 country hub pages * 3 = 421 schemas
     assert.equal(
       totalScripts,
-      361,
-      `Expected exactly 361 JSON-LD scripts across all 160 files, found ${totalScripts}`
+      421,
+      `Expected exactly 421 JSON-LD scripts across all 180 files, found ${totalScripts}`
     );
   });
 
   test('ADV-M5.2.3: All 113 City pages contain HealthAndBeautyBusiness and BreadcrumbList', () => {
     const scriptRegex = /<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+    const countrySlugs = new Set(
+      JSON.parse(fs.readFileSync(path.join(PROJECT_ROOT, 'src/data/dataset_almaholistica_paises.json'), 'utf8')).map((c) => c.slug)
+    );
     const cityFiles = HTML_FILES.filter(f => {
       const rel = path.relative(DIST_DIR, f);
-      return !rel.startsWith('biodescodificacion/') && rel !== 'index.html';
+      const slug = rel.split(path.sep)[0];
+      return !rel.startsWith('biodescodificacion/') && rel !== 'index.html' && !countrySlugs.has(slug);
     });
 
     assert.equal(cityFiles.length, 113, `Expected 113 city pages, found ${cityFiles.length}`);
@@ -123,7 +128,7 @@ describe('Adversarial Challenger M5-2: JSON-LD Stress-Testing across 160 dist HT
       assert.ok(businessSchema.address?.addressLocality, `Missing addressLocality in ${relPath}`);
       assert.ok(businessSchema.address?.addressCountry, `Missing addressCountry in ${relPath}`);
 
-      // BreadcrumbList deep validation (3 items: Inicio, Ciudades, City)
+      // BreadcrumbList deep validation (3 items: Inicio > [País] > [Ciudad])
       assert.equal(breadcrumbSchema.itemListElement?.length, 3, `City breadcrumb must have 3 items in ${relPath}`);
       breadcrumbSchema.itemListElement.forEach((item, idx) => {
         assert.equal(item['@type'], 'ListItem');
@@ -133,8 +138,39 @@ describe('Adversarial Challenger M5-2: JSON-LD Stress-Testing across 160 dist HT
       });
       assert.equal(breadcrumbSchema.itemListElement[0].name, 'Inicio');
       assert.equal(breadcrumbSchema.itemListElement[0].item, 'https://almaholistica.com/');
-      assert.equal(breadcrumbSchema.itemListElement[1].name, 'Ciudades');
-      assert.equal(breadcrumbSchema.itemListElement[1].item, 'https://almaholistica.com/#ciudades');
+      assert.ok(breadcrumbSchema.itemListElement[1].name, `Missing country name in breadcrumb in ${relPath}`);
+      assert.match(breadcrumbSchema.itemListElement[1].item, /^https:\/\/almaholistica\.com\/biodescodificacion-[a-z0-9-]+\/$/, `Item 2 must link to country hub: ${breadcrumbSchema.itemListElement[1].item}`);
+      assert.ok(breadcrumbSchema.itemListElement[2].name, `Missing city name in breadcrumb in ${relPath}`);
+      assert.match(breadcrumbSchema.itemListElement[2].item, /^https:\/\/almaholistica\.com\/[a-z0-9-]+\/$/, `Item 3 must link to city page: ${breadcrumbSchema.itemListElement[2].item}`);
+    }
+  });
+
+  test('ADV-M5.2.3b: All 20 Country Hub pages contain MedicalWebPage, FAQPage, and BreadcrumbList', () => {
+    const scriptRegex = /<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+    const countrySlugs = new Set(
+      JSON.parse(fs.readFileSync(path.join(PROJECT_ROOT, 'src/data/dataset_almaholistica_paises.json'), 'utf8')).map((c) => c.slug)
+    );
+    const countryFiles = HTML_FILES.filter(f => {
+      const rel = path.relative(DIST_DIR, f);
+      const slug = rel.split(path.sep)[0];
+      return countrySlugs.has(slug);
+    });
+
+    assert.equal(countryFiles.length, 20, `Expected 20 country hub pages, found ${countryFiles.length}`);
+
+    for (const filePath of countryFiles) {
+      const relPath = path.relative(DIST_DIR, filePath);
+      const content = fs.readFileSync(filePath, 'utf8');
+      const matches = [...content.matchAll(scriptRegex)];
+      const schemas = matches.map(m => JSON.parse(m[1].trim()));
+
+      const medicalSchema = schemas.find(s => s['@type'] === 'MedicalWebPage');
+      const faqSchema = schemas.find(s => s['@type'] === 'FAQPage');
+      const breadcrumbSchema = schemas.find(s => s['@type'] === 'BreadcrumbList');
+
+      assert.ok(medicalSchema, `Country hub ${relPath} is missing MedicalWebPage schema`);
+      assert.ok(faqSchema, `Country hub ${relPath} is missing FAQPage schema`);
+      assert.ok(breadcrumbSchema, `Country hub ${relPath} is missing BreadcrumbList schema`);
     }
   });
 
@@ -224,13 +260,13 @@ describe('Adversarial Challenger M5-2: robots.txt and Sitemap Validation', () =>
     });
   }
 
-  test('ADV-M5.2.6: SitemapFast 1-to-1 bijection with all 160 HTML files in dist/', () => {
+  test('ADV-M5.2.6: SitemapFast 1-to-1 bijection with all 180 HTML files in dist/', () => {
     const sitemap0Path = path.join(DIST_DIR, 'sitemap-0.xml');
     assert.ok(fs.existsSync(sitemap0Path), 'dist/sitemap-0.xml must exist');
     const xml = fs.readFileSync(sitemap0Path, 'utf8');
 
     const locMatches = [...xml.matchAll(/<loc>(https:\/\/almaholistica\.com\/[^<]*)<\/loc>/g)].map(m => m[1]);
-    assert.equal(locMatches.length, 160, `sitemap-0.xml must contain exactly 160 URLs, got ${locMatches.length}`);
+    assert.equal(locMatches.length, 180, `sitemap-0.xml must contain exactly 180 URLs, got ${locMatches.length}`);
 
     // Check that every URL has a trailing slash
     for (const url of locMatches) {
@@ -250,8 +286,8 @@ describe('Adversarial Challenger M5-2: robots.txt and Sitemap Validation', () =>
       HTML_FILES.map(f => path.relative(DIST_DIR, f))
     );
 
-    assert.equal(expectedHtmlPaths.size, 160);
-    assert.equal(actualHtmlPaths.size, 160);
+    assert.equal(expectedHtmlPaths.size, 180);
+    assert.equal(actualHtmlPaths.size, 180);
 
     for (const p of expectedHtmlPaths) {
       assert.ok(actualHtmlPaths.has(p), `Path in sitemap missing in dist: ${p}`);

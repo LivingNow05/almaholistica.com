@@ -35,6 +35,7 @@ DIST_INDEX_HTML = os.path.join(DIST_DIR, "index.html")
 
 CITIES_CSV = os.path.join(DATA_DIR, "dataset_almaholistica_ciudades.csv")
 DOLENCIAS_JSON = os.path.join(DATA_DIR, "dataset_biodescodificacion_dolencias.json")
+PAISES_JSON = os.path.join(DATA_DIR, "dataset_almaholistica_paises.json")
 
 class FirstPHTMLParser(HTMLParser):
     def __init__(self):
@@ -195,11 +196,20 @@ def run_tests():
     check(len(missing_city_urls_dst) == 0, f"All 113 city URLs present in dist/llms.txt (missing: {len(missing_city_urls_dst)})")
     check(len(missing_slash_matches) == 0, f"Zero city URLs missing trailing slash (violations: {len(missing_slash_matches)})")
 
-    # Verify regex census of all city URLs in llms.txt
-    all_city_links = re.findall(r"https://almaholistica\.com/biodescodificacion-[a-z0-9-]+/?", public_text)
-    check(len(all_city_links) == 113, f"Exactly 113 city links matched by regex in public/llms.txt (found {len(all_city_links)})")
-    city_links_without_slash = [u for u in all_city_links if not u.endswith("/")]
-    check(len(city_links_without_slash) == 0, f"All {len(all_city_links)} city links end with canonical trailing slash (without slash: {len(city_links_without_slash)})")
+    # Load country slugs
+    with open(PAISES_JSON, "r", encoding="utf-8") as pf:
+        paises_data = json.load(pf)
+    country_slugs = {p["slug"] for p in paises_data}
+
+    # Verify regex census of all city & country hub URLs in llms.txt
+    all_geo_links = re.findall(r"https://almaholistica\.com/biodescodificacion-[a-z0-9-]+/?", public_text)
+    city_links = [u for u in all_geo_links if u.rstrip("/").split("/")[-1] not in country_slugs]
+    country_links = [u for u in all_geo_links if u.rstrip("/").split("/")[-1] in country_slugs]
+    check(len(city_links) == 113, f"Exactly 113 city links matched by regex in public/llms.txt (found {len(city_links)})")
+    check(len(country_links) == 20, f"Exactly 20 country hub links matched by regex in public/llms.txt (found {len(country_links)})")
+    check(len(all_geo_links) == 133, f"Total 133 geographic links matched by regex in public/llms.txt (found {len(all_geo_links)})")
+    geo_links_without_slash = [u for u in all_geo_links if not u.endswith("/")]
+    check(len(geo_links_without_slash) == 0, f"All {len(all_geo_links)} geographic links end with canonical trailing slash (without slash: {len(geo_links_without_slash)})")
 
     # Negative check: no old/unprefixed city URLs exist (e.g. /bogota/, /madrid/)
     legacy_patterns = [
@@ -284,8 +294,8 @@ def run_tests():
         if country not in public_text:
             missing_countries_llms.append(country)
 
-        # Regex check for **Country** (Moneda: CUR)
-        curr_pattern = rf"\*\*{re.escape(country)}\*\*\s*\(Moneda:\s*([A-Z]{{3}})\)"
+        # Regex check for **Country** (Moneda: CUR) or **[Country](url)** (Moneda: CUR)
+        curr_pattern = rf"\*\*(?:\[)?{re.escape(country)}(?:\]\([^)]+\))?\*\*\s*\(Moneda:\s*([A-Z]{{3}})\)"
         m = re.search(curr_pattern, public_text)
         if not m:
             currency_mismatches.append(f"{country}: pattern not found")
@@ -344,7 +354,7 @@ def run_tests():
         check(prior_p_tags == 0, f"Zero <p> tags precede hero paragraph in <body> (found {prior_p_tags})")
 
     # --------------------------------------------------------------------------
-    # DIMENSION 7: R2 — MR3-CH2-4.5 ZERO JSON-LD IN DIST/INDEX.HTML & 361 INVARIANT
+    # DIMENSION 7: R2 — MR3-CH2-4.5 ZERO JSON-LD IN DIST/INDEX.HTML & 421 INVARIANT
     # --------------------------------------------------------------------------
     print("\n--- DIMENSION 7: R2 Invariant MR3-CH2-4.5 (Zero JSON-LD in dist/index.html) ---")
     json_ld_blocks = list(re.finditer(r"<script\b[^>]*type=[\"']application/ld\+json[\"'][^>]*>", dist_html, re.IGNORECASE))
@@ -361,11 +371,12 @@ def run_tests():
     schema_slot_in_index = "<Fragment slot=\"schema\">" in src_astro or "slot=\"schema\"" in src_astro
     check(not schema_slot_in_index, "src/pages/index.astro does not define a schema slot")
 
-    # Global schema invariant check: exactly 361 schemas across dist/
-    print("\n--- Global Schema Census (361 Invariant across 160 HTML files) ---")
+    # Global schema invariant check: exactly 421 schemas across dist/
+    print("\n--- Global Schema Census (421 Invariant across 180 HTML files) ---")
     total_html_files = 0
     total_json_ld_scripts = 0
     city_page_schemas = 0
+    country_page_schemas = 0
     dolencia_page_schemas = 0
     other_page_schemas = 0
 
@@ -380,16 +391,20 @@ def run_tests():
                 schemas_in_page = len(re.findall(r"<script\b[^>]*type=[\"']application/ld\+json[\"'][^>]*>", hcontent, re.IGNORECASE))
                 total_json_ld_scripts += schemas_in_page
 
-                if rel_path.startswith("biodescodificacion-"):
+                dir_name = rel_path.split(os.sep)[0]
+                if dir_name in country_slugs:
+                    country_page_schemas += schemas_in_page
+                elif rel_path.startswith("biodescodificacion-"):
                     city_page_schemas += schemas_in_page
                 elif rel_path.startswith("biodescodificacion/") and rel_path != "biodescodificacion/index.html":
                     dolencia_page_schemas += schemas_in_page
                 else:
                     other_page_schemas += schemas_in_page
 
-    check(total_html_files == 160, f"Census: exactly 160 HTML pages in dist/ (found {total_html_files})")
-    check(total_json_ld_scripts == 361, f"Total global JSON-LD scripts equals 361 invariant (found {total_json_ld_scripts})")
+    check(total_html_files == 180, f"Census: exactly 180 HTML pages in dist/ (found {total_html_files})")
+    check(total_json_ld_scripts == 421, f"Total global JSON-LD scripts equals 421 invariant (found {total_json_ld_scripts})")
     check(city_page_schemas == 226, f"113 city pages contain 226 schemas (2 per page) (found {city_page_schemas})")
+    check(country_page_schemas == 60, f"20 country hub pages contain 60 schemas (3 per page) (found {country_page_schemas})")
     check(dolencia_page_schemas == 135, f"45 dolencia pages contain 135 schemas (3 per page) (found {dolencia_page_schemas})")
     check(other_page_schemas == 0, f"Home and catalog pages contain 0 schemas (found {other_page_schemas})")
 

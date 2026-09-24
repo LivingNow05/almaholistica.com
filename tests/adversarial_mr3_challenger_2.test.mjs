@@ -7,7 +7,7 @@
  * 2. CLS prevention via explicit width & height attributes on images (specifically 320x320 logo) and SVGs.
  * 3. Search filter behavior under stress, unicode, accents, malformed queries, and edge cases.
  * 4. Design & token conformance (Talora Wellness standards, zero yellow/gold, solid matte).
- * 5. 160 pages SSG compilation census and link integrity from home.
+ * 5. 180 pages SSG compilation census and link integrity from home.
  */
 
 import { test, describe, before } from 'node:test';
@@ -251,10 +251,10 @@ describe('MR3 Challenger 2: Adversarial Verification & Client Robustness', () =>
   });
 
   // ============================================================================
-  // 5. COMPILACIÓN SSG (160 PÁGINAS) Y RESOLUCIÓN DE ENLACES
+  // 5. COMPILACIÓN SSG (180 PÁGINAS) Y RESOLUCIÓN DE ENLACES
   // ============================================================================
   describe('Dimension 5: SSG Compilation Census & Link Parity', () => {
-    test('MR3-CH2-5.1: Exactly 160 HTML files generated in dist/', () => {
+    test('MR3-CH2-5.1: Exactly 180 HTML files generated in dist/', () => {
       const collectFiles = (dir) => {
         let results = [];
         for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -268,7 +268,7 @@ describe('MR3 Challenger 2: Adversarial Verification & Client Robustness', () =>
         return results;
       };
       const files = collectFiles(DIST_DIR);
-      assert.strictEqual(files.length, 160, `dist/ must contain exactly 160 HTML files, found ${files.length}`);
+      assert.strictEqual(files.length, 180, `dist/ must contain exactly 180 HTML files, found ${files.length}`);
     });
 
     test('MR3-CH2-5.2: All internal hyperlinks on dist/index.html resolve to existing files or valid anchors', () => {

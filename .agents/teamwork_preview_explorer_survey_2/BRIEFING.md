@@ -1,49 +1,47 @@
-# BRIEFING — 2026-09-16T00:23:00Z
+# BRIEFING — 2026-09-24T05:13:50Z
 
 ## Mission
-Investigar y relevar a fondo R3 (citabilidad RAG modular en 45 dolencias, `src/pages/biodescodificacion/[slug].astro`) y R4 (autoridad E-E-A-T clínico, especialistas y validación metodológica en `src/data/dataset_almaholistica_ciudades_eeat_geo.json`), preservando esquemas JSON-LD (MedicalWebPage, FAQPage, BreadcrumbList) y garantizando cero regresiones.
+Investigar diseño UI, pirámide de enlazado silo, breadcrumbs, invariantes Schema.org y reglas Swiss Bio-Tech para los 20 Country Hubs y páginas de ciudades.
 
 ## 🔒 My Identity
 - Archetype: explorer
-- Roles: investigation, synthesis
+- Roles: survey, ui design, pyramid silo linking, breadcrumbs, schema investigation
 - Working directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_2
-- Original parent: dee5921c-c2ce-44d0-97b2-5ec780197d61 (teamwork_preview_orchestrator_8)
-- Milestone: preview_explorer_survey_2_followup
+- Original parent: d7cc0e4e-ca72-4f92-8cc3-fe1d13741ae2
+- Milestone: Survey phase for 20 Country Hubs (UI/Silo/Schema/Style)
 
 ## 🔒 Key Constraints
 - Read-only investigation — do NOT implement
 - Hablar siempre en español
-- No modificar ni crear archivos fuera de .agents/teamwork_preview_explorer_survey_2/
-- Entregar report.md y handoff.md de 5 componentes
+- Follow Handoff Protocol (Observation, Logic Chain, Caveats, Conclusion, Verification Method)
+- Solid matte Swiss Bio-Tech design standards (#060A1A, #0A1226, no transparencies, no backdrop-blur)
 
 ## Current Parent
-- Conversation ID: dee5921c-c2ce-44d0-97b2-5ec780197d61
-- Updated: 2026-09-16T00:23:00Z
+- Conversation ID: d7cc0e4e-ca72-4f92-8cc3-fe1d13741ae2
+- Updated: 2026-09-24T05:13:50Z
 
 ## Investigation State
 - **Explored paths**:
-  - `src/pages/biodescodificacion/[slug].astro`
-  - `src/data/dataset_biodescodificacion_dolencias.json`
-  - `src/lib/dolencias.ts` & `src/types/dolencia.ts`
-  - `src/data/dataset_almaholistica_ciudades_eeat_geo.json` & CSV
-  - `src/pages/[slug].astro` & `src/lib/cities.ts`
-  - `src/pages/index.astro`, `src/components/Footer.astro`, `src/lib/schema.ts`
-  - `tests/` (150 regression, 244 adversarial, Python harnesses)
+  - `src/pages/index.astro`: analizada sección `#ciudades`, `countriesList` y renderizado estático de cabeceras sin enlace.
+  - `src/pages/[slug].astro`: analizado renderizado de breadcrumbs (inline HTML y JSON-LD).
+  - `src/lib/schema.ts`: auditados generadores de Schema (`HealthAndBeautyBusiness`, `MedicalWebPage`, `FAQPage`, `BreadcrumbList`).
+  - `tests/helpers/mate_style_checker.mjs`, `tailwind.config.mjs`, `tests/adversarial_mr3_challenger.test.mjs`: catalogadas reglas y tokens prohibidos/obligatorios.
+  - `src/styles/global.css`: validadas clases `card-matte`, `btn-action-pill-white`, `btn-whatsapp-primary`.
+  - `src/data/dataset_almaholistica_ciudades_eeat_geo.json`: analizada estructura de especialistas, autoridades y casos locales.
+  - `scripts/generate_sitemap.py`: analizada lógica de generación de 160 -> 180 URLs.
 - **Key findings**:
-  1. R3: Fórmula de pasaje RAG validada empíricamente en las 45 dolencias con rango estricto de 143 a 165 palabras (cumple 134-167). Inserción recomendada post-Hero antes de desgloses.
-  2. R4: Mapeo completo de los 3 especialistas certificados, aval metodológico (PNI, Hamer, Flèche, Lipton) y descargo médico.
-  3. Slug normalization: CSV usa `biodescodificacion-bogota` y JSON usa `bogota`; normalización logra 100% de match (113/113).
-  4. Preservación estricta de esquemas: `MedicalWebPage`, `FAQPage`, `BreadcrumbList` intactos en dolencias; cumplimiento de `MR3-CH2-4.5` (CERO JSON-LD en `index.html`).
-- **Unexplored areas**: Ninguna. Relevamiento completo de R3 y R4.
+  - Home carece de enlaces a los 20 hubs y mantiene títulos `<h4>` de países planos.
+  - Las ciudades usan migas `Inicio > Ciudades > Ciudad` en lugar de `Inicio > País > Ciudad`.
+  - La invariante de schemas pasa de 361 a 421 (60 nuevos esquemas: 20 * 3).
+  - La Home debe mantener CERO scripts JSON-LD (MR3-CH2-4.5).
+  - `tests/adversarial_jsonld_robots_m5_2.test.mjs` y `tests/adversarial_m6_final_qa.test.mjs` tienen aserciones hardcodeadas que requerirán sincronización.
+- **Unexplored areas**: Implementación (reservada para fases posteriores).
 
 ## Key Decisions Made
-- Estructurar el pasaje RAG en 2 partes complementarias (definición directa de ~45-55 palabras + fases y protocolo clínico de 97 palabras fijas).
-- Recomendar despliegue de E-E-A-T en 3 niveles: páginas de ciudad (terapeuta asignado y casos locales), Home (equipo clínico general sin JSON-LD), y dolencias (complementariedad médica).
-- Documentar reporte técnico exhaustivo en `report.md` y handoff formal en `handoff.md`.
+- Concluido el análisis forense de los 5 puntos requeridos y redactando `handoff.md` estructurado.
 
 ## Artifact Index
-- DISPATCH.md — Registro de instrucciones de despacho
-- BRIEFING.md — Memoria de trabajo situacional
-- progress.md — Heartbeat de liveness
-- report.md — Reporte técnico exhaustivo sobre R3 y R4
-- handoff.md — Reporte final de entrega (5 componentes)
+- DISPATCH.md — Registro de instrucciones
+- BRIEFING.md — Memoria de trabajo
+- progress.md — Liveness heartbeat
+- handoff.md — Reporte final estructurado de survey

@@ -234,3 +234,59 @@ Integrity mode: development
 - [ ] `node --test tests/adversarial_*.test.mjs` pasa 244 pruebas con 0 fallos.
 - [ ] `python3 tests/adversarial_m6_stress_harness.py` verifica 160 páginas con 0 enlaces rotos y 0 CLS.
 - [ ] `npm run build` genera las 160 páginas SSG en tiempo óptimo sin advertencias.
+
+## Follow-up — 2026-09-24T05:04:09Z
+
+Creación e integración de 20 páginas Hub por País (Silos Geográficos) con diseño editorial Swiss Bio-Tech de alta gama, contenido clínico profundo E-E-A-T, datos localizados (moneda, zonas horarias, marco regulatorio de salud, especialistas) y arquitectura de enlazado interno piramidal para romper el cuello de botella de indexación en Google.
+
+Working directory: /Users/anthony/Downloads/almaholistica.com
+Integrity mode: development
+
+## Requirements
+
+### R1. Arquitectura de Rutas Dinámicas SSG para 20 Hubs de País
+- Implementar la generación estática (SSG en Astro) de las páginas Hub para los 20 países aprobados utilizando el patrón canónico `/biodescodificacion-{pais}/` (ej. `/biodescodificacion-colombia/`, `/biodescodificacion-espana/`, `/biodescodificacion-mexico/`, etc.).
+- Normalizar slugs con trailing slash estricto para mantener consistencia con el resto del sitio y las directivas de `astro.config.mjs`.
+
+### R2. Diseño Visual de Alta Gama y Contenido E-E-A-T Clínico por Región
+- Cada Hub de País debe contar con diseño editorial premium sólido mate (#060A1A, #0A1226, acentos biológicos semánticos), cumpliendo con la directriz anti-genéricos y cero transparencias.
+- Incorporar contenido profundo y especializado sin simplezas:
+  - Definición clínica y contextualización del servicio de biodescodificación adaptado al país.
+  - Perfil del especialista senior asignado (nombre, cargo, titulación clínica y registro internacional).
+  - Información operativa localizada: moneda oficial (COP, EUR, MXN, USD, etc.), huso horario de atención (COT, CET, GMT-5, etc.) y pasarelas de pago locales habituales.
+  - Marco ético y descargo de responsabilidad médica riguroso conforme a directrices YMYL de Google.
+  - Preguntas frecuentes específicas del país con marcado JSON-LD (`FAQPage`).
+
+### R3. Arquitectura Silo de Enlazado Piramidal y Breadcrumbs Semánticos
+- Reorganizar el enlazado interno para romper la arquitectura plana:
+  - La Home (`src/pages/index.astro`) debe enlazar de forma destacada y ordenada a los 20 Hubs de País.
+  - Cada Hub de País debe desplegar y enlazar a todas sus ciudades asociadas (ej. el Hub de Colombia enlaza a Bogotá, Medellín, Cali, Barranquilla, Bucaramanga...).
+  - Las páginas de ciudades deben contar con migas de pan semánticas jerárquicas: `Inicio > [Nombre del País] > [Ciudad]` con su respectivo `BreadcrumbList` en JSON-LD.
+
+### R4. Sincronización Integral de Sitemaps, Robots y Actualización de Pruebas
+- Regenerar `sitemap-index.xml` y `sitemap-0.xml` para incluir con precisión quirúrgica las 180 páginas estáticas (1 Home + 1 Catálogo Dolencias + 45 Dolencias + 113 Ciudades + 20 Hubs de País = 180 URLs).
+- Actualizar las aserciones de censo en la suite de pruebas del proyecto (`tests/adversarial_*.test.mjs`, tests de Python y `npm test`) para validar 180 páginas HTML generadas en `dist/` sin ninguna discrepancia.
+- Garantizar cero Cumulative Layout Shift (`CLS = 0`) y cero clases CSS no permitidas (`mate_style_checker`).
+
+## Acceptance Criteria
+
+### Estructura de Rutas y Páginas Generadas
+- [ ] `npm run build` compila con éxito y genera exactamente 180 archivos HTML estáticos en `dist/`.
+- [ ] Existen los 20 archivos HTML correspondientes a los 20 países en `dist/biodescodificacion-{pais}/index.html`.
+- [ ] Cada página Hub de País responde con código HTTP 200 y canonical autorreferencial con trailing slash.
+
+### Calidad Visual y Contenido E-E-A-T
+- [ ] Cada Hub de País presenta los datos del especialista asignado, la moneda local correspondiente y el huso horario.
+- [ ] Cada Hub de País incluye al menos 3 preguntas frecuentes con Schema.org `FAQPage` y `MedicalWebPage` válidos.
+- [ ] El diseño cumple con la paleta sólida mate sin transparencias prohibidas (`backdrop-blur`, opacidades parciales en fondos).
+
+### Jerarquía y Enlazado Interno
+- [ ] La Home (`src/pages/index.astro`) incluye enlaces directos y visibles a los 20 Hubs de País.
+- [ ] Cada Hub de País enlaza a la totalidad de sus ciudades pertenecientes según el dataset.
+- [ ] Las páginas de ciudades incluyen migas de pan que enlazan a su Hub de País correspondiente.
+
+### Sitemaps y Blindaje de Pruebas
+- [ ] `dist/sitemap-0.xml` contiene exactamente 180 URLs únicas y todas coinciden 1:1 con los archivos HTML en `dist/`.
+- [ ] `npm test` ejecuta y pasa la suite completa de pruebas unitarias/integración con 0 fallos.
+- [ ] La suite de pruebas adversariales (`node --test tests/adversarial_*.test.mjs`) pasa con 0 fallos adaptada al censo de 180 páginas.
+

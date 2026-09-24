@@ -1,35 +1,20 @@
-## 2026-09-10T19:50:24Z
-Eres teamwork_preview_explorer_survey_3, un agente de exploración de código para Alma Holística.
+## 2026-09-24T05:07:15Z
 
-Tu directorio de trabajo es:
-/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_3
+You are teamwork_preview_explorer_survey_3, working on the Survey phase for Alma Holística.
+Your working directory is: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_3/
+You must read ORIGINAL_REQUEST.md at: /Users/anthony/Downloads/almaholistica.com/.agents/ORIGINAL_REQUEST.md (specifically the section "## Follow-up — 2026-09-24T05:04:09Z").
+Also read /Users/anthony/Downloads/almaholistica.com/PROJECT.md.
 
-El archivo con los requerimientos originales del usuario es:
-/Users/anthony/Downloads/almaholistica.com/.agents/ORIGINAL_REQUEST.md
-(DEBES leer este archivo antes de comenzar tu trabajo).
+YOUR MISSION:
+Investigate the sitemap generator and all test suites to identify every hardcoded page census or route assertion that must be updated from 160 to 180 pages.
+1. Inspect `scripts/generate_sitemap.py` and any other sitemap scripts. How does it currently discover or generate URLs for `sitemap-0.xml` and `sitemap-index.xml`? Does it scan `dist/` or read datasets? What changes are needed so that exactly 180 URLs are generated (1 Home + 1 Catálogo + 45 Dolencias + 113 Ciudades + 20 Hubs)?
+2. Inspect `public/llms.txt`. How are countries, cities, and dolencias listed? What updates are needed to incorporate the 20 Country Hubs?
+3. Search and catalog ALL test files in `tests/` and `package.json` (`npm test`, `tests/*.mjs`, `tests/*.py`):
+   - Find every assertion checking `160` (e.g. 160 HTML files, 160 URLs, 160 pages).
+   - Find every test validating routes, sitemaps, schemas, links, or styles.
+   - List the exact file paths, line numbers, and required updates for each test file to pass with 0 failures under the 180-page census.
 
-El directorio raíz del proyecto es:
-/Users/anthony/Downloads/almaholistica.com
+Write your complete, structured findings to:
+/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_3/handoff.md
 
-Tu misión es investigar exhaustivamente los requerimientos R3, R4 y R5 del último follow-up:
-1. Requerimiento R3 (Tablas Comparativas y Alivio Estructural):
-   - Investigar las secciones actuales de texto denso en src/pages/ y componentes.
-   - Definir la estructura de datos, contenido exacto y diseño responsivo para:
-     a) Tabla de Enfoque Clínico: Medicina Convencional vs Biodescodificación Integrativa (Dimensiones: Paradigma de origen, Enfoque diagnóstico, Nivel de intervención, Objetivo del síntoma, Papel del consultante).
-     b) Tabla Matriz de Dolencias y Sentido Biológico: Muestra representativa de patologías con Síntoma Físico, Emoción Atrapada, Capa Embrionaria (Endodermo/Mesodermo/Ectodermo) y Sentido Biológico Adaptativo.
-     c) Tabla de Etapas del Acompañamiento: Fase, Sesiones Estimadas, Metodología Aplicada y Resultado Terapéutico Esperado.
-   - Definir el patrón de visualización responsivo (scroll horizontal suave con scrollbar estilizada y/o diseño adaptativo en móviles) asegurando cero desbordamiento horizontal.
-2. Requerimiento R4 (SEO, GEO y Datos Estructurados):
-   - Revisar los esquemas JSON-LD existentes en src/layouts/ o componentes (MedicalWebPage, FAQPage, BreadcrumbList).
-   - Diseñar la integración de esquemas Schema.org complementarios (MedicalWebPage, HowTo, Table, FAQPage) y microdatos HTML semánticos (table, thead, tbody, th, caption) para motores generativos (ChatGPT Search, Perplexity, Google AI Overviews).
-3. Requerimiento R5 (Suite de Pruebas y Aseguramiento Técnico):
-   - Mapear TODOS los archivos de test existentes: npm test (150 pruebas) y node --test tests/adversarial_*.test.mjs (244 pruebas).
-   - Identificar exactamente qué valida cada test suite, qué aserciones críticas existen (rutas SSG 160 páginas, estilos mate, URLs, WhatsApp quiz, datasets, etc.) y cómo verificar que no haya regresiones.
-
-REGLAS Y ENTREGABLES:
-- Eres un agente de SOLO LECTURA. NO modifiques ni crees archivos de código fuente.
-- Documenta todos tus hallazgos detallados en:
-  /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_3/analysis.md
-- Genera un reporte de handoff completo en:
-  /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_3/handoff.md
-- Cuando termines, envía un mensaje a tu parent (conversation ID actual) usando send_message resumiendo tus conclusiones e indicando las rutas de tus archivos.
+Report back when done using send_message.

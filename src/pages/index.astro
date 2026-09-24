@@ -20,6 +20,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { buildWhatsAppUrl } from '../config/site';
 import { getDolencias, getBiologicalBorderClass, getBiologicalBadgeClass } from '../lib/dolencias';
 import { getCities } from '../lib/cities';
+import { getCountries, countryNameToSlug } from '../lib/countries';
 import BioBodyScanner from '../components/BioBodyScanner.astro';
 import ClinicalApproachTable from '../components/ClinicalApproachTable.astro';
 import BiologicalMatrixTable from '../components/BiologicalMatrixTable.astro';
@@ -28,6 +29,7 @@ import AccompanimentStagesTable from '../components/AccompanimentStagesTable.ast
 // Obtención memoizada de datasets SSG
 const allDolencias = getDolencias();
 const allCities = getCities();
+const allCountries = getCountries();
 
 // Dolencias destacadas para el catálogo principal (12 patologías de alta intención clínica)
 // REQUISITO ESTRICTO ADV-M4.2.18 y ADV-GEN3.10: Mantener nombre 'featuredSlugs' y slugs canónicos 'migrana' y 'sobrepeso-retencion'
@@ -952,6 +954,60 @@ const evaluationWhatsAppUrl = buildWhatsAppUrl({
   </section>
 
   <!-- ========================================================================= -->
+  <!-- CENTROS CLÍNICOS INTERNACIONALES // HUBS DE PAÍS (#paises)                -->
+  <!-- ========================================================================= -->
+  <section id="paises" class="w-full bg-[#060A1A] py-24 lg:py-32 border-b border-slate-800/40">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      
+      <div class="gsap-scroll-header text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 text-xs font-sans font-semibold tracking-wider text-[#779DD1] uppercase mb-4">
+          <span class="w-2 h-2 rounded-full bg-[#779DD1]"></span>
+          <span>SILOS GEOGRÁFICOS // COBERTURA EN 20 PAÍSES</span>
+        </div>
+        <h2 class="font-sans font-extrabold text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-white">
+          Centros de Atención Internacional por País
+        </h2>
+        <p class="text-base text-slate-400 mt-4 leading-relaxed font-sans max-w-2xl mx-auto">
+          Accede al hub clínico de tu país para conocer a tu especialista senior asignado, tarifas oficiales en moneda local, pasarelas de pago y horarios de atención en tu zona horaria.
+        </p>
+      </div>
+
+      <!-- Retícula de 20 Tarjetas de Países (Swiss Bio-Tech Sólido Mate) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        {allCountries.map((c) => {
+          const cityCount = allCities.filter((city) => city.pais === c.pais).length;
+          return (
+            <a
+              href={`/${c.slug}/`}
+              class="group bg-[#0A1226] border border-slate-800/40 hover:border-[#38BDF8]/60 rounded-[1.75rem] p-6 transition-all duration-300 hover:-translate-y-1 block"
+            >
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-sans font-bold uppercase tracking-wider text-[#779DD1] group-hover:text-[#38BDF8] transition-colors">
+                  {c.moneda} &bull; {c.husoHorario.split(' ')[0]}
+                </span>
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              </div>
+              <h3 class="font-sans font-bold text-xl text-white group-hover:text-[#38BDF8] transition-colors mb-2">
+                {c.pais}
+              </h3>
+              <p class="text-xs text-slate-400 font-sans mb-4 line-clamp-2">
+                {c.metaDescripcion}
+              </p>
+              <div class="flex items-center justify-between text-xs font-sans text-slate-400 pt-3 border-t border-slate-800/40">
+                <span class="text-slate-300 font-medium">{cityCount > 0 ? `${cityCount} ciudades` : 'Atención nacional'}</span>
+                <span class="text-[#38BDF8] font-bold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                  Ver Hub &rarr;
+                </span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
   <!-- DIRECTORIO HIPERLOCAL DE CIUDADES (#ciudades)                             -->
   <!-- ========================================================================= -->
   <section id="ciudades" class="w-full bg-[#060A1A] py-24 lg:py-32 border-b border-slate-800/40">
@@ -1027,14 +1083,20 @@ const evaluationWhatsAppUrl = buildWhatsAppUrl({
             if (countryCities.length === 0) return null;
             return (
               <div class="space-y-3">
-                <h4 class="text-xs font-sans font-bold uppercase tracking-wider text-[#779DD1] border-b border-slate-800/40 pb-2">
-                  {countryName}
+                <h4 class="text-xs font-sans font-bold uppercase tracking-wider border-b border-slate-800/40 pb-2">
+                  <a
+                    href={`/biodescodificacion-${countryNameToSlug(countryName)}/`}
+                    class="text-[#779DD1] hover:text-[#38BDF8] transition-colors flex items-center justify-between group"
+                  >
+                    <span>{countryName}</span>
+                    <span class="text-[10px] text-slate-500 font-mono tracking-normal group-hover:text-[#38BDF8] transition-colors">Ver Hub &rarr;</span>
+                  </a>
                 </h4>
                 <ul class="space-y-1.5 text-sm">
                   {countryCities.map((city) => (
                     <li class="city-search-item" data-city-name={`${city.h1} ${city.pais} ${city.slug}`.toLowerCase()}>
                       <a
-                        href={`/${city.slug}`}
+                        href={`/${city.slug}/`}
                         class="text-slate-400 hover:text-[#779DD1] transition-colors block py-0.5 text-xs font-sans"
                       >
                         {city.h1.replace(/^Terapia.*en /i, '')}

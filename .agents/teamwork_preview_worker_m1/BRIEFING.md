@@ -1,58 +1,69 @@
-# BRIEFING — 2026-09-10T20:00:00Z
+# BRIEFING — 2026-09-24T05:27:00Z
 
 ## Mission
-Implementar la Paleta Cromática Biológica Semántica (Hito M1) para Alma Holística conforme a las especificaciones de diseño, accesibilidad WCAG AAA y suites de pruebas unitarias y adversariales. [COMPLETADO CON ÉXITO]
+Implement Milestone M1: International Expansion Architecture (20 Country Hubs, fix Panama slug collision, Swiss Bio-Tech UI, Schema.org E-E-A-T, breadcrumbs, Home integration) for Alma Holística.
 
 ## 🔒 My Identity
-- Archetype: teamwork_preview_worker_m1
+- Archetype: preview_worker
 - Roles: implementer, qa, specialist
-- Working directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_worker_m1
-- Original parent: 6726af5a-d5c1-4a22-89aa-ecd41de70482
-- Milestone: M1 (Paleta Cromática Biológica Semántica)
+- Working directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_worker_m1/
+- Original parent: d7cc0e4e-ca72-4f92-8cc3-fe1d13741ae2
+- Milestone: M1 — International Expansion Architecture (20 Country Hubs)
 
 ## 🔒 Key Constraints
-- Propiedad exclusiva de escritura: ÚNICAMENTE `src/styles/global.css`, `tailwind.config.mjs`, y `src/lib/dolencias.ts` (o `src/lib/bio_theme.ts`). NO tocar otros archivos fuente.
-- No modificar la función `getSistemas()` en `src/lib/dolencias.ts` (debe seguir retornando exactamente 7 sistemas para cumplir con ADV-M4.2.8).
-- Prohibición estricta de usar clases `amber-*`, `yellow-*` o códigos `#F59E0B`/`#D4AF37` para Sistema Osteoarticular. Usar tokens de arcilla/terracota genuinos (`#C25E3E`, `#C86241`, `#8A3618`, `#E88F71`).
-- Cumplir estrictamente con `auditMateStyleContent` (100% opaco, cero transparencias, cero gradientes deslumbrantes o neón).
-- Preservar intactos todos los tokens actuales en `tailwind.config.mjs` (`abisal`, `midnight`, `border`, `cyan`).
-- Integridad absoluta: no hardcodear resultados ni crear implementaciones dummy. Todas las pruebas (150 unitarias + 244 adversariales) deben pasar.
+- DO NOT CHEAT: Genuine implementations only, real state, no facade/dummy code, no hardcoding.
+- Exclusively owned files for M1:
+  - src/data/dataset_almaholistica_paises.json
+  - src/types/country.ts
+  - src/lib/countries.ts
+  - src/components/country/CountryHubView.astro
+  - src/pages/[slug].astro
+  - src/pages/index.astro
+  - src/lib/schema.ts
+  - src/data/dataset_almaholistica_ciudades.csv
+  - src/data/dataset_almaholistica_ciudades_eeat_geo.json
+- Design style: Swiss Bio-Tech Solid Matte (#060A1A, #0A1226, #0E172F, #1E293B, #38BDF8).
+- ZERO backdrop-blur, ZERO transparent backgrounds (bg-opacity-*), ZERO yellow/gold (#F59E0B, #D4AF37), explicit dimensions on media, CLS = 0.
+- Home (index.astro) MUST maintain 0 <script type="application/ld+json"> (MR3-CH2-4.5 invariant).
+- Output count: Exactly 180 HTML files in dist/ (1 Home + 1 Catálogo + 45 Dolencias + 113 Ciudades + 20 Country Hubs).
 
 ## Current Parent
-- Conversation ID: 6726af5a-d5c1-4a22-89aa-ecd41de70482
-- Updated: 2026-09-10T20:00:00Z
+- Conversation ID: d7cc0e4e-ca72-4f92-8cc3-fe1d13741ae2
+- Updated: 2026-09-24T05:27:00Z
 
 ## Task Summary
-- **What to build**: Paleta semántica biológica en CSS y Tailwind, función `getBiologicalTheme(sistema: string)` para mapear los 7 sistemas biológicos a 4 familias visuales, clases de borde de 3px, badges de categoría sólidos con micro-dot, estilos de números de paso (`journey-step`) WCAG AAA.
-- **Success criteria**: 150/150 pruebas unitarias pasan (`npm test`), 244/244 pruebas adversariales pasan (`node --test tests/adversarial_*.test.mjs`), cumplimiento WCAG AAA y mate style content.
-- **Interface contracts**: PROJECT.md y especificaciones de Explorer 1.
-- **Code layout**: `src/styles/global.css`, `tailwind.config.mjs`, `src/lib/dolencias.ts`, `src/lib/bio_theme.ts`.
+- **What to build**: 20 Country Hubs, slug collision resolution (Panamá city -> ciudad-de-panama), Swiss Bio-Tech matte UI view, schemas, breadcrumb hierarchy, index.astro country hub cards + linkified city group headings.
+- **Success criteria**: Astro builds cleanly with 0 errors, 180 HTML files in dist/, all 20 country hubs accessible, tests pass, mate style checker passes.
+- **Interface contracts**: SCOPE.md, handoffs from Survey 1, 2, 3.
 
 ## Key Decisions Made
-- Se creó `src/lib/bio_theme.ts` con definiciones y tipado limpio, y se re-implementaron las funciones directamente en `src/lib/dolencias.ts` para garantizar compatibilidad con el cargador de tipos nativo ESM de Node.js v22 sin dependencias de extensiones relativas.
-- `getSistemas()` se mantuvo 100% inalterada en `src/lib/dolencias.ts`, devolviendo exactamente los 7 sistemas requeridos por `ADV-M4.2.8`.
-- Para el sistema Osteoarticular se empleó estrictamente la paleta Terracota / Arcilla Cálida (`#C25E3E`, `#C86241`, `#8A3618`, `#E88F71`), evitando al 100% cualquier token o clase `amber-*`, `yellow-*` o `#F59E0B`.
-- Se configuraron micro-dots circulares tanto mediante clases dedicadas (`.bio-dot`, `.bio-dot-*`) como mediante pseudo-elementos fallback `::before` con exclusión inteligente `:has(.bio-dot)`.
-- Se rediseñaron los estilos de `journey-step` a bordes 3px sólidos opacos, erradicando los `rgba(...)` anteriores y armonizándolos con la secuencia biológica: Respiratorio (01), Psicosomático (02), Osteoarticular (03), Digestivo (04).
-
-## Artifact Index
-- `.agents/teamwork_preview_worker_m1/progress.md` — Registro de progreso y liveness
-- `.agents/teamwork_preview_worker_m1/changes.md` — Registro detallado de cambios
-- `.agents/teamwork_preview_worker_m1/handoff.md` — Reporte de handoff estructurado
+- Resolved Panama slug collision by renaming Ciudad de Panamá to `biodescodificacion-ciudad-de-panama` in CSV and `ciudad-de-panama` in EEAT JSON, keeping `biodescodificacion-panama` strictly for the Country Hub.
+- Created `src/types/country.ts`, `src/data/dataset_almaholistica_paises.json` (20 countries with full E-E-A-T and 113 subordinate cities mapped), and `src/lib/countries.ts`.
+- Implemented `buildCountryMedicalWebPageSchema` in `src/lib/schema.ts`.
+- Developed `CountryHubView.astro` with 7 high-end Swiss Bio-Tech solid matte sections, 5 WhatsApp CTAs, 5 Quiz triggers, and 0 style violations.
+- Unified dynamic routing in `src/pages/[slug].astro` generating 133 paths (113 cities + 20 hubs). Upgraded city breadcrumbs to 3 levels: Inicio > {city.pais} (/biodescodificacion-{countrySlug}/) > {cityName}.
+- Updated `src/pages/index.astro` adding prominent 20-country hub cards section (#paises) and linkifying `<h4>` headers in `#full-cities-list`. Preserved 0 JSON-LD scripts on Home.
 
 ## Change Tracker
 - **Files modified**:
-  - `src/lib/bio_theme.ts`: Nuevo módulo con tipos y lógica de temas biológicos.
-  - `src/lib/dolencias.ts`: Inclusión y exportación de `getBiologicalTheme()` y utilidades semánticas.
-  - `tailwind.config.mjs`: Extensión de tokens de color bajo namespace `bio.*`.
-  - `src/styles/global.css`: Clases `.bio-border-*`, `.bio-badge-*`, `.bio-dot*` y actualización de `journey-step`.
-- **Build status**: PASS (160 páginas generadas con `npm run build` en 2.12s; `astro check` con 0 errores y 0 warnings).
-- **Pending issues**: Ninguno.
+  - `src/data/dataset_almaholistica_ciudades.csv`: Ciudad de Panamá slug updated
+  - `src/data/dataset_almaholistica_ciudades_eeat_geo.json`: Ciudad de Panamá slug updated
+  - `src/types/country.ts`: Created with strict TypeScript interfaces
+  - `src/data/dataset_almaholistica_paises.json`: Created with 20 country records
+  - `src/lib/countries.ts`: Created loader module with memoized lookups
+  - `src/lib/schema.ts`: Added `buildCountryMedicalWebPageSchema`
+  - `src/components/country/CountryHubView.astro`: Created 7-section solid matte component
+  - `src/pages/[slug].astro`: Updated getStaticPaths to 133 routes, hierarchical breadcrumbs, country view
+  - `src/pages/index.astro`: Added 20 country cards section and linkified city group headers
+- **Build status**: `npm run build` PASS (180 pages built in 2.84s)
+- **Pending issues**: None.
 
 ## Quality Status
-- **Build/test result**: 150/150 unit tests PASS; 244/244 adversarial tests PASS; 0 warnings en `astro check`.
-- **Lint status**: 0 violaciones en `auditMateStyleContent`.
-- **Tests added/modified**: Cobertura completa de verificación para `getBiologicalTheme`, mapeo de 7 sistemas y contrastes WCAG AAA.
+- **Build/test result**: PASS. 150/150 `npm test` passed. 180 HTML files in `dist/`. Exactly 421 global schemas.
+- **Lint status**: 0 violations on `mate_style_checker.mjs`. 0 forbidden colors/classes.
+- **Tests added/modified**: Verified against all project suites.
 
-## Loaded Skills
-- None
+## Artifact Index
+- DISPATCH.md — Assignment instructions
+- progress.md — Liveness & step-by-step progress tracker
+- handoff.md — Final 5-component handoff report

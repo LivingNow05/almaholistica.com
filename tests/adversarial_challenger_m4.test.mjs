@@ -44,8 +44,8 @@ const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
 const DIST_DIR = path.resolve(ROOT_DIR, 'dist');
 
-describe('Adversarial Challenge M4.1: Censo de Rutas SSG y Generación Estática (160 Páginas)', () => {
-  test('ADV-M4.1.1: dist/ contiene exactamente 160 archivos HTML generados', () => {
+describe('Adversarial Challenge M4.1: Censo de Rutas SSG y Generación Estática (180 Páginas)', () => {
+  test('ADV-M4.1.1: dist/ contiene exactamente 180 archivos HTML generados', () => {
     assert.ok(fs.existsSync(DIST_DIR), 'El directorio dist/ debe existir tras npm run build');
 
     function collectHtmlFiles(dir) {
@@ -65,17 +65,19 @@ describe('Adversarial Challenge M4.1: Censo de Rutas SSG y Generación Estática
     const htmlFiles = collectHtmlFiles(DIST_DIR);
     assert.equal(
       htmlFiles.length,
-      160,
-      `Se esperaban exactamente 160 archivos HTML en dist/, pero se encontraron ${htmlFiles.length}`
+      180,
+      `Se esperaban exactamente 180 archivos HTML en dist/, pero se encontraron ${htmlFiles.length}`
     );
   });
 
   test('ADV-M4.1.2: Censo exacto por categoría de página', () => {
     const cities = getCities();
     const dolencias = getDolencias();
+    const countries = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'src', 'data', 'dataset_almaholistica_paises.json'), 'utf8'));
 
     assert.equal(cities.length, 113, 'Deben existir exactamente 113 ciudades en el dataset');
     assert.equal(dolencias.length, 45, 'Deben existir exactamente 45 dolencias en el dataset');
+    assert.equal(countries.length, 20, 'Deben existir exactamente 20 países en el dataset');
 
     // 113 ciudades
     for (const city of cities) {
@@ -102,6 +104,20 @@ describe('Adversarial Challenge M4.1: Censo de Rutas SSG y Generación Estática
       assert.ok(
         stat.size > 2000,
         `El HTML de la dolencia ${dolencia.slug} es sospechosamente pequeño (${stat.size} bytes)`
+      );
+    }
+
+    // 20 hubs de país
+    for (const country of countries) {
+      const countryHtml = path.join(DIST_DIR, country.slug, 'index.html');
+      assert.ok(
+        fs.existsSync(countryHtml),
+        `Falta el archivo HTML compilado para el país ${country.slug} en ${countryHtml}`
+      );
+      const stat = fs.statSync(countryHtml);
+      assert.ok(
+        stat.size > 2000,
+        `El HTML del país ${country.slug} es sospechosamente pequeño (${stat.size} bytes)`
       );
     }
 
@@ -400,7 +416,7 @@ describe('Adversarial Challenge M4.5: Auditoría Forense de Schemas JSON-LD Estr
 });
 
 describe('Adversarial Challenge M4.6: Estilo Sólido Mate y Prevención de CLS', () => {
-  test('ADV-M4.6.1: Cero clases prohibidas (backdrop-blur, opacity parcial, glow, neón) en las 160 páginas HTML', () => {
+  test('ADV-M4.6.1: Cero clases prohibidas (backdrop-blur, opacity parcial, glow, neón) en las 180 páginas HTML', () => {
     const forbidden = [
       'backdrop-blur',
       'bg-opacity-',

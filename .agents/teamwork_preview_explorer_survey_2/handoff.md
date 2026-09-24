@@ -1,137 +1,221 @@
-# Handoff Report — Relevamiento R3 (Citabilidad RAG) y R4 (E-E-A-T Clínico)
+# Reporte de Investigación: Diseño UI, Silo Piramidal, Breadcrumbs y Esquemas Schema.org para los 20 Country Hubs de Alma Holística
 
-**De:** `teamwork_preview_explorer_survey_2`  
-**Para:** `teamwork_preview_orchestrator_8` (Conv ID: `dee5921c-c2ce-44d0-97b2-5ec780197d61`)  
-**Fecha:** 2026-09-16  
-**Tipo de Handoff:** Hard (Tarea de exploración y diseño arquitectónico completada)  
-**Reporte Completo:** `/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_2/report.md`
-
----
-
-## 1. Observation
-
-A través de inspección directa de código, análisis de datos en disco y ejecución de herramientas CLI, se observó lo siguiente:
-
-1. **Catálogo y Generación de Dolencias (R3):**
-   - Archivo de datos: `src/data/dataset_biodescodificacion_dolencias.json` (97,287 bytes, 1,262 líneas). Contiene exactamente 45 objetos con las propiedades requeridas: `slug`, `nombre`, `sistema`, `conflictoEmocional`, `sentidoBiologico`, `reprogramacion`, `preguntasReflexion` (array >= 3), `faqs` (array >= 3), `ganchoAgendamiento`.
-   - Generación estática SSG: `src/pages/biodescodificacion/[slug].astro` genera 45 rutas vía `getStaticPaths()` consumiendo `getDolencias()` de `src/lib/dolencias.ts`.
-   - Orden actual de secciones en `src/pages/biodescodificacion/[slug].astro`:
-     - Líneas 80-84: `<Fragment slot="schema">` (JSON-LD: `MedicalWebPage`, `FAQPage`, `BreadcrumbList`).
-     - Líneas 88-94: Migas de pan.
-     - Líneas 97-139: `<header>` (Hero con H1, badge de sistema y CTAs de WhatsApp).
-     - Líneas 142-187: `<section id="en-palabras-simples">` (3 tarjetas explicativas).
-     - Líneas 190-211: `<section aria-label="Termómetro Biológico">` (2 tarjetas de fases).
-     - Líneas 214-238: `<section id="conflicto">` (**Inicio del Desglose Detallado**).
-     - Líneas 402-413: `<aside aria-label="Aviso Médico">` (Descargo médico general).
-   - Inserción requerida: Antes del desglose detallado (`#conflicto`), idealmente entre la línea 140 (post-Hero) y 142.
-
-2. **Calibración del Pasaje RAG (134-167 palabras):**
-   - Se probó empíricamente una fórmula de 2 partes:
-     - Parte 1 (Definición directa): ~46-68 palabras (Patología + Sistema + Conflicto Emocional Raíz + Sentido Biológico Adaptativo).
-     - Parte 2 (Fases y protocolo): 97 palabras fijas (Fase simpaticotónica de estrés activo vs vagotonía de reparación + protocolo individual de reprogramación bioemocional 1 a 1 de Alma Holística + advertencia explícita de no sustitución alopática).
-   - Resultado empírico sobre las 45 dolencias:
-     - Recuento mínimo: **143 palabras**.
-     - Recuento máximo: **165 palabras**.
-     - **100% de las 45 dolencias cumplen estrictamente el rango de 134 a 167 palabras** (y el rango de aceptación de 130 a 170 palabras).
-
-3. **Dataset de Autoridad E-E-A-T (R4):**
-   - Archivo de datos: `src/data/dataset_almaholistica_ciudades_eeat_geo.json` (754,424 bytes, 4,070 líneas). Contiene 113 registros de ciudades con:
-     - 3 especialistas clínicos: `Lic. Sofía Alarcón Valdés` (Reg. ITH-8492), `Dr. Mateo Benavides Rivas` (Reg. AIE-5120), `Dra. Elena Monsalve Duarte` (Reg. CIT-6311).
-     - Aval metodológico unificado (`EEAT_Autoridad_Cientifica`): Cita expresa de Psiconeuroinmunología (PNI), 5 Leyes de la NMG del Dr. Ryke Geerd Hamer, Escuela Francesa de Christian Flèche y Epigenética del Dr. Bruce Lipton.
-     - Descargo ético y legal (`EEAT_Confiabilidad_Descargo`).
-     - Casos clínicos locales (`EEAT_Experiencia_Casos_Locales`).
-   - Discrepancia de slug detectada: El CSV `dataset_almaholistica_ciudades.csv` usa `biodescodificacion-bogota`, mientras que el JSON usa `bogota`. Se validó que `slug.replace(/^biodescodificacion-/, '')` hace coincidir el **100% (113 de 113 registros)**.
-
-4. **Preservación de Esquemas Schema.org y Restricción Adversarial:**
-   - En dolencias: `MedicalWebPage`, `FAQPage` y `BreadcrumbList` están inyectados en el slot `schema` de `BaseLayout` y son auditados por `tests/adversarial_jsonld_robots_m5_2.test.mjs`.
-   - En Home: La prueba `tests/adversarial_mr3_challenger_2.test.mjs` (Línea 247) test `MR3-CH2-4.5` prohíbe taxativamente la inyección de esquemas `application/ld+json` en `dist/index.html`.
-
-5. **Línea Base de Compilación y Pruebas:**
-   - `npm test`: 150/150 tests pasan.
-   - `node --test tests/adversarial_*.test.mjs`: 244/244 tests pasan.
-   - `python3 tests/adversarial_assets_config_m2_2.py`: 6/6 tests pasan.
-   - `python3 tests/adversarial_m6_stress_harness.py`: 160 páginas verificadas con 0 errores.
+**Investigador:** `teamwork_preview_explorer_survey_2`  
+**Fecha:** 2026-09-24  
+**Área de Trabajo:** `/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_2/`  
+**Misión:** Levantamiento forense y diseño arquitectónico para la integración de 20 Páginas Hub de País (Silos Geográficos), migas de pan jerárquicas, invariantes de Schema.org y normativa de diseño Swiss Bio-Tech Sólido Mate.
 
 ---
 
-## 2. Logic Chain
+## 1. Observación (Observation)
 
-1. **R3 (Ubicación y Formato del Pasaje RAG):**
-   - *Premisa:* Los retrievers de IA (GPTBot, PerplexityBot, Google AI Overviews) priorizan párrafos de respuesta directa ubicados tempranamente en la estructura semántica del documento, antes de desgloses fraccionados.
-   - *Deducción:* Ubicar el bloque RAG inmediatamente después del Hero (`<header>`) y antes de `#en-palabras-simples` o `#conflicto` maximiza la citabilidad.
-   - *Premisa:* La prueba de extractabilidad exige un rango calibrado de 134 a 167 palabras (o 130 a 170 según criterios de aceptación), respondiendo en las primeras 40-50 palabras la definición y en las siguientes 80-100 palabras las fases y el protocolo.
-   - *Deducción:* Si la Parte 2 se fija en 97 palabras calibradas y la Parte 1 extrae y limpia el conflicto y sentido biológico de cada patología (~46-68 palabras), la suma total resulta invariablemente entre 143 y 165 palabras para todas las 45 dolencias.
+A través de la inspección directa del código fuente, configuración y suites de pruebas adversariales del repositorio `almaholistica.com`, se registraron los siguientes hechos empíricos:
 
-2. **R4 (Estrategia de Visualización de Autoridad E-E-A-T):**
-   - *Premisa:* El dataset `dataset_almaholistica_ciudades_eeat_geo.json` fue diseñado para dotar a las páginas de ciudad de credenciales de terapeutas reales y casos clínicos locales, mientras que la Home y las Dolencias requieren aval metodológico sin violar contratos preexistentes.
-   - *Deducción:* La integración debe distribuirse en:
-     1. *Páginas de ciudad (`[slug].astro`):* Módulo hiperlocal E-E-A-T con la ficha del terapeuta asignado, casos clínicos locales, aval científico y descargo ético.
-     2. *Home (`index.astro`):* Sección editorial con los 3 especialistas y la fundamentación PNI/Hamer/Flèche/Lipton presentada únicamente en HTML semántico (respetando la regla adversarial `MR3-CH2-4.5` de no inyectar JSON-LD en `index.html`).
-     3. *Dolencias (`biodescodificacion/[slug].astro`):* Integración de la complementariedad médica en el bloque RAG y badge de respaldo metodológico en el aside de aviso médico.
+### 1.1 Estado de `src/pages/index.astro` y Enlazado a Países
+- **Declaración de Países:** En `src/pages/index.astro` (líneas 52-73), existe una constante estática `countriesList` con los 20 países aprobados (`España`, `Estados Unidos`, `Colombia`, `México`, `Argentina`, `Chile`, `Perú`, `Ecuador`, `Bolivia`, `Uruguay`, `Paraguay`, `Venezuela`, `Costa Rica`, `Panamá`, `República Dominicana`, `Guatemala`, `El Salvador`, `Honduras`, `Nicaragua`, `Brasil`).
+- **Directorio Hiperlocal Actual:** En la sección `#ciudades` (líneas 957-1052):
+  - El encabezado del bloque (líneas 961-971) proclama: `RED INTERNACIONAL // COBERTURA EN 20 PAÍSES`.
+  - Existe un buscador en tiempo real `<input id="home-city-search" ...>` (líneas 976-986).
+  - Existe una retícula de ciudades prioritarias (líneas 995-1010) que enlaza directamente a 16 ciudades (`/${city.slug}`).
+  - En el contenedor `#full-cities-list` (líneas 1024-1049), se itera sobre `countriesList`. Dentro del mapeo (líneas 1030-1032), el nombre del país se imprime como un elemento estático no clickable:
+    ```astro
+    <h4 class="text-xs font-sans font-bold uppercase tracking-wider text-[#779DD1] border-b border-slate-800/40 pb-2">
+      {countryName}
+    </h4>
+    ```
+  - **Falta de Silo Jerárquico:** No existe en toda la página de inicio ningún enlace a los 20 Country Hubs (`/biodescodificacion-{pais}/`). La arquitectura actual es 100% plana: la Home salta directamente a las 113 páginas de ciudades.
 
-3. **Preservación Técnica y Cero CLS:**
-   - *Premisa:* Los estilos deben respetar la normativa de diseño sólido mate (`#060A1A`, `#0A1226`, `#38BDF8`), sin degradados transparentes ni efectos dorados/amarillos (`#F59E0B`, `#D4AF37`), y sin producir desplazamiento de diseño (`CLS = 0`).
-   - *Deducción:* Toda nueva tarjeta o módulo debe emplear las clases estándar del proyecto (`card-matte`, `card-matte-elevated`, bordes `border-slate-800`, textos `text-slate-300` / `text-white`), y mantener intactas las 160 rutas SSG.
+### 1.2 Estado de Breadcrumbs en `src/pages/[slug].astro`
+- **Renderizado Visual HTML:** En `src/pages/[slug].astro` (líneas 118-124), las migas de pan se construyen de forma inline:
+  ```html
+  <nav class="flex items-center gap-2 text-xs font-sans tracking-wide text-slate-400 mb-8" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-[#779DD1] transition-colors">INICIO</a>
+    <span class="text-slate-600">/</span>
+    <a href="/#ciudades" class="hover:text-[#779DD1] transition-colors">CIUDADES</a>
+    <span class="text-slate-600">/</span>
+    <span class="text-[#779DD1] font-semibold uppercase">{cityName}</span>
+  </nav>
+  ```
+- **Esquema JSON-LD de Breadcrumbs:** En `src/pages/[slug].astro` (líneas 78-91), el esquema estructurado se alimenta con:
+  ```typescript
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: 'Inicio', url: 'https://almaholistica.com/' },
+    { name: 'Ciudades', url: 'https://almaholistica.com/#ciudades' },
+    { name: cityName, url: canonicalUrl },
+  ]);
+  ```
+- **Restricción Adversarial Existente:** En `tests/adversarial_jsonld_robots_m5_2.test.mjs` (líneas 134-137), la suite de pruebas valida explícitamente:
+  ```javascript
+  assert.equal(breadcrumbSchema.itemListElement[0].name, 'Inicio');
+  assert.equal(breadcrumbSchema.itemListElement[0].item, 'https://almaholistica.com/');
+  assert.equal(breadcrumbSchema.itemListElement[1].name, 'Ciudades');
+  assert.equal(breadcrumbSchema.itemListElement[1].item, 'https://almaholistica.com/#ciudades');
+  ```
+  Esto confirma que el nivel intermedio actual es la ancla genérica `Ciudades` en vez del País.
+
+### 1.3 Esquemas JSON-LD en `src/lib/schema.ts` y Censos Globales
+- **Generadores Existentes en `src/lib/schema.ts`:**
+  - `buildMedicalWebPageSchema(dolencia, canonicalUrl)`: genera `MedicalWebPage` con `about` (de tipo `MedicalCondition`, `associatedPathophysiology` y `possibleTreatment`).
+  - `buildFAQSchema(faqs)`: genera `FAQPage` con array `mainEntity`.
+  - `buildBreadcrumbSchema(items)`: genera `BreadcrumbList` con `itemListElement`.
+  - `buildLocalServiceSchema(city, canonicalUrl)`: genera `HealthAndBeautyBusiness` para ciudades.
+- **Distribución de Esquemas Actual (Total = 361 Invariante):**
+  - Ciudades (113 páginas): 2 esquemas por página (`HealthAndBeautyBusiness` + `BreadcrumbList`) = 226 esquemas.
+  - Dolencias (45 páginas): 3 esquemas por página (`MedicalWebPage` + `FAQPage` + `BreadcrumbList`) = 135 esquemas.
+  - Home (`dist/index.html`) y Catálogo (`dist/biodescodificacion/index.html`): Exactamente 0 esquemas.
+  - Total global: 226 + 135 = 361 esquemas JSON-LD validados por `tests/adversarial_m6_final_qa.test.mjs` (líneas 338-343) y `tests/adversarial_r1_r2_challenger.py` (líneas 364-391).
+- **Invariante `MR3-CH2-4.5` / `MR3-ADV-4.1`:** La Home (`dist/index.html`) no debe contener scripts `<script type="application/ld+json">`. `src/pages/index.astro` no define `<slot="schema">`.
+
+### 1.4 Reglas Estilísticas Swiss Bio-Tech Sólido Mate
+- **Auditor `tests/helpers/mate_style_checker.mjs`:**
+  - Patrones prohibidos:
+    - `/backdrop-blur/i` (Glassmorphism / desenfoque de fondo).
+    - `/backdrop-filter/i` (Propiedad CSS).
+    - `/bg-opacity-(?:10|20|30|40|50|60|70|80|90)/i` (Transparencias parciales en fondos).
+    - `/(?:bg-|background(?:-color)?\s*:\s*)[^;}"'>]*rgba\s*\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*0\.\d+\s*\)/i` (Fondos RGBA transparentes).
+    - `/shadow-(?:neon|glow|cyan-500\/|blue-500\/)/i` (Sombras con resplandores fluorescentes).
+    - `/box-shadow\s*:[^;]*0\s+0\s+\d+px\s+#[0-9a-fA-F]+/i` (Resplandor bioluminiscente neón).
+  - Tokens de color obligatorios:
+    - `#060A1A` (Fondo Abisal).
+    - `#0A1226` (Midnight Navy Card Nivel 1).
+    - `#0E172F` (Midnight Navy Card Nivel 2).
+    - `#1E293B` (Borde Mate 1).
+    - `#38BDF8` / `#779DD1` (Acento Cyan / SlateBlue).
+- **Erradicación Absoluta de Amarillo/Dorado (`tests/adversarial_mr3_challenger.test.mjs` líneas 209-216):**
+  - Prohibidos: `/#f59e0b/i`, `/#d4af37/i`, `/#ffe58f/i`, `/#e5b33a/i`, `rgb(245, 158, 11)`, `rgb(212, 175, 55)`, `bg-amber-*`, `text-amber-*`, `border-amber-*`, `bg-yellow-*`, `text-yellow-*`, `border-yellow-*`.
+- **Botones y Sombras Autorizadas:**
+  - Botón principal de píldora: `btn-action-pill-white` (`bg-white text-[#060A1A] rounded-full shadow-pill-white` con `shadow-[0_8px_24px_rgba(255,255,255,0.08)]`).
+  - Botón de WhatsApp: `btn-whatsapp-primary` (`#25D366` sólido).
 
 ---
 
-## 3. Caveats
+## 2. Cadena Lógica (Logic Chain)
 
-1. **Variaciones de longitud sintáctica en nombres de dolencia:** Patologías con nombres extensos (ej. `Colon Irritable (Síndrome de Intestino Irritable)` o `Resistencia a la Insulina y Síndrome Metabólico`) generan pasajes de ~165 palabras, rozando el límite superior de 167. El generador debe recortar prefijos redundantes ("En fase de", "Se caracteriza por") para mantener un margen de seguridad holgado (< 160 palabras).
-2. **Archivos CSV vs JSON de ciudades:** No se debe reemplazar ni eliminar `dataset_almaholistica_ciudades.csv`, ya que `tests/tier1_features.test.mjs` valida su presencia física y sus 9 columnas exactas. `dataset_almaholistica_ciudades_eeat_geo.json` debe utilizarse como capa de enriquecimiento auxiliar.
-3. **Restricción adversarial `MR3-CH2-4.5` en Home:** Se debe recordar al implementador que bajo ninguna circunstancia debe añadirse un script `type="application/ld+json"` en `src/pages/index.astro`.
+1. **Resolución de la Fragmentación de Enlazado (Silo Piramidal):**
+   - Actualmente Google debe rastrear 113 URLs de ciudades de manera desestructurada desde una lista en la Home.
+   - La arquitectura silo exige un flujo de PageRank piramidal:
+     `Home (Nivel 1) → 20 Country Hubs (Nivel 2) → 113 Ciudades (Nivel 3)`.
+   - Para que la Home transfiera autoridad de manera eficiente:
+     - Se debe agregar en `src/pages/index.astro` un bloque destacado de "Silos por País / Cobertura Internacional" con tarjetas para cada uno de los 20 países antes o junto al directorio de ciudades.
+     - En el directorio inferior `#full-cities-list`, cada encabezado `{countryName}` debe dejar de ser texto plano y convertirse en un hipervínculo activo a `/biodescodificacion-{countrySlug}/`.
+
+2. **Reestructuración de Breadcrumbs en Ciudades (`[slug].astro`):**
+   - Cada ciudad en `dataset_almaholistica_ciudades.csv` posee la propiedad `País` (`city.pais`).
+   - Normalizando el nombre del país a slug canónico (ej. `Colombia` → `colombia`, `México` → `mexico`, `España` → `espana`, `Estados Unidos` → `estados-unidos`), la URL del Country Hub es estrictamente `https://almaholistica.com/biodescodificacion-${countrySlug}/`.
+   - Sustituir el nivel 2 de las migas de pan tanto en HTML como en el esquema `BreadcrumbList`:
+     - Nivel 1: `Inicio` (`https://almaholistica.com/`)
+     - Nivel 2: `{city.pais}` (`https://almaholistica.com/biodescodificacion-${countrySlug}/`)
+     - Nivel 3: `{cityName}` (`https://almaholistica.com/${city.slug}/`)
+   - Esto consolida el silo ascendente y descendente (el hub enlaza a la ciudad y la ciudad enlaza de vuelta a su hub matriz).
+
+3. **Invariantes de Esquemas JSON-LD para los 20 Country Hubs:**
+   - Según el requerimiento R2 y R3, cada Country Hub debe contener exactamente 3 esquemas:
+     1. `MedicalWebPage`: Describe el servicio clínico de biodescodificación adaptado a la región. Debe incluir obligatoriamente la propiedad `about` con `associatedPathophysiology` para satisfacer las validaciones de `tests/adversarial_m6_final_qa.test.mjs` (línea 325) y `tests/adversarial_m6_stress_harness.py`.
+     2. `FAQPage`: Al menos 3 preguntas y respuestas frecuentes contextualizadas para el país (moneda local, modalidad virtual y compatibilidad médica alopática).
+     3. `BreadcrumbList`: Estructura de 2 niveles: `Inicio` → `Biodescodificación en [País]`.
+   - **Nuevo Censo Global:**
+     - 113 ciudades x 2 esquemas = 226
+     - 45 dolencias x 3 esquemas = 135
+     - 20 country hubs x 3 esquemas = 60
+     - Total nuevo invariante: **421 esquemas JSON-LD** en todo el sitio.
+   - **Invariante Home:** La Home permanece con 0 esquemas (`MR3-CH2-4.5` intacto).
+
+4. **Diseño Visual Swiss Bio-Tech del Country Hub:**
+   - Para mantener coherencia con `BaseLayout.astro` y las páginas de ciudades, el Country Hub debe estructurarse en 7 secciones sólidas mates:
+     1. *Hero Geográfico*: Título monumental en Plus Jakarta Sans, badge pulsante `SESIONES ONLINE EN VIVO • [PAÍS]`, métricas clave en 3 tarjetas con bordes coloreados (Moneda local, Modalidad 100% online, Huso horario de atención) y botón píldora blanco para agendamiento.
+     2. *Enfoque Clínico y E-E-A-T Regional*: Tríptico de tarjetas `#0E172F` explicando la desactivación del choque biológico (DHS), la comodidad del formato virtual y el carácter integrativo.
+     3. *Ficha del Especialista Senior Asignado*: Integrando datos de `dataset_almaholistica_ciudades_eeat_geo.json` (Lic. Sofía Alarcón, Dr. Mateo Benavides o Dra. Elena Monsalve) con avatar de iniciales, titulación, registro internacional y los 4 pilares metodológicos (PNI, Dr. Hamer, Christian Flèche, Dr. Bruce Lipton).
+     4. *Información Operativa y Medios de Pago*: Detalle de tarifas en moneda local oficial (COP, EUR, MXN, USD, etc.), zona horaria de atención (COT, CET, CST, etc.) y pasarelas locales (Bancolombia, Bizum, SPEI, PayPal, tarjetas).
+     5. *Retícula de Enlaces a Ciudades Pertenecientes*: Silo descendente que muestra todas las ciudades del país registradas en el dataset con sus precios locales.
+     6. *Acordeón de Preguntas Frecuentes*: Componentes `<details class="card-matte ...">` con marcado `FAQPage`.
+     7. *Descargo Ético YMYL y CTA de Cierre*: Banner de cierre con botón de evaluación que abre el WhatsApp Quiz Modal.
 
 ---
 
-## 4. Conclusion
+## 3. Advertencias y Limitaciones (Caveats)
 
-1. **R3 está plenamente formulado y verificado:** Es 100% viable generar dinámicamente un bloque RAG calibrado de 134-167 palabras para las 45 dolencias mediante un helper puro en `src/lib/dolencias.ts`, e insertarlo post-Hero en `src/pages/biodescodificacion/[slug].astro`.
-2. **R4 cuenta con datos completos y estructura definida:** La información de los 3 especialistas, los casos clínicos locales y el respaldo metodológico (PNI, Hamer, Flèche, Lipton) está lista para ser consumida desde `src/data/dataset_almaholistica_ciudades_eeat_geo.json` hacia las páginas de ciudad y la Home.
-3. **Los 3 esquemas JSON-LD (`MedicalWebPage`, `FAQPage`, `BreadcrumbList`) se encuentran preservados:** No sufren alteración estructural y continúan pasando todas las pruebas adversariales.
-4. **La documentación completa de soporte y código de referencia ha sido consolidada en `report.md`.**
+1. **Impacto en Pruebas Adversariales Existentes:**
+   - La suite `tests/adversarial_jsonld_robots_m5_2.test.mjs` (línea 136-137) actualmente comprueba de forma rígida que el segundo ítem del breadcrumb de ciudades sea `'Ciudades'` y apunte a `'https://almaholistica.com/#ciudades'`. Si se actualiza a `[Nombre del País]` y `/biodescodificacion-{pais}/`, esa aserción fallará a menos que el test se sincronice con el nuevo contrato piramidal.
+   - El test `tests/adversarial_m6_final_qa.test.mjs` (líneas 303-307 y 338-343) asume que cualquier ruta que no empiece por `biodescodificacion/` es una ciudad y exige exactamente 2 schemas, además de verificar el censo rígido de 361 schemas y 160 páginas HTML. Los Country Hubs generan 20 páginas HTML en `dist/biodescodificacion-{pais}/index.html` con 3 schemas cada una. La suite deberá ser actualizada al nuevo censo de 180 páginas y 421 schemas.
+   - Los scripts `tests/adversarial_r1_r2_challenger.py`, `tests/adversarial_r3_r4_challenger.py` y `tests/adversarial_m5_sitemaps_schema.py` tienen aserciones estrictas `assert total_schemas == 361` y `assert len(html_files) == 160`.
+2. **Generación de Rutas en Astro 5:**
+   - Si se utiliza una ruta dinámica en `src/pages/biodescodificacion-[pais].astro` o `src/pages/biodescodificacion-[pais]/index.astro`, se debe asegurar que Astro no presente colisiones de patrones con `src/pages/[slug].astro`. Dado que Astro prioriza rutas con prefijo estático (`biodescodificacion-[pais]`) sobre comodines puros (`[slug]`), la coexistencia es válida, o bien pueden definirse a través de `src/pages/[slug].astro` o archivos específicos según el diseño del implementador.
+3. **Mapeo de Países y Slugs:**
+   - Se debe utilizar una función canónica de slugificación uniforme para los 20 países que remueva diacríticos y normalice a minúsculas con guiones:
+     `Colombia` → `colombia`
+     `México` → `mexico`
+     `España` → `espana`
+     `Perú` → `peru`
+     `Panamá` → `panama`
+     `República Dominicana` → `republica-dominicana`
+     `Estados Unidos` → `estados-unidos`
+     `Costa Rica` → `costa-rica`
+     `El Salvador` → `el-salvador`
+   - Cualquier divergencia en un solo slug romperá el trailing slash canónico o provocará un 404 en sitemaps.
 
 ---
 
-## 5. Verification Method
+## 4. Conclusión (Conclusion)
 
-Para verificar independientemente todos los hallazgos empíricos reportados:
+1. **Home (`src/pages/index.astro`):**
+   - Debe incorporar un componente/sección de "Centros Clínicos Internacionales por País" que enlace a los 20 hubs con tarjetas Swiss Bio-Tech (`#0A1226`, bordes `#1E293B`, sin amarillo).
+   - Debe convertir los títulos `<h4>{countryName}</h4>` del directorio `#full-cities-list` en hipervínculos `<a>` hacia `/biodescodificacion-{countrySlug}/`.
+   - Debe mantener 0 scripts `application/ld+json` para cumplir con `MR3-CH2-4.5`.
 
-1. **Verificación de conteo de palabras RAG en las 45 dolencias:**
+2. **Páginas de Ciudades (`src/pages/[slug].astro`):**
+   - La navegación visual y el esquema `BreadcrumbList` deben actualizarse de `Inicio > Ciudades > [Ciudad]` a `Inicio > [Nombre del País] > [Ciudad]`, con enlace en el nivel intermedio a `https://almaholistica.com/biodescodificacion-{countrySlug}/`.
+
+3. **Esquemas de Country Hubs (`src/lib/schema.ts`):**
+   - Cada Country Hub debe renderizar 3 esquemas:
+     - `MedicalWebPage` (con `about` y `associatedPathophysiology`).
+     - `FAQPage` (mínimo 3 preguntas localizadas).
+     - `BreadcrumbList` (2 niveles: Inicio > País).
+   - El censo global de esquemas pasa de 361 a 421.
+
+4. **Estilo Sólido Mate:**
+   - Cumplimiento incondicional de los tokens `#060A1A`, `#0A1226`, `#0E172F`, `#1E293B`, `#38BDF8`.
+   - Prohibición estricta de `backdrop-blur`, transparencias `bg-opacity-*`, sombras glow/neón y colores amarillos/dorados (`#F59E0B`, `#D4AF37`, etc.).
+   - Estricto respeto a `CLS = 0` con dimensiones fijas en medios.
+
+5. **Estructura del Country Hub:**
+   - Las 7 secciones detalladas (Hero, Enfoque Clínico, Especialista Senior E-E-A-T, Info Operativa/Tarifas, Retícula de Ciudades Asociadas, Acordeón de FAQs, Descargo Ético/CTA) proveen una experiencia de usuario de alta gama que cumple tanto con las expectativas de los motores de búsqueda (GEO/AIO/YMYL) como con los consultantes que buscan atención online personalizada.
+
+---
+
+## 5. Método de Verificación (Verification Method)
+
+Para verificar independientemente los hallazgos y validar cualquier implementación posterior:
+
+1. **Verificación de Estilo Sólido Mate:**
    ```bash
-   python3 -c "
-   import json, re
-   with open('src/data/dataset_biodescodificacion_dolencias.json') as f:
-       dolencias = json.load(f)
-   def count_words(t): return len(re.findall(r'\b\w+\b', t))
-   P2 = 'Fisiológicamente, el síntoma transita a través de dos fases biológicas definidas: la fase de estrés activo simpaticotónico con respuesta adaptativa celular involuntaria, y la fase de vagotonía o reparación, momento en que al distenderse el conflicto se manifiestan la inflamación, el cansancio y la regeneración orgánica. El protocolo de reprogramación bioemocional de Alma Holística interviene guiando al consultante a hacer consciente el choque original y desactivar la alerta en sesiones online 1 a 1. Este enfoque complementario aborda el plano psicosomático sin sustituir en ningún caso el diagnóstico, tratamiento farmacológico ni prescripción facultativa de la medicina alopática.'
-   w_p2 = count_words(P2)
-   for d in dolencias:
-       conflicto = re.sub(r'[\"«»]', '', d['conflictoEmocional']).split('.')[0].strip()
-       sentido = re.sub(r'[\"«»]', '', d['sentidoBiologico']).split('.')[0].strip()
-       p1 = f'La biodescodificación de {d[\"nombre\"]} (sistema {d[\"sistema\"].lower()}) aborda el conflicto biológico de {conflicto.lower()}. Su sentido adaptativo consiste en {sentido.lower()}.'
-       tot = count_words(p1) + w_p2
-       assert 130 <= tot <= 170, f'{d[\"slug\"]} fuera de rango: {tot}'
-   print('OK: Las 45 dolencias cumplen el rango estricto de citabilidad!')
+   node -e "
+     import('./tests/helpers/mate_style_checker.mjs').then(({ auditMateStyleContent }) => {
+       const fs = require('fs');
+       const content = fs.readFileSync('src/pages/index.astro', 'utf8');
+       console.log('Audit index.astro:', auditMateStyleContent(content));
+     });
    "
    ```
 
-2. **Verificación de paridad de slugs de ciudades entre CSV y JSON E-E-A-T:**
-   ```bash
-   python3 -c "
-   import csv, json
-   with open('src/data/dataset_almaholistica_ciudades.csv') as f:
-       csv_slugs = [r['URL Final (Slug)'].strip().replace('biodescodificacion-', '') for r in csv.DictReader(f)]
-   with open('src/data/dataset_almaholistica_ciudades_eeat_geo.json') as f:
-       json_slugs = set(d['URL Final (Slug)'].strip().replace('biodescodificacion-', '') for d in json.load(f))
-   assert all(s in json_slugs for s in csv_slugs)
-   print('OK: 113 de 113 ciudades tienen correspondencia biunívoca en el dataset E-E-A-T!')
-   "
-   ```
-
-3. **Verificación de preservación de esquemas y suite de pruebas:**
+2. **Ejecución de Pruebas Unitarias de Regresión:**
    ```bash
    npm test
+   ```
+   *(Verifica los 150 tests de las Features 1 a 23).*
+
+3. **Ejecución de Pruebas Adversariales:**
+   ```bash
    node --test tests/adversarial_*.test.mjs
-   python3 tests/adversarial_assets_config_m2_2.py
+   ```
+
+4. **Verificación del Censo de Esquemas y Páginas Estáticas:**
+   ```bash
+   npm run build
+   python3 tests/adversarial_r1_r2_challenger.py
+   python3 tests/adversarial_r3_r4_challenger.py
    python3 tests/adversarial_m6_stress_harness.py
    ```
+
+5. **Comprobación de Rutas en `dist/` tras el build:**
+   Verificar que existan los 20 directorios:
+   `dist/biodescodificacion-{pais}/index.html` para los 20 países aprobados y que cada uno contenga los 3 bloques `<script type="application/ld+json">`.

@@ -10,6 +10,7 @@
  */
 
 import type { CityData } from '../types/city';
+import type { CountryData } from '../types/country';
 import type { DolenciaData, FAQItem } from '../types/dolencia';
 import { SITE_CONFIG } from '../config/site';
 
@@ -123,6 +124,33 @@ export function buildMedicalWebPageSchema(
       },
     },
     description: dolencia.conflictoEmocional,
+  };
+}
+
+/**
+ * Genera el esquema JSON-LD MedicalWebPage para una página Hub de País.
+ * Mapea la definición clínica regional como fisiopatología asociada y la terapia
+ * bioemocional integrativa como tratamiento posible (conforme a R2, R4 y E-E-A-T).
+ */
+export function buildCountryMedicalWebPageSchema(
+  country: CountryData,
+  canonicalUrl: string
+): MedicalWebPageSchema {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalWebPage',
+    name: country.h1 || `Biodescodificación y Terapia Bioemocional en ${country.pais}`,
+    url: canonicalUrl,
+    about: {
+      '@type': 'MedicalCondition',
+      name: `Somatización Bioemocional y Descodificación Biológica en ${country.pais}`,
+      associatedPathophysiology: country.definicionClinica,
+      possibleTreatment: {
+        '@type': 'MedicalTherapy',
+        name: 'Biodescodificación e Integración Bioemocional Online',
+      },
+    },
+    description: country.metaDescripcion,
   };
 }
 

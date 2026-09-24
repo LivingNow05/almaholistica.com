@@ -1,54 +1,51 @@
-# BRIEFING — 2026-09-10T20:11:45Z
+# BRIEFING — 2026-09-24T05:52:00Z
 
 ## Mission
-Ejecutar evaluación adversarial empírica en Alma Holística, verificando código, tokens prohibidos, overflow en 320px, contratos en home y suites completas de tests para emitir veredicto formal.
+Adversarial Verification Specialist: Empirically stress-test Swiss Bio-Tech solid matte compliance, CLS=0, and schema invariants across dist/ and Astro components.
 
 ## 🔒 My Identity
 - Archetype: EMPIRICAL CHALLENGER
 - Roles: critic, specialist
-- Working directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_challenger_2
-- Original parent: 6726af5a-d5c1-4a22-89aa-ecd41de70482
-- Milestone: Preview / Verification
+- Working directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_challenger_2/
+- Original parent: d7cc0e4e-ca72-4f92-8cc3-fe1d13741ae2
+- Milestone: Preview Verification / Final QA
 - Instance: 2 of 2
 
 ## 🔒 Key Constraints
-- Review-only — do NOT modify implementation code
-- No confiar en reportes previos o afirmaciones ajenas; ejecutar verificación empírica directamente
-- Hablar siempre en español
-- Entregar veredicto formal explícito: APPROVE o REQUEST_CHANGES
-- Notificar al parent vía send_message
+- Review-only — do NOT modify implementation code unless creating tests in tests/ or reporting
+- Review and empirical testing only; report failures as findings, do NOT fix them directly
+- Speak Spanish in user communication / updates
+- Run all checks empirically; do not trust claims or logs without running commands
 
 ## Current Parent
-- Conversation ID: 6726af5a-d5c1-4a22-89aa-ecd41de70482
-- Updated: 2026-09-10T20:11:45Z
+- Conversation ID: d7cc0e4e-ca72-4f92-8cc3-fe1d13741ae2
+- Updated: 2026-09-24T05:47:00Z
 
 ## Review Scope
-- **Files to review**: src/, public/, dist/, tests/
-- **Interface contracts**: /Users/anthony/Downloads/almaholistica.com/.agents/ORIGINAL_REQUEST.md, /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_orchestrator_7/PROJECT.md
-- **Review criteria**: Ausencia de tokens prohibidos (amber/yellow/gold/hex), responsive sin overflow a 320px, contratos de home (12 dolencias con migrana y sobrepeso-retencion, >=100 ciudades, >=4 whatsapp 573000000000), test suites completas (150 tests npm test, 244 tests node --test tests/adversarial_*.test.mjs).
-
-## Key Decisions Made
-- Ejecución empírica del grep exhaustivo en `src/` y `public/`.
-- Verificación forense de las 13 coincidencias: 0 hex prohibidos, 0 yellow, 'amber' en topónimo 'Chamberí', y 'gold' en alias de clases CSS que renderizan `#779DD1` (cyan/azul).
-- Verificación de contención de desbordamiento horizontal en 320px: `overflow-x: hidden` en html/body/main y `overflow-x-auto` en los 3 componentes de tablas.
-- Verificación en `dist/index.html` de 12 tarjetas `.home-dolencia-card` (con `migrana` y `sobrepeso-retencion`), 113 ciudades (`.city-search-item`), 7 enlaces WhatsApp a `573000000000`, 0 scripts JSON-LD en home y 3 tablas con microdatos Schema.org Table.
-- Ejecución de `npm test` (150 tests, 0 fallos) y `node --test tests/adversarial_*.test.mjs` (244 tests, 0 fallos).
-- Veredicto formal emitido: APPROVE.
+- **Files to review**: `dist/`, `src/`, `tests/`
+- **Interface contracts**: `/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_orchestrator_9/SCOPE.md`, `/Users/anthony/Downloads/almaholistica.com/.agents/ORIGINAL_REQUEST.md`
+- **Review criteria**: Swiss Bio-Tech solid matte style, CLS=0 (img/svg dimensions), global Schema.org census (421 in dist, 0 in index.html), adversarial test suites pass.
 
 ## Attack Surface
 - **Hypotheses tested**:
-  1. ¿Existen colores prohibidos (oro, amarillo, hex) en el código? Hipótesis rechazada: cero hex prohibidos, solo alias heredados con paleta cyan.
-  2. ¿Desbordan las tablas a 320px? Hipótesis rechazada: contenedores con `overflow-x-auto` y contención estricta en layout.
-  3. ¿Faltan dolencias o se alteraron contratos de home? Hipótesis rechazada: exactamente 12 tarjetas, con migrana y sobrepeso-retencion.
-  4. ¿Falla alguna suite de regresión o adversarial? Hipótesis rechazada: 394 de 394 pruebas pasaron.
-- **Vulnerabilities found**: Ninguna vulnerabilidad crítica o bloqueante.
-- **Untested angles**: Todos los ángulos definidos en el mandato fueron cubiertos y probados empíricamente.
+  - H1: Forbidden translucent, glassmorphic or neon styles exist in `dist/` or `src/` -> REJECTED (0 violations in mate_style_checker).
+  - H2: Forbidden yellow/gold tokens (#f59e0b, #d4af37) exist in components or build -> REJECTED (0 occurrences).
+  - H3: Unconstrained <img> or <svg> elements create CLS layout jumps -> REJECTED (953/953 images have explicit dimensions; 2162/2162 SVGs have viewBox or explicit dimensions).
+  - H4: Schema census deviates from 421 or home page leaks entity schemas -> REJECTED (Exactly 421 schemas across dist/, exactly 0 in dist/index.html).
+  - H5: Adversarial regressions in routing, sitemaps, or robots.txt -> REJECTED (All suites passed with 0 failures).
+- **Vulnerabilities found**: 0 active vulnerabilities or failures detected.
+- **Untested angles**: None.
 
 ## Loaded Skills
-- None specified by orchestrator dispatch.
+- None explicitly requested via skill path.
+
+## Key Decisions Made
+- Executed empirical audit script `tests/adversarial_preview_challenger_2_audit.mjs` verifying Missions 1, 2, and 3.
+- Executed all 8 required adversarial suites + stress harnesses with 100% pass rate.
+- Verified `npm run build` generates 180 HTML files cleanly with 0 TypeScript/Astro errors.
+- Issued verdict: APPROVE.
 
 ## Artifact Index
-- DISPATCH.md — Registro de instrucciones del orquestador
-- BRIEFING.md — Memoria persistente del agente
-- progress.md — Heartbeat y seguimiento de pasos
-- handoff.md — Reporte final de entrega con veredicto formal APPROVE
+- `.agents/teamwork_preview_challenger_2/handoff.md` — Final handoff report
+- `.agents/teamwork_preview_challenger_2/progress.md` — Liveness heartbeat
+- `tests/adversarial_preview_challenger_2_audit.mjs` — Challenger 2 empirical audit test suite

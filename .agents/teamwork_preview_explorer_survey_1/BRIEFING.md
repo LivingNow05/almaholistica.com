@@ -1,51 +1,42 @@
-# BRIEFING — 2026-09-16T00:17:37Z
+# BRIEFING — 2026-09-24T05:15:00Z
 
 ## Mission
-Survey R1 & R2 para Alma Holística SEO-GEO:
-1. R1: Inspección de public/llms.txt y dist/llms.txt (teléfono oficial +57 315 1206985 vs +57 300 000 0000, URLs de ciudades con trailing slash, directivas de crawlers, 45 dolencias, 20 países, mecanismo de generación/copia).
-2. R2: Inspección de src/pages/index.astro, Hero section, primer párrafo de texto visible (anclaje de entidad "Alma Holística es una plataforma clínica..."), animaciones GSAP, estilo Swiss Bio-Tech mate, y verificación de la restricción adversarial MR3-CH2-4.5 (cero JSON-LD en dist/index.html).
+Investigar la arquitectura de datos y la mecánica de enrutamiento en Astro para generar los 20 Country Hubs (`/biodescodificacion-{pais}/`) de Alma Holística.
 
 ## 🔒 My Identity
 - Archetype: explorer
-- Roles: Codebase Explorer - Styles, Palette & Components
-- Roles (2026-09-16): Codebase Explorer - Survey R1 & R2
+- Roles: survey, analysis, synthesis
 - Working directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_1
-- Original parent: 6726af5a-d5c1-4a22-89aa-ecd41de70482
-- Milestone: survey_r1_investigation
-- Milestone (2026-09-16): survey_r1_r2_investigation
+- Original parent: d7cc0e4e-ca72-4f92-8cc3-fe1d13741ae2
+- Milestone: Survey phase - Country Hubs Data Architecture & Routing
 
 ## 🔒 Key Constraints
-- Read-only investigation — do NOT implement or modify source code
-- Strictly write only within /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_1/
-- Produce analysis.md and handoff.md
-- Communicate via send_message to parent (6726af5a-d5c1-4a22-89aa-ecd41de70482)
-- Speak always in Spanish
-- Current parent: teamwork_preview_orchestrator_8 (Conv ID: dee5921c-c2ce-44d0-97b2-5ec780197d61)
-- Write report.md and handoff.md
+- Read-only investigation — do NOT implement production changes
+- Spanish language communication
+- Keep BRIEFING under 100 lines
+- File workspace convention: write only in own folder (.agents/teamwork_preview_explorer_survey_1/)
 
 ## Current Parent
-- Conversation ID: dee5921c-c2ce-44d0-97b2-5ec780197d61 (teamwork_preview_orchestrator_8)
-- Updated: 2026-09-16T00:17:37Z
+- Conversation ID: d7cc0e4e-ca72-4f92-8cc3-fe1d13741ae2
+- Updated: not yet
 
 ## Investigation State
-- **Explored paths**: `public/llms.txt`, `dist/llms.txt`, `src/pages/index.astro`, `src/config/site.ts`, `src/layouts/BaseLayout.astro`, `src/components/Navbar.astro`, `src/data/dataset_almaholistica_ciudades.csv`, `src/data/dataset_biodescodificacion_dolencias.json`, `astro.config.mjs`, `package.json`, `tests/adversarial_mr3_challenger_2.test.mjs`, `tests/adversarial_m5_sitemaps_schema.py`, `tests/adversarial_jsonld_robots_m5_2.test.mjs`, `tests/adversarial_assets_config_m2_2.py`, `tests/adversarial_m6_stress_harness.py`.
+- **Explored paths**: `src/pages/[slug].astro`, `src/lib/cities.ts`, `src/types/city.ts`, `src/data/dataset_almaholistica_ciudades.csv`, `src/data/dataset_almaholistica_ciudades_eeat_geo.json`, `astro.config.mjs`, `scripts/generate_sitemap.py`, test suites.
 - **Key findings**:
-  1. R1 Teléfono: `public/llms.txt` y `dist/llms.txt` tienen el placeholder `+57 300 000 0000`. Debe reemplazarse por el oficial `+57 315 1206985`.
-  2. R1 URLs ciudades: Tienen formato erróneo `https://almaholistica.com/{ciudad}/` (404). Deben cambiarse al canónico con trailing slash `https://almaholistica.com/biodescodificacion-{ciudad}/`.
-  3. R1 Cobertura: `llms.txt` solo lista 9 dolencias (de 45) y 7 países (de 20). Debe expandirse a las 45 dolencias y 20 países con monedas locales.
-  4. R1 Generación: `llms.txt` es un activo estático en `public/`; Astro lo copia directamente a `dist/` en `npm run build`.
-  5. R2 Hero Primer Párrafo: En `src/pages/index.astro` (línea 138), el primer párrafo visible debe iniciar con "Alma Holística es..." para el anclaje de entidad en los primeros 50/200 caracteres, conservando la clase `gsap-hero-el` y el estilo Swiss Bio-Tech.
-  6. R2 Restricción MR3-CH2-4.5: Prohíbe taxativamente inyectar `<script type="application/ld+json">` en `dist/index.html` (debe haber exactamente 0 schemas en la Home, manteniendo el total global en 361).
-- **Unexplored areas**: None for R1 & R2 survey scope.
+  1. `[slug].astro` genera las 113 ciudades vía `getStaticPaths()` con prefijo `biodescodificacion-`.
+  2. Distribución de 113 ciudades en 20 países verificada (17 países x 5 + México 15 + España 6 + EE.UU. 7 = 113).
+  3. Detección de colisión crítica en Panamá: Ciudad de Panamá tiene slug `biodescodificacion-panama`, que colisiona con el Hub de País `/biodescodificacion-panama/`. Solución: normalizar ciudad a `biodescodificacion-ciudad-de-panama`.
+  4. Los 20 países requieren dataset dedicado `dataset_almaholistica_paises.json` para formalizar husos horarios, pasarelas locales, marco regulatorio de salud, especialista líder y 3 FAQs con `FAQPage`.
+  5. Enrutamiento óptimo: unificar en `src/pages/[slug].astro` retornando 133 rutas SSG (113 ciudades + 20 países) con `trailingSlash: 'always'`.
+  6. Contratos de datos formalizados (`src/types/country.ts`, `src/lib/countries.ts`, 3 schemas por país = 60 schemas adicionales, totalizando 421 schemas y 180 páginas en dist/).
+- **Unexplored areas**: None for survey phase.
 
 ## Key Decisions Made
-- Completado informe exhaustivo en `report.md` y handoff en `handoff.md`.
-- Documentada estrategia de implementación paso a paso para el implementador.
+- Diseñada estrategia unificada en `[slug].astro` delegando en componentes de vista modular.
+- Documentada resolución de colisión de Panamá y especificaciones completas en `handoff.md`.
 
 ## Artifact Index
-- /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_1/DISPATCH.md — Initial dispatch and task instructions
-- /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_1/BRIEFING.md — Working memory and status
-- /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_1/progress.md — Liveness heartbeat and progress tracking
-- /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_1/report.md — Detailed technical survey report (R1 & R2)
-- /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_1/handoff.md — 5-component self-contained handoff report
-- /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_explorer_survey_1/analysis.md — Previous analysis archive
+- DISPATCH.md — Incoming task assignments
+- progress.md — Liveness heartbeat and completed checkpoints
+- BRIEFING.md — Situational awareness and identity
+- handoff.md — Complete 5-component technical investigation report

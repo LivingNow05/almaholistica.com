@@ -1,35 +1,23 @@
-# Reviewer 2 Workspace Setup
-Parent: teamwork_preview_orchestrator_7
-Working Directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_reviewer_2
+# Task Assignment — Reviewer 2 (R3 & R4: Silo Linking, Breadcrumbs, Sitemaps & Test Census)
+Path to ORIGINAL_REQUEST.md: /Users/anthony/Downloads/almaholistica.com/.agents/ORIGINAL_REQUEST.md
+Working directory: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_reviewer_2/
 
-## 2026-09-10T20:08:48Z
-Eres teamwork_preview_reviewer_2, un revisor independiente de código para Alma Holística.
+## 2026-09-24T05:47:08Z
+You are teamwork_preview_reviewer_2, the Review Specialist for Milestone M3 of Alma Holística.
+Your working directory is: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_reviewer_2/
+You must read ORIGINAL_REQUEST.md at: /Users/anthony/Downloads/almaholistica.com/.agents/ORIGINAL_REQUEST.md (specifically the section "## Follow-up — 2026-09-24T05:04:09Z").
+Also read the scope document: /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_orchestrator_9/SCOPE.md.
+Also read the worker handoffs:
+- /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_worker_m1/handoff.md
+- /Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_worker_m2/handoff.md
 
-Tu directorio de trabajo exclusivo es:
-/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_reviewer_2
+YOUR MISSION:
+Review the implementation of R3 and R4:
+1. Examine `src/pages/index.astro`. Verify the 20 Country Hubs section `#paises`, verify that `#full-cities-list` country titles `<h4>` are valid `<a>` links to `/biodescodificacion-{pais}/`, and verify that `dist/index.html` has strictly 0 scripts `application/ld+json` (MR3-CH2-4.5).
+2. Examine city page breadcrumbs in `src/pages/[slug].astro`. Verify hierarchical breadcrumbs `Inicio > [Nombre del País] > [Ciudad]` in both HTML and `BreadcrumbList` JSON-LD.
+3. Examine `scripts/generate_sitemap.py`, `public/sitemap-0.xml`, `dist/sitemap-0.xml`, and `public/llms.txt`. Verify 180 canonical URLs with trailing slash and exact byte-for-byte parity across public/ and dist/.
+4. Run `npm test` and `npm run build`.
 
-El archivo con los requerimientos originales del usuario es:
-/Users/anthony/Downloads/almaholistica.com/.agents/ORIGINAL_REQUEST.md
-(DEBES leer este archivo antes de comenzar tu trabajo).
-
-El documento maestro del proyecto es:
-/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_orchestrator_7/PROJECT.md
-
-Archivos y reportes clave a revisar:
-- Handoffs de Worker M1, M2 y M3.
-- Código implementado en src/styles/global.css, tailwind.config.mjs, src/components/*, src/pages/index.astro.
-
-TU MISIÓN:
-1. Examinar la accesibilidad (contraste WCAG AAA >= 7:1 en badges y textos biológicos tanto en Light como en Dark Mode).
-2. Auditar la conformidad estricta con el diseño Sólido Mate (`auditMateStyleContent`): 100% superficies opacas, cero gradientes deslumbrantes o neón, cero backdrop-blur, cero transparencias.
-3. Verificar la erradicación total de colores o tokens prohibidos (#F59E0B, #D4AF37, amber-*, yellow-*, gold).
-4. Ejecutar las suites de pruebas y compilación:
-   - npm test
-   - node --test tests/adversarial_*.test.mjs
-   - npm run build
-5. Emitir un veredicto formal explícito: **APPROVE** o **REQUEST_CHANGES**.
-
-ENTREGABLES:
-- Registrar tu evaluación en `/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_reviewer_2/review.md`.
-- Redactar tu reporte de handoff en `/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_reviewer_2/handoff.md` incluyendo claramente tu veredicto (APPROVE / REQUEST_CHANGES).
-- Notificar al parent vía `send_message` cuando termines.
+Write your report following the 5-component protocol (Observation, Logic Chain, Caveats, Conclusion with explicit verdict APPROVE or REQUEST_CHANGES, and Verification Method) to:
+/Users/anthony/Downloads/almaholistica.com/.agents/teamwork_preview_reviewer_2/handoff.md
+Report back via send_message when done.

@@ -8,7 +8,7 @@ Milestone: GEO-M2 (Verification & Stress Testing)
 Tests covered:
 1. R3: RAG Citation Block in all 45 dolencias (word count 130-170, 2-part structure, 3 schemas)
 2. R4: Authority & E-E-A-T in all 113 city pages (specialists, registrations, PNI/Hamer/Flèche/Lipton, local cases, medical disclaimer, 2 schemas)
-3. Global Schema Census: exactly 361 schemas across 160 HTML pages.
+3. Global Schema Census: exactly 421 schemas across 180 HTML pages.
 4. Aesthetic and DOM integrity (zero yellow/gold, zero JS/template artifacts).
 """
 
@@ -366,8 +366,8 @@ def test_global_census_and_invariants():
             if f.endswith(".html"):
                 all_html_files.append(os.path.join(root, f))
 
-    print(f"Total HTML files in dist/: {len(all_html_files)} (expected: 160)")
-    assert len(all_html_files) == 160, f"Expected 160 HTML files, found {len(all_html_files)}"
+    print(f"Total HTML files in dist/: {len(all_html_files)} (expected: 180)")
+    assert len(all_html_files) == 180, f"Expected 180 HTML files, found {len(all_html_files)}"
 
     # 2. Total schemas census
     total_schemas = 0
@@ -390,7 +390,7 @@ def test_global_census_and_invariants():
             schema_type = s.get("@type", "Unknown")
             schemas_by_type[schema_type] = schemas_by_type.get(schema_type, 0) + 1
 
-    print(f"Total JSON-LD schemas found across 160 pages: {total_schemas}")
+    print(f"Total JSON-LD schemas found across 180 pages: {total_schemas}")
     print(f"Schema types breakdown: {schemas_by_type}")
 
     # Verify home page has 0 schemas (MR3-CH2-4.5)
@@ -398,8 +398,8 @@ def test_global_census_and_invariants():
     # Verify catalog page has 0 schemas
     assert pages_with_schemas.get(os.path.join("biodescodificacion", "index.html")) == 0, "dist/biodescodificacion/index.html must have 0 schemas"
 
-    # Verify total is exactly 361
-    assert total_schemas == 361, f"Expected exactly 361 JSON-LD schemas globally, found {total_schemas}"
+    # Verify total is exactly 421
+    assert total_schemas == 421, f"Expected exactly 421 JSON-LD schemas globally, found {total_schemas}"
 
     # 3. Aesthetics & Brand Invariants
     # Forbidden yellow/gold hex and color tokens in HTML files
@@ -440,7 +440,7 @@ def test_global_census_and_invariants():
     print(f"Template/interpolation artifacts found: {len(template_violations)}")
     assert len(template_violations) == 0, f"Found template artifacts: {template_violations[:5]}"
 
-    print("\n[OK] Global schema census (361) and brand invariants passed 100%!")
+    print("\n[OK] Global schema census (421) and brand invariants passed 100%!")
 
 
 def main():

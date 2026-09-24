@@ -5,7 +5,7 @@ Generador automatizado de sitemaps y robots.txt siguiendo la arquitectura Sitema
 Proyecto: Alma Holística (https://almaholistica.com)
 
 Genera:
-1. public/sitemap-0.xml y public/sitemap.xml (exactamente 160 URLs con trailing slash)
+1. public/sitemap-0.xml y public/sitemap.xml (exactamente 180 URLs con trailing slash)
 2. public/sitemap-index.xml (apuntando a sitemap-0.xml)
 3. public/robots.txt (con doble puntero a sitemap-index.xml y sitemap.xml)
 4. Réplica automática en dist/ si el directorio dist/ existe tras el build.
@@ -58,6 +58,23 @@ def load_dolencia_slugs() -> list[str]:
     return slugs
 
 
+def load_country_slugs() -> list[str]:
+    json_path = os.path.join(SRC_DATA_DIR, 'dataset_almaholistica_paises.json')
+    slugs = []
+    if not os.path.exists(json_path):
+        raise FileNotFoundError(f"No se encontró el dataset de países en: {json_path}")
+
+    with open(json_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+        for item in data:
+            raw_slug = item.get('slug', '')
+            if raw_slug:
+                clean_slug = raw_slug.strip().strip('/').lower()
+                if clean_slug:
+                    slugs.append(clean_slug)
+    return slugs
+
+
 def build_url_list() -> list[dict]:
     # 1. Rutas Estáticas Principales
     urls = [
@@ -79,6 +96,15 @@ def build_url_list() -> list[dict]:
     for slug in dolencia_slugs:
         urls.append({
             'loc': f'{DOMAIN}/biodescodificacion/{slug}/',
+            'priority': '0.8',
+            'changefreq': 'weekly'
+        })
+
+    # 4. Rutas Dinámicas de Hubs de País (20 países)
+    country_slugs = load_country_slugs()
+    for slug in country_slugs:
+        urls.append({
+            'loc': f'{DOMAIN}/{slug}/',
             'priority': '0.8',
             'changefreq': 'weekly'
         })
@@ -139,10 +165,10 @@ def main():
     urls = build_url_list()
     total_urls = len(urls)
 
-    if total_urls != 160:
-        print(f"⚠️ Advertencia: Total de URLs generadas es {total_urls}, esperado: 160.")
+    if total_urls != 180:
+        print(f"⚠️ Advertencia: Total de URLs generadas es {total_urls}, esperado: 180.")
     else:
-        print(f"✅ Total de URLs exactamente 160 (1 home + 1 catálogo + 113 ciudades + 45 dolencias).")
+        print(f"✅ Total de URLs exactamente 180 (1 home + 1 catálogo + 113 ciudades + 45 dolencias + 20 hubs de país).")
 
     # 1. Contenido de sitemaps
     sitemap_content = generate_sitemap_xml(urls)

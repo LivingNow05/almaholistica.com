@@ -138,7 +138,7 @@ describe('MR3 Challenger Oracle: Verificación Adversarial Integral', () => {
 
       let validatedLinks = 0;
       for (const item of items) {
-        const anchorMatch = item[1].match(/href="\/([a-zA-Z0-9-]+)"/);
+        const anchorMatch = item[1].match(/href="\/([a-zA-Z0-9-]+)\/?"/);
         assert.ok(anchorMatch, `city-search-item does not contain a valid href: ${item[0]}`);
         const citySlug = anchorMatch[1];
 

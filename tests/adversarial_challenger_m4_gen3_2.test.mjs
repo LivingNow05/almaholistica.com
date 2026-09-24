@@ -72,9 +72,9 @@ describe('Adversarial Challenger M4-Gen3-2: Conversion Funnel Triggers', () => {
     }
   });
 
-  test('ADV-GEN3.2: Universal audit across ALL 160 HTML pages for unhandled conversion CTAs', () => {
+  test('ADV-GEN3.2: Universal audit across ALL 180 HTML pages for unhandled conversion CTAs', () => {
     const allHtml = getAllHtmlFiles(DIST_DIR);
-    assert.strictEqual(allHtml.length, 160, 'dist/ must contain exactly 160 generated HTML files');
+    assert.strictEqual(allHtml.length, 180, 'dist/ must contain exactly 180 generated HTML files');
 
     let totalWaLinks = 0;
     let totalQuizTriggers = 0;
@@ -93,8 +93,8 @@ describe('Adversarial Challenger M4-Gen3-2: Conversion Funnel Triggers', () => {
       }
     }
 
-    assert.ok(totalWaLinks >= 160 * 4, `Expected at least 640 total WhatsApp links across site (found ${totalWaLinks})`);
-    assert.ok(totalQuizTriggers >= 160 * 3, `Expected at least 480 quiz triggers across site (found ${totalQuizTriggers})`);
+    assert.ok(totalWaLinks >= 180 * 4, `Expected at least 720 total WhatsApp links across site (found ${totalWaLinks})`);
+    assert.ok(totalQuizTriggers >= 180 * 3, `Expected at least 540 quiz triggers across site (found ${totalQuizTriggers})`);
   });
 
   test('ADV-GEN3.3: Preloading context integrity (data-symptom on dolencias, data-city on cities)', () => {
@@ -157,7 +157,7 @@ describe('Adversarial Challenger M4-Gen3-2: CLS Prevention & Viewport Containmen
     }
   });
 
-  test('ADV-GEN3.6: Exhaustive audit across ALL 160 HTML files for <img> and <svg> CLS prevention', () => {
+  test('ADV-GEN3.6: Exhaustive audit across ALL 180 HTML files for <img> and <svg> CLS prevention', () => {
     const allHtml = getAllHtmlFiles(DIST_DIR);
     let auditedImgs = 0;
     let auditedSvgs = 0;
@@ -216,7 +216,7 @@ describe('Adversarial Challenger M4-Gen3-2: Strict Solid Matte Compliance', () =
     }
   });
 
-  test('ADV-GEN3.8: 0 violations across all 160 HTML files in dist/ using mate_style_checker', () => {
+  test('ADV-GEN3.8: 0 violations across all 180 HTML files in dist/ using mate_style_checker', () => {
     const allHtml = getAllHtmlFiles(DIST_DIR);
     for (const file of allHtml) {
       const content = fs.readFileSync(file, 'utf8');

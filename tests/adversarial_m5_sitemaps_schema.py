@@ -5,11 +5,11 @@ Adversarial Stress & Verification Harness — Milestone M5 (Sitemaps & Schemas)
 Author: teamwork_preview_challenger_m5_1 (EMPIRICAL CHALLENGER)
 
 Executes 6 empirical dimensions of stress-testing and deep validation:
-- Dim 1: Exact 1:1 biunivocal mapping (160 URLs = 160 HTML files in dist/)
+- Dim 1: Exact 1:1 biunivocal mapping (180 URLs = 180 HTML files in dist/)
 - Dim 2: Exact byte-level replication into dist/
 - Dim 3: Strict XML syntax, namespaces, element hierarchy and RFC compliance
 - Dim 4: robots.txt syntax and double sitemap pointer validation
-- Dim 5: Static HTML JSON-LD forensic audit (361 schemas parsed, zero failures)
+- Dim 5: Static HTML JSON-LD forensic audit (421 schemas parsed, zero failures)
 - Dim 6: Auto-discovery <link rel="sitemap"> and canonical trailing slash audit
 """
 
@@ -37,7 +37,7 @@ def run_dimension_1_biunivocal_mapping():
 
     urls = [loc.text.strip() for loc in root.findall('ns:url/ns:loc', ns)]
     print(f"Total de URLs extraídas de sitemap-0.xml: {len(urls)}")
-    assert len(urls) == 160, f"Se esperaban 160 URLs exactas, se encontraron {len(urls)}"
+    assert len(urls) == 180, f"Se esperaban 180 URLs exactas, se encontraron {len(urls)}"
 
     # Verificar unicidad
     duplicates = [url for url in urls if urls.count(url) > 1]
@@ -67,13 +67,13 @@ def run_dimension_1_biunivocal_mapping():
                 actual_html_files.add(os.path.normpath(os.path.join(root_d, f)))
 
     print(f"Total de archivos HTML encontrados físicamente en dist/: {len(actual_html_files)}")
-    assert len(actual_html_files) == 160, f"dist/ tiene {len(actual_html_files)} HTML, esperado 160"
+    assert len(actual_html_files) == 180, f"dist/ tiene {len(actual_html_files)} HTML, esperado 180"
 
     diff_expected = expected_html_files - actual_html_files
     diff_actual = actual_html_files - expected_html_files
     assert len(diff_expected) == 0, f"Archivos esperados no encontrados: {diff_expected}"
     assert len(diff_actual) == 0, f"Archivos huérfanos no mapeados en sitemap: {diff_actual}"
-    print("✅ DIMENSION 1 PASSED: 160 URLs mapean 1:1 exactamente a 160 archivos HTML en dist/")
+    print("✅ DIMENSION 1 PASSED: 180 URLs mapean 1:1 exactamente a 180 archivos HTML en dist/")
 
 
 def run_dimension_2_dist_replication():
@@ -126,7 +126,7 @@ def run_dimension_3_xml_syntax():
         root = tree.getroot()
         assert root.tag == '{http://www.sitemaps.org/schemas/sitemap/0.9}urlset'
         urls = root.findall('{http://www.sitemaps.org/schemas/sitemap/0.9}url')
-        assert len(urls) == 160
+        assert len(urls) == 180
 
         for idx, u in enumerate(urls):
             loc = u.find('{http://www.sitemaps.org/schemas/sitemap/0.9}loc').text.strip()
@@ -149,7 +149,7 @@ def run_dimension_3_xml_syntax():
             else:
                 assert priority == '0.8' and changefreq == 'weekly'
 
-        print(f"  ✓ {name} (160 URLs) validado con jerarquía de prioridades correcta")
+        print(f"  ✓ {name} (180 URLs) validado con jerarquía de prioridades correcta")
 
     print("✅ DIMENSION 3 PASSED: Protocolos XML y Sitemaps.org 100% conformes")
 
@@ -174,7 +174,12 @@ def run_dimension_5_jsonld_schemas():
     print("\n--- DIMENSION 5: Auditoría Forense de Schemas JSON-LD en dist/ ---")
     pattern = re.compile(r'<script[^>]*type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', re.DOTALL)
 
+    country_paises_path = os.path.join(ROOT_DIR, 'src', 'data', 'dataset_almaholistica_paises.json')
+    with open(country_paises_path, 'r', encoding='utf-8') as cp_file:
+        country_slugs = set(c['slug'] for c in json.load(cp_file))
+
     city_pages = 0
+    country_pages = 0
     dolencia_pages = 0
     total_schemas = 0
 
@@ -203,6 +208,19 @@ def run_dimension_5_jsonld_schemas():
                     assert 'MedicalWebPage' in types
                     assert 'FAQPage' in types
                     assert 'BreadcrumbList' in types
+                elif rel.split(os.sep)[0] in country_slugs:
+                    assert len(matches) == 3, f"Página {rel} esperaba 3 schemas, hallados {len(matches)}"
+                    country_pages += 1
+                    total_schemas += 3
+                    # Tipos esperados
+                    types = []
+                    for m in matches:
+                        data = json.loads(m.strip())
+                        assert data.get('@context') == 'https://schema.org'
+                        types.append(data.get('@type'))
+                    assert 'MedicalWebPage' in types
+                    assert 'FAQPage' in types
+                    assert 'BreadcrumbList' in types
                 else:
                     assert len(matches) == 2, f"Página {rel} esperaba 2 schemas, hallados {len(matches)}"
                     city_pages += 1
@@ -216,12 +234,14 @@ def run_dimension_5_jsonld_schemas():
                     assert 'BreadcrumbList' in types
 
     print(f"  ✓ 113 páginas de ciudades auditadas (2 schemas c/u = {city_pages * 2})")
+    print(f"  ✓ 20 páginas de hubs de país auditadas (3 schemas c/u = {country_pages * 3})")
     print(f"  ✓ 45 páginas de dolencias auditadas (3 schemas c/u = {dolencia_pages * 3})")
     print(f"  ✓ Total de schemas JSON-LD válidos en el sitio: {total_schemas}")
     assert city_pages == 113
+    assert country_pages == 20
     assert dolencia_pages == 45
-    assert total_schemas == 361
-    print("✅ DIMENSION 5 PASSED: 361 esquemas JSON-LD analizados y validados sin un solo fallo de sintaxis")
+    assert total_schemas == 421
+    print("✅ DIMENSION 5 PASSED: 421 esquemas JSON-LD analizados y validados sin un solo fallo de sintaxis")
 
 
 def run_dimension_6_html_head_audit():
@@ -245,13 +265,13 @@ def run_dimension_6_html_head_audit():
                 canon_match = canonical_pattern.search(content)
                 assert canon_match, f"Falta canonical tag en {fpath}"
                 canon_url = canon_match.group(1)
-                # Las 160 páginas tienen trailing slash estricto conforme a astro.config.mjs
+                # Las 180 páginas tienen trailing slash estricto conforme a astro.config.mjs
                 assert canon_url.endswith('/'), f"Canonical sin trailing slash en {fpath}: {canon_url}"
 
                 checked += 1
 
-    print(f"  ✓ 160 páginas HTML contienen <link rel=\"sitemap\" href=\"/sitemap-index.xml\" />")
-    print(f"  ✓ 160 páginas HTML contienen <link rel=\"canonical\" href=\"https://almaholistica.com/...\" /> (100% con barra final estricta)")
+    print(f"  ✓ 180 páginas HTML contienen <link rel=\"sitemap\" href=\"/sitemap-index.xml\" />")
+    print(f"  ✓ 180 páginas HTML contienen <link rel=\"canonical\" href=\"https://almaholistica.com/...\" /> (100% con barra final estricta)")
     print("✅ DIMENSION 6 PASSED: Metadatos de auto-descubrimiento y canonicalización 100% correctos")
 
 

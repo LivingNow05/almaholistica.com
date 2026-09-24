@@ -4,11 +4,11 @@
  * Author: teamwork_preview_challenger_m6_1 (EMPIRICAL CHALLENGER)
  * 
  * Comprehensive Empirical Verification of the entire product:
- * 1. Internal Link Integrity: Scan all 160 HTML files in dist/ for 0 broken links (zero 404s).
+ * 1. Internal Link Integrity: Scan all 180 HTML files in dist/ for 0 broken links (zero 404s).
  * 2. CLS Prevention: Verify explicit width/height or viewBox on all <img> and <svg> tags in dist/.
  * 3. Conversion Funnel: Verify WhatsApp links across home, cities, dolencias, and catalog open Quiz Modal.
- * 4. Sitemaps: Verify public/ and dist/ sitemaps and robots.txt match and accurately represent 160 pages.
- * 5. JSON-LD: Verify valid JSON-LD parsing and structural conformance across all 160 pages.
+ * 4. Sitemaps: Verify public/ and dist/ sitemaps and robots.txt match and accurately represent 180 pages.
+ * 5. JSON-LD: Verify valid JSON-LD parsing and structural conformance across all 180 pages.
  */
 
 import { test, describe } from 'node:test';
@@ -55,11 +55,11 @@ const htmlFiles = collectHtmlFiles(DIST_DIR);
 // SUITE 1: CENSUS AND HTML GENERATION INTEGRITY
 // ==============================================================================
 describe('M6 QA Dimension 0: Static HTML Generation Census', () => {
-  test('M6.0.1: Exactly 160 HTML pages exist in dist/', () => {
-    assert.equal(htmlFiles.length, 160, `Expected 160 HTML files, found ${htmlFiles.length}`);
+  test('M6.0.1: Exactly 180 HTML pages exist in dist/', () => {
+    assert.equal(htmlFiles.length, 180, `Expected 180 HTML files, found ${htmlFiles.length}`);
   });
 
-  test('M6.0.2: All 160 pages are non-empty and well-formed HTML5', () => {
+  test('M6.0.2: All 180 pages are non-empty and well-formed HTML5', () => {
     for (const file of htmlFiles) {
       const stat = fs.statSync(file);
       assert.ok(stat.size > 1000, `Page ${file} suspiciously small: ${stat.size} bytes`);
@@ -169,7 +169,7 @@ describe('M6 QA Dimension 2: CLS Prevention Audit (Images & SVGs)', () => {
       }
     }
 
-    assert.ok(imgCount >= 160, `Expected at least 160 img tags across all pages, found ${imgCount}`);
+    assert.ok(imgCount >= 180, `Expected at least 180 img tags across all pages, found ${imgCount}`);
     assert.deepEqual(unconstrained, [], `Found unconstrained img tags: ${JSON.stringify(unconstrained)}`);
   });
 
@@ -194,7 +194,7 @@ describe('M6 QA Dimension 2: CLS Prevention Audit (Images & SVGs)', () => {
       }
     }
 
-    assert.ok(svgCount >= 1000, `Expected >1000 svgs across 160 pages, found ${svgCount}`);
+    assert.ok(svgCount >= 1000, `Expected >1000 svgs across 180 pages, found ${svgCount}`);
     assert.deepEqual(unconstrained, [], `Found unconstrained svg tags: ${JSON.stringify(unconstrained)}`);
   });
 });
@@ -203,7 +203,7 @@ describe('M6 QA Dimension 2: CLS Prevention Audit (Images & SVGs)', () => {
 // SUITE 4: CONVERSION FUNNEL & WHATSAPP QUIZ MODAL
 // ==============================================================================
 describe('M6 QA Dimension 3: Conversion Funnel & Quiz Modal Interception', () => {
-  test('M6.3.1: All 160 pages contain WhatsApp CTAs with official phone 573151206985', () => {
+  test('M6.3.1: All 180 pages contain WhatsApp CTAs with official phone 573151206985', () => {
     for (const file of htmlFiles) {
       const content = fs.readFileSync(file, 'utf8');
       const relPath = path.relative(DIST_DIR, file);
@@ -255,13 +255,13 @@ describe('M6 QA Dimension 4: Sitemaps & robots.txt Parity and RFC Conformance', 
     }
   });
 
-  test('M6.4.2: sitemap-0.xml lists exactly 160 canonical URLs mapping 1:1 to dist/ pages', () => {
+  test('M6.4.2: sitemap-0.xml lists exactly 180 canonical URLs mapping 1:1 to dist/ pages', () => {
     const sitemapContent = fs.readFileSync(path.join(DIST_DIR, 'sitemap-0.xml'), 'utf8');
     const urls = [...sitemapContent.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);
 
-    assert.equal(urls.length, 160, `sitemap-0.xml must contain exactly 160 URLs, found ${urls.length}`);
+    assert.equal(urls.length, 180, `sitemap-0.xml must contain exactly 180 URLs, found ${urls.length}`);
     const uniqueUrls = new Set(urls);
-    assert.equal(uniqueUrls.size, 160, 'sitemap-0.xml must contain zero duplicate URLs');
+    assert.equal(uniqueUrls.size, 180, 'sitemap-0.xml must contain zero duplicate URLs');
 
     for (const u of urls) {
       assert.ok(u.startsWith('https://almaholistica.com/'), `Invalid URL domain in sitemap: ${u}`);
@@ -286,9 +286,12 @@ describe('M6 QA Dimension 4: Sitemaps & robots.txt Parity and RFC Conformance', 
 // SUITE 6: JSON-LD SYNTAX & STRUCTURAL INTEGRITY
 // ==============================================================================
 describe('M6 QA Dimension 5: JSON-LD Syntax and Semantic Integrity', () => {
-  test('M6.5.1: Exactly 361 JSON-LD schemas exist across the site with 100% valid JSON', () => {
+  test('M6.5.1: Exactly 421 JSON-LD schemas exist across the site with 100% valid JSON', () => {
     let totalSchemas = 0;
     const typeCounts = {};
+    const countrySlugs = new Set(
+      JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'src/data/dataset_almaholistica_paises.json'), 'utf8')).map((c) => c.slug)
+    );
 
     for (const file of htmlFiles) {
       const content = fs.readFileSync(file, 'utf8');
@@ -302,6 +305,8 @@ describe('M6 QA Dimension 5: JSON-LD Syntax and Semantic Integrity', () => {
 
       if (relPath.startsWith('biodescodificacion' + path.sep)) {
         assert.equal(scriptBlocks.length, 3, `Dolencia page ${relPath} must contain exactly 3 schemas`);
+      } else if (countrySlugs.has(relPath.split(path.sep)[0])) {
+        assert.equal(scriptBlocks.length, 3, `Country hub page ${relPath} must contain exactly 3 schemas`);
       } else {
         assert.equal(scriptBlocks.length, 2, `City page ${relPath} must contain exactly 2 schemas`);
       }
@@ -335,10 +340,10 @@ describe('M6 QA Dimension 5: JSON-LD Syntax and Semantic Integrity', () => {
       }
     }
 
-    assert.equal(totalSchemas, 361, `Expected 361 total schemas, found ${totalSchemas}`);
-    assert.equal(typeCounts['MedicalWebPage'], 45, 'Expected 45 MedicalWebPage schemas');
-    assert.equal(typeCounts['FAQPage'], 45, 'Expected 45 FAQPage schemas');
-    assert.equal(typeCounts['BreadcrumbList'], 158, 'Expected 158 BreadcrumbList schemas (113 cities + 45 dolencias)');
+    assert.equal(totalSchemas, 421, `Expected 421 total schemas, found ${totalSchemas}`);
+    assert.equal(typeCounts['MedicalWebPage'], 65, 'Expected 65 MedicalWebPage schemas (45 dolencias + 20 country hubs)');
+    assert.equal(typeCounts['FAQPage'], 65, 'Expected 65 FAQPage schemas (45 dolencias + 20 country hubs)');
+    assert.equal(typeCounts['BreadcrumbList'], 178, 'Expected 178 BreadcrumbList schemas (113 cities + 45 dolencias + 20 country hubs)');
     assert.equal(typeCounts['HealthAndBeautyBusiness'], 113, 'Expected 113 HealthAndBeautyBusiness schemas');
   });
 });
