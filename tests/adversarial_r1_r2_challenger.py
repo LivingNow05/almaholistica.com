@@ -336,7 +336,7 @@ def run_tests():
     check(pos <= 50, f"'{entity_needle}' is within the first 50 characters")
 
     # Assert entity declaration in first 200 chars
-    expected_statement = "Alma Holística es una plataforma clínica de biodescodificación y terapia bioemocional integrativa con atención online 1 a 1 en más de 20 países."
+    expected_statement = "Alma Holística es un instituto de biodescodificación y acompañamiento bioemocional integrativo con atención online 1 a 1 en más de 20 países."
     check(expected_statement in first_p_text, "Full entity declaration statement present in first <p>")
     stmt_end_pos = first_p_text.find(expected_statement) + len(expected_statement)
     check(stmt_end_pos <= 200, f"Entity declaration completed within first 200 characters (completed at char {stmt_end_pos})")
