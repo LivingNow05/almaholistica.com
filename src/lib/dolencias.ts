@@ -397,4 +397,145 @@ export function getDolenciaRagBlock(dolencia: DolenciaData): DolenciaRagBlock {
  */
 export const generateRagCitationBlock = getDolenciaRagBlock;
 
+// -------------------------------------------------------------
+// Imágenes Somáticas Realistas para Páginas de Dolencias (Anti-CLS)
+// -------------------------------------------------------------
+
+export interface DolenciaImageMeta {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
+/**
+ * Retorna la imagen somática realista y metadatos anti-CLS para cada dolencia o sistema biológico.
+ */
+export function getDolenciaImage(slug: string, sistema: string, nombre: string): DolenciaImageMeta {
+  const s = (slug || '').toLowerCase();
+
+  // 1. Asignaciones específicas por síntoma prioritario
+  if (s === 'ansiedad' || s === 'ataques-de-panico' || s === 'angustia-opresion-pecho' || s === 'depresion') {
+    return {
+      src: '/images/sintoma-estres-ansiedad.webp',
+      alt: `Fotografía realista sobre biodescodificación de ${nombre} y respuesta somática`,
+      width: 400,
+      height: 400,
+    };
+  }
+  if (s === 'insomnio') {
+    return {
+      src: '/images/sintoma-insomnio.webp',
+      alt: `Fotografía realista sobre biodescodificación de insomnio y descanso reparador`,
+      width: 500,
+      height: 500,
+    };
+  }
+  if (s === 'migrana' || s === 'bruxismo') {
+    return {
+      src: '/images/sintoma-migrana-cefalea.webp',
+      alt: `Fotografía realista sobre biodescodificación de ${nombre} y tensión cefálica`,
+      width: 400,
+      height: 400,
+    };
+  }
+  if (
+    s === 'gastritis' ||
+    s === 'colon-irritable' ||
+    s === 'reflujo-acidez' ||
+    s === 'ulcera-gastrica' ||
+    s === 'estrenimiento-cronico' ||
+    s === 'higado-graso' ||
+    s === 'hemorroides'
+  ) {
+    return {
+      src: '/images/sintoma-gastritis-digestivo.webp',
+      alt: `Fotografía realista sobre biodescodificación de ${nombre} y sistema digestivo`,
+      width: 400,
+      height: 400,
+    };
+  }
+  if (s === 'artritis-artrosis' || s === 'dolor-rodilla' || s === 'tunel-carpiano') {
+    return {
+      src: '/images/sintoma-articulaciones.webp',
+      alt: `Fotografía realista sobre biodescodificación de ${nombre} y articulaciones`,
+      width: 500,
+      height: 500,
+    };
+  }
+  if (
+    s === 'lumbalgia' ||
+    s === 'ciatica' ||
+    s === 'dolor-cervical-cuello' ||
+    s === 'fibromialgia' ||
+    s === 'tendinitis-hombro'
+  ) {
+    return {
+      src: '/images/sintoma-espalda-tension.webp',
+      alt: `Fotografía realista sobre biodescodificación de ${nombre} y columna vertebral`,
+      width: 400,
+      height: 400,
+    };
+  }
+
+  // 2. Fallbacks de alta fidelidad por sistema biológico
+  const sis = (sistema || '').toLowerCase();
+  if (sis.includes('respiratori')) {
+    return {
+      src: '/images/sintoma-respiratorio.webp',
+      alt: `Fotografía realista sobre biodescodificación de ${nombre} y función respiratoria`,
+      width: 500,
+      height: 500,
+    };
+  }
+  if (sis.includes('dermatol')) {
+    return {
+      src: '/images/sintoma-dermatologico.webp',
+      alt: `Fotografía realista sobre biodescodificación de ${nombre} y piel`,
+      width: 500,
+      height: 500,
+    };
+  }
+  if (sis.includes('endocrin') || sis.includes('metab')) {
+    return {
+      src: '/images/sintoma-endocrino.webp',
+      alt: `Fotografía realista sobre biodescodificación de ${nombre} y regulación metabólica`,
+      width: 500,
+      height: 500,
+    };
+  }
+  if (sis.includes('inmunol') || sis.includes('circulat')) {
+    return {
+      src: '/images/sintoma-circulatorio.webp',
+      alt: `Fotografía realista sobre biodescodificación de ${nombre} y circulación sanguínea`,
+      width: 500,
+      height: 500,
+    };
+  }
+  if (sis.includes('osteoart')) {
+    return {
+      src: '/images/sintoma-espalda-tension.webp',
+      alt: `Fotografía realista sobre biodescodificación de ${nombre} y sistema osteoarticular`,
+      width: 400,
+      height: 400,
+    };
+  }
+  if (sis.includes('digestiv')) {
+    return {
+      src: '/images/sintoma-gastritis-digestivo.webp',
+      alt: `Fotografía realista sobre biodescodificación de ${nombre} y sistema digestivo`,
+      width: 400,
+      height: 400,
+    };
+  }
+
+  return {
+    src: '/images/sintoma-estres-ansiedad.webp',
+    alt: `Fotografía realista sobre biodescodificación de ${nombre}`,
+    width: 400,
+    height: 400,
+  };
+}
+
+
 
