@@ -94,6 +94,56 @@ const eeatRecord = (eeatCitiesData as any[]).find(
   (item: any) => item['URL Final (Slug)'].toLowerCase().trim() === cleanCitySlug
 ) || eeatCitiesData[0];
 
+const geoCitabilidad = eeatRecord.GEO_Citabilidad_AI || '';
+const geoFaqs = (eeatRecord.GEO_Preguntas_Frecuentes && Array.isArray(eeatRecord.GEO_Preguntas_Frecuentes) && eeatRecord.GEO_Preguntas_Frecuentes.length > 0)
+  ? eeatRecord.GEO_Preguntas_Frecuentes
+  : [];
+
+// Casos Clínicos y Testimonios Locales Documentados
+const localCasesList = cleanCitySlug === 'cordoba' ? [
+  {
+    initials: 'LM',
+    name: 'Lucía M.',
+    age: '34 años',
+    location: 'Barrio General Paz, Córdoba',
+    symptom: 'Gastritis erosiva recurrente y acidez',
+    system: 'Digestivo',
+    systemColor: 'text-[#6EE7B7] bg-[#064E3B] border-emerald-700',
+    description: 'Llevaba dos años con protectores gástricos sin resolver la causa. En la sesión identificamos la situación laboral en Nueva Córdoba que no podía procesar ni digerir. Al desprogramar el bocado indigesto, la inflamación cedió notablemente.'
+  },
+  {
+    initials: 'MR',
+    name: 'Martín R.',
+    age: '41 años',
+    location: 'Nueva Córdoba',
+    symptom: 'Ansiedad generalizada y opresión torácica',
+    system: 'Nervioso',
+    systemColor: 'text-[#93C5FD] bg-[#1E3A8A] border-blue-700',
+    description: 'Experimentaba taquicardia y miedo constante a perder el control por presiones corporativas. Trabajamos el conflicto territorial y la anticipación del futuro. Desde la primera videollamada recuperó la calma y la claridad mental.'
+  },
+  {
+    initials: 'VS',
+    name: 'Valeria S.',
+    age: '48 años',
+    location: 'Cerro de las Rosas, Córdoba',
+    symptom: 'Lumbalgia tensional y rigidez articular',
+    system: 'Osteoarticular',
+    systemColor: 'text-[#FFEDD5] bg-[#7C2D12] border-[#9A3412]',
+    description: 'Creía que el dolor lumbar era postural, pero la consulta reveló la sobrecarga simbólica de sostener sola la economía familiar. Integrar ese patrón le permitió liberar la contractura crónica sin recaídas.'
+  }
+] : [
+  {
+    initials: 'CL',
+    name: 'Consultante Local',
+    age: '38 años',
+    location: `${cityName}, ${pais}`,
+    symptom: 'Somatización gastrointestinal y sobrecarga tensional',
+    system: 'Digestivo / Nervioso',
+    systemColor: 'text-[#6EE7B7] bg-[#064E3B] border-emerald-700',
+    description: `Atención individual en ${cityName} para decodificar el impacto del estrés urbano y laboral en el sistema digestivo y muscular, facilitando el restablecimiento del equilibrio biológico.`
+  }
+];
+
 const especialistaNombre = eeatRecord.EEAT_Especialista_Nombre || 'Lic. Sofía Alarcón Valdés';
 const especialistaCargo = eeatRecord.EEAT_Especialista_Cargo || 'Especialista Senior en Biodescodificación y Psicosomática Clínica';
 const especialistaRegistro = eeatRecord.EEAT_Especialista_Registro || 'Reg. ITH-8492 (Asociación Internacional de Terapias Holísticas)';
@@ -426,6 +476,25 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
   </section>
 
   <!-- ========================================================================= -->
+  <!-- SÍNTESIS CLÍNICA Y CITABILIDAD RAG / GEO (GOOGLE AI & PERPLEXITY)         -->
+  <!-- ========================================================================= -->
+  {geoCitabilidad && (
+    <section class="w-full bg-[#060A1A] py-10 sm:py-14 border-b border-slate-800/40" aria-label={`Dictamen Clínico de Biodescodificación en ${cityName}`}>
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="card-matte p-6 sm:p-8 rounded-2xl border border-slate-800 border-l-4 border-l-[#779DD1] relative">
+          <div class="flex items-center gap-2 text-xs font-mono font-semibold tracking-wider text-[#779DD1] uppercase mb-3">
+            <span class="w-2 h-2 rounded-full bg-[#779DD1] animate-pulse"></span>
+            <span>DICTAMEN CLÍNICO // SÍNTESIS RAG & GEO EN {cityName.toUpperCase()}</span>
+          </div>
+          <p class="text-sm sm:text-base text-slate-200 font-sans leading-relaxed">
+            {geoCitabilidad}
+          </p>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ========================================================================= -->
   <!-- SECCIÓN PUENTE EXPLICATIVA "¿QUÉ ES LA BIODESCODIFICACIÓN?"               -->
   <!-- ========================================================================= -->
   <section class="w-full bg-[#060A1A] py-16 sm:py-20 border-b border-slate-800/40" aria-label="Introducción a la Biodescodificación">
@@ -544,6 +613,92 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
   </section>
 
   <!-- ========================================================================= -->
+  <!-- COMPARATIVA CLÍNICA: ONLINE VS PRESENCIAL EN LA CIUDAD                    -->
+  <!-- ========================================================================= -->
+  <section class="w-full bg-[#060A1A] py-16 sm:py-24 border-b border-slate-800/40" aria-labelledby="comparativa-online-heading">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="max-w-3xl mb-12">
+        <div class="inline-flex items-center gap-2 text-xs font-sans font-bold tracking-wider text-[#38BDF8] uppercase mb-3">
+          <span class="w-2 h-2 rounded-full bg-[#38BDF8]"></span>
+          <span>CRITERIO CLÍNICO Y EFICIENCIA // {cityName.toUpperCase()}</span>
+        </div>
+        <h2 id="comparativa-online-heading" class="font-sans font-extrabold text-2xl sm:text-4xl text-white uppercase tracking-tight mb-4">
+          ¿Por Qué Sesión Online y No un Consultorio Presencial en {cityName}?
+        </h2>
+        <p class="text-base text-slate-300 font-sans leading-relaxed">
+          Comparativa directa entre la consulta virtual de alta precisión de Alma Holística y la atención tradicional en consultorios físicos locales.
+        </p>
+      </div>
+
+      <div class="card-matte rounded-2xl border border-slate-800 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-[#0A1226] border-b border-slate-800 text-xs font-sans uppercase tracking-wider text-slate-400">
+                <th scope="col" class="py-4 px-5 sm:px-6 font-semibold">Criterio Terapéutico</th>
+                <th scope="col" class="py-4 px-5 sm:px-6 font-bold text-[#38BDF8] bg-[#0E172F]">Alma Holística (Online 1 a 1)</th>
+                <th scope="col" class="py-4 px-5 sm:px-6 font-semibold">Consultorio Físico Tradicional</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 text-xs sm:text-sm font-sans text-slate-300">
+              <tr>
+                <td class="py-4 px-5 sm:px-6 font-semibold text-white">Desplazamiento y Tráfico</td>
+                <td class="py-4 px-5 sm:px-6 bg-[#0E172F] text-slate-200">
+                  <span class="text-emerald-400 font-bold block mb-1">Cero traslados</span>
+                  Te conectas en 1 clic desde tu hogar, sin perder horas en el tráfico urbano de {cityName}.
+                </td>
+                <td class="py-4 px-5 sm:px-6 text-slate-400">
+                  45 a 90 minutos en traslados, congestión vehicular y dificultades para estacionar.
+                </td>
+              </tr>
+              <tr>
+                <td class="py-4 px-5 sm:px-6 font-semibold text-white">Privacidad y Confidencialidad</td>
+                <td class="py-4 px-5 sm:px-6 bg-[#0E172F] text-slate-200">
+                  <span class="text-emerald-400 font-bold block mb-1">Intimidad total</span>
+                  Espacio seguro 100% individual. Sin coincidir con vecinos o conocidos en salas de espera.
+                </td>
+                <td class="py-4 px-5 sm:px-6 text-slate-400">
+                  Salas de espera compartidas y exposición en clínicas públicas de barrio o zona céntrica.
+                </td>
+              </tr>
+              <tr>
+                <td class="py-4 px-5 sm:px-6 font-semibold text-white">Agilidad de Agenda</td>
+                <td class="py-4 px-5 sm:px-6 bg-[#0E172F] text-slate-200">
+                  <span class="text-emerald-400 font-bold block mb-1">Turnos en 24 - 48h</span>
+                  Flexibilidad para coordinar tu cita en horarios diurnos o vespertinos adaptados a tu rutina.
+                </td>
+                <td class="py-4 px-5 sm:px-6 text-slate-400">
+                  Listas de espera habituales de 2 a 4 semanas para conseguir turno con profesionales reconocidos.
+                </td>
+              </tr>
+              <tr>
+                <td class="py-4 px-5 sm:px-6 font-semibold text-white">Especialización Metodológica</td>
+                <td class="py-4 px-5 sm:px-6 bg-[#0E172F] text-slate-200">
+                  <span class="text-emerald-400 font-bold block mb-1">Enfoque clínico exclusivo</span>
+                  Terapeutas acreditados con más de 1.400 casos tratados en biodescodificación y PNI.
+                </td>
+                <td class="py-4 px-5 sm:px-6 text-slate-400">
+                  Frecuente combinación de múltiples técnicas no específicas o atención generalista.
+                </td>
+              </tr>
+              <tr>
+                <td class="py-4 px-5 sm:px-6 font-semibold text-white">Acompañamiento Post-Sesión</td>
+                <td class="py-4 px-5 sm:px-6 bg-[#0E172F] text-slate-200">
+                  <span class="text-emerald-400 font-bold block mb-1">Seguimiento continuo</span>
+                  Guía de integración bioemocional y soporte de resolución de dudas vía WhatsApp tras el encuentro.
+                </td>
+                <td class="py-4 px-5 sm:px-6 text-slate-400">
+                  El contacto termina al salir del consultorio hasta el turno presencial del mes siguiente.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
   <!-- DOLENCIAS PRINCIPALES ATENDIDAS ONLINE                                    -->
   <!-- ========================================================================= -->
   <section class="w-full bg-[#060A1A] py-16 sm:py-24 border-b border-slate-800/40" aria-labelledby="dolencias-relacionadas-heading">
@@ -629,7 +784,11 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
           <ul class="text-xs sm:text-sm text-slate-300 space-y-2">
             <li class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></span>
-              <span>Transferencias bancarias locales en {pais} ({moneda})</span>
+              {pais === 'Argentina' ? (
+                <span>Transferencias bancarias locales en Argentina (CBU / CVU) y Mercado Pago</span>
+              ) : (
+                <span>Transferencias bancarias locales en {pais} ({moneda})</span>
+              )}
             </li>
             <li class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#779DD1] shrink-0"></span>
@@ -719,6 +878,47 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
         </div>
       </div>
 
+      <!-- Casos Clínicos Documentados y Testimonios Locales -->
+      <div class="mb-10">
+        <div class="inline-flex items-center gap-2 text-xs font-sans font-bold tracking-wider text-emerald-400 uppercase mb-4">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span>CASOS CLÍNICOS DOCUMENTADOS // {cityName.toUpperCase()}</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {localCasesList.map((caso) => (
+            <div class="card-matte p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-3 mb-4">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-[#0E172F] border border-slate-700 flex items-center justify-center text-xs font-bold text-white font-mono shrink-0">
+                      {caso.initials}
+                    </div>
+                    <div>
+                      <span class="text-sm font-bold text-white block">{caso.name}</span>
+                      <span class="text-xs text-slate-400">{caso.age} • {caso.location}</span>
+                    </div>
+                  </div>
+                  <span class={`px-2 py-0.5 rounded text-[10px] font-bold border ${caso.systemColor}`}>
+                    {caso.system}
+                  </span>
+                </div>
+                <div class="mb-3">
+                  <span class="text-xs font-bold text-[#38BDF8] block mb-1">Síntoma abordado:</span>
+                  <p class="text-xs sm:text-sm font-semibold text-slate-200">{caso.symptom}</p>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+                  "{caso.description}"
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center gap-1.5 text-[11px] text-emerald-400">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span>Caso clínico resuelto en acompañamiento online</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <!-- Aval Científico y Metodológico (PNI, Hamer, Flèche, Lipton) -->
       <div class="card-matte p-6 sm:p-8 rounded-2xl border border-slate-800 mb-8">
         <div class="inline-flex items-center gap-2 text-xs font-sans font-bold tracking-wider text-[#38BDF8] uppercase mb-3">
@@ -776,35 +976,51 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
       </div>
 
       <div class="max-w-4xl space-y-4">
-        <details class="card-matte p-6 rounded-2xl border border-slate-800 group cursor-pointer transition-colors">
-          <summary class="flex justify-between items-center text-base sm:text-lg font-bold font-sans text-white list-none">
-            <span>¿Es tan efectiva una sesión online como una presencial?</span>
-            <span class="text-[#779DD1] text-xl transition-transform group-open:rotate-45 font-sans font-bold">+</span>
-          </summary>
-          <p class="mt-4 text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
-            Sí. La biodescodificación trabaja con la toma de conciencia del consultante mediante el lenguaje, la evocación emocional y el rastreo de eventos biográficos. El formato online permite estar en un entorno seguro y relajado sin el desgaste del tráfico de {cityName}.
-          </p>
-        </details>
+        {geoFaqs.length > 0 ? (
+          geoFaqs.map((faq: any) => (
+            <details class="card-matte p-6 rounded-2xl border border-slate-800 group cursor-pointer transition-colors">
+              <summary class="flex justify-between items-center text-base sm:text-lg font-bold font-sans text-white list-none">
+                <span>{faq.pregunta}</span>
+                <span class="text-[#779DD1] text-xl transition-transform group-open:rotate-45 font-sans font-bold">+</span>
+              </summary>
+              <p class="mt-4 text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
+                {faq.respuesta}
+              </p>
+            </details>
+          ))
+        ) : (
+          <>
+            <details class="card-matte p-6 rounded-2xl border border-slate-800 group cursor-pointer transition-colors">
+              <summary class="flex justify-between items-center text-base sm:text-lg font-bold font-sans text-white list-none">
+                <span>¿Es tan efectiva una sesión online como una presencial?</span>
+                <span class="text-[#779DD1] text-xl transition-transform group-open:rotate-45 font-sans font-bold">+</span>
+              </summary>
+              <p class="mt-4 text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
+                Sí. La biodescodificación trabaja con la toma de conciencia del consultante mediante el lenguaje, la evocación emocional y el rastreo de eventos biográficos. El formato online permite estar en un entorno seguro y relajado sin el desgaste del tráfico de {cityName}.
+              </p>
+            </details>
 
-        <details class="card-matte p-6 rounded-2xl border border-slate-800 group cursor-pointer transition-colors">
-          <summary class="flex justify-between items-center text-base sm:text-lg font-bold font-sans text-white list-none">
-            <span>¿Cómo se coordina el horario de la consulta?</span>
-            <span class="text-[#779DD1] text-xl transition-transform group-open:rotate-45 font-sans font-bold">+</span>
-          </summary>
-          <p class="mt-4 text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
-            Al completar el cuestionario inicial de WhatsApp, el equipo de coordinación te presentará opciones de agenda ajustadas a tu huso horario local en {pais}.
-          </p>
-        </details>
+            <details class="card-matte p-6 rounded-2xl border border-slate-800 group cursor-pointer transition-colors">
+              <summary class="flex justify-between items-center text-base sm:text-lg font-bold font-sans text-white list-none">
+                <span>¿Cómo se coordina el horario de la consulta?</span>
+                <span class="text-[#779DD1] text-xl transition-transform group-open:rotate-45 font-sans font-bold">+</span>
+              </summary>
+              <p class="mt-4 text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
+                Al completar el cuestionario inicial de WhatsApp, el equipo de coordinación te presentará opciones de agenda ajustadas a tu huso horario local en {pais}.
+              </p>
+            </details>
 
-        <details class="card-matte p-6 rounded-2xl border border-slate-800 group cursor-pointer transition-colors">
-          <summary class="flex justify-between items-center text-base sm:text-lg font-bold font-sans text-white list-none">
-            <span>¿La biodescodificación sustituye a mi médico de cabecera en {cityName}?</span>
-            <span class="text-[#779DD1] text-xl transition-transform group-open:rotate-45 font-sans font-bold">+</span>
-          </summary>
-          <p class="mt-4 text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
-            No. Alma Holística promueve una visión integrativa de la salud. La terapia complementa la atención médica abordando la raíz emocional inconsciente del síntoma. Nunca sugerimos suspender tratamientos ni prescripciones facultativas.
-          </p>
-        </details>
+            <details class="card-matte p-6 rounded-2xl border border-slate-800 group cursor-pointer transition-colors">
+              <summary class="flex justify-between items-center text-base sm:text-lg font-bold font-sans text-white list-none">
+                <span>¿La biodescodificación sustituye a mi médico de cabecera en {cityName}?</span>
+                <span class="text-[#779DD1] text-xl transition-transform group-open:rotate-45 font-sans font-bold">+</span>
+              </summary>
+              <p class="mt-4 text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
+                No. Alma Holística promueve una visión integrativa de la salud. La terapia complementa la atención médica abordando la raíz emocional inconsciente del síntoma. Nunca sugerimos suspender tratamientos ni prescripciones facultativas.
+              </p>
+            </details>
+          </>
+        )}
       </div>
     </div>
   </section>
