@@ -146,7 +146,7 @@ def main():
             json.dump(indexing_log, f, indent=2, ensure_ascii=False)
 
         # Pausa para respetar el rate limit de Google
-        time.sleep(1.0)
+        time.sleep(0.5)
 
     elapsed = time.time() - start_time
     print("=" * 70)
