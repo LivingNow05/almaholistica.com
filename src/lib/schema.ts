@@ -15,6 +15,57 @@ import type { DolenciaData, FAQItem } from '../types/dolencia';
 import { SITE_CONFIG } from '../config/site';
 
 /**
+ * Mapeo de códigos CIE-10 (ICD-10) oficiales para las 45 patologías clínicas.
+ */
+export const DOLENCIAS_CIE10: Record<string, string> = {
+  'gastritis': 'K29.7',
+  'colon-irritable': 'K58.9',
+  'reflujo-acidez': 'K21.9',
+  'estrenimiento-cronico': 'K59.0',
+  'ulcera-gastrica': 'K25.9',
+  'higado-graso': 'K76.0',
+  'hemorroides': 'K64.9',
+  'ansiedad': 'F41.1',
+  'insomnio': 'G47.0',
+  'ataques-de-panico': 'F41.0',
+  'depresion': 'F32.9',
+  'bruxismo': 'F45.8',
+  'angustia-opresion-pecho': 'R07.9',
+  'lumbalgia': 'M54.5',
+  'ciatica': 'M54.3',
+  'cervicalgia': 'M54.2',
+  'tendinitis': 'M77.9',
+  'artritis': 'M06.9',
+  'artrosis': 'M19.9',
+  'fibromialgia': 'M79.7',
+  'hernia-discal': 'M51.2',
+  'dermatitis': 'L20.9',
+  'psoriasis': 'L40.0',
+  'acne': 'L70.0',
+  'alopecia': 'L65.9',
+  'herpes': 'B00.9',
+  'rosacea': 'L71.9',
+  'asma': 'J45.9',
+  'rinitis-alergica': 'J30.4',
+  'sinusitis': 'J32.9',
+  'bronquitis-cronica': 'J42',
+  'faringitis-disfonia': 'J02.9',
+  'hipotiroidismo': 'E03.9',
+  'hipertiroidismo': 'E05.9',
+  'sobrepeso-retencion': 'E66.9',
+  'resistencia-insulina': 'E11.9',
+  'ovario-poliquistico': 'E28.2',
+  'nodulos-tiroideos': 'E04.1',
+  'migrana': 'G43.9',
+  'hipertension': 'I10',
+  'cistitis-recurrente': 'N30.9',
+  'vertigo-tinnitus': 'H81.9',
+  'alergias-alimentarias': 'K52.2',
+  'fatiga-cronica': 'R53.82',
+  'varices-circulacion': 'I83.9'
+};
+
+/**
  * Elemento de miga de pan para BreadcrumbList.
  */
 export interface BreadcrumbItem {
@@ -33,6 +84,11 @@ export interface MedicalWebPageSchema {
   readonly about: {
     readonly '@type': 'MedicalCondition';
     readonly name: string;
+    readonly code?: {
+      readonly '@type': 'MedicalCode';
+      readonly code: string;
+      readonly codingSystem: 'ICD-10';
+    };
     readonly associatedPathophysiology: string;
     readonly possibleTreatment: {
       readonly '@type': 'MedicalTherapy';
@@ -107,22 +163,34 @@ export interface LocalBusinessSchema {
  */
 export function buildMedicalWebPageSchema(
   dolencia: DolenciaData,
-  canonicalUrl: string
+  canonicalUrl: string,
+  cie10Code?: string
 ): MedicalWebPageSchema {
+  const code = cie10Code || dolencia.codigoCie10 || (dolencia.slug ? DOLENCIAS_CIE10[dolencia.slug] : undefined);
+  const aboutNode: any = {
+    '@type': 'MedicalCondition',
+    name: dolencia.nombre,
+    associatedPathophysiology: dolencia.sentidoBiologico,
+    possibleTreatment: {
+      '@type': 'MedicalTherapy',
+      name: 'Biodescodificación y Reprogramación Bioemocional',
+    },
+  };
+
+  if (code) {
+    aboutNode.code = {
+      '@type': 'MedicalCode',
+      code,
+      codingSystem: 'ICD-10',
+    };
+  }
+
   return {
     '@context': 'https://schema.org',
     '@type': 'MedicalWebPage',
     name: `Biodescodificación de ${dolencia.nombre}`,
     url: canonicalUrl,
-    about: {
-      '@type': 'MedicalCondition',
-      name: dolencia.nombre,
-      associatedPathophysiology: dolencia.sentidoBiologico,
-      possibleTreatment: {
-        '@type': 'MedicalTherapy',
-        name: 'Biodescodificación y Reprogramación Bioemocional',
-      },
-    },
+    about: aboutNode,
     description: dolencia.conflictoEmocional,
   };
 }

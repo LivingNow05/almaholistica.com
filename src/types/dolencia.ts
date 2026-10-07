@@ -34,6 +34,8 @@ export interface DolenciaData {
   readonly slug: string;
   /** Nombre común formal de la patología o síntoma (ej: Gastritis, Ansiedad generalizada) */
   readonly nombre: string;
+  /** Código oficial CIE-10 / ICD-10 de la OMS (ej: K29.7, F41.1) */
+  readonly codigoCie10?: string;
   /** Sistema corporal al que pertenece la dolencia */
   readonly sistema: BodilySystem | string;
   /** Conflicto biológico/emocional inconsciente desencadenante */

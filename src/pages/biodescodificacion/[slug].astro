@@ -10,7 +10,12 @@
  */
 
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getDolencias, getDolenciaRagBlock, getDolenciaImage } from '../../lib/dolencias';
+import {
+  getDolencias,
+  getDolenciaRagBlock,
+  getDolenciaImage,
+  getCie10Code,
+} from '../../lib/dolencias';
 import type { DolenciaData, DolenciaStaticPath } from '../../types/dolencia';
 import { SITE_CONFIG, buildWhatsAppUrl } from '../../config/site';
 import {
@@ -44,6 +49,7 @@ const faqs = dolencia.faqs || [];
 const ganchoAgendamiento = dolencia.ganchoAgendamiento;
 const ragBlock = getDolenciaRagBlock(dolencia);
 const symptomImage = getDolenciaImage(dolencia.slug, sistema, nombre);
+const cie10Code = getCie10Code(dolencia.slug);
 
 // Metadatos SEO y URL Canónica oficial con trailing slash (conforme a astro.config.mjs)
 const pageTitle = `Biodescodificación de ${nombre} | Conflicto Emocional y Sanación | ${SITE_CONFIG.name}`;
@@ -102,9 +108,14 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
         <!-- Columna Izquierda: Información Clínica y CTAs -->
         <div class="lg:col-span-7 xl:col-span-8">
           <!-- Badge de Sistema Biológico Técnico con Pulsación -->
-          <div class="inline-flex items-center gap-2.5 text-xs font-sans font-bold tracking-wider text-[#779DD1] uppercase mb-4">
+          <div class="inline-flex flex-wrap items-center gap-2.5 text-xs font-sans font-bold tracking-wider text-[#779DD1] uppercase mb-4">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span>SISTEMA {sistema.toUpperCase()} • BIODESCODIFICACIÓN</span>
+            {cie10Code && (
+              <span class="px-2 py-0.5 rounded bg-[#0A1226] text-slate-300 font-mono text-[11px] border border-slate-700">
+                CIE-10: {cie10Code}
+              </span>
+            )}
           </div>
 
           <!-- H1 Dinámico Requerido por T1.16.2 / T1.16.3 en Caja Mixta Natural -->
@@ -113,7 +124,7 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
           </h1>
 
           <p class="text-base sm:text-lg text-slate-300 font-sans leading-relaxed mb-8">
-            Comprende el significado biológico inconsciente de este síntoma, desactiva la respuesta adaptativa de alarma de tu cuerpo y recupera tu bienestar a través de una sesión online 1 a 1.
+            Comprende el significado biológico inconsciente de este síntoma, desactiva la respuesta adaptativa de alarma de tu cuerpo y recupera tu bienestar a través de una sesión de terapia holística online 1 a 1.
           </p>
 
           <!-- CTAs Principales con Interceptación Global de WhatsApp Quiz Modal (data-symptom) -->
