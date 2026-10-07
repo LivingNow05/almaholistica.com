@@ -161,7 +161,11 @@ const catalogoWhatsAppUrl = buildWhatsAppUrl({
           >
             <div>
               <!-- Imagen Somática Editorial Realista Anti-CLS -->
-              <div class="mb-4 rounded-xl overflow-hidden bg-[#060A1A] border border-[#1E293B] aspect-[16/10] relative group">
+              <a
+                href={`/biodescodificacion/${item.slug}`}
+                class="block mb-4 rounded-xl overflow-hidden bg-[#060A1A] border border-[#1E293B] aspect-[16/10] relative group cursor-pointer"
+                aria-label={`Ver biodescodificación de ${item.nombre}`}
+              >
                 <img
                   src={`/images/dolencias/${item.slug}.webp`}
                   alt={`Fotografía realista sobre biodescodificación de ${item.nombre}`}
@@ -171,7 +175,7 @@ const catalogoWhatsAppUrl = buildWhatsAppUrl({
                   decoding="async"
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                 />
-              </div>
+              </a>
 
               <!-- Cabecera de la Tarjeta: Sistema -->
               <div class="flex items-center justify-between gap-2 mb-3">
