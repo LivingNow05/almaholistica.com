@@ -6,7 +6,7 @@ Project: Alma Holística (almaholistica.com)
 Milestone: GEO-M2 (Adversarial Challenge & Empirical Verification)
 
 Requirements Tested:
-- R1: public/llms.txt vs dist/llms.txt exact byte match, verified phone (+57 315 1206985),
+- R1: public/llms.txt vs dist/llms.txt exact byte match, verified phone (+54 9 11 2842-9822),
       zero placeholder numbers, 113 canonical city URLs with /biodescodificacion- and trailing slash,
       45 dolencias catalog and 20 countries with local currencies.
 - R2: src/pages/index.astro & dist/index.html entity anchoring in first paragraph ("Alma Holística es"
@@ -125,7 +125,7 @@ def run_tests():
     # DIMENSION 2: R1 — TELEPHONY SANITIZATION & ZERO-TOLERANCE PLACEHOLDERS
     # --------------------------------------------------------------------------
     print("\n--- DIMENSION 2: Telephony Sanitization & Zero Placeholder Numbers ---")
-    official_phone = "+57 315 1206985"
+    official_phone = "+54 9 11 2842-9822"
     official_count_public = public_text.count(official_phone)
     official_count_dist = dist_text.count(official_phone)
 
@@ -154,7 +154,7 @@ def run_tests():
     site_ts_path = os.path.join(SRC_DIR, "config", "site.ts")
     with open(site_ts_path, "r", encoding="utf-8") as f:
         site_ts = f.read()
-    check("573151206985" in site_ts, "src/config/site.ts contains official number 573151206985")
+    check("5491128429822" in site_ts, "src/config/site.ts contains official number 5491128429822")
     check("3000000000" not in site_ts and "300 000" not in site_ts, "src/config/site.ts free of placeholder numbers")
 
     # --------------------------------------------------------------------------

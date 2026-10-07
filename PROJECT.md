@@ -17,12 +17,12 @@
   - `src/data/dataset_almaholistica_ciudades_eeat_geo.json`: 113 registros de ciudades con especialistas certificados, aval metodológico (PNI, Hamer, Flèche, Lipton) y casos clínicos locales.
 - **Conversion Funnel**:
   - WhatsApp Quiz Modal interactivo (`src/components/react/WhatsAppQuizModal.tsx`) adaptado con contenedor `rounded-[2.5rem]`, botones píldora blancos y cero amarillo.
-  - Enrutamiento oficial a WhatsApp (`https://wa.me/573151206985?text=...`) con mensaje estructurado.
+  - Enrutamiento oficial a WhatsApp (`https://wa.me/5491128429822?text=...`) con mensaje estructurado.
 - **SEO, GEO & Schema.org**:
   - Total Schema Invariant: Exactamente 361 esquemas JSON-LD (113 ciudades x 2 + 45 dolencias x 3 + 0 en Home y catálogo).
   - Restricción Adversarial `MR3-CH2-4.5`: Cero scripts `application/ld+json` en `dist/index.html`.
   - Arquitectura SitemapFast con script `scripts/generate_sitemap.py`.
-  - `public/llms.txt` sincronizado para AI Crawlers (teléfono oficial `+57 315 1206985`, URLs canónicas `/biodescodificacion-{slug}/`, 45 dolencias y 20 países).
+  - `public/llms.txt` sincronizado para AI Crawlers (teléfono oficial `+54 9 11 2842-9822`, URLs canónicas `/biodescodificacion-{slug}/`, 45 dolencias y 20 países).
 
 ---
 
@@ -87,7 +87,7 @@ almaholistica.com/
 │   └── sitemap.xml
 ├── src/
 │   ├── config/
-│   │   └── site.ts                           # SITE_CONFIG.whatsappNumber = '573151206985'
+│   │   └── site.ts                           # SITE_CONFIG.whatsappNumber = '5491128429822'
 │   ├── data/
 │   │   ├── dataset_almaholistica_ciudades.csv           # 113 ciudades
 │   │   ├── dataset_almaholistica_ciudades_eeat_geo.json # 113 ciudades con E-E-A-T

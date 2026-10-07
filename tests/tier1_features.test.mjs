@@ -225,8 +225,8 @@ describe('Tier 1 — Cobertura por Característica (Features 1 - 23)', () => {
   describe('Feature 5: Configuración Central del Sitio (site.ts)', () => {
     const siteConfigPath = path.join(PROJECT_ROOT, 'src/config/site.ts');
 
-    test('T1.5.1: Teléfono oficial obligatorio es 573151206985', () => {
-      assert.equal(PROVISIONAL_WHATSAPP_NUMBER, '573151206985');
+    test('T1.5.1: Teléfono oficial obligatorio es 5491128429822', () => {
+      assert.equal(PROVISIONAL_WHATSAPP_NUMBER, '5491128429822');
     });
 
     test('T1.5.2: URL canónica oficial es https://almaholistica.com', () => {
@@ -239,7 +239,7 @@ describe('Tier 1 — Cobertura por Característica (Features 1 - 23)', () => {
         return;
       }
       const code = fs.readFileSync(siteConfigPath, 'utf8');
-      assert.ok(code.includes('573151206985'), 'Debe parametrizar el número 573151206985');
+      assert.ok(code.includes('5491128429822'), 'Debe parametrizar el número 5491128429822');
       assert.ok(code.includes('almaholistica.com'), 'Debe parametrizar la URL base');
     });
 
@@ -525,7 +525,7 @@ describe('Tier 1 — Cobertura por Característica (Features 1 - 23)', () => {
   describe('Feature 12: Generación Mensaje WhatsApp', () => {
     test('T1.12.1: Construye URL con protocolo https y dominio wa.me', () => {
       const url = buildWhatsAppUrl({ symptom: 'Gastritis' });
-      assert.ok(url.startsWith('https://wa.me/573151206985?text='));
+      assert.ok(url.startsWith('https://wa.me/5491128429822?text='));
     });
 
     test('T1.12.2: Codifica caracteres especiales mediante encodeURIComponent', () => {
@@ -1093,8 +1093,8 @@ describe('Tier 1 — Cobertura por Característica (Features 1 - 23)', () => {
     });
 
     test('T1.23.5: Parsing de WhatsApp maneja números con símbolos y espacios sin corromperse', () => {
-      const url = buildWhatsAppUrl({ phone: '+57 (315) 120-6985', symptom: 'Ansiedad' });
-      assert.ok(url.includes('573151206985'));
+      const url = buildWhatsAppUrl({ phone: '+54 9 11 2842-9822', symptom: 'Ansiedad' });
+      assert.ok(url.includes('5491128429822'));
     });
   });
 

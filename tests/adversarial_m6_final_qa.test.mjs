@@ -203,7 +203,7 @@ describe('M6 QA Dimension 2: CLS Prevention Audit (Images & SVGs)', () => {
 // SUITE 4: CONVERSION FUNNEL & WHATSAPP QUIZ MODAL
 // ==============================================================================
 describe('M6 QA Dimension 3: Conversion Funnel & Quiz Modal Interception', () => {
-  test('M6.3.1: All 180 pages contain WhatsApp CTAs with official phone 573151206985', () => {
+  test('M6.3.1: All 180 pages contain WhatsApp CTAs with official phone 5491128429822', () => {
     for (const file of htmlFiles) {
       const content = fs.readFileSync(file, 'utf8');
       const relPath = path.relative(DIST_DIR, file);
