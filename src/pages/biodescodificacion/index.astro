@@ -160,6 +160,19 @@ const catalogoWhatsAppUrl = buildWhatsAppUrl({
             data-search-text={`${item.nombre} ${item.sistema} ${item.conflictoEmocional} ${item.sentidoBiologico}`.toLowerCase()}
           >
             <div>
+              <!-- Imagen Somática Editorial Realista Anti-CLS -->
+              <div class="mb-4 rounded-xl overflow-hidden bg-[#060A1A] border border-[#1E293B] aspect-[16/10] relative group">
+                <img
+                  src={`/images/dolencias/${item.slug}.webp`}
+                  alt={`Fotografía realista sobre biodescodificación de ${item.nombre}`}
+                  width="500"
+                  height="500"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                />
+              </div>
+
               <!-- Cabecera de la Tarjeta: Sistema -->
               <div class="flex items-center justify-between gap-2 mb-3">
                 <span class={`bio-badge ${getBiologicalBadgeClass(item.sistema)} inline-flex items-center text-xs font-semibold tracking-wider uppercase`}>

@@ -412,15 +412,28 @@ export interface DolenciaImageMeta {
  * Retorna la imagen somática realista y metadatos anti-CLS para cada dolencia o sistema biológico.
  */
 export function getDolenciaImage(slug: string, sistema: string, nombre: string): DolenciaImageMeta {
-  const s = (slug || '').toLowerCase();
+  const s = normalizeSlug(slug);
 
-  // 1. Asignaciones específicas por síntoma prioritario
+  // 1. Verificación de imagen dedicada de alta definición en el catálogo de 45 dolencias
+  if (s) {
+    const knownSlugs = new Set(getDolenciaSlugs());
+    if (knownSlugs.has(s)) {
+      return {
+        src: `/images/dolencias/${s}.webp`,
+        alt: `Fotografía realista sobre biodescodificación de ${nombre} y respuesta somática`,
+        width: 500,
+        height: 500,
+      };
+    }
+  }
+
+  // 2. Asignaciones específicas heredadas por síntoma prioritario
   if (s === 'ansiedad' || s === 'ataques-de-panico' || s === 'angustia-opresion-pecho' || s === 'depresion') {
     return {
       src: '/images/sintoma-estres-ansiedad.webp',
       alt: `Fotografía realista sobre biodescodificación de ${nombre} y respuesta somática`,
-      width: 400,
-      height: 400,
+      width: 500,
+      height: 500,
     };
   }
   if (s === 'insomnio') {
@@ -435,8 +448,8 @@ export function getDolenciaImage(slug: string, sistema: string, nombre: string):
     return {
       src: '/images/sintoma-migrana-cefalea.webp',
       alt: `Fotografía realista sobre biodescodificación de ${nombre} y tensión cefálica`,
-      width: 400,
-      height: 400,
+      width: 500,
+      height: 500,
     };
   }
   if (
@@ -451,8 +464,8 @@ export function getDolenciaImage(slug: string, sistema: string, nombre: string):
     return {
       src: '/images/sintoma-gastritis-digestivo.webp',
       alt: `Fotografía realista sobre biodescodificación de ${nombre} y sistema digestivo`,
-      width: 400,
-      height: 400,
+      width: 500,
+      height: 500,
     };
   }
   if (s === 'artritis-artrosis' || s === 'dolor-rodilla' || s === 'tunel-carpiano') {
@@ -473,12 +486,12 @@ export function getDolenciaImage(slug: string, sistema: string, nombre: string):
     return {
       src: '/images/sintoma-espalda-tension.webp',
       alt: `Fotografía realista sobre biodescodificación de ${nombre} y columna vertebral`,
-      width: 400,
-      height: 400,
+      width: 500,
+      height: 500,
     };
   }
 
-  // 2. Fallbacks de alta fidelidad por sistema biológico
+  // 3. Fallbacks de alta fidelidad por sistema biológico
   const sis = (sistema || '').toLowerCase();
   if (sis.includes('respiratori')) {
     return {
@@ -516,26 +529,27 @@ export function getDolenciaImage(slug: string, sistema: string, nombre: string):
     return {
       src: '/images/sintoma-espalda-tension.webp',
       alt: `Fotografía realista sobre biodescodificación de ${nombre} y sistema osteoarticular`,
-      width: 400,
-      height: 400,
+      width: 500,
+      height: 500,
     };
   }
   if (sis.includes('digestiv')) {
     return {
       src: '/images/sintoma-gastritis-digestivo.webp',
       alt: `Fotografía realista sobre biodescodificación de ${nombre} y sistema digestivo`,
-      width: 400,
-      height: 400,
+      width: 500,
+      height: 500,
     };
   }
 
   return {
     src: '/images/sintoma-estres-ansiedad.webp',
     alt: `Fotografía realista sobre biodescodificación de ${nombre}`,
-    width: 400,
-    height: 400,
+    width: 500,
+    height: 500,
   };
 }
+
 
 
 
