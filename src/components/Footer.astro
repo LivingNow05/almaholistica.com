@@ -36,6 +36,9 @@ const mainCountries = [
   'Argentina', 'Chile', 'Perú', 'Ecuador',
   'Uruguay', 'Costa Rica', 'Panamá', 'Rep. Dominicana'
 ];
+
+const instagramUrl = SITE_CONFIG.instagramUrl || 'https://www.instagram.com/almaholistica.lat';
+const instagramHandle = SITE_CONFIG.instagramHandle || '@almaholistica.lat';
 ---
 
 <footer class="w-full bg-[#060A1A] border-t border-slate-800/40 text-slate-300 font-sans mt-auto">
@@ -62,7 +65,7 @@ const mainCountries = [
         <p class="text-sm font-normal text-slate-300 dark:text-slate-400 leading-relaxed">
           Centro de biodescodificación y terapia holística online. Te acompañamos a decodificar el sentido biológico y el conflicto emocional inconsciente detrás de tus síntomas físicos para restaurar tu bienestar integral.
         </p>
-        <div class="pt-2">
+        <div class="pt-2 flex flex-col gap-3">
           <a
             href={whatsappFooterUrl}
             data-open-quiz="true"
@@ -72,6 +75,22 @@ const mainCountries = [
           >
             <span>Sesiones Online 1 a 1</span>
             <span class="transform group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">&rarr;</span>
+          </a>
+          <a
+            href={instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2.5 text-sm font-medium text-slate-300 hover:text-[#779DD1] transition-colors duration-200 group w-fit"
+            aria-label={`Instagram oficial de Alma Holística: ${instagramHandle}`}
+          >
+            <div class="w-8 h-8 rounded-full bg-[#0A1226] border border-slate-800/60 flex items-center justify-center text-slate-300 group-hover:text-[#779DD1] group-hover:border-[#779DD1]/40 transition-colors shrink-0">
+              <svg class="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </div>
+            <span class="text-sm font-medium text-slate-300 group-hover:text-white transition-colors">{instagramHandle}</span>
           </a>
         </div>
       </div>
@@ -181,11 +200,25 @@ const mainCountries = [
       <p>
         &copy; {currentYear} {SITE_CONFIG.name} (<a href="/" class="hover:text-white transition-colors duration-200">{SITE_CONFIG.url.replace('https://', '')}</a>). Todos los derechos reservados.
       </p>
-      <div class="flex items-center gap-6">
+      <div class="flex flex-wrap items-center gap-6">
         <a href="/" class="hover:text-[#779DD1] transition-colors duration-200">Inicio</a>
         <a href="/biodescodificacion" class="hover:text-[#779DD1] transition-colors duration-200">Catálogo de Dolencias</a>
         <a href="/#ciudades" class="hover:text-[#779DD1] transition-colors duration-200">Ciudades</a>
         <a href={whatsappFooterUrl} data-open-quiz="true" data-location="footer-bottom-contact" class="hover:text-[#779DD1] transition-colors duration-200">Contacto</a>
+        <a
+          href={instagramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-[#779DD1] transition-colors duration-200 flex items-center gap-1.5"
+          aria-label={`Instagram oficial ${instagramHandle}`}
+        >
+          <svg class="w-3.5 h-3.5 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          <span>Instagram</span>
+        </a>
       </div>
     </div>
 

@@ -18,6 +18,8 @@ export interface SiteConfig {
   description: string;
   url: string;
   whatsappNumber: string;
+  instagramUrl?: string;
+  instagramHandle?: string;
   defaultOgImage: string;
   author: string;
   locale: string;
@@ -36,6 +38,8 @@ export const SITE_CONFIG: SiteConfig = {
     'Plataforma de biodescodificación y terapia holística online en más de 20 países. Identifica el origen emocional de tus dolencias y agenda tu sesión inicial de diagnóstico.',
   url: 'https://almaholistica.com',
   whatsappNumber: '5491128429822',
+  instagramUrl: 'https://www.instagram.com/almaholistica.lat',
+  instagramHandle: '@almaholistica.lat',
   defaultOgImage: '/logo-mariposa-con-fondo-completo.svg',
   author: 'Alma Holística',
   locale: 'es',
