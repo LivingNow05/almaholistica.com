@@ -1,0 +1,20 @@
+---
+/**
+ * src/pages/biodescodificacion-sobre-nosotros.astro
+ * Página puente de redirección para clientes con caché previa del 301 legacy.
+ */
+return Astro.redirect('/sobre-nosotros/', 301);
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url=/sobre-nosotros/">
+  <link rel="canonical" href="https://almaholistica.com/sobre-nosotros/">
+  <title>Redirigiendo a Sobre Nosotros | Alma Holística</title>
+  <script>window.location.replace('/sobre-nosotros/');</script>
+</head>
+<body style="background: #060A1A; color: #fff; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
+  <p>Redirigiendo a <a href="/sobre-nosotros/" style="color: #779DD1;">Sobre Nosotros &rarr;</a></p>
+</body>
+</html>
