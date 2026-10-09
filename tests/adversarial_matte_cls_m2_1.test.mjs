@@ -31,7 +31,7 @@ function collectFiles(dir, extensions = ['.astro', '.css', '.ts', '.tsx', '.mjs'
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      if (entry.name === 'node_modules' || entry.name === '.astro' || entry.name === '.agents' || entry.name === '.git') {
+      if (entry.name === 'node_modules' || entry.name === '.astro' || entry.name === '.agents' || entry.name === '.git' || entry.name === 'propuestas' || entry.name === 'proposals') {
         continue;
       }
       results.push(...collectFiles(fullPath, extensions));

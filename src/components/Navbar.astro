@@ -77,11 +77,15 @@ const whatsappCtaUrl = buildWhatsAppUrl({
         <a
           href="/sobre-nosotros"
           class:list={[
-            'text-sm font-medium transition-colors hover:text-[#779DD1]',
-            currentPath.startsWith('/sobre-nosotros') ? 'text-[#779DD1] font-semibold' : 'text-slate-700 dark:text-slate-300'
+            'inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all border shadow-sm',
+            currentPath.startsWith('/sobre-nosotros')
+              ? 'bg-[#779DD1] text-[#060A1A] border-[#779DD1] font-bold'
+              : 'bg-slate-100 dark:bg-[#0A1226] text-slate-800 dark:text-slate-200 border-slate-300 dark:border-slate-700 hover:border-[#779DD1] hover:text-[#779DD1]'
           ]}
+          aria-label="Sobre Nosotros — Vivian Velásquez"
         >
-          Sobre Nosotros
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Sobre Nosotros</span>
         </a>
         <a
           href="https://share.google/otrUm918xRGNHTTkE"
@@ -90,13 +94,70 @@ const whatsappCtaUrl = buildWhatsAppUrl({
           class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-500/10 text-emerald-950 dark:text-emerald-300 border border-emerald-600/40 dark:border-emerald-500/25 hover:bg-emerald-100 dark:hover:bg-emerald-500/20 transition-all"
           title="Ver reseñas verificadas en Google"
         >
-          <span class="text-amber-500 dark:text-amber-400 text-xs">★</span>
+          <span class="text-emerald-600 dark:text-emerald-400 text-xs">★</span>
           <span>5.0 en Google</span>
         </a>
       </nav>
 
-      <!-- Botón CTA WhatsApp & Theme Toggle (Desktop) -->
-      <div class="hidden sm:flex items-center gap-3.5">
+      <!-- Botón CTA WhatsApp, Selector de Idioma & Theme Toggle (Desktop) -->
+      <div class="hidden sm:flex items-center gap-3">
+        <!-- Selector de Idioma Desktop -->
+        <div class="relative language-selector-wrapper">
+          <button
+            type="button"
+            id="lang-btn-desktop"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-[#0A1226] text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-800 hover:border-[#779DD1] transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#779DD1]"
+            aria-label="Seleccionar idioma"
+            aria-expanded="false"
+          >
+            <svg class="w-3.5 h-3.5 text-[#779DD1]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" stroke-width="1.8"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+            </svg>
+            <span class="font-bold">ES</span>
+            <svg class="w-2.5 h-2.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+
+          <!-- Menú flotante de Idioma y Cobertura -->
+          <div
+            id="lang-menu-desktop"
+            class="hidden absolute right-0 mt-2 w-56 rounded-2xl bg-white dark:bg-[#0A1226] border border-slate-200 dark:border-slate-800 shadow-2xl p-2 z-50 text-xs font-sans"
+          >
+            <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 dark:border-slate-800/80 mb-1">
+              Idioma / Language
+            </div>
+            <div
+              class="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-slate-100 dark:bg-[#0E172F] text-slate-900 dark:text-white font-semibold"
+            >
+              <span class="flex items-center gap-2">
+                <span>🇪🇸</span>
+                <span>Español (ES)</span>
+              </span>
+              <span class="text-emerald-500 font-bold">✓</span>
+            </div>
+            <a
+              href={buildWhatsAppUrl({ location: 'Language Switcher — English Inquiry' })}
+              class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#0E172F] transition-colors mt-1"
+            >
+              <span class="flex items-center gap-2">
+                <span>🇺🇸</span>
+                <span>English (EN)</span>
+              </span>
+              <span class="text-[10px] text-[#779DD1] uppercase font-bold">WhatsApp</span>
+            </a>
+            <div class="mt-2 pt-2 border-t border-slate-100 dark:border-slate-800/80">
+              <a
+                href="/#paises"
+                class="block px-3 py-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-[#779DD1] transition-colors text-[11px]"
+              >
+                🌎 Ver 20 países y monedas locales &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
         <button
           type="button"
           class="theme-toggle-btn w-10 h-10 rounded-full flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white bg-slate-100 dark:bg-[#0A1226] border border-slate-200 dark:border-slate-800 hover:border-[#779DD1] transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#779DD1]"
@@ -127,8 +188,51 @@ const whatsappCtaUrl = buildWhatsAppUrl({
         </a>
       </div>
 
-      <!-- Botón Menú Móvil & Tema -->
+      <!-- Botón Menú Móvil, Idioma & Tema -->
       <div class="flex md:hidden items-center gap-2">
+        <!-- Selector de Idioma Móvil -->
+        <div class="relative language-selector-wrapper">
+          <button
+            type="button"
+            id="lang-btn-mobile"
+            class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-[#0A1226] text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800 hover:border-[#779DD1] transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#779DD1]"
+            aria-label="Seleccionar idioma"
+            aria-expanded="false"
+          >
+            <span>🌐</span>
+            <span class="font-bold">ES</span>
+          </button>
+
+          <!-- Menú flotante móvil de Idioma -->
+          <div
+            id="lang-menu-mobile"
+            class="hidden absolute right-0 mt-2 w-52 rounded-2xl bg-white dark:bg-[#0A1226] border border-slate-200 dark:border-slate-800 shadow-2xl p-2 z-50 text-xs font-sans"
+          >
+            <div class="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 dark:border-slate-800/80 mb-1">
+              Idioma / Language
+            </div>
+            <div class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-[#0E172F] text-slate-900 dark:text-white font-semibold">
+              <span>🇪🇸 Español (ES)</span>
+              <span class="text-emerald-500 font-bold">✓</span>
+            </div>
+            <a
+              href={buildWhatsAppUrl({ location: 'Mobile Lang — English Inquiry' })}
+              class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#0E172F] transition-colors mt-1"
+            >
+              <span>🇺🇸 English (EN)</span>
+              <span class="text-[10px] text-[#779DD1] uppercase font-bold">Online</span>
+            </a>
+            <div class="mt-2 pt-1.5 border-t border-slate-100 dark:border-slate-800/80">
+              <a
+                href="/#paises"
+                class="block px-2 py-1 text-[10px] text-slate-500 dark:text-slate-400 hover:text-[#779DD1] transition-colors"
+              >
+                🌎 Ver 20 Países y Monedas &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
         <button
           type="button"
           class="theme-toggle-btn p-2.5 rounded-full text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white bg-slate-100 dark:bg-[#0A1226] border border-slate-200 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-[#779DD1]"
@@ -185,14 +289,21 @@ const whatsappCtaUrl = buildWhatsAppUrl({
     >
       Ciudades & Cobertura
     </a>
+    <!-- Botón Destacado Sobre Nosotros en Menú Móvil -->
     <a
       href="/sobre-nosotros"
       class:list={[
-        'block px-3 py-2 rounded-lg text-base font-medium transition-colors',
-        currentPath.startsWith('/sobre-nosotros') ? 'text-[#779DD1] font-semibold bg-slate-100 dark:bg-[#0A1226]' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#0A1226] hover:text-[#779DD1]'
+        'flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base font-semibold transition-all border shadow-sm',
+        currentPath.startsWith('/sobre-nosotros')
+          ? 'bg-[#779DD1] text-[#060A1A] border-[#779DD1] font-bold'
+          : 'bg-slate-100 dark:bg-[#0A1226] text-slate-900 dark:text-white border-slate-300 dark:border-slate-700 hover:border-[#779DD1]'
       ]}
     >
-      Sobre Nosotros (Fundadora)
+      <div class="flex items-center gap-2.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Sobre Nosotros (Vivian Velásquez)</span>
+      </div>
+      <span class="text-xs">&rarr;</span>
     </a>
     <a
       href="https://share.google/otrUm918xRGNHTTkE"
@@ -203,6 +314,19 @@ const whatsappCtaUrl = buildWhatsAppUrl({
       <span>⭐ Opiniones en Google (5.0)</span>
       <span class="text-xs">&rarr;</span>
     </a>
+    <!-- Selector Rápido de Idioma Móvil -->
+    <div class="flex items-center justify-between px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-[#0A1226] border border-slate-200 dark:border-slate-800 text-xs">
+      <span class="text-slate-600 dark:text-slate-400 font-medium">Idioma:</span>
+      <div class="flex items-center gap-2">
+        <span class="px-2.5 py-1 rounded-md bg-[#779DD1] text-[#060A1A] font-bold">ES</span>
+        <a
+          href={buildWhatsAppUrl({ location: 'Mobile Nav — English' })}
+          class="px-2.5 py-1 rounded-md bg-slate-200 dark:bg-[#0E172F] text-slate-700 dark:text-slate-300 hover:text-white font-medium transition-colors"
+        >
+          EN
+        </a>
+      </div>
+    </div>
     <div class="pt-2">
       <a
         href={whatsappCtaUrl}
@@ -235,6 +359,46 @@ const whatsappCtaUrl = buildWhatsAppUrl({
       closeIcon.classList.toggle('hidden');
     });
   }
+
+  // Alternador de Idioma (Desktop y Móvil)
+  const langBtnDesktop = document.getElementById('lang-btn-desktop');
+  const langMenuDesktop = document.getElementById('lang-menu-desktop');
+  const langBtnMobile = document.getElementById('lang-btn-mobile');
+  const langMenuMobile = document.getElementById('lang-menu-mobile');
+
+  if (langBtnDesktop && langMenuDesktop) {
+    langBtnDesktop.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = langMenuDesktop.classList.contains('hidden');
+      langMenuDesktop.classList.toggle('hidden');
+      langBtnDesktop.setAttribute('aria-expanded', String(isHidden));
+      if (langMenuMobile) langMenuMobile.classList.add('hidden');
+    });
+  }
+
+  if (langBtnMobile && langMenuMobile) {
+    langBtnMobile.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = langMenuMobile.classList.contains('hidden');
+      langMenuMobile.classList.toggle('hidden');
+      langBtnMobile.setAttribute('aria-expanded', String(isHidden));
+      if (langMenuDesktop) langMenuDesktop.classList.add('hidden');
+    });
+  }
+
+  // Cerrar menús de idioma al hacer clic fuera
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement | null;
+    if (!target) return;
+    if (langMenuDesktop && !langMenuDesktop.contains(target) && !langBtnDesktop?.contains(target)) {
+      langMenuDesktop.classList.add('hidden');
+      langBtnDesktop?.setAttribute('aria-expanded', 'false');
+    }
+    if (langMenuMobile && !langMenuMobile.contains(target) && !langBtnMobile?.contains(target)) {
+      langMenuMobile.classList.add('hidden');
+      langBtnMobile?.setAttribute('aria-expanded', 'false');
+    }
+  });
 
   // Alternador de Tema (Modo Claro / Modo Oscuro)
   const themeToggles = document.querySelectorAll('.theme-toggle-btn');

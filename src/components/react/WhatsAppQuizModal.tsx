@@ -372,10 +372,11 @@ export function WhatsAppQuizModal({
       aria-describedby="quiz-modal-description"
     >
       {/*
-        Backdrop translúcido con desenfoque suave (R4: bg-slate-950/80 backdrop-blur-sm).
+        Backdrop 100% sólido mate (#060A1A).
+        Lienzo abisal sereno sin filtros, transparencias ni capas difuminadas.
       */}
       <div
-        className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm cursor-pointer animate-backdrop-fade"
+        className="fixed inset-0 bg-[#060A1A] cursor-pointer animate-backdrop-fade"
         onClick={handleClose}
         aria-hidden="true"
       />
