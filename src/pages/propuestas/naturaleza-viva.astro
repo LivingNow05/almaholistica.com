@@ -1,0 +1,408 @@
+---
+import ProposalLayout from '../../layouts/ProposalLayout.astro';
+import ProposalDock from '../../components/proposals/ProposalDock.astro';
+import { buildWhatsAppUrl } from '../../config/site';
+
+const whatsappUrl = buildWhatsAppUrl({ location: 'Propuesta 02 — Naturaleza viva' });
+const bodySignals = [
+  { code: '01', title: 'Cabeza', text: 'Exigencia · control · anticipación', className: 'signal--head' },
+  { code: '02', title: 'Pecho', text: 'Alerta · separación · territorio', className: 'signal--chest' },
+  { code: '03', title: 'Abdomen', text: 'Digestión · límites · aceptación', className: 'signal--abdomen' },
+  { code: '04', title: 'Espalda', text: 'Sostén · carga · desvalorización', className: 'signal--back' },
+];
+---
+
+<ProposalLayout
+  title="Naturaleza viva — Propuesta 02 | Alma Holística"
+  description="Una dirección visual inmersiva, orgánica y contemporánea para Alma Holística."
+  themeColor="#071711"
+>
+  <div class="proposal-page nature-page">
+    <section class="hero">
+      <header class="site-header">
+        <a href="/" class="logo" aria-label="Alma Holística, ir al inicio">
+          <img src="/logo-mariposa-con-fondo-completo.svg" alt="" width="44" height="44" />
+          <span>ALMA/HOLÍSTICA</span>
+        </a>
+        <nav aria-label="Navegación de la propuesta">
+          <a href="#mapa">Mapa corporal</a>
+          <a href="#metodo">Método</a>
+          <a href="/biodescodificacion">Biblioteca</a>
+        </nav>
+        <a href={whatsappUrl} class="nav-cta"><span></span> Sesiones abiertas</a>
+      </header>
+
+      <div class="hero__texture" aria-hidden="true"></div>
+      <div class="hero__orb hero__orb--one" aria-hidden="true"></div>
+      <div class="hero__orb hero__orb--two" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <div class="hero__index">
+          <span>Biodescodificación</span>
+          <span>20 países · Online</span>
+        </div>
+        <h1>Tu síntoma<br />no es <em>ruido.</em><br /><span>Es información.</span></h1>
+        <div class="hero__bottom">
+          <p>
+            Observamos la conexión entre cuerpo, emoción e historia para que aquello que hoy duele
+            empiece a tener un sentido.
+          </p>
+          <a href={whatsappUrl} class="round-cta" aria-label="Comenzar evaluación">
+            <span>Comenzar</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 17 10-10M8 7h9v9" /></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__marquee" aria-hidden="true">
+        <span>CUERPO PRESENTE</span><i>✦</i><span>EMOCIÓN CONSCIENTE</span><i>✦</i><span>HISTORIA INTEGRADA</span><i>✦</i><span>CUERPO PRESENTE</span>
+      </div>
+    </section>
+
+    <main>
+      <section class="proof">
+        <p>Un espacio para mirar el síntoma desde otro lugar.</p>
+        <div class="proof__metrics">
+          <div><strong>45</strong><span>guías para comprender<br />lo que sientes</span></div>
+          <div><strong>1:1</strong><span>acompañamiento íntimo<br />y confidencial</span></div>
+          <div><strong>100%</strong><span>online, estés<br />donde estés</span></div>
+        </div>
+      </section>
+
+      <section class="body-map" id="mapa">
+        <div class="body-map__heading">
+          <span>01 — El cuerpo</span>
+          <h2>¿Dónde sientes<br /><em>la señal?</em></h2>
+          <p>Explora el territorio corporal. Cada zona nos da una primera pista para iniciar la conversación.</p>
+        </div>
+
+        <div class="body-map__stage">
+          <div class="body-map__rings" aria-hidden="true"><i></i><i></i><i></i></div>
+          <img
+            src="/images/portada-catalogo-biodescodificacion.webp"
+            alt="Figura humana en meditación con representación del sistema nervioso y los órganos"
+            width="1376"
+            height="768"
+            loading="lazy"
+          />
+          {bodySignals.map((signal) => (
+            <a href="/biodescodificacion" class={`signal ${signal.className}`}>
+              <span>{signal.code}</span>
+              <div><strong>{signal.title}</strong><small>{signal.text}</small></div>
+              <i>↗</i>
+            </a>
+          ))}
+        </div>
+
+        <a class="catalog-link" href="/biodescodificacion">
+          Explorar las 45 señales del cuerpo
+          <span>↗</span>
+        </a>
+      </section>
+
+      <section class="manifesto">
+        <div class="manifesto__image">
+          <img src="/images/fases-terapia.webp" alt="Flujo de transformación representado por ondas y una mariposa" width="1376" height="768" loading="lazy" />
+        </div>
+        <div class="manifesto__copy">
+          <span>02 — El origen</span>
+          <h2>Lo que no encontró palabras, <em>encontró un cuerpo.</em></h2>
+          <p>
+            El síntoma puede ser la expresión visible de una experiencia que el sistema sigue procesando.
+            La toma de conciencia abre una nueva forma de relacionarte con ella.
+          </p>
+          <a href="#metodo">Descubrir cómo trabajamos <b>↓</b></a>
+        </div>
+      </section>
+
+      <section class="method" id="metodo">
+        <header class="method__header">
+          <div><span>03 — El recorrido</span><h2>Del síntoma<br />a la <em>conciencia.</em></h2></div>
+          <p>Tres movimientos, una conversación y un proceso diseñado para devolverte claridad.</p>
+        </header>
+        <div class="method__steps">
+          <article>
+            <div class="method__icon"><span></span></div>
+            <small>FASE / 01</small>
+            <h3>Nombrar</h3>
+            <p>Escuchamos lo que ocurre en tu cuerpo y el contexto en el que comenzó.</p>
+          </article>
+          <article>
+            <div class="method__icon method__icon--two"><span></span></div>
+            <small>FASE / 02</small>
+            <h3>Comprender</h3>
+            <p>Relacionamos la señal física con los patrones emocionales de tu historia.</p>
+          </article>
+          <article>
+            <div class="method__icon method__icon--three"><span></span></div>
+            <small>FASE / 03</small>
+            <h3>Integrar</h3>
+            <p>Creamos nuevos recursos para que el cuerpo pueda salir del estado de alerta.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="testimonial">
+        <div class="testimonial__symbol" aria-hidden="true">✦</div>
+        <blockquote>
+          “Por primera vez dejé de sentir que mi cuerpo estaba en mi contra.
+          Entender el patrón me dio una calma que no encontraba.”
+        </blockquote>
+        <div class="testimonial__person"><span>EM</span><p>Elena · sesión online<br /><small>Testimonio anonimizado</small></p></div>
+      </section>
+
+      <section class="closing">
+        <div class="closing__copy">
+          <span>Tu cuerpo ya empezó la conversación.</span>
+          <h2>Ahora puedes<br /><em>responderle.</em></h2>
+        </div>
+        <a href={whatsappUrl} class="closing__cta">
+          <span>Iniciar evaluación</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 17 10-10M8 7h9v9" /></svg>
+        </a>
+      </section>
+    </main>
+
+    <footer>
+      <a href="/" class="footer-logo">ALMA/HOLÍSTICA</a>
+      <p>Proceso complementario de autoconocimiento. No sustituye diagnóstico, tratamiento ni atención médica.</p>
+      <div><a href="/biodescodificacion">Biblioteca</a><a href={whatsappUrl}>Contacto</a><span>©26</span></div>
+    </footer>
+
+    <ProposalDock active="organica" />
+  </div>
+</ProposalLayout>
+
+<style>
+  :global(html) { background: #071711; }
+
+  .nature-page {
+    --night: #071711;
+    --forest: #0e2a1f;
+    --moss: #254f34;
+    --leaf: #8bc779;
+    --acid: #caff8a;
+    --mist: #e9f7df;
+    --cream: #f1f0df;
+    overflow: hidden;
+    color: var(--mist);
+    background: var(--night);
+    font-family: 'Manrope', sans-serif;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(202,255,138,.22);
+    background:
+      radial-gradient(circle at 72% 22%, rgba(83,145,88,.27), transparent 23%),
+      radial-gradient(circle at 22% 100%, rgba(42,100,64,.35), transparent 32%),
+      var(--night);
+  }
+
+  .site-header {
+    position: relative;
+    z-index: 5;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    width: min(1480px, calc(100% - 72px));
+    height: 92px;
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(233,247,223,.17);
+  }
+
+  .logo { display: flex; align-items: center; gap: 12px; width: max-content; color: #fff !important; font-size: 13px; font-weight: 800; letter-spacing: -.02em; text-decoration: none; }
+  .logo img { width: 38px; height: 38px; border-radius: 50%; }
+  .site-header nav { display: flex; gap: 34px; }
+  .site-header nav a { color: rgba(233,247,223,.72); font-size: 11px; font-weight: 700; text-decoration: none; }
+  .site-header nav a:hover { color: var(--acid); }
+  .nav-cta { display: flex; align-items: center; gap: 9px; justify-self: end; color: var(--acid) !important; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
+  .nav-cta span { width: 8px; height: 8px; border-radius: 50%; background: var(--acid); box-shadow: 0 0 0 5px rgba(202,255,138,.1); }
+
+  .hero__content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    width: min(1480px, calc(100% - 72px));
+    min-height: calc(100vh - 142px);
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 66px 0 100px;
+  }
+
+  .hero__index { display: flex; justify-content: space-between; width: min(640px, 48vw); margin: 0 0 22px auto; color: rgba(233,247,223,.55); font-size: 9px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+  .hero h1 { max-width: 1250px; margin: 0; font-size: clamp(5.5rem, 12.5vw, 13rem); font-weight: 800; letter-spacing: -.095em; line-height: .72; text-transform: uppercase; }
+  .hero h1 em { color: var(--acid); font-style: normal; }
+  .hero h1 > span { display: block; margin-left: 25%; color: transparent; -webkit-text-stroke: 1px rgba(233,247,223,.7); }
+
+  .hero__bottom { display: grid; grid-template-columns: minmax(280px, 470px) auto; align-items: center; gap: 60px; margin: 48px 8% 0 25%; }
+  .hero__bottom p { margin: 0; color: rgba(233,247,223,.73); font-size: clamp(.92rem, 1.2vw, 1.08rem); line-height: 1.7; }
+  .round-cta { display: flex; width: 112px; height: 112px; align-items: center; flex-direction: column; justify-content: center; border-radius: 50%; color: var(--night) !important; background: var(--acid); font-size: 11px; font-weight: 800; text-decoration: none; transition: transform 250ms cubic-bezier(.2,.7,.2,1); }
+  .round-cta:hover { transform: rotate(-8deg) scale(1.05); }
+  .round-cta svg { width: 23px; height: 23px; margin-top: 7px; fill: none; stroke: currentColor; stroke-width: 1.7; }
+
+  .hero__orb { position: absolute; z-index: 1; border-radius: 44% 56% 61% 39% / 41% 36% 64% 59%; filter: blur(1px); pointer-events: none; }
+  .hero__orb--one { top: 10%; right: -15%; width: min(62vw, 890px); aspect-ratio: 1; background: radial-gradient(circle at 35% 32%, #86bd65 0, #326743 34%, #123423 68%); opacity: .42; animation: morph 14s ease-in-out infinite alternate; }
+  .hero__orb--two { bottom: -35%; left: -17%; width: 52vw; aspect-ratio: 1; border: 1px solid rgba(202,255,138,.3); transform: rotate(30deg); }
+  .hero__texture { position: absolute; z-index: 2; inset: 0; opacity: .17; background-image: radial-gradient(rgba(233,247,223,.8) .55px, transparent .55px); background-size: 9px 9px; mask-image: linear-gradient(90deg, transparent 0, #000 40%, #000 100%); pointer-events: none; }
+  @keyframes morph { to { border-radius: 58% 42% 39% 61% / 51% 61% 39% 49%; transform: rotate(7deg) scale(1.04); } }
+
+  .hero__marquee { position: absolute; z-index: 4; bottom: 0; left: 0; display: flex; width: max-content; align-items: center; gap: 30px; padding: 17px 0; color: var(--night); background: var(--acid); font-size: 10px; font-weight: 800; letter-spacing: .12em; white-space: nowrap; }
+  .hero__marquee::before, .hero__marquee::after { content: ''; width: 20px; }
+  .hero__marquee i { font-style: normal; }
+
+  .proof { display: grid; grid-template-columns: .7fr 1.3fr; gap: 70px; width: min(1320px, calc(100% - 72px)); margin: 0 auto; padding: 100px 0; }
+  .proof > p { max-width: 330px; margin: 0; color: rgba(233,247,223,.58); font-size: 13px; line-height: 1.65; }
+  .proof__metrics { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .proof__metrics div { display: flex; min-height: 135px; flex-direction: column; justify-content: space-between; padding: 0 28px; border-left: 1px solid rgba(233,247,223,.17); }
+  .proof__metrics strong { color: var(--acid); font-size: clamp(2.7rem, 4.5vw, 5.2rem); font-weight: 500; letter-spacing: -.08em; line-height: .8; }
+  .proof__metrics span { color: rgba(233,247,223,.67); font-size: 10px; font-weight: 700; letter-spacing: .08em; line-height: 1.45; text-transform: uppercase; }
+
+  .body-map { position: relative; padding: 100px max(36px, calc((100vw - 1320px) / 2)) 130px; color: var(--night); background: var(--cream); }
+  .body-map__heading { display: grid; grid-template-columns: .4fr 1.1fr .55fr; align-items: end; gap: 40px; margin-bottom: 74px; }
+  .body-map__heading > span, .manifesto__copy > span, .method__header span { align-self: start; color: #426350; font-size: 9px; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; }
+  .body-map h2, .manifesto h2, .method h2, .closing h2 { margin: 0; font-family: 'Newsreader', serif; font-weight: 400; letter-spacing: -.055em; }
+  .body-map h2 { font-size: clamp(4rem, 7vw, 7.6rem); line-height: .82; }
+  .body-map h2 em, .manifesto h2 em, .method h2 em, .closing h2 em { color: #527e52; font-weight: 400; }
+  .body-map__heading p { margin: 0 0 6px; color: #52635c; font-size: 13px; line-height: 1.65; }
+
+  .body-map__stage { position: relative; min-height: 730px; overflow: hidden; border-radius: 2px; background: #0b1a17; }
+  .body-map__stage > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% center; opacity: .78; }
+  .body-map__stage::after { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(7,23,17,.98), rgba(7,23,17,.12) 48%, rgba(7,23,17,.52)); content: ''; }
+  .body-map__rings { position: absolute; z-index: 2; top: 50%; right: 22%; width: 520px; aspect-ratio: 1; transform: translate(50%, -50%); }
+  .body-map__rings i { position: absolute; inset: calc(var(--i, 0) * 45px); border: 1px solid rgba(202,255,138,.2); border-radius: 50%; }
+  .body-map__rings i:nth-child(2) { --i: 1; }
+  .body-map__rings i:nth-child(3) { --i: 2; }
+
+  .signal { position: absolute; z-index: 4; display: grid; grid-template-columns: 30px 1fr auto; align-items: center; gap: 12px; width: min(330px, 36%); padding: 16px 18px; border: 1px solid rgba(202,255,138,.3); color: var(--mist) !important; background: rgba(7,23,17,.82); text-decoration: none; backdrop-filter: blur(8px); transition: 180ms ease; }
+  .signal:hover { color: var(--night) !important; background: var(--acid); transform: translateX(5px); }
+  .signal > span { color: var(--acid); font-size: 9px; font-weight: 800; }
+  .signal:hover > span { color: var(--night); }
+  .signal div { display: flex; flex-direction: column; gap: 3px; }
+  .signal strong { font-size: 12px; }
+  .signal small { opacity: .66; font-size: 9px; }
+  .signal > i { font-style: normal; }
+  .signal--head { top: 14%; left: 5%; }
+  .signal--chest { top: 37%; left: 12%; }
+  .signal--abdomen { bottom: 27%; left: 5%; }
+  .signal--back { right: 5%; bottom: 10%; }
+
+  .catalog-link { display: flex; align-items: center; justify-content: space-between; margin-top: 24px; padding: 23px 0; border-bottom: 1px solid rgba(7,23,17,.3); font-size: 12px; font-weight: 800; text-decoration: none; text-transform: uppercase; }
+  .catalog-link span { font-size: 22px; }
+
+  .manifesto { display: grid; grid-template-columns: 1.08fr .92fr; min-height: 780px; }
+  .manifesto__image { position: relative; min-height: 680px; overflow: hidden; }
+  .manifesto__image::after { position: absolute; inset: 0; background: linear-gradient(90deg, transparent 65%, var(--forest)); content: ''; }
+  .manifesto__image img { width: 100%; height: 100%; object-fit: cover; }
+  .manifesto__copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(60px, 8vw, 130px); background: var(--forest); }
+  .manifesto__copy > span { color: var(--leaf); }
+  .manifesto h2 { margin-top: 34px; color: var(--mist); font-size: clamp(3.7rem, 6vw, 6.6rem); line-height: .88; }
+  .manifesto h2 em { color: var(--acid); }
+  .manifesto__copy p { max-width: 530px; margin: 34px 0 0; color: rgba(233,247,223,.65); font-size: 14px; line-height: 1.75; }
+  .manifesto__copy a { width: max-content; margin-top: 40px; padding-bottom: 7px; border-bottom: 1px solid rgba(202,255,138,.4); color: var(--acid) !important; font-size: 11px; font-weight: 800; text-decoration: none; text-transform: uppercase; }
+  .manifesto__copy a b { margin-left: 14px; }
+
+  .method { padding: clamp(90px, 11vw, 160px) max(36px, calc((100vw - 1320px) / 2)); background: #0a1e16; }
+  .method__header { display: grid; grid-template-columns: 1fr .52fr; align-items: end; gap: 60px; }
+  .method__header span { display: block; margin-bottom: 28px; color: var(--leaf); }
+  .method h2 { color: var(--mist); font-size: clamp(4rem, 7vw, 7.8rem); line-height: .82; }
+  .method h2 em { color: var(--acid); }
+  .method__header > p { max-width: 420px; margin: 0 0 8px; color: rgba(233,247,223,.6); font-size: 14px; line-height: 1.7; }
+  .method__steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 80px; background: rgba(233,247,223,.14); }
+  .method__steps article { min-height: 460px; padding: 42px; background: #0a1e16; transition: background 220ms ease; }
+  .method__steps article:hover { background: var(--forest); }
+  .method__icon { position: relative; width: 100%; height: 150px; margin-bottom: 42px; }
+  .method__icon::before, .method__icon span { position: absolute; top: 50%; left: 50%; width: 98px; height: 98px; border: 1px solid rgba(202,255,138,.5); border-radius: 50%; content: ''; transform: translate(-50%,-50%); }
+  .method__icon span { width: 48px; height: 48px; background: var(--acid); }
+  .method__icon--two::before { width: 120px; height: 70px; border-radius: 50%; transform: translate(-50%,-50%) rotate(30deg); }
+  .method__icon--two span { width: 70px; height: 70px; background: transparent; }
+  .method__icon--three::before { width: 110px; height: 110px; border-radius: 55% 45% 62% 38%; }
+  .method__icon--three span { width: 52px; height: 76px; border-radius: 50% 50% 12% 12%; }
+  .method__steps small { color: var(--leaf); font-size: 8px; font-weight: 800; letter-spacing: .17em; }
+  .method__steps h3 { margin: 15px 0 18px; color: var(--mist); font: 400 2.9rem/1 'Newsreader', serif; }
+  .method__steps p { max-width: 310px; margin: 0; color: rgba(233,247,223,.58); font-size: 12px; line-height: 1.7; }
+
+  .testimonial { display: flex; min-height: 680px; align-items: center; flex-direction: column; justify-content: center; padding: 100px 30px; color: var(--night); text-align: center; background: var(--acid); }
+  .testimonial__symbol { margin-bottom: 35px; font-size: 32px; }
+  .testimonial blockquote { max-width: 1070px; margin: 0; font: 400 clamp(3rem, 6vw, 6.3rem)/.98 'Newsreader', serif; letter-spacing: -.05em; }
+  .testimonial__person { display: flex; align-items: center; gap: 13px; margin-top: 44px; text-align: left; }
+  .testimonial__person > span { display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid rgba(7,23,17,.5); border-radius: 50%; font-size: 10px; font-weight: 800; }
+  .testimonial__person p { margin: 0; font-size: 11px; font-weight: 800; line-height: 1.35; }
+  .testimonial__person small { opacity: .6; font-size: 8px; letter-spacing: .1em; text-transform: uppercase; }
+
+  .closing { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 60px; padding: clamp(100px, 12vw, 180px) max(36px, calc((100vw - 1320px) / 2)); background: var(--night); }
+  .closing__copy > span { display: block; margin-bottom: 28px; color: var(--leaf); font-size: 9px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+  .closing h2 { font-size: clamp(4.5rem, 9vw, 10rem); line-height: .78; }
+  .closing h2 em { color: var(--acid); }
+  .closing__cta { display: flex; width: 190px; height: 190px; align-items: center; flex-direction: column; justify-content: center; border: 1px solid var(--acid); border-radius: 50%; color: var(--acid) !important; font-size: 12px; font-weight: 800; text-decoration: none; transition: 250ms ease; }
+  .closing__cta:hover { color: var(--night) !important; background: var(--acid); transform: rotate(-7deg); }
+  .closing__cta svg { width: 34px; height: 34px; margin-top: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+
+  footer { display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: center; gap: 30px; padding: 38px max(36px, calc((100vw - 1320px) / 2)) 108px; border-top: 1px solid rgba(233,247,223,.14); color: rgba(233,247,223,.52); background: var(--night); font-size: 9px; }
+  .footer-logo { color: var(--mist) !important; font-size: 12px; font-weight: 800; text-decoration: none; }
+  footer p { max-width: 550px; margin: 0; line-height: 1.55; }
+  footer > div { display: flex; justify-content: flex-end; gap: 22px; }
+  footer > div a { text-decoration: none; }
+
+  @media (max-width: 980px) {
+    .site-header { grid-template-columns: 1fr auto; }
+    .site-header nav { display: none; }
+    .hero__index { width: 75%; }
+    .hero__bottom { margin-left: 12%; }
+    .proof { grid-template-columns: 1fr; }
+    .body-map__heading { grid-template-columns: 1fr 1.5fr; }
+    .body-map__heading p { grid-column: 2; }
+    .manifesto { grid-template-columns: 1fr; }
+    .manifesto__image { min-height: 520px; }
+    .manifesto__image::after { background: linear-gradient(0deg, var(--forest), transparent 35%); }
+    .method__header { grid-template-columns: 1fr; }
+    .method__steps article { padding: 28px; }
+    .closing { grid-template-columns: 1fr; }
+    .closing__cta { width: 150px; height: 150px; }
+  }
+
+  @media (max-width: 700px) {
+    .site-header, .hero__content, .proof { width: calc(100% - 36px); }
+    .site-header { height: 76px; }
+    .logo span { font-size: 11px; }
+    .logo img { width: 34px; height: 34px; }
+    .nav-cta { font-size: 8px; }
+    .hero__content { min-height: calc(100vh - 76px); padding-top: 74px; }
+    .hero__index { width: 100%; }
+    .hero h1 { font-size: clamp(4.4rem, 24vw, 7.2rem); line-height: .76; }
+    .hero h1 > span { margin: 7px 0 0 8%; }
+    .hero__bottom { grid-template-columns: 1fr auto; gap: 16px; margin: 42px 0 0; }
+    .round-cta { width: 88px; height: 88px; }
+    .proof { padding: 74px 0; }
+    .proof__metrics { grid-template-columns: 1fr; gap: 28px; }
+    .proof__metrics div { min-height: 110px; padding: 0 0 20px; border-bottom: 1px solid rgba(233,247,223,.17); border-left: none; }
+    .body-map { padding: 78px 18px; }
+    .body-map__heading { grid-template-columns: 1fr; }
+    .body-map__heading p { grid-column: auto; }
+    .body-map h2 { font-size: 4.2rem; }
+    .body-map__stage { min-height: 760px; }
+    .body-map__stage > img { object-position: 66% center; }
+    .body-map__stage::after { background: linear-gradient(0deg, rgba(7,23,17,.96), rgba(7,23,17,.2) 80%); }
+    .signal { width: calc(100% - 32px); }
+    .signal--head { top: 4%; left: 16px; }
+    .signal--chest { top: 17%; left: 16px; }
+    .signal--abdomen { bottom: 17%; left: 16px; }
+    .signal--back { right: 16px; bottom: 4%; }
+    .manifesto__image { min-height: 360px; }
+    .manifesto__copy { padding: 72px 20px 84px; }
+    .manifesto h2 { font-size: 4.1rem; }
+    .method { padding: 82px 18px; }
+    .method h2 { font-size: 4.2rem; }
+    .method__steps { grid-template-columns: 1fr; margin-top: 55px; }
+    .method__steps article { min-height: 370px; }
+    .testimonial { min-height: 590px; padding-right: 20px; padding-left: 20px; }
+    .testimonial blockquote { font-size: 3.25rem; }
+    .closing { padding: 100px 20px 130px; }
+    .closing h2 { font-size: 5rem; }
+    footer { grid-template-columns: 1fr; padding-right: 20px; padding-left: 20px; }
+    footer > div { justify-content: flex-start; }
+  }
+</style>

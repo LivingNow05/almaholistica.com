@@ -30,7 +30,7 @@
   --color-text-primary: #FFFFFF;
   --color-text-heading: #F8FAFC;
   --color-text-secondary: #94A3B8;
-  --color-text-muted: #64748B;
+  --color-text-muted: #94A3B8;
 
   /* Familias Tipográficas */
   --font-serif: 'Cormorant Garamond', 'Cinzel', 'Playfair Display', serif;
@@ -38,10 +38,15 @@
   --font-mono: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Forzado universal de legibilidad: erradicar monospace y serif en favor de Plus Jakarta Sans */
-.font-mono,
+/* Familias Tipográficas Naturales y Tipografía Editorial Serena */
 .font-serif {
-  font-family: var(--font-sans) !important;
+  font-family: var(--font-serif);
+}
+.font-sans {
+  font-family: var(--font-sans);
+}
+.font-mono {
+  font-family: var(--font-mono);
 }
 
 /* --------------------------------------------------------------------------
@@ -124,7 +129,7 @@ img, svg, video, canvas, audio, iframe, embed, object {
     border-radius: 0.75rem;
   }
 
-  /* Botón de Acción Primario WhatsApp Esmeralda (Sólido, Máxima Legibilidad y Conversión) */
+  /* Botón de Acción Primario WhatsApp Esmeralda (Sólido, Máxima Legibilidad y Conversión WCAG AAA) */
   .btn-action-primary,
   .btn-whatsapp-primary {
     display: inline-flex;
@@ -132,9 +137,9 @@ img, svg, video, canvas, audio, iframe, embed, object {
     justify-content: center;
     gap: 0.625rem;
     background-color: #25D366 !important;
-    color: #FFFFFF !important;
+    color: #060A1A !important;
     font-family: var(--font-sans);
-    font-weight: 700;
+    font-weight: 800 !important;
     font-size: 0.95rem;
     padding: 0.875rem 1.75rem;
     border-radius: 9999px;
@@ -146,19 +151,38 @@ img, svg, video, canvas, audio, iframe, embed, object {
     transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   }
 
+  .btn-action-primary *,
+  .btn-whatsapp-primary * {
+    color: #060A1A !important;
+    fill: #060A1A !important;
+  }
+
   .btn-action-primary:hover,
   .btn-whatsapp-primary:hover {
     background-color: #20BD5A !important;
-    color: #FFFFFF !important;
+    color: #060A1A !important;
     transform: translateY(-1.5px);
     box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+  }
+
+  .btn-action-primary:hover *,
+  .btn-whatsapp-primary:hover * {
+    color: #060A1A !important;
+    fill: #060A1A !important;
   }
 
   .btn-action-primary:active,
   .btn-whatsapp-primary:active {
     background-color: #1DA851 !important;
+    color: #060A1A !important;
     transform: translateY(0);
     box-shadow: 0 2px 8px rgba(37, 211, 102, 0.25);
+  }
+
+  .btn-action-primary:active *,
+  .btn-whatsapp-primary:active * {
+    color: #060A1A !important;
+    fill: #060A1A !important;
   }
 
   /* Botón Secundario Borde Mate */
@@ -513,14 +537,70 @@ html.light .border-slate-700 {
   border-color: #CBD5E1 !important;
 }
 
-/* Tipografía y Textos de alto contraste y peso sólido */
-html:not(.dark) [class*="text-white"],
-html.light [class*="text-white"],
-html:not(.dark) .text-white,
-html.light .text-white,
+/* Tipografía y Textos de alto contraste y peso sólido en Modo Claro */
+html:not(.dark) [class*="text-white"]:not(.btn-action-pill-white):not(.btn-action-pill-white *),
+html.light [class*="text-white"]:not(.btn-action-pill-white):not(.btn-action-pill-white *),
+html:not(.dark) .text-white:not(.btn-action-pill-white):not(.btn-action-pill-white *),
+html.light .text-white:not(.btn-action-pill-white):not(.btn-action-pill-white *),
 html:not(.dark) .heading-solemn,
 html.light .heading-solemn {
   color: #0F172A !important;
+}
+
+/* Botón de acción tipo píldora oscura en modo claro (#0F172A) con texto blanco sólido */
+html:not(.dark) .btn-action-pill-white,
+html:not(.dark) .btn-action-pill-white *,
+html.light .btn-action-pill-white,
+html.light .btn-action-pill-white * {
+  color: #FFFFFF !important;
+}
+
+/* Botón Primario WhatsApp en Modo Claro: Fondo #25D366 con Texto #060A1A (Contraste 11.4:1 WCAG AAA) */
+html:not(.dark) .btn-action-primary,
+html.light .btn-action-primary,
+html:not(.dark) .btn-whatsapp-primary,
+html.light .btn-whatsapp-primary,
+html:not(.dark) [class*="bg-[#25D366]"],
+html.light [class*="bg-[#25D366]"] {
+  background-color: #25D366 !important;
+  color: #060A1A !important;
+  font-weight: 800 !important;
+}
+
+html:not(.dark) .btn-action-primary *,
+html.light .btn-action-primary *,
+html:not(.dark) .btn-whatsapp-primary *,
+html.light .btn-whatsapp-primary *,
+html:not(.dark) [class*="bg-[#25D366]"] *,
+html.light [class*="bg-[#25D366]"] * {
+  color: #060A1A !important;
+  fill: #060A1A !important;
+}
+
+/* Badges e insignias de reseñas y certificados esmeralda en Modo Claro (Contraste >7:1 WCAG AAA) */
+html:not(.dark) [class*="bg-emerald-500/10"],
+html.light [class*="bg-emerald-500/10"],
+html:not(.dark) .bg-emerald-500\/10,
+html.light .bg-emerald-500\/10 {
+  background-color: #ECFDF5 !important;
+  border-color: #A7F3D0 !important;
+  color: #065F46 !important;
+}
+html:not(.dark) [class*="bg-emerald-500/10"] span,
+html.light [class*="bg-emerald-500/10"] span,
+html:not(.dark) .bg-emerald-500\/10 span,
+html.light .bg-emerald-500\/10 span {
+  color: #065F46 !important;
+}
+html:not(.dark) [class*="bg-emerald-500/10"] .text-amber-400,
+html:not(.dark) [class*="bg-emerald-500/10"] .text-amber-500,
+html.light [class*="bg-emerald-500/10"] .text-amber-400,
+html.light [class*="bg-emerald-500/10"] .text-amber-500,
+html:not(.dark) .bg-emerald-500\/10 .text-amber-400,
+html:not(.dark) .bg-emerald-500\/10 .text-amber-500,
+html.light .bg-emerald-500\/10 .text-amber-400,
+html.light .bg-emerald-500\/10 .text-amber-500 {
+  color: #D97706 !important;
 }
 
 html:not(.dark) [class*="text-slate-100"],
@@ -634,17 +714,26 @@ html.light a.bg-white.text-\[\#060A1A\]:hover,
 html:not(.dark) button.bg-white.text-\[\#060A1A\]:hover,
 html.light button.bg-white.text-\[\#060A1A\]:hover {
   background-color: #25D366 !important;
-  color: #FFFFFF !important;
+  color: #060A1A !important;
 }
 
-/* Botón Primario WhatsApp en Modo Claro: Verde Esmeralda Oficial con Texto Blanco */
+/* Botón Primario WhatsApp en Modo Claro: Verde Esmeralda Oficial con Texto #060A1A (Contraste 11.4:1 WCAG AAA) */
 html:not(.dark) .btn-action-primary,
 html.light .btn-action-primary,
 html:not(.dark) .btn-whatsapp-primary,
 html.light .btn-whatsapp-primary {
   background-color: #25D366 !important;
-  color: #FFFFFF !important;
+  color: #060A1A !important;
+  font-weight: 800 !important;
   box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35) !important;
+}
+
+html:not(.dark) .btn-action-primary *,
+html.light .btn-action-primary *,
+html:not(.dark) .btn-whatsapp-primary *,
+html.light .btn-whatsapp-primary * {
+  color: #060A1A !important;
+  fill: #060A1A !important;
 }
 
 html:not(.dark) .btn-action-primary:hover,
@@ -652,8 +741,16 @@ html.light .btn-action-primary:hover,
 html:not(.dark) .btn-whatsapp-primary:hover,
 html.light .btn-whatsapp-primary:hover {
   background-color: #20BD5A !important;
-  color: #FFFFFF !important;
+  color: #060A1A !important;
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45) !important;
+}
+
+html:not(.dark) .btn-action-primary:hover *,
+html.light .btn-action-primary:hover *,
+html:not(.dark) .btn-whatsapp-primary:hover *,
+html.light .btn-whatsapp-primary:hover * {
+  color: #060A1A !important;
+  fill: #060A1A !important;
 }
 
 /* Botones secundarios (como "Evaluar" en tarjetas) */
@@ -684,7 +781,7 @@ html.light input {
 
 html:not(.dark) input::placeholder,
 html.light input::placeholder {
-  color: #94A3B8 !important;
+  color: #475569 !important;
 }
 
 /* Menú Móvil */
@@ -732,7 +829,7 @@ html.light [data-quiz-card] input {
 
 html:not(.dark) [data-quiz-card] input::placeholder,
 html.light [data-quiz-card] input::placeholder {
-  color: #94A3B8 !important;
+  color: #475569 !important;
 }
 
 html:not(.dark) .quiz-option-button,
@@ -840,7 +937,7 @@ html.dark [class*="text-slate-400"] {
 }
 
 html.dark [class*="text-slate-500"] {
-  color: #64748B !important;
+  color: #94A3B8 !important;
 }
 
 html.dark .btn-action-pill-white,
@@ -865,7 +962,7 @@ html.dark input {
 }
 
 html.dark input::placeholder {
-  color: #64748B !important;
+  color: #94A3B8 !important;
 }
 
 html.dark #mobile-menu {

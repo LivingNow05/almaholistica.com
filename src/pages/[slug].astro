@@ -246,47 +246,106 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
         <div class="lg:col-span-7 xl:col-span-8 flex flex-col items-start text-left">
           
           <!-- Micro-código de cabecera con punto verde pulsante -->
-          <div class="inline-flex items-center gap-2.5 text-xs font-sans font-semibold tracking-wider text-[#779DD1] uppercase mb-6">
+          <div class="inline-flex items-center gap-2.5 text-xs font-sans font-semibold tracking-wider text-[#779DD1] uppercase mb-4 order-1">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span>SESIONES ONLINE EN VIVO • {pais.toUpperCase()}</span>
           </div>
 
           <!-- Titular Monumental Plus Jakarta Sans (H1 Dinámico en Caja Mixta Natural) -->
-          <h1 class="font-sans font-extrabold text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.12] text-white max-w-4xl mb-6">
+          <h1 class="font-sans font-extrabold text-2xl sm:text-4xl lg:text-5xl tracking-tight leading-[1.15] text-white max-w-4xl mb-3 order-2">
             {h1Title}
           </h1>
 
-          <!-- Subtítulo del Hero (Legibilidad Superior) -->
-          <p class="text-base sm:text-lg lg:text-xl text-slate-700 dark:text-slate-200 font-sans font-medium max-w-3xl leading-relaxed mb-4">
-            {subtitleText}
-          </p>
+          <!-- Lead empático centrado en el síntoma y subtítulo -->
+          <div class="space-y-2 mb-6 max-w-3xl order-3">
+            <p class="text-sm sm:text-base text-slate-200 font-sans font-medium leading-relaxed">
+              ¿Tu cuerpo manifiesta un síntoma recurrente? Decodifica el origen emocional de tu dolor con acompañamiento individual en vivo en {cityName}.
+            </p>
+            <p class="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+              {subtitleText}
+            </p>
+          </div>
 
-          <!-- Propuesta de valor local -->
-          <p class="text-sm sm:text-base text-slate-300 font-sans max-w-3xl leading-relaxed mb-8">
-            {metaDesc}
-          </p>
+          <!-- Selector Rápido Móvil de Dolencias Frecuentes (Micro-chips táctiles) -->
+          <div class="w-full max-w-3xl mb-6 order-4 sm:order-5">
+            <span class="text-xs font-bold uppercase tracking-wider text-[#779DD1] block mb-2.5">
+              ¿Qué síntoma deseas consultar en {cityName}?
+            </span>
+            <div class="flex flex-wrap gap-2">
+              {['Ansiedad', 'Gastritis', 'Dolor Lumbar', 'Migrañas', 'Colon Irritable', 'Insomnio'].map((sintoma) => (
+                <button
+                  type="button"
+                  data-open-quiz="true"
+                  data-symptom={sintoma}
+                  data-city={cityName}
+                  data-city-slug={rawSlug}
+                  class="px-3.5 py-2 rounded-full text-xs font-sans font-semibold bg-[#0E172F] text-slate-200 border border-slate-700 hover:border-[#779DD1] active:bg-[#779DD1] active:text-[#060A1A] transition-all flex items-center gap-1.5 cursor-pointer"
+                >
+                  <span>{sintoma}</span>
+                  <span class="text-[#779DD1] text-[10px] font-bold" aria-hidden="true">&rarr;</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <!-- Acciones Principales: Botón WhatsApp Esmeralda Oficial (#25D366) + Explorar Dolencias -->
+          <div class="w-full max-w-3xl mb-8 order-5 sm:order-7">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-5 w-full sm:w-auto mb-3">
+              <a
+                href={fallbackWhatsAppUrl}
+                data-open-quiz="true"
+                data-city={cityName}
+                data-city-slug={rawSlug}
+                class="btn-whatsapp-primary inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-base font-sans font-bold shadow-lg focus:outline-none focus:ring-2 focus:ring-[#25D366]"
+              >
+                <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 448 512" width="20" height="20" aria-hidden="true">
+                  <path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                </svg>
+                <span>Iniciar Evaluación en {cityName}</span>
+              </a>
+
+              <a
+                href="/biodescodificacion"
+                class="group inline-flex items-center gap-2 text-sm text-slate-300 hover:text-[#779DD1] font-sans font-semibold py-3.5 px-4 transition-colors"
+              >
+                <span>[EXPLORAR DOLENCIAS FÍSICAS]</span>
+                <span class="group-hover:translate-x-1.5 transition-transform duration-300" aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+
+            <!-- Enlace sutil hacia la sección de tarifas -->
+            <div class="pt-1">
+              <a
+                href="#precios-heading"
+                class="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-[#779DD1] transition-colors font-sans"
+              >
+                <span>¿Deseas consultar tarifas detalladas?</span>
+                <span class="text-[#779DD1] font-semibold underline underline-offset-2">Ver Inversión y Formas de Pago &darr;</span>
+              </a>
+            </div>
+          </div>
 
           <!-- Indicadores Clave de la Sesión (Swiss Bio-Tech con bordes coloreados) -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 w-full max-w-3xl">
-            <div class="card-matte p-5 border-l-4 border-l-[#779DD1] flex flex-col justify-center">
-              <span class="text-xs font-sans font-medium uppercase tracking-wider text-slate-400 mb-1">Rango por Sesión</span>
-              <span class="text-lg sm:text-xl font-bold font-sans text-white">{precio}</span>
-              <span class="text-xs text-slate-400 mt-1 font-sans">Moneda local: {moneda}</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 w-full max-w-3xl order-6 sm:order-4">
+            <div class="card-matte p-4 sm:p-5 border-l-4 border-l-[#779DD1] flex flex-col justify-center">
+              <span class="text-xs font-sans font-medium uppercase tracking-wider text-slate-400 mb-1">Primera Orientación</span>
+              <span class="text-base sm:text-lg font-bold font-sans text-white">Llamada de 15 Min</span>
+              <span class="text-xs text-emerald-400 mt-1 font-sans font-semibold">100% Sin Costo • Vía WhatsApp</span>
             </div>
-            <div class="card-matte p-5 border-l-4 border-l-emerald-400 flex flex-col justify-center">
+            <div class="card-matte p-4 sm:p-5 border-l-4 border-l-emerald-400 flex flex-col justify-center">
               <span class="text-xs font-sans font-medium uppercase tracking-wider text-slate-400 mb-1">Modalidad</span>
-              <span class="text-lg sm:text-xl font-bold font-sans text-white">100% Online en Vivo</span>
-              <span class="text-xs text-slate-400 mt-1 font-sans">Vía Zoom / Google Meet</span>
+              <span class="text-base sm:text-lg font-bold font-sans text-white">100% Online en Vivo</span>
+              <span class="text-xs text-slate-400 mt-1 font-sans">Vía Zoom / Meet</span>
             </div>
-            <div class="card-matte p-5 border-l-4 border-l-[#F97316] flex flex-col justify-center">
+            <div class="card-matte p-4 sm:p-5 border-l-4 border-l-[#F97316] flex flex-col justify-center">
               <span class="text-xs font-sans font-medium uppercase tracking-wider text-slate-400 mb-1">Enfoque Clínico</span>
-              <span class="text-lg sm:text-xl font-bold font-sans text-white">Biodescodificación</span>
+              <span class="text-base sm:text-lg font-bold font-sans text-white">Biodescodificación</span>
               <span class="text-xs text-slate-400 mt-1 font-sans">Desactivación de origen biológico</span>
             </div>
           </div>
 
-          <!-- Consultas Frecuentes: Bloque Fotográfico de Identificación de Síntomas -->
-          <div class="w-full max-w-3xl mb-10 p-4 sm:p-5 rounded-2xl bg-[#0A1226] border border-slate-800/40">
+          <!-- Consultas Frecuentes: Bloque Fotográfico de Identificación de Síntomas (Desktop/Tablet) -->
+          <div class="w-full max-w-3xl mb-8 p-4 sm:p-5 rounded-2xl bg-[#0A1226] border border-slate-800/40 hidden sm:block order-7 sm:order-6">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
               <div class="flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
@@ -418,30 +477,6 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
             </div>
           </div>
 
-          <!-- Acciones Principales: Botón WhatsApp Esmeralda Oficial (#25D366) + Explorar Dolencias -->
-          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-5 w-full sm:w-auto">
-            <a
-              href={fallbackWhatsAppUrl}
-              data-open-quiz="true"
-              data-city={cityName}
-              data-city-slug={rawSlug}
-              class="btn-whatsapp-primary inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-base font-sans font-bold shadow-lg focus:outline-none focus:ring-2 focus:ring-[#25D366]"
-            >
-              <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 448 512" width="20" height="20" aria-hidden="true">
-                <path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
-              </svg>
-              <span>Iniciar Evaluación en {cityName}</span>
-            </a>
-
-            <a
-              href="/biodescodificacion"
-              class="group inline-flex items-center gap-2 text-sm text-slate-300 hover:text-[#779DD1] font-sans font-semibold py-3.5 px-4 transition-colors"
-            >
-              <span>[EXPLORAR DOLENCIAS FÍSICAS]</span>
-              <span class="group-hover:translate-x-1.5 transition-transform duration-300" aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-
         </div>
 
         <!-- Columna Derecha: Fotografía Realista en Contenedor Circular de Sesión Online -->
@@ -476,15 +511,15 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
   </section>
 
   <!-- ========================================================================= -->
-  <!-- SÍNTESIS CLÍNICA Y CITABILIDAD RAG / GEO (GOOGLE AI & PERPLEXITY)         -->
+  <!-- ATENCIÓN CLÍNICA Y METODOLOGÍA HIPERLOCAL                                 -->
   <!-- ========================================================================= -->
   {geoCitabilidad && (
-    <section class="w-full bg-[#060A1A] py-10 sm:py-14 border-b border-slate-800/40" aria-label={`Dictamen Clínico de Biodescodificación en ${cityName}`}>
+    <section class="w-full bg-[#060A1A] py-10 sm:py-14 border-b border-slate-800/40" aria-label={`Atención Clínica y Metodología en ${cityName}`}>
       <div class="max-w-7xl mx-auto px-6 lg:px-12">
         <div class="card-matte p-6 sm:p-8 rounded-2xl border border-slate-800 border-l-4 border-l-[#779DD1] relative">
-          <div class="flex items-center gap-2 text-xs font-mono font-semibold tracking-wider text-[#779DD1] uppercase mb-3">
+          <div class="flex items-center gap-2 text-xs font-sans font-bold tracking-wider text-[#779DD1] uppercase mb-3">
             <span class="w-2 h-2 rounded-full bg-[#779DD1] animate-pulse"></span>
-            <span>DICTAMEN CLÍNICO // SÍNTESIS RAG & GEO EN {cityName.toUpperCase()}</span>
+            <span>ATENCIÓN CLÍNICA Y METODOLOGÍA EN {cityName.toUpperCase()}</span>
           </div>
           <p class="text-sm sm:text-base text-slate-200 font-sans leading-relaxed">
             {geoCitabilidad}
@@ -535,27 +570,40 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
   <!-- HISTORIA LOCAL Y CONTEXTO BIOLÓGICO                                       -->
   <!-- ========================================================================= -->
   {historiaLocal && (
-    <section class="w-full bg-[#060A1A] py-16 sm:py-20 border-b border-slate-800/40" aria-labelledby="historia-local-heading">
+    <section class="w-full bg-[#060A1A] py-10 sm:py-16 border-b border-slate-800/40" aria-labelledby="historia-local-heading">
       <div class="max-w-7xl mx-auto px-6 lg:px-12">
-        <div class="card-matte p-6 sm:p-10 rounded-2xl border border-slate-800 max-w-4xl">
-          <div class="flex items-center gap-2 mb-4 text-xs font-sans font-bold uppercase tracking-wider text-[#779DD1]">
-            <span class="w-2 h-2 rounded-full bg-[#779DD1]"></span>
-            <span>CONTEXTO URBANO Y SALUD EMOCIONAL</span>
-          </div>
-          <h2 id="historia-local-heading" class="font-sans font-bold text-2xl sm:text-3xl lg:text-4xl text-white uppercase tracking-tight mb-6">
-            Vivir y Sanar en {cityName}
-          </h2>
-          <div class="text-slate-300 font-sans leading-relaxed space-y-4">
+        <details class="card-matte rounded-2xl border border-slate-800 max-w-4xl group transition-all duration-300">
+          <summary class="p-6 sm:p-8 flex items-center justify-between cursor-pointer list-none select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38BDF8] rounded-2xl [&::-webkit-details-marker]:hidden">
+            <div class="space-y-1.5 pr-4">
+              <div class="flex items-center gap-2 text-xs font-sans font-bold uppercase tracking-wider text-[#779DD1]">
+                <span class="w-2 h-2 rounded-full bg-[#779DD1]"></span>
+                <span>CONTEXTO URBANO Y SALUD EMOCIONAL</span>
+              </div>
+              <h2 id="historia-local-heading" class="font-sans font-bold text-xl sm:text-2xl text-white uppercase tracking-tight">
+                Vivir y Sanar en {cityName}
+              </h2>
+              <p class="text-xs sm:text-sm text-slate-400 font-sans">
+                Cómo las demandas cotidianas y el entorno de {cityName} impactan en tus síntomas físicos.
+              </p>
+            </div>
+            <div class="w-9 h-9 rounded-full bg-[#0E172F] border border-slate-700 flex items-center justify-center shrink-0 text-[#779DD1] transition-transform duration-300 group-open:rotate-180">
+              <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </summary>
+          
+          <div class="px-6 pb-6 sm:px-8 sm:pb-8 pt-2 text-slate-300 font-sans leading-relaxed space-y-4 border-t border-slate-800/60">
             <p class="text-base sm:text-lg">
               {historiaLocal}
             </p>
-            <div class="p-5 rounded-xl bg-[#0E172F] border-l-4 border-l-[#779DD1] mt-6">
+            <div class="p-5 rounded-xl bg-[#0E172F] border-l-4 border-l-[#779DD1] mt-4">
               <p class="text-sm sm:text-base text-slate-200 font-sans italic">
                 "El organismo no produce un síntoma al azar: cada molestia gástrica, contractura o cuadro de ansiedad es la manifestación biológica de un conflicto que no ha sido verbalizado ni procesado conscientemente."
               </p>
             </div>
           </div>
-        </div>
+        </details>
       </div>
     </section>
   )}
@@ -615,9 +663,9 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
   <!-- ========================================================================= -->
   <!-- COMPARATIVA CLÍNICA: ONLINE VS PRESENCIAL EN LA CIUDAD                    -->
   <!-- ========================================================================= -->
-  <section class="w-full bg-[#060A1A] py-16 sm:py-24 border-b border-slate-800/40" aria-labelledby="comparativa-online-heading">
+  <section class="w-full bg-[#060A1A] py-12 sm:py-20 border-b border-slate-800/40" aria-labelledby="comparativa-online-heading">
     <div class="max-w-7xl mx-auto px-6 lg:px-12">
-      <div class="max-w-3xl mb-12">
+      <div class="max-w-3xl mb-8">
         <div class="inline-flex items-center gap-2 text-xs font-sans font-bold tracking-wider text-[#38BDF8] uppercase mb-3">
           <span class="w-2 h-2 rounded-full bg-[#38BDF8]"></span>
           <span>CRITERIO CLÍNICO Y EFICIENCIA // {cityName.toUpperCase()}</span>
@@ -626,12 +674,26 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
           ¿Por Qué Sesión Online y No un Consultorio Presencial en {cityName}?
         </h2>
         <p class="text-base text-slate-300 font-sans leading-relaxed">
-          Comparativa directa entre la consulta virtual de alta precisión de Alma Holística y la atención tradicional en consultorios físicos locales.
+          Atención terapéutica de alta precisión 1 a 1 desde tu hogar: sin tráfico urbano, con total intimidad y turnos en 24-48h.
         </p>
       </div>
 
-      <div class="card-matte rounded-2xl border border-slate-800 overflow-hidden">
-        <div class="overflow-x-auto">
+      <details class="card-matte rounded-2xl border border-slate-800 overflow-hidden group transition-all duration-300">
+        <summary class="p-5 sm:p-6 bg-[#0A1226] flex items-center justify-between cursor-pointer list-none select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38BDF8] [&::-webkit-details-marker]:hidden">
+          <div class="flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            <span class="text-sm sm:text-base font-bold font-sans text-white">
+              Ver Comparativa Detallada: Consulta Online vs Consultorio Presencial (5 Criterios)
+            </span>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-[#0E172F] border border-slate-700 flex items-center justify-center shrink-0 text-[#38BDF8] transition-transform duration-300 group-open:rotate-180">
+            <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </summary>
+
+        <div class="overflow-x-auto border-t border-slate-800">
           <table class="w-full text-left border-collapse">
             <thead>
               <tr class="bg-[#0A1226] border-b border-slate-800 text-xs font-sans uppercase tracking-wider text-slate-400">
@@ -694,7 +756,7 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
             </tbody>
           </table>
         </div>
-      </div>
+      </details>
     </div>
   </section>
 
@@ -917,39 +979,65 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
             </div>
           ))}
         </div>
+        <div class="mt-6 text-center">
+          <a
+            href={SITE_CONFIG.googleReviewsUrl || "https://share.google/otrUm918xRGNHTTkE"}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-50 dark:bg-emerald-500/10 hover:bg-emerald-100 dark:hover:bg-emerald-500/20 text-emerald-950 dark:text-emerald-300 border border-emerald-600/40 dark:border-emerald-500/30 text-xs font-bold uppercase tracking-wider transition-all duration-200"
+          >
+            <span class="text-amber-500 dark:text-amber-400">★★★★★</span>
+            <span>Ver opiniones y testimonios certificados en Google Reviews &rarr;</span>
+          </a>
+        </div>
       </div>
 
       <!-- Aval Científico y Metodológico (PNI, Hamer, Flèche, Lipton) -->
-      <div class="card-matte p-6 sm:p-8 rounded-2xl border border-slate-800 mb-8">
-        <div class="inline-flex items-center gap-2 text-xs font-sans font-bold tracking-wider text-[#38BDF8] uppercase mb-3">
-          <span class="w-2 h-2 rounded-full bg-[#38BDF8]"></span>
-          <span>MARCO CIENTÍFICO Y BASES BIOLÓGICAS</span>
+      <details class="card-matte rounded-2xl border border-slate-800 mb-8 group transition-all duration-300">
+        <summary class="p-6 sm:p-8 flex items-center justify-between cursor-pointer list-none select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#38BDF8] rounded-2xl [&::-webkit-details-marker]:hidden">
+          <div class="space-y-1.5 pr-4">
+            <div class="inline-flex items-center gap-2 text-xs font-sans font-bold tracking-wider text-[#38BDF8] uppercase">
+              <span class="w-2 h-2 rounded-full bg-[#38BDF8]"></span>
+              <span>MARCO CIENTÍFICO Y BASES BIOLÓGICAS</span>
+            </div>
+            <h3 class="text-lg sm:text-xl font-bold font-sans text-white">
+              Pilares Metodológicos de la Consulta
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-400 font-sans">
+              Fundamentación clínica en Psiconeuroinmunología, Dr. Hamer, Christian Flèche y Dr. Bruce Lipton.
+            </p>
+          </div>
+          <div class="w-9 h-9 rounded-full bg-[#0E172F] border border-slate-700 flex items-center justify-center shrink-0 text-[#38BDF8] transition-transform duration-300 group-open:rotate-180">
+            <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </summary>
+
+        <div class="px-6 pb-6 sm:px-8 sm:pb-8 pt-2 border-t border-slate-800/60">
+          <p class="text-sm sm:text-base text-slate-300 font-sans leading-relaxed mb-6">
+            {autoridadCientifica}
+          </p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-slate-800/80 text-xs font-mono text-slate-300">
+            <div class="p-2.5 rounded-lg bg-[#0E172F] border border-slate-800 text-center">
+              <span class="text-[#38BDF8] font-semibold block">PNI Clínica</span>
+              <span class="text-[11px] text-slate-400">Psiconeuroinmunología</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-[#0E172F] border border-slate-800 text-center">
+              <span class="text-[#38BDF8] font-semibold block">Dr. R.G. Hamer</span>
+              <span class="text-[11px] text-slate-400">5 Leyes Biológicas</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-[#0E172F] border border-slate-800 text-center">
+              <span class="text-[#38BDF8] font-semibold block">Christian Flèche</span>
+              <span class="text-[11px] text-slate-400">Descodificación Biológica</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-[#0E172F] border border-slate-800 text-center">
+              <span class="text-[#38BDF8] font-semibold block">Dr. Bruce Lipton</span>
+              <span class="text-[11px] text-slate-400">Epigenética y Célula</span>
+            </div>
+          </div>
         </div>
-        <h3 class="text-lg sm:text-xl font-bold font-sans text-white mb-3">
-          Pilares Metodológicos de la Consulta
-        </h3>
-        <p class="text-sm sm:text-base text-slate-300 font-sans leading-relaxed mb-4">
-          {autoridadCientifica}
-        </p>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-slate-800/80 text-xs font-mono text-slate-300">
-          <div class="p-2.5 rounded-lg bg-[#0E172F] border border-slate-800 text-center">
-            <span class="text-[#38BDF8] font-semibold block">PNI Clínica</span>
-            <span class="text-[11px] text-slate-400">Psiconeuroinmunología</span>
-          </div>
-          <div class="p-2.5 rounded-lg bg-[#0E172F] border border-slate-800 text-center">
-            <span class="text-[#38BDF8] font-semibold block">Dr. R.G. Hamer</span>
-            <span class="text-[11px] text-slate-400">5 Leyes Biológicas</span>
-          </div>
-          <div class="p-2.5 rounded-lg bg-[#0E172F] border border-slate-800 text-center">
-            <span class="text-[#38BDF8] font-semibold block">Christian Flèche</span>
-            <span class="text-[11px] text-slate-400">Descodificación Biológica</span>
-          </div>
-          <div class="p-2.5 rounded-lg bg-[#0E172F] border border-slate-800 text-center">
-            <span class="text-[#38BDF8] font-semibold block">Dr. Bruce Lipton</span>
-            <span class="text-[11px] text-slate-400">Epigenética y Célula</span>
-          </div>
-        </div>
-      </div>
+      </details>
 
       <!-- Descargo de Responsabilidad Médica y Compromiso Ético -->
       <div class="card-matte p-6 rounded-2xl border-l-4 border-l-slate-600 border border-slate-800">

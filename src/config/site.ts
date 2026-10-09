@@ -20,6 +20,7 @@ export interface SiteConfig {
   whatsappNumber: string;
   instagramUrl?: string;
   instagramHandle?: string;
+  googleReviewsUrl?: string;
   defaultOgImage: string;
   author: string;
   locale: string;
@@ -40,6 +41,7 @@ export const SITE_CONFIG: SiteConfig = {
   whatsappNumber: '5491128429822',
   instagramUrl: 'https://www.instagram.com/almaholistica.lat',
   instagramHandle: '@almaholistica.lat',
+  googleReviewsUrl: 'https://share.google/otrUm918xRGNHTTkE',
   defaultOgImage: '/logo-mariposa-con-fondo-completo.svg',
   author: 'Alma Holística',
   locale: 'es',
@@ -48,6 +50,7 @@ export const SITE_CONFIG: SiteConfig = {
     { label: 'Inicio', href: '/' },
     { label: 'Biodescodificación', href: '/biodescodificacion' },
     { label: 'Ciudades', href: '/#ciudades' },
+    { label: 'Sobre Nosotros', href: '/sobre-nosotros' },
     { label: 'Agendar Evaluación', href: 'https://wa.me/5491128429822', isCta: true }
   ]
 } as const;

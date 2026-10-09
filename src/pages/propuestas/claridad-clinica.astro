@@ -1,0 +1,399 @@
+---
+import ProposalLayout from '../../layouts/ProposalLayout.astro';
+import ProposalDock from '../../components/proposals/ProposalDock.astro';
+import { buildWhatsAppUrl } from '../../config/site';
+
+const whatsappUrl = buildWhatsAppUrl({ location: 'Propuesta 03 — Claridad clínica' });
+const concerns = [
+  { title: 'Ansiedad', category: 'Sistema nervioso', image: '/images/dolencias/ansiedad.webp', href: '/biodescodificacion/ansiedad', tone: 'blue' },
+  { title: 'Gastritis', category: 'Sistema digestivo', image: '/images/dolencias/gastritis.webp', href: '/biodescodificacion/gastritis', tone: 'lime' },
+  { title: 'Lumbalgia', category: 'Sistema osteoarticular', image: '/images/dolencias/lumbalgia.webp', href: '/biodescodificacion/lumbalgia', tone: 'coral' },
+  { title: 'Insomnio', category: 'Sueño y regulación', image: '/images/dolencias/insomnio.webp', href: '/biodescodificacion/insomnio', tone: 'violet' },
+];
+---
+
+<ProposalLayout
+  title="Claridad clínica — Propuesta 03 | Alma Holística"
+  description="Una dirección visual luminosa, modular y confiable para Alma Holística."
+  themeColor="#f7f8fc"
+>
+  <div class="proposal-page clinical-page">
+    <header class="site-header">
+      <a href="/" class="logo" aria-label="Alma Holística, ir al inicio">
+        <img src="/logo-mariposa-con-fondo-completo.svg" alt="" width="42" height="42" />
+        <span>Alma Holística</span>
+      </a>
+      <nav aria-label="Navegación de la propuesta">
+        <a href="#sintomas">Síntomas</a>
+        <a href="#metodo">Cómo funciona</a>
+        <a href="#confianza">Confianza</a>
+      </nav>
+      <a href={whatsappUrl} class="nav-cta">Evaluar mi caso <span>↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero__copy">
+          <div class="eyebrow"><span>●</span> Acompañamiento online 1 a 1</div>
+          <h1>Entender lo que sientes también es parte de <em>sentirte mejor.</em></h1>
+          <p>
+            Conecta tus síntomas con su contexto emocional en un proceso claro,
+            personalizado y seguro.
+          </p>
+          <div class="hero__actions">
+            <a href={whatsappUrl} class="button button--primary">Iniciar evaluación <span>→</span></a>
+            <a href="#metodo" class="button button--ghost">Ver cómo funciona</a>
+          </div>
+          <div class="hero__checks">
+            <span><i>✓</i> Sesión confidencial</span>
+            <span><i>✓</i> 60–75 minutos</span>
+            <span><i>✓</i> Atención en español</span>
+          </div>
+        </div>
+
+        <div class="hero__dashboard">
+          <article class="session-card">
+            <img src="/images/sesion-online-en-casa.webp" alt="Sesión individual de acompañamiento online" width="1024" height="1024" />
+            <div class="session-card__badge"><span></span> Sesión online</div>
+            <div class="session-card__caption"><strong>Un espacio solo para ti</strong><span>Desde cualquier lugar</span></div>
+          </article>
+          <article class="pulse-card">
+            <span class="pulse-card__label">Estado del proceso</span>
+            <div class="pulse-card__graphic" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+            <strong>Escuchar → Comprender → Integrar</strong>
+          </article>
+          <article class="reach-card">
+            <span>Presencia</span>
+            <strong>20+</strong>
+            <small>países</small>
+          </article>
+          <article class="rating-card">
+            <div>★★★★★</div>
+            <strong>Acompañamiento humano</strong>
+            <span>Sin juicios. A tu ritmo.</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="trust-strip" id="confianza">
+        <div><span>01</span><p><strong>Privado</strong>Conversación confidencial</p></div>
+        <div><span>02</span><p><strong>Personal</strong>Tu historia, no una fórmula</p></div>
+        <div><span>03</span><p><strong>Complementario</strong>Siempre junto a tu atención médica</p></div>
+        <div><span>04</span><p><strong>Accesible</strong>Atención online internacional</p></div>
+      </section>
+
+      <section class="concerns" id="sintomas">
+        <header class="section-header">
+          <div>
+            <span class="section-kicker">Biblioteca de síntomas / 45 guías</span>
+            <h2>Empieza por lo que<br />tu cuerpo te muestra.</h2>
+          </div>
+          <div>
+            <p>Información clara para dar el primer paso sin sentirte abrumado.</p>
+            <a href="/biodescodificacion">Ver biblioteca completa <span>↗</span></a>
+          </div>
+        </header>
+
+        <div class="concerns__grid">
+          {concerns.map((item, index) => (
+            <a href={item.href} class={`concern-card concern-card--${item.tone}`}>
+              <div class="concern-card__top"><span>0{index + 1}</span><span>↗</span></div>
+              <div class="concern-card__image"><img src={item.image} alt="" width="500" height="500" loading="lazy" /></div>
+              <div class="concern-card__copy"><small>{item.category}</small><h3>{item.title}</h3><p>Comprender su posible contexto emocional</p></div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="method" id="metodo">
+        <aside class="method__aside">
+          <span class="section-kicker">Tu recorrido / 3 pasos</span>
+          <h2>Un proceso<br />simple y claro.</h2>
+          <p>Sabes qué esperar en cada etapa y mantienes el control sobre tu proceso.</p>
+          <a href={whatsappUrl} class="button button--light">Comenzar ahora <span>→</span></a>
+        </aside>
+
+        <div class="method__content">
+          <article>
+            <span class="method__number">01</span>
+            <div class="method__copy"><small>2 minutos</small><h3>Cuéntanos qué sientes</h3><p>Responde una evaluación breve sobre el síntoma, su duración y cómo impacta tu vida cotidiana.</p></div>
+            <div class="method__visual method__visual--form" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+          </article>
+          <article>
+            <span class="method__number">02</span>
+            <div class="method__copy"><small>60–75 minutos</small><h3>Exploramos tu historia</h3><p>En una sesión online 1 a 1 identificamos patrones, detonantes y vínculos emocionales relevantes.</p></div>
+            <div class="method__visual method__visual--connect" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+          </article>
+          <article>
+            <span class="method__number">03</span>
+            <div class="method__copy"><small>A tu ritmo</small><h3>Integramos lo comprendido</h3><p>Recibes una orientación concreta y prácticas que te ayudan a sostener la nueva perspectiva.</p></div>
+            <div class="method__visual method__visual--integrate" aria-hidden="true"><i></i><i></i><i></i></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="evidence">
+        <div class="evidence__image">
+          <img src="/images/eje-mente-cuerpo.webp" alt="Representación anatómica de la conexión entre mente y cuerpo" width="1376" height="768" loading="lazy" />
+          <span>Conexión mente–cuerpo</span>
+        </div>
+        <div class="evidence__copy">
+          <span class="section-kicker">Una mirada integrativa</span>
+          <h2>Tu salud no cabe<br />en una sola casilla.</h2>
+          <p>
+            Nuestro acompañamiento observa la dimensión emocional sin negar la física.
+            Por eso trabajamos como complemento y nunca como sustituto de la atención médica.
+          </p>
+          <ul>
+            <li><i>✓</i><span><strong>Lenguaje comprensible</strong>Sin tecnicismos innecesarios</span></li>
+            <li><i>✓</i><span><strong>Expectativas responsables</strong>Sin promesas absolutas</span></li>
+            <li><i>✓</i><span><strong>Decisiones informadas</strong>Tú eliges cada paso</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="closing">
+        <div>
+          <span class="section-kicker">Cuando estés listo/a</span>
+          <h2>Da el primer paso<br />con <em>claridad.</em></h2>
+        </div>
+        <div class="closing__action">
+          <p>Cuéntanos qué estás sintiendo. La evaluación inicial toma menos de dos minutos.</p>
+          <a href={whatsappUrl} class="button button--primary">Evaluar mi caso <span>→</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-brand"><img src="/logo-mariposa-con-fondo-completo.svg" alt="" width="36" height="36" /><strong>Alma Holística</strong></div>
+      <p>La biodescodificación es un acompañamiento complementario de autoconocimiento. No reemplaza diagnóstico ni tratamiento médico.</p>
+      <div><a href="/biodescodificacion">Síntomas</a><a href={whatsappUrl}>Contacto</a><span>© 2026</span></div>
+    </footer>
+
+    <ProposalDock active="claridad" />
+  </div>
+</ProposalLayout>
+
+<style>
+  :global(html) { background: #f7f8fc; }
+
+  .clinical-page {
+    --white: #fff;
+    --cloud: #f7f8fc;
+    --lavender: #e7eaff;
+    --ink: #111b3f;
+    --muted: #66708d;
+    --blue: #3158ff;
+    --blue-dark: #1e3ed1;
+    --lime: #d9ff72;
+    --coral: #ff9b83;
+    --violet: #b9a7ff;
+    color: var(--ink);
+    background: var(--cloud);
+    font-family: 'Manrope', sans-serif;
+  }
+
+  .site-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    width: min(1440px, calc(100% - 64px));
+    height: 86px;
+    margin: 0 auto;
+    border-bottom: 1px solid #dfe2ee;
+  }
+
+  .logo { display: flex; align-items: center; gap: 11px; width: max-content; font-size: 15px; font-weight: 800; letter-spacing: -.035em; text-decoration: none; }
+  .logo img { width: 38px; height: 38px; border-radius: 50%; }
+  .site-header nav { display: flex; gap: 32px; }
+  .site-header nav a { color: var(--muted); font-size: 11px; font-weight: 700; text-decoration: none; }
+  .site-header nav a:hover { color: var(--blue); }
+  .nav-cta { justify-self: end; padding: 12px 18px; border-radius: 9px; color: #fff !important; background: var(--ink); font-size: 11px; font-weight: 700; text-decoration: none; transition: background 180ms ease; }
+  .nav-cta:hover { background: var(--blue); }
+  .nav-cta span { margin-left: 8px; }
+
+  .hero {
+    display: grid;
+    grid-template-columns: .95fr 1.05fr;
+    align-items: center;
+    gap: clamp(40px, 7vw, 110px);
+    width: min(1440px, calc(100% - 64px));
+    min-height: calc(100vh - 86px);
+    margin: 0 auto;
+    padding: 78px 0 92px;
+  }
+
+  .eyebrow { margin-bottom: 26px; color: var(--blue); font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .eyebrow span { margin-right: 8px; color: #36c98b; }
+  .hero h1 { max-width: 760px; margin: 0; font-size: clamp(3.65rem, 6.5vw, 7.3rem); font-weight: 800; letter-spacing: -.075em; line-height: .91; }
+  .hero h1 em { color: var(--blue); font-style: normal; }
+  .hero__copy > p { max-width: 600px; margin: 30px 0 0; color: var(--muted); font-size: clamp(1rem, 1.35vw, 1.16rem); line-height: 1.65; }
+
+  .hero__actions { display: flex; gap: 10px; margin-top: 32px; }
+  .button { display: inline-flex; min-height: 52px; align-items: center; justify-content: center; gap: 13px; padding: 0 22px; border-radius: 10px; font-size: 12px; font-weight: 800; text-decoration: none; transition: 180ms ease; }
+  .button--primary { color: #fff !important; background: var(--blue); box-shadow: 0 8px 20px rgba(49,88,255,.18); }
+  .button--primary:hover { background: var(--blue-dark); transform: translateY(-2px); }
+  .button--ghost { border: 1px solid #d9ddeb; color: var(--ink) !important; background: var(--white); }
+  .button--ghost:hover { border-color: var(--blue); color: var(--blue) !important; }
+  .button--light { color: var(--ink) !important; background: #fff; }
+
+  .hero__checks { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 28px; color: var(--muted); font-size: 10px; font-weight: 700; }
+  .hero__checks i { display: inline-grid; width: 17px; height: 17px; margin-right: 5px; place-items: center; border-radius: 50%; color: #0b754c; background: #d9fae9; font-style: normal; font-size: 9px; }
+
+  .hero__dashboard { display: grid; grid-template-columns: 1.35fr .65fr; grid-template-rows: 1.35fr .65fr; gap: 12px; min-height: 610px; }
+  .hero__dashboard article { position: relative; overflow: hidden; border: 1px solid #e0e3ef; border-radius: 22px; background: #fff; }
+  .session-card { grid-row: 1 / 3; }
+  .session-card > img { width: 100%; height: 100%; object-fit: cover; }
+  .session-card::after { position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,27,63,.65), transparent 45%); content: ''; }
+  .session-card__badge { position: absolute; z-index: 2; top: 18px; left: 18px; display: flex; align-items: center; gap: 7px; padding: 9px 12px; border-radius: 9px; background: #fff; font-size: 9px; font-weight: 800; }
+  .session-card__badge span { width: 7px; height: 7px; border-radius: 50%; background: #2dca8a; }
+  .session-card__caption { position: absolute; z-index: 2; right: 24px; bottom: 24px; left: 24px; display: flex; flex-direction: column; gap: 4px; color: #fff; }
+  .session-card__caption strong { font-size: 18px; }
+  .session-card__caption span { color: rgba(255,255,255,.72); font-size: 10px; }
+
+  .pulse-card { padding: 22px; background: var(--lavender) !important; }
+  .pulse-card__label { color: #5c6590; font-size: 8px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .pulse-card__graphic { position: relative; display: flex; height: 140px; align-items: center; justify-content: space-around; }
+  .pulse-card__graphic::before { position: absolute; right: 13%; left: 13%; height: 2px; background: #aeb7e8; content: ''; }
+  .pulse-card__graphic i { position: relative; z-index: 1; width: 19px; height: 19px; border: 6px solid #dfe3ff; border-radius: 50%; background: var(--blue); }
+  .pulse-card__graphic b { position: absolute; top: 50%; left: 13%; width: 32%; height: 2px; background: var(--blue); transform: translateY(-50%); }
+  .pulse-card strong { display: block; font-size: 11px; line-height: 1.4; }
+
+  .reach-card { display: none; padding: 22px; color: #fff; background: var(--blue) !important; }
+  .reach-card > span { font-size: 9px; }
+  .reach-card strong { display: block; margin-top: 15px; font-size: 42px; }
+  .reach-card small { opacity: .7; }
+  .rating-card { display: flex; flex-direction: column; justify-content: center; padding: 22px; background: var(--lime) !important; }
+  .rating-card > div { margin-bottom: 15px; color: var(--ink); font-size: 11px; letter-spacing: 2px; }
+  .rating-card strong { font-size: 13px; }
+  .rating-card span { margin-top: 5px; color: #4f5a58; font-size: 9px; }
+
+  .trust-strip { display: grid; grid-template-columns: repeat(4, 1fr); width: min(1440px, calc(100% - 64px)); margin: 0 auto; border-top: 1px solid #dfe2ee; border-bottom: 1px solid #dfe2ee; }
+  .trust-strip > div { display: grid; grid-template-columns: 34px 1fr; gap: 10px; padding: 28px 22px; border-right: 1px solid #dfe2ee; }
+  .trust-strip > div:last-child { border-right: 0; }
+  .trust-strip > div > span { color: var(--blue); font-size: 9px; font-weight: 800; }
+  .trust-strip p { display: flex; flex-direction: column; gap: 4px; margin: 0; color: var(--muted); font-size: 9px; }
+  .trust-strip strong { color: var(--ink); font-size: 11px; }
+
+  .concerns { padding: clamp(90px, 11vw, 160px) max(32px, calc((100vw - 1440px) / 2)); }
+  .section-header { display: grid; grid-template-columns: 1fr .55fr; align-items: end; gap: 80px; margin-bottom: 58px; }
+  .section-kicker { display: block; margin-bottom: 22px; color: var(--blue); font-size: 9px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+  .section-header h2, .method h2, .evidence h2, .closing h2 { margin: 0; font-size: clamp(3.2rem, 5.5vw, 6.2rem); font-weight: 800; letter-spacing: -.07em; line-height: .92; }
+  .section-header > div:last-child { padding-bottom: 5px; }
+  .section-header p { max-width: 440px; margin: 0 0 19px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+  .section-header a { color: var(--blue) !important; font-size: 11px; font-weight: 800; text-decoration: none; }
+  .section-header a span { margin-left: 8px; }
+
+  .concerns__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .concern-card { display: flex; min-height: 480px; flex-direction: column; padding: 18px; overflow: hidden; border-radius: 20px; color: var(--ink) !important; text-decoration: none; transition: transform 250ms cubic-bezier(.2,.7,.2,1); }
+  .concern-card:hover { transform: translateY(-6px); }
+  .concern-card--blue { background: #dfe5ff; }
+  .concern-card--lime { background: #e9fbb4; }
+  .concern-card--coral { background: #ffe0d8; }
+  .concern-card--violet { background: #e7e1ff; }
+  .concern-card__top { display: flex; justify-content: space-between; padding: 4px 3px 17px; font-size: 10px; font-weight: 800; }
+  .concern-card__top span:last-child { font-size: 18px; }
+  .concern-card__image { overflow: hidden; aspect-ratio: 1.1; border-radius: 13px; background: rgba(255,255,255,.55); }
+  .concern-card__image img { width: 100%; height: 100%; object-fit: cover; transition: transform 400ms ease; }
+  .concern-card:hover img { transform: scale(1.04); }
+  .concern-card__copy { padding: 22px 4px 4px; }
+  .concern-card__copy small { color: #59617a; font-size: 8px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  .concern-card__copy h3 { margin: 9px 0 8px; font-size: 25px; letter-spacing: -.04em; }
+  .concern-card__copy p { margin: 0; color: #59617a; font-size: 10px; }
+
+  .method { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(55px, 8vw, 130px); padding: clamp(90px, 11vw, 150px) max(32px, calc((100vw - 1440px) / 2)); color: #fff; background: var(--blue); }
+  .method__aside { position: sticky; top: 60px; align-self: start; }
+  .method__aside .section-kicker { color: #bdc9ff; }
+  .method h2 { font-size: clamp(3.6rem, 5.4vw, 6.2rem); }
+  .method__aside > p { max-width: 390px; margin: 26px 0 34px; color: #ccd4ff; font-size: 13px; line-height: 1.65; }
+  .method__content article { display: grid; grid-template-columns: 48px 1fr 180px; align-items: center; gap: 24px; min-height: 240px; padding: 36px 0; border-top: 1px solid rgba(255,255,255,.27); }
+  .method__content article:last-child { border-bottom: 1px solid rgba(255,255,255,.27); }
+  .method__number { align-self: start; padding-top: 6px; color: #bdc9ff; font-size: 9px; font-weight: 800; }
+  .method__copy small { color: #bdc9ff; font-size: 8px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .method__copy h3 { margin: 10px 0 12px; font-size: clamp(1.5rem, 2.2vw, 2.25rem); letter-spacing: -.045em; }
+  .method__copy p { max-width: 500px; margin: 0; color: #dbe0ff; font-size: 11px; line-height: 1.65; }
+  .method__visual { position: relative; height: 130px; border-radius: 16px; background: rgba(255,255,255,.1); }
+  .method__visual--form { display: flex; flex-direction: column; gap: 9px; padding: 26px; }
+  .method__visual--form i { display: block; height: 7px; border-radius: 9px; background: rgba(255,255,255,.36); }
+  .method__visual--form i:nth-child(2) { width: 78%; }
+  .method__visual--form i:nth-child(3) { width: 54%; }
+  .method__visual--form b { width: 48px; height: 15px; margin-top: 4px; border-radius: 5px; background: var(--lime); }
+  .method__visual--connect i { position: absolute; width: 30px; height: 30px; border-radius: 50%; background: #fff; }
+  .method__visual--connect i:nth-child(1) { top: 22px; left: 28px; }
+  .method__visual--connect i:nth-child(2) { top: 50px; right: 30px; background: var(--lime); }
+  .method__visual--connect i:nth-child(3) { bottom: 18px; left: 64px; background: #9eb0ff; }
+  .method__visual--connect b { position: absolute; top: 61px; left: 50px; width: 83px; height: 1px; background: rgba(255,255,255,.65); transform: rotate(12deg); }
+  .method__visual--integrate { display: grid; place-items: center; }
+  .method__visual--integrate i { position: absolute; width: 74px; height: 74px; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; }
+  .method__visual--integrate i:nth-child(1) { transform: translateX(-24px); }
+  .method__visual--integrate i:nth-child(2) { transform: translateX(24px); }
+  .method__visual--integrate i:nth-child(3) { width: 28px; height: 28px; border: 0; background: var(--lime); }
+
+  .evidence { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(50px, 8vw, 120px); align-items: center; padding: clamp(90px, 11vw, 150px) max(32px, calc((100vw - 1440px) / 2)); background: #fff; }
+  .evidence__image { position: relative; overflow: hidden; aspect-ratio: 1.05; border-radius: 24px; background: var(--ink); }
+  .evidence__image img { width: 100%; height: 100%; object-fit: cover; }
+  .evidence__image span { position: absolute; bottom: 20px; left: 20px; padding: 10px 13px; border-radius: 8px; color: #fff; background: rgba(17,27,63,.82); font-size: 9px; font-weight: 800; }
+  .evidence__copy { max-width: 610px; }
+  .evidence__copy > p { margin: 28px 0 36px; color: var(--muted); font-size: 14px; line-height: 1.75; }
+  .evidence ul { margin: 0; padding: 0; list-style: none; }
+  .evidence li { display: grid; grid-template-columns: 32px 1fr; gap: 12px; padding: 17px 0; border-top: 1px solid #e3e5ee; }
+  .evidence li:last-child { border-bottom: 1px solid #e3e5ee; }
+  .evidence li i { display: grid; width: 27px; height: 27px; place-items: center; border-radius: 7px; color: var(--blue); background: var(--lavender); font-style: normal; font-size: 11px; font-weight: 800; }
+  .evidence li span { display: flex; flex-direction: column; gap: 3px; color: var(--muted); font-size: 10px; }
+  .evidence li strong { color: var(--ink); font-size: 12px; }
+
+  .closing { display: grid; grid-template-columns: 1.2fr .8fr; align-items: end; gap: 80px; padding: clamp(100px, 12vw, 170px) max(32px, calc((100vw - 1440px) / 2)); background: var(--lavender); }
+  .closing h2 { font-size: clamp(4rem, 7vw, 7.8rem); }
+  .closing h2 em { color: var(--blue); font-style: normal; }
+  .closing__action { max-width: 430px; padding-bottom: 8px; }
+  .closing__action p { margin: 0 0 25px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+
+  footer { display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: center; gap: 30px; padding: 34px max(32px, calc((100vw - 1440px) / 2)) 105px; border-top: 1px solid #dfe2ee; color: var(--muted); background: #fff; font-size: 9px; }
+  .footer-brand { display: flex; align-items: center; gap: 9px; color: var(--ink); }
+  .footer-brand img { width: 34px; height: 34px; border-radius: 50%; }
+  footer p { max-width: 590px; margin: 0; line-height: 1.5; }
+  footer > div:last-child { display: flex; justify-content: flex-end; gap: 20px; }
+  footer a { text-decoration: none; }
+
+  @media (max-width: 1050px) {
+    .site-header { grid-template-columns: 1fr auto; }
+    .site-header nav { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero__copy { max-width: 830px; }
+    .hero__dashboard { min-height: 560px; }
+    .concerns__grid { grid-template-columns: repeat(2, 1fr); }
+    .method { grid-template-columns: 1fr; }
+    .method__aside { position: static; }
+  }
+
+  @media (max-width: 760px) {
+    .site-header, .hero, .trust-strip { width: calc(100% - 36px); }
+    .site-header { height: 74px; }
+    .logo img { width: 34px; height: 34px; }
+    .nav-cta { padding: 10px 12px; font-size: 9px; }
+    .hero { min-height: auto; padding: 70px 0 74px; }
+    .hero h1 { font-size: clamp(3.4rem, 15vw, 5.4rem); }
+    .hero__actions { align-items: stretch; flex-direction: column; }
+    .hero__checks { align-items: flex-start; flex-direction: column; gap: 10px; }
+    .hero__dashboard { grid-template-columns: 1fr; grid-template-rows: 480px auto auto; min-height: auto; }
+    .session-card { grid-row: auto; }
+    .pulse-card { min-height: 240px; }
+    .rating-card { min-height: 130px; }
+    .trust-strip { grid-template-columns: 1fr 1fr; }
+    .trust-strip > div:nth-child(2) { border-right: 0; }
+    .trust-strip > div:nth-child(-n+2) { border-bottom: 1px solid #dfe2ee; }
+    .section-header { grid-template-columns: 1fr; gap: 28px; }
+    .section-header h2, .method h2, .evidence h2 { font-size: 3.55rem; }
+    .concerns { padding-right: 18px; padding-left: 18px; }
+    .concerns__grid { grid-template-columns: 1fr; }
+    .concern-card { min-height: 520px; }
+    .method { padding-right: 18px; padding-left: 18px; }
+    .method__content article { grid-template-columns: 36px 1fr; }
+    .method__visual { grid-column: 2; width: 100%; }
+    .evidence { grid-template-columns: 1fr; padding-right: 18px; padding-left: 18px; }
+    .closing { grid-template-columns: 1fr; gap: 38px; padding-right: 18px; padding-left: 18px; }
+    .closing h2 { font-size: 4.4rem; }
+    footer { grid-template-columns: 1fr; padding-right: 18px; padding-left: 18px; }
+    footer > div:last-child { justify-content: flex-start; }
+  }
+</style>

@@ -1,0 +1,110 @@
+---
+export interface Props {
+  active?: 'editorial' | 'organica' | 'claridad' | 'overview';
+}
+
+const { active = 'overview' } = Astro.props;
+const items = [
+  { id: 'editorial', label: '01', href: '/propuestas/calma-editorial', title: 'Calma editorial' },
+  { id: 'organica', label: '02', href: '/propuestas/naturaleza-viva', title: 'Naturaleza viva' },
+  { id: 'claridad', label: '03', href: '/propuestas/claridad-clinica', title: 'Claridad clínica' },
+];
+---
+
+<nav class="proposal-dock" aria-label="Cambiar entre propuestas visuales">
+  <a class="proposal-dock__home" href="/propuestas" aria-label="Volver al índice de propuestas">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+    <span>Propuestas</span>
+  </a>
+  <span class="proposal-dock__line" aria-hidden="true"></span>
+  {items.map((item) => (
+    <a
+      href={item.href}
+      class:list={['proposal-dock__item', { 'is-active': active === item.id }]}
+      aria-current={active === item.id ? 'page' : undefined}
+      title={item.title}
+    >
+      {item.label}
+    </a>
+  ))}
+</nav>
+
+<style>
+  .proposal-dock {
+    position: fixed;
+    z-index: 100;
+    left: 50%;
+    bottom: max(18px, env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    background: rgba(12, 15, 15, 0.9);
+    box-shadow: 0 14px 44px rgba(0, 0, 0, 0.24);
+    color: #fff;
+    font: 600 12px/1 'DM Sans', sans-serif;
+    backdrop-filter: blur(16px);
+  }
+
+  .proposal-dock a {
+    text-decoration: none;
+  }
+
+  .proposal-dock__home {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 34px;
+    padding: 0 9px 0 6px;
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.76);
+  }
+
+  .proposal-dock__home:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .proposal-dock__home svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+
+  .proposal-dock__line {
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.14);
+  }
+
+  .proposal-dock__item {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.62);
+    transition: 180ms ease;
+  }
+
+  .proposal-dock__item:hover,
+  .proposal-dock__item.is-active {
+    color: #111;
+    background: #fff;
+  }
+
+  @media (max-width: 520px) {
+    .proposal-dock__home span {
+      display: none;
+    }
+
+    .proposal-dock__home {
+      padding-right: 6px;
+    }
+  }
+</style>

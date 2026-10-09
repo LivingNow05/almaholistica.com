@@ -63,7 +63,7 @@ export default {
           primary: '#FFFFFF',
           heading: '#F8FAFC',
           body: '#94A3B8',
-          muted: '#64748B',
+          muted: '#94A3B8',
           secondary: '#94A3B8',
         },
 
@@ -135,7 +135,7 @@ export default {
         },
       },
       fontFamily: {
-        serif: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+        serif: ['"Cormorant Garamond"', 'Cinzel', '"Playfair Display"', 'serif'],
         sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
         cormorant: ['"Cormorant Garamond"', 'serif'],
         cinzel: ['Cinzel', 'Playfair Display', 'serif'],

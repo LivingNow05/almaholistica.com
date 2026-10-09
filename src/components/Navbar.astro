@@ -74,6 +74,25 @@ const whatsappCtaUrl = buildWhatsAppUrl({
         >
           Ciudades
         </a>
+        <a
+          href="/sobre-nosotros"
+          class:list={[
+            'text-sm font-medium transition-colors hover:text-[#779DD1]',
+            currentPath.startsWith('/sobre-nosotros') ? 'text-[#779DD1] font-semibold' : 'text-slate-700 dark:text-slate-300'
+          ]}
+        >
+          Sobre Nosotros
+        </a>
+        <a
+          href="https://share.google/otrUm918xRGNHTTkE"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-500/10 text-emerald-950 dark:text-emerald-300 border border-emerald-600/40 dark:border-emerald-500/25 hover:bg-emerald-100 dark:hover:bg-emerald-500/20 transition-all"
+          title="Ver reseñas verificadas en Google"
+        >
+          <span class="text-amber-500 dark:text-amber-400 text-xs">★</span>
+          <span>5.0 en Google</span>
+        </a>
       </nav>
 
       <!-- Botón CTA WhatsApp & Theme Toggle (Desktop) -->
@@ -165,6 +184,24 @@ const whatsappCtaUrl = buildWhatsAppUrl({
       class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#0A1226] hover:text-[#779DD1] transition-colors"
     >
       Ciudades & Cobertura
+    </a>
+    <a
+      href="/sobre-nosotros"
+      class:list={[
+        'block px-3 py-2 rounded-lg text-base font-medium transition-colors',
+        currentPath.startsWith('/sobre-nosotros') ? 'text-[#779DD1] font-semibold bg-slate-100 dark:bg-[#0A1226]' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#0A1226] hover:text-[#779DD1]'
+      ]}
+    >
+      Sobre Nosotros (Fundadora)
+    </a>
+    <a
+      href="https://share.google/otrUm918xRGNHTTkE"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex items-center justify-between px-3 py-2 rounded-lg text-base font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 transition-colors"
+    >
+      <span>⭐ Opiniones en Google (5.0)</span>
+      <span class="text-xs">&rarr;</span>
     </a>
     <div class="pt-2">
       <a

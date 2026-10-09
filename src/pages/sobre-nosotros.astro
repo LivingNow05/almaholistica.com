@@ -1,0 +1,586 @@
+---
+/**
+ * src/pages/sobre-nosotros.astro — Sobre Nosotros y Fundadora Vivian Velásquez
+ * Alma Holística (almaholistica.com)
+ *
+ * Página institucional de alta autoridad clínica y calidez humana:
+ * - Trayectoria profesional y personal de la fundadora Vivian Velásquez.
+ * - Retrato oficial de alta calidad con optimización responsive.
+ * - Misión, valores y los 4 pilares metodológicos de Alma Holística.
+ * - Integración oficial de Google Reviews (https://share.google/otrUm918xRGNHTTkE).
+ * - Conversión integrada mediante WhatsAppQuizModal (data-open-quiz="true").
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_CONFIG, buildWhatsAppUrl } from '../config/site';
+
+const pageTitle = `Sobre Nosotros | Vivian Velásquez, Fundadora de Alma Holística`;
+const metaDesc = `Conoce la historia, visión y trayectoria clínica de Vivian Velásquez, fundadora de Alma Holística. Más de una década acompañando a personas en 20 países a decodificar el origen emocional de sus síntomas físicos.`;
+const canonicalUrl = `https://almaholistica.com/sobre-nosotros/`;
+const googleReviewsUrl = SITE_CONFIG.googleReviewsUrl || 'https://share.google/otrUm918xRGNHTTkE';
+
+const whatsappCtaUrl = buildWhatsAppUrl({
+  location: 'Sobre Nosotros — Perfil Fundadora'
+});
+
+// Esquema estructurado Schema.org (AboutPage + Person + BreadcrumbList)
+const aboutPageSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'AboutPage',
+      '@id': 'https://almaholistica.com/sobre-nosotros/#webpage',
+      'url': 'https://almaholistica.com/sobre-nosotros/',
+      'name': pageTitle,
+      'description': metaDesc,
+      'inLanguage': 'es',
+      'isPartOf': {
+        '@type': 'WebSite',
+        '@id': 'https://almaholistica.com/#website',
+        'name': SITE_CONFIG.name,
+        'url': 'https://almaholistica.com'
+      }
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://almaholistica.com/sobre-nosotros/#founder',
+      'name': 'Vivian Velásquez',
+      'jobTitle': 'Fundadora y Directora Clínica',
+      'worksFor': {
+        '@type': 'Organization',
+        'name': 'Alma Holística',
+        'url': 'https://almaholistica.com'
+      },
+      'image': 'https://almaholistica.com/images/vivian-velasquez.jpg',
+      'description': 'Especialista en Biodescodificación Biológica, Psiconeuroinmunología y Salud Emocional Integrativa. Fundadora de Alma Holística.',
+      'knowsAbout': [
+        'Biodescodificación Biológica',
+        'Psiconeuroinmunología',
+        'Psicogenealogía y Árbol Transgeneracional',
+        'Medicina Mente-Cuerpo',
+        'Gestión Emocional de Síntomas Físicos'
+      ]
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://almaholistica.com/sobre-nosotros/#breadcrumb',
+      'itemListElement': [
+        {
+          '@type': 'ListItem',
+          'position': 1,
+          'name': 'Inicio',
+          'item': 'https://almaholistica.com/'
+        },
+        {
+          '@type': 'ListItem',
+          'position': 2,
+          'name': 'Sobre Nosotros',
+          'item': 'https://almaholistica.com/sobre-nosotros/'
+        }
+      ]
+    }
+  ]
+};
+
+const reviewsList = [
+  {
+    name: 'Carolina Morales',
+    location: 'CDMX, México',
+    symptom: 'Gastritis y reflujo crónico',
+    stars: 5,
+    text: 'Llevaba 3 años dependiendo de protectores gástricos. En 2 sesiones con el equipo de Vivian identifiqué una situación de impotencia laboral que literalmente no podía tragar. El cambio en mi digestión y mi paz mental ha sido radical.'
+  },
+  {
+    name: 'Martín R.',
+    location: 'Bogotá, Colombia',
+    symptom: 'Ansiedad y opresión en pecho',
+    stars: 5,
+    text: 'Vivian tiene una precisión clínica increíble. No es hablar por hablar: van directo al choque biológico que programó la alerta. La calidez y profesionalismo con el que atienden desde la plataforma es insuperable.'
+  },
+  {
+    name: 'Lucía Fernández',
+    location: 'Madrid, España',
+    symptom: 'Lumbalgia y dolor ciático',
+    stars: 5,
+    text: 'Excelente acompañamiento online. Adaptaron la sesión a mi huso horario sin problemas. Pude comprender la sobrecarga económica inconsciente que sostenía en mi espalda. Muy agradecida.'
+  },
+  {
+    name: 'Roberto Gómez',
+    location: 'Miami, Estados Unidos',
+    symptom: 'Colon irritable y fatiga',
+    stars: 5,
+    text: '100% recomendado. La metodología es seria, basada en fundamentos biológicos claros y sin misticismos. Mi digestión se regularizó después de meses de frustración médica.'
+  }
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={metaDesc}
+  canonical={canonicalUrl}
+  image="/images/vivian-velasquez.jpg"
+>
+  <Fragment slot="schema">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(aboutPageSchema)} />
+  </Fragment>
+
+  <!-- ========================================================================= -->
+  <!-- HERO INSTITUCIONAL // HISTORIA & VISIÓN                                  -->
+  <!-- ========================================================================= -->
+  <section class="relative w-full bg-[#060A1A] pt-8 pb-16 sm:pt-14 sm:pb-24 border-b border-slate-800/40 overflow-hidden">
+    <div class="hero-floating-aura absolute -top-40 left-1/3 w-[35rem] h-[35rem] bg-[#779DD1]/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Migas de pan (Breadcrumb) -->
+      <nav class="flex items-center gap-2 text-xs font-sans tracking-wide text-slate-400 mb-8" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#779DD1] transition-colors">INICIO</a>
+        <span class="text-slate-600">/</span>
+        <span class="text-[#779DD1] font-semibold uppercase">SOBRE NOSOTROS</span>
+      </nav>
+
+      <!-- Badge Superior de Autoridad -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0A1226] border border-slate-800 text-xs font-sans font-semibold tracking-wider text-[#779DD1] uppercase mb-6">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Fundación, Dirección Clínica &amp; Respaldo Humano</span>
+      </div>
+
+      <!-- Titular Monumental -->
+      <h1 class="font-sans font-extrabold text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.14] text-white max-w-4xl mb-6">
+        El cuerpo no enferma por error: expresa lo que el alma calla.
+      </h1>
+
+      <p class="text-base sm:text-xl text-slate-300 font-sans max-w-3xl leading-relaxed mb-8">
+        Conoce la trayectoria de <strong class="text-white font-semibold">Vivian Velásquez</strong> y el propósito que dio origen a <strong class="text-[#779DD1] font-semibold">Alma Holística</strong>: democratizar la biodescodificación clínica y el acompañamiento bioemocional con rigor, calidez y accesibilidad para personas de todo el mundo hispano.
+      </p>
+
+      <!-- Badges de Respaldo Rápido -->
+      <div class="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-slate-300">
+        <div class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#0A1226] border border-slate-800/80">
+          <span class="text-emerald-400 font-bold">✓</span>
+          <span>+10 Años de Trayectoria</span>
+        </div>
+        <div class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#0A1226] border border-slate-800/80">
+          <span class="text-emerald-400 font-bold">✓</span>
+          <span>+1.400 Casos Acompañados</span>
+        </div>
+        <a
+          href={googleReviewsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-500/10 border border-emerald-600/30 dark:border-emerald-500/25 text-emerald-900 dark:text-emerald-400 hover:bg-emerald-500/20 transition-colors"
+        >
+          <span class="text-amber-500 dark:text-amber-400">★★★★★</span>
+          <span class="font-semibold text-emerald-950 dark:text-emerald-300">5.0 en Google Reviews</span>
+          <span class="text-xs">&rarr;</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECCIÓN BIOGRÁFICA // VIVIAN VELÁSQUEZ & SU TRAYECTORIA                  -->
+  <!-- ========================================================================= -->
+  <section class="w-full bg-[#060A1A] py-16 sm:py-24 border-b border-slate-800/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        
+        <!-- Columna Izquierda: Retrato de Vivian + Tarjeta de Confianza -->
+        <div class="lg:col-span-5 flex flex-col items-center">
+          
+          <!-- Contenedor de Fotografía con Marco Editorial -->
+          <div class="relative w-full max-w-md rounded-3xl overflow-hidden bg-[#0A1226] border-2 border-slate-800 shadow-2xl p-2.5">
+            <div class="relative w-full aspect-[3/4] rounded-2xl overflow-hidden bg-slate-900">
+              <img
+                src="/images/vivian-velasquez.jpg"
+                alt="Vivian Velásquez — Fundadora y Directora de Alma Holística"
+                class="w-full h-full object-cover object-top filter contrast-[1.02] hover:scale-105 transition-transform duration-700"
+                width="600"
+                height="800"
+                loading="eager"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#060A1A] via-transparent to-transparent opacity-60"></div>
+              
+              <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-[#060A1A]/90 backdrop-blur-sm border border-slate-800 text-left">
+                <span class="text-xs uppercase tracking-wider text-[#779DD1] font-bold block mb-0.5">
+                  Fundadora &amp; Directora
+                </span>
+                <span class="text-lg font-bold text-white block">
+                  Vivian Velásquez
+                </span>
+                <span class="text-xs text-slate-300 block">
+                  Terapeuta Clínica en Biodescodificación &amp; Salud Emocional
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjeta de Acreditaciones y Aval Clínico -->
+          <div class="w-full max-w-md mt-6 p-6 rounded-2xl bg-[#0A1226] border border-slate-800/80 space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800/60">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#779DD1]">Enfoque Metodológico</span>
+              <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400">Certificada</span>
+            </div>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-300">
+              <li class="flex items-start gap-2">
+                <span class="text-[#779DD1] mt-0.5">•</span>
+                <span><strong>Psiconeuroinmunología Clínica (PNI):</strong> Diálogo mente, sistema inmune y endocrino.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#779DD1] mt-0.5">•</span>
+                <span><strong>Biodescodificación Biológica:</strong> Modelos de Christian Flèche y leyes biológicas.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#779DD1] mt-0.5">•</span>
+                <span><strong>Árbol Transgeneracional:</strong> Desactivación de lealtades y memorias heredadas.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#779DD1] mt-0.5">•</span>
+                <span><strong>Biología de las Creencias:</strong> Epigenética y plasticidad neuro-celular (Dr. Bruce Lipton).</span>
+              </li>
+            </ul>
+
+            <!-- Enlace oficial a Reseñas en Google -->
+            <div class="pt-2">
+              <a
+                href={googleReviewsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-900 dark:text-emerald-400 border border-emerald-600/30 dark:border-emerald-500/30 text-xs font-bold uppercase tracking-wider transition-all duration-300 text-center"
+              >
+                <span class="text-amber-500 dark:text-amber-400">⭐</span>
+                <span>Ver Opiniones de Consultantes en Google</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Columna Derecha: Narrativa de Trayectoria & Propósito -->
+        <div class="lg:col-span-7 space-y-8 text-left">
+          
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-[#779DD1] block mb-2">
+              Trayectoria &amp; Propósito
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-snug">
+              De la somatización del dolor a la comprensión biológica del ser
+            </h2>
+          </div>
+
+          <!-- Párrafo 1: El Origen y el Despertar -->
+          <div class="p-6 rounded-2xl bg-[#0A1226] border border-slate-800/60 space-y-3">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <span class="text-xl">🌱</span>
+              <span>1. El inicio de la búsqueda</span>
+            </h3>
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+              La historia de Vivian Velásquez con la biodescodificación no nació de una teoría académica, sino de una vivencia profunda: la observación reiterada de personas cercanas y de sí misma que enfrentaban síntomas físicos recurrentes —migrañas, colon irritable, gastritis o dolores lumbares— sin encontrar una respuesta definitiva en los diagnósticos tradicionales que solo ofrecían paliar temporalmente las molestias.
+            </p>
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+              Esta inquietud vital la condujo a una pregunta fundamental: <em>«¿Por qué el cuerpo reacciona en un órgano específico y en un momento exacto de la vida?»</em>. La respuesta la encontró en la unión indisoluble entre la psique, el sistema nervioso y la biología de supervivencia.
+            </p>
+          </div>
+
+          <!-- Párrafo 2: La Formación Rigurosa -->
+          <div class="p-6 rounded-2xl bg-[#0A1226] border border-slate-800/60 space-y-3">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <span class="text-xl">📚</span>
+              <span>2. Rigor científico sin misticismo</span>
+            </h3>
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+              Comprometida con ofrecer una práctica seria y desprovista de dogmas o falsas promesas milagrosas, Vivian se formó exhaustivamente en las principales escuelas internacionales de medicina mente-cuerpo, estudiando a fondo los postulados de la Psiconeuroinmunología, la descodificación según Christian Flèche y los principios de la epigenética conductual.
+            </p>
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+              Su enfoque clínico sostiene que <strong>el síntoma es un programa biológico con pleno sentido adaptativo</strong>: el intento desesperado del cuerpo por gestionar una emoción de alto impacto que no pudo ser verbalizada, procesada ni liberada en su momento.
+            </p>
+          </div>
+
+          <!-- Párrafo 3: La Creación de Alma Holística -->
+          <div class="p-6 rounded-2xl bg-[#0A1226] border border-slate-800/60 space-y-3">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <span class="text-xl">🦋</span>
+              <span>3. El nacimiento de Alma Holística</span>
+            </h3>
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+              Con más de 1.400 procesos terapéuticos documentados a lo largo de una década, Vivian fundó <strong>Alma Holística</strong> con una misión clara: acercar esta metodología a cualquier persona de habla hispana, sin importar si reside en Madrid, Bogotá, Ciudad de México, Buenos Aires, Miami o Santiago de Chile.
+            </p>
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+              A través de un sistema online de videollamada 1 a 1 confidencial, cálido y riguroso, el consultante accede a un acompañamiento de alta precisión desde su hogar, adaptado a su zona horaria y moneda local, eliminando el estrés de los traslados y las listas de espera.
+            </p>
+          </div>
+
+          <!-- Cita Destacada de Vivian -->
+          <blockquote class="p-6 rounded-2xl bg-[#0E172F] border-l-4 border-l-[#779DD1] text-slate-200 italic font-serif text-lg sm:text-xl leading-relaxed">
+            «Cuando una persona comprende con exactitud qué impacto emocional encendió la alarma de su cuerpo, el organismo deja de necesitar el síntoma. Sanar no es luchar contra el cuerpo: es aprender a escuchar su lenguaje biológico.»
+            <footer class="mt-3 text-sm font-sans font-bold text-[#779DD1] not-italic">
+              — Vivian Velásquez, Fundadora de Alma Holística
+            </footer>
+          </blockquote>
+
+          <!-- Botones de Acción Inmediata -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
+            <a
+              href={whatsappCtaUrl}
+              data-open-quiz="true"
+              data-location="sobre-nosotros-hero"
+              data-symptom=""
+              class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white text-[#060A1A] font-bold text-sm uppercase tracking-wider hover:bg-[#779DD1] hover:text-[#060A1A] transition-all duration-300 shadow-xl cursor-pointer"
+            >
+              <span>Iniciar Evaluación de Síntomas</span>
+              <span>&rarr;</span>
+            </a>
+            <a
+              href={googleReviewsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-slate-100 dark:bg-[#0A1226] text-slate-900 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:border-[#779DD1] hover:text-[#779DD1] font-semibold text-sm transition-all duration-300"
+            >
+              <span class="text-amber-500 dark:text-amber-400">⭐</span>
+              <span>Ver Reseñas en Google</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- LOS 4 PILARES METODOLÓGICOS DE ALMA HOLÍSTICA                            -->
+  <!-- ========================================================================= -->
+  <section class="w-full bg-[#060A1A] py-16 sm:py-24 border-b border-slate-800/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <span class="text-xs font-bold uppercase tracking-widest text-[#779DD1] block mb-2">
+        Nuestros Principios Clínicos
+      </span>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+        Los 4 Pilares de la Consulta en Alma Holística
+      </h2>
+      <p class="text-slate-300 font-sans text-sm sm:text-base max-w-2xl mx-auto mb-14 leading-relaxed">
+        Cada sesión se fundamenta en un marco ético, científico y humano diseñado para acompañarte hacia la causa raíz de tu síntoma con total respeto y confidencialidad.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+        
+        <!-- Pilar 1 -->
+        <div class="p-6 rounded-2xl bg-[#0A1226] border border-slate-800/60 hover:border-[#779DD1]/50 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-[#0E172F] border border-slate-700 flex items-center justify-center text-2xl mb-4">
+              🎯
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">
+              01. Causa Raíz Inconsciente
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              No tapamos el síntoma con afirmaciones genéricas. Rastrearemos el evento biográfico o transgeneracional exacto donde se programó el choque biológico no verbalizado.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/40 text-xs text-[#779DD1] font-semibold">
+            Desactivación de origen
+          </div>
+        </div>
+
+        <!-- Pilar 2 -->
+        <div class="p-6 rounded-2xl bg-[#0A1226] border border-slate-800/60 hover:border-[#779DD1]/50 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-[#0E172F] border border-slate-700 flex items-center justify-center text-2xl mb-4">
+              🧬
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">
+              02. Rigor Científico &amp; PNI
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Fundamentado en Psiconeuroinmunología, leyes biológicas y epigenética. Cada órgano responde a un patrón emocional arquetípico respaldado por la fisiología médica.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/40 text-xs text-[#779DD1] font-semibold">
+            Metodología documentada
+          </div>
+        </div>
+
+        <!-- Pilar 3 -->
+        <div class="p-6 rounded-2xl bg-[#0A1226] border border-slate-800/60 hover:border-[#779DD1]/50 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-[#0E172F] border border-slate-700 flex items-center justify-center text-2xl mb-4">
+              🔒
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">
+              03. Intimidad 100% Online
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Sesiones privadas 1 a 1 por Zoom o Google Meet desde la calidez de tu hogar. Cero salas de espera, cero pérdidas de tiempo en traslados urbanos y máxima confidencialidad.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/40 text-xs text-[#779DD1] font-semibold">
+            Atención en 20 países
+          </div>
+        </div>
+
+        <!-- Pilar 4 -->
+        <div class="p-6 rounded-2xl bg-[#0A1226] border border-slate-800/60 hover:border-[#779DD1]/50 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-[#0E172F] border border-slate-700 flex items-center justify-center text-2xl mb-4">
+              🤝
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">
+              04. Ética Complementaria
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Sumamos a tu bienestar. Nuestras sesiones jamás sustituyen ni interrumpen tu tratamiento médico alopático; complementan el cuidado de la salud desde la raíz emocional.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/40 text-xs text-[#779DD1] font-semibold">
+            Compromiso deontológico
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- RESEÑAS VERIFICADAS EN GOOGLE (https://share.google/otrUm918xRGNHTTkE)     -->
+  <!-- ========================================================================= -->
+  <section id="opiniones" class="w-full bg-[#060A1A] py-16 sm:py-24 border-b border-slate-800/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 text-xs font-bold uppercase tracking-wider mb-3">
+            <span>⭐ Testimonios Verificados</span>
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Opiniones de Consultantes en Google Reviews
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
+            La experiencia real de personas que han transformado la relación con sus síntomas corporales a través de nuestras sesiones online.
+          </p>
+        </div>
+
+        <div class="flex flex-col items-start md:items-end shrink-0">
+          <div class="flex items-center gap-1.5 text-amber-400 text-xl font-bold">
+            <span>★★★★★</span>
+            <span class="text-white text-lg font-extrabold ml-1">5.0 / 5.0</span>
+          </div>
+          <span class="text-xs text-slate-400 mt-1">Calificación perfecta en Google</span>
+          <a
+            href={googleReviewsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-3 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#779DD1] hover:text-white transition-colors"
+          >
+            <span>Ver perfil en Google Reviews &rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Cuadrícula de Reseñas -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        {reviewsList.map((rev) => (
+          <div class="p-6 rounded-2xl bg-[#0A1226] border border-slate-800/70 hover:border-slate-700 transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <div class="flex items-center gap-2">
+                  <div class="w-10 h-10 rounded-full bg-[#0E172F] border border-slate-700 flex items-center justify-center text-sm font-bold text-[#779DD1]">
+                    {rev.name.charAt(0)}
+                  </div>
+                  <div>
+                    <h3 class="text-sm font-bold text-white">{rev.name}</h3>
+                    <span class="text-xs text-slate-400 block">{rev.location}</span>
+                  </div>
+                </div>
+                <div class="text-amber-400 text-xs">
+                  {'★'.repeat(rev.stars)}
+                </div>
+              </div>
+              <div class="inline-block px-2.5 py-0.5 rounded-full bg-[#0E172F] text-[11px] font-semibold text-[#779DD1] mb-3">
+                Síntoma: {rev.symptom}
+              </div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed italic">
+                "{rev.text}"
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/40 flex items-center justify-between text-[11px] text-slate-400">
+              <span class="flex items-center gap-1 text-emerald-400 font-semibold">
+                <span>✓</span> Reseña verificada en Google
+              </span>
+              <span>Sesión Online 1 a 1</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Botón Central de Google Reviews -->
+      <div class="text-center pt-4">
+        <a
+          href={googleReviewsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-emerald-50 dark:bg-[#0A1226] border-2 border-emerald-600/50 dark:border-emerald-500/40 text-emerald-950 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-500/10 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-lg"
+        >
+          <svg class="w-5 h-5 fill-current text-emerald-700 dark:text-emerald-400" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/>
+          </svg>
+          <span class="text-slate-900 dark:text-emerald-100">Leer todas las reseñas o dejar tu opinión en Google</span>
+          <span class="text-emerald-700 dark:text-emerald-400">&rarr;</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- CTA DE CONVERSIÓN FINAL // DA EL PRIMER PASO                            -->
+  <!-- ========================================================================= -->
+  <section class="w-full bg-[#060A1A] py-16 sm:py-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <div class="p-8 sm:p-14 rounded-3xl bg-gradient-to-b from-[#0A1226] to-[#060A1A] border border-slate-800 shadow-2xl relative overflow-hidden">
+        <div class="hero-floating-aura absolute -bottom-20 right-1/4 w-[25rem] h-[25rem] bg-[#779DD1]/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+        <span class="text-xs font-bold uppercase tracking-widest text-[#779DD1] block mb-3">
+          Atención Activa en 20 Países
+        </span>
+        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
+          ¿Sientes que tu cuerpo te está enviando una señal?
+        </h2>
+        <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8">
+          Haz el test de evaluación rápida de 4 pasos para recibir una primera lectura bioemocional sin costo y coordinar tu sesión personalizada con el equipo clínico de Alma Holística.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href={whatsappCtaUrl}
+            data-open-quiz="true"
+            data-location="sobre-nosotros-bottom-cta"
+            data-symptom=""
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white text-[#060A1A] font-bold text-sm uppercase tracking-wider hover:bg-[#779DD1] hover:text-[#060A1A] transition-all duration-300 shadow-xl cursor-pointer"
+          >
+            <span>Iniciar Evaluación Gratuita</span>
+            <span>&rarr;</span>
+          </a>
+          <a
+            href={whatsappCtaUrl}
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#0A1226] text-white border border-slate-700 hover:border-emerald-400 font-semibold text-sm transition-all duration-300"
+          >
+            <svg class="w-4 h-4 fill-emerald-400" viewBox="0 0 448 512" aria-hidden="true">
+              <path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+            </svg>
+            <span>Consultar por WhatsApp</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>

@@ -322,6 +322,16 @@ export function WhatsAppQuizModal({
     window.addEventListener('alma:open-quiz', handleCustomEvent);
     window.addEventListener('keydown', handleKeyDown);
 
+    // Si hubo un clic antes de completar la hidratación de React, abrir inmediatamente
+    if (typeof window !== 'undefined' && (window as any).__pendingQuizDetail) {
+      const pending = (window as any).__pendingQuizDetail;
+      (window as any).__pendingQuizDetail = null;
+      handleOpen({
+        symptom: pending.symptom,
+        city: pending.city,
+      });
+    }
+
     return () => {
       document.removeEventListener('click', handleDocumentClick, { capture: true });
       window.removeEventListener('alma:open-quiz', handleCustomEvent);
@@ -355,35 +365,34 @@ export function WhatsAppQuizModal({
   return (
     <div
       data-quiz-modal="true"
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 overflow-y-auto"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-5 overflow-y-auto"
       role="dialog"
       aria-modal="true"
       aria-labelledby="quiz-modal-title"
       aria-describedby="quiz-modal-description"
     >
       {/*
-        Backdrop 100% sólido mate (#060A1A).
-        Lienzo abisal sereno sin filtros, transparencias ni capas difuminadas.
+        Backdrop translúcido con desenfoque suave (R4: bg-slate-950/80 backdrop-blur-sm).
       */}
       <div
-        className="fixed inset-0 bg-[#060A1A] cursor-pointer animate-backdrop-fade"
+        className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm cursor-pointer animate-backdrop-fade"
         onClick={handleClose}
         aria-hidden="true"
       />
 
       {/*
         Contenedor Modal en Superficie Midnight Navy (#0A1226) con Esquinas Amplias rounded-[2rem] sm:rounded-[2.5rem].
-        Borde de precisión border-slate-800, 100% opaco y animado con entrada suave.
+        R4: max-h-[85dvh] flex flex-col para contención ergonómica en móviles.
       */}
       <div
         data-quiz-card="true"
-        className="relative w-full max-w-xl bg-[#0A1226] border border-slate-800 rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-7 md:p-8 z-10 my-auto text-slate-100 shadow-2xl animate-modal-enter overflow-hidden"
+        className="relative w-full max-w-xl max-h-[85dvh] flex flex-col bg-[#0A1226] border border-slate-800 rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-7 md:p-8 z-10 my-auto text-slate-100 shadow-2xl animate-modal-enter overflow-hidden"
       >
         {/* Acento superior de precisión Swiss Bio-Tech */}
         <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#38BDF8]" />
 
         {/* Barra Superior: Logo de Marca, Identificador Clínico y Botón Cerrar */}
-        <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-slate-800">
+        <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-slate-800 shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-[#060A1A] border border-slate-700 flex items-center justify-center overflow-hidden shrink-0">
               <img
@@ -425,7 +434,7 @@ export function WhatsAppQuizModal({
         {/*
           Barra de Progreso Segmentada: 4 pasos visuales con acento Cyan (#38BDF8) y Slate Mate (#1E293B).
         */}
-        <div className="w-full mb-5">
+        <div className="w-full mb-4 sm:mb-5 shrink-0">
           <div className="flex items-center justify-between mb-1.5 text-xs font-sans">
             <span className="font-bold uppercase tracking-wider text-[#779DD1] text-[11px]">
               {step <= 4 ? `PASO 0${step} / 04` : 'DIAGNÓSTICO LISTO'}
@@ -450,6 +459,9 @@ export function WhatsAppQuizModal({
           </div>
         </div>
 
+        {/* Área con scroll interno ergonómico para preguntas y opciones (R4) */}
+        <div className="flex-1 overflow-y-auto pr-1 min-h-0">
+
         {/* ==================================================================== */}
         {/* PASO 1: Selección de Síntoma (Micro-Chips Táctiles & Auto-Avance)     */}
         {/* ==================================================================== */}
@@ -468,8 +480,8 @@ export function WhatsAppQuizModal({
               Toca tu síntoma principal para iniciar tu orientación inmediata sin costo.
             </p>
 
-            {/* Grid dinámico de micro-chips con auto-avance al tocar */}
-            <div className="grid grid-cols-2 gap-2 mb-4">
+            {/* Grid dinámico de micro-chips con auto-avance al tocar (R4: responsivo 360px - 414px) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
               {PRESET_SYMPTOMS.map((item) => {
                 const isSelected = symptom === item.label && !customSymptom;
                 return (
@@ -480,18 +492,18 @@ export function WhatsAppQuizModal({
                       setCustomSymptom('');
                       handleSelectAndAdvance(setSymptom, item.label, 2);
                     }}
-                    className={`quiz-option-button w-full text-left p-2.5 sm:p-3 rounded-xl text-xs font-sans transition-all duration-150 flex items-center justify-between active:scale-[0.97] cursor-pointer min-h-[46px] border ${
+                    className={`quiz-option-button w-full text-left p-2.5 sm:p-3 rounded-xl text-xs sm:text-sm font-sans transition-all duration-150 flex items-center justify-between active:scale-[0.98] cursor-pointer min-h-[46px] border ${
                       isSelected
                         ? 'bg-[#0E172F] border-2 border-[#38BDF8] text-white font-bold shadow-sm'
                         : 'bg-[#060A1A] hover:bg-[#0E172F] border-slate-800 text-slate-200 hover:text-white hover:border-[#38BDF8]'
                     }`}
                   >
-                    <div className="flex items-center gap-2 truncate">
+                    <div className="flex items-center gap-2.5 min-w-0">
                       <span className="text-base shrink-0" aria-hidden="true">{item.icon}</span>
-                      <span className="truncate leading-tight font-medium">{item.shortLabel}</span>
+                      <span className="truncate sm:whitespace-normal leading-tight font-medium">{item.shortLabel}</span>
                     </div>
                     <span
-                      className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center shrink-0 ml-1 transition-all ${
+                      className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center shrink-0 ml-1.5 transition-all ${
                         isSelected ? 'border-[#38BDF8] bg-[#38BDF8]' : 'border-slate-700'
                       }`}
                     >
@@ -978,6 +990,7 @@ export function WhatsAppQuizModal({
             </p>
           </div>
         )}
+        </div>
 
       </div>
     </div>

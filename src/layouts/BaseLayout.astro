@@ -17,6 +17,7 @@ import Footer from '../components/Footer.astro';
 import { SITE_CONFIG } from '../config/site';
 import WhatsAppQuizModal from '../components/react/WhatsAppQuizModal';
 import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import StickyMobileBar from '../components/StickyMobileBar.astro';
 
 export interface Props {
   title?: string;
@@ -122,15 +123,18 @@ const ogImageUrl = image.startsWith('http')
       <Navbar />
 
       <!-- Contenido principal de la página -->
-      <main class="flex-grow">
+      <main class="flex-grow pb-20 md:pb-0">
         <slot />
       </main>
 
       <!-- Pie de página con descargo médico y navegación institucional -->
       <Footer />
 
-      <!-- Botón flotante de WhatsApp de alta conversión -->
+      <!-- Botón flotante de WhatsApp (Desktop) -->
       <FloatingWhatsApp />
+
+      <!-- Barra de acción inferior fija (Móvil) -->
+      <StickyMobileBar />
 
       <!--
         Contenedor de montaje para el Quiz Modal interactivo de WhatsApp (Milestone M3).
@@ -140,6 +144,57 @@ const ogImageUrl = image.startsWith('http')
         <slot name="quiz-modal" />
         <WhatsAppQuizModal client:load />
       </div>
+
+      <!--
+        Interceptor global inmediato de clics en fase de captura (capture: true).
+        Garantiza que el navegador NUNCA navegue a wa.me antes o durante la hidratación de React.
+      -->
+      <script is:inline>
+        (function() {
+          function interceptQuizTrigger(e) {
+            if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+            var target = e.target;
+            if (!target) return;
+            
+            // Buscar elemento disparador
+            var trigger = null;
+            var curr = target;
+            while (curr && curr !== document && curr !== document.documentElement) {
+              if (curr.getAttribute && (
+                curr.hasAttribute('data-open-quiz') ||
+                (curr.getAttribute('href') && (curr.getAttribute('href').indexOf('wa.me') !== -1 || curr.getAttribute('href').indexOf('whatsapp.com') !== -1))
+              )) {
+                trigger = curr;
+                break;
+              }
+              curr = curr.parentElement;
+            }
+
+            if (!trigger) return;
+            // No interceptar si está dentro del modal o es el botón final de envío
+            if (trigger.closest && (trigger.closest('[data-quiz-modal]') || trigger.hasAttribute('data-quiz-final'))) {
+              return;
+            }
+
+            // Prevenir inmediatamente la navegación por defecto a WhatsApp
+            e.preventDefault();
+            e.stopPropagation();
+
+            var symptom = trigger.getAttribute('data-symptom') || 
+                          (trigger.closest && trigger.closest('[data-symptom]') && trigger.closest('[data-symptom]').getAttribute('data-symptom')) || '';
+            var city = trigger.getAttribute('data-city') || 
+                       trigger.getAttribute('data-location') || 
+                       (trigger.closest && trigger.closest('[data-city]') && trigger.closest('[data-city]').getAttribute('data-city')) || '';
+
+            window.__pendingQuizDetail = { symptom: symptom, city: city };
+            window.dispatchEvent(new CustomEvent('alma:open-quiz', { 
+              detail: { symptom: symptom, city: city } 
+            }));
+          }
+
+          document.addEventListener('click', interceptQuizTrigger, true);
+        })();
+      </script>
     </div>
   </body>
 </html>

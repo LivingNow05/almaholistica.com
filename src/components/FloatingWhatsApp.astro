@@ -30,14 +30,14 @@ const whatsappUrl = buildWhatsAppUrl({
 });
 ---
 
-<div class="fixed bottom-6 right-6 z-50 flex items-center print:hidden">
+<div class="fixed bottom-6 right-6 z-50 hidden md:flex items-center print:hidden">
   <a
     href={whatsappUrl}
     id="floating-whatsapp-cta"
     data-open-quiz="true"
     data-location="floating-whatsapp-button"
     data-symptom={symptom || ''}
-    class="relative group btn-pulse bg-[#25D366] hover:bg-[#20ba5a] text-white w-14 h-14 sm:w-16 sm:h-16 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[#25D366]/40 cursor-pointer"
+    class="relative group btn-pulse bg-[#25D366] hover:bg-[#20ba5a] text-[#060A1A] w-14 h-14 sm:w-16 sm:h-16 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[#25D366]/40 cursor-pointer"
     aria-label="Contactar por WhatsApp — Iniciar evaluación personalizada"
   >
     <!-- Micro-etiqueta lateral izquierda -->
