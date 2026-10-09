@@ -25,7 +25,7 @@ export const GOOGLE_REVIEWS_URL = 'https://share.google/otrUm918xRGNHTTkE';
 export const GOOGLE_RATING_SCORE = '4.3';
 export const GOOGLE_RATING_MAX = '5.0';
 export const GOOGLE_REVIEW_COUNT = 6;
-export const GOOGLE_TOTAL_REVIEWS_BADGE = '4.3 / 5.0 en Google Reviews (6 opiniones)';
+export const GOOGLE_TOTAL_REVIEWS_BADGE = '4.3 / 5.0 en Google Reviews';
 
 export const REVIEWS_DATA: GoogleReview[] = [
   {
