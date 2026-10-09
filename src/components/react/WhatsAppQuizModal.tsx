@@ -370,7 +370,7 @@ export function WhatsAppQuizModal({
   return (
     <div
       data-quiz-modal="true"
-      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-5 overflow-y-auto"
+      className="notranslate fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-5 overflow-y-auto"
       role="dialog"
       aria-modal="true"
       aria-labelledby="quiz-modal-title"

@@ -137,6 +137,9 @@ const ogImageUrl = image.startsWith('http')
       <!-- Barra de acción inferior fija (Móvil) -->
       <StickyMobileBar />
 
+      <!-- Contenedor invisible para motor de traducción profunda headless -->
+      <div id="google_translate_element" class="hidden" style="display:none;" aria-hidden="true"></div>
+
       <!--
         Contenedor de montaje para el Quiz Modal interactivo de WhatsApp (Milestone M3).
         client:load garantiza cero latencia de hidratación al ser activado por cualquier CTA.

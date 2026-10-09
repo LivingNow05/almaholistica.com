@@ -614,8 +614,8 @@ const whatsappCtaUrl = buildWhatsAppUrl({
   });
 
   // ========================================================================
-  // MOTOR DE TRADUCCIÓN NATIVO CLIENT-SIDE (ES, EN, DE, FR, IT)
-  // Cero dependencias externas. Cero scripts o cookies de Google Translate.
+  // MOTOR DE TRADUCCIÓN HÍBRIDO (NATIVO + MOTOR PROFUNDO HEADLESS)
+  // Interfaz limpia propia sin widgets, banners ni popups externos.
   // ========================================================================
   const validLangs: LangCode[] = ['es', 'en', 'de', 'fr', 'it'];
 
@@ -657,7 +657,92 @@ const whatsappCtaUrl = buildWhatsAppUrl({
     return path.split('.').reduce((prev, curr) => (prev && prev[curr] !== undefined ? prev[curr] : undefined), obj);
   }
 
-  function applyNativeTranslation(targetLang: string) {
+  function clearGoogTransCookie() {
+    const host = window.location.hostname;
+    const rootDomain = host.replace(/^www\./, '');
+    const domains = ['', host, '.' + host, '.' + rootDomain, 'almaholistica.com', '.almaholistica.com'];
+    domains.forEach((d) => {
+      const domPart = d ? `; domain=${d}` : '';
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/${domPart};`;
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${domPart};`;
+    });
+  }
+
+  function setGoogTransCookie(lang: string) {
+    const host = window.location.hostname;
+    const rootDomain = host.replace(/^www\./, '');
+    const domains = ['', host, '.' + host, '.' + rootDomain, 'almaholistica.com', '.almaholistica.com'];
+    domains.forEach((d) => {
+      const domPart = d ? `; domain=${d}` : '';
+      document.cookie = `googtrans=/es/${lang}; path=/${domPart};`;
+    });
+  }
+
+  function ensureGoogleTranslate(callback?: () => void) {
+    if ((window as any).google?.translate?.TranslateElement) {
+      if (callback) callback();
+      return;
+    }
+
+    (window as any).googleTranslateElementInit = () => {
+      try {
+        new (window as any).google.translate.TranslateElement(
+          {
+            pageLanguage: 'es',
+            includedLanguages: 'es,en,de,fr,it',
+            autoDisplay: false
+          },
+          'google_translate_element'
+        );
+      } catch (err) {}
+      if (callback) setTimeout(callback, 150);
+    };
+
+    if (!document.getElementById('google-translate-script')) {
+      const script = document.createElement('script');
+      script.id = 'google-translate-script';
+      script.type = 'text/javascript';
+      script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      script.async = true;
+      document.head.appendChild(script);
+    }
+  }
+
+  function triggerDeepTranslation(targetLang: LangCode) {
+    if (targetLang === 'es') {
+      clearGoogTransCookie();
+      const combo = document.querySelector('.goog-te-combo') as HTMLSelectElement | null;
+      if (combo) {
+        combo.value = 'es';
+        combo.dispatchEvent(new Event('change'));
+      }
+      if (document.documentElement.classList.contains('translated-ltr') || document.querySelector('.goog-te-banner-frame')) {
+        window.location.reload();
+      }
+      return;
+    }
+
+    setGoogTransCookie(targetLang);
+    ensureGoogleTranslate(() => {
+      let attempts = 0;
+      const interval = setInterval(() => {
+        attempts++;
+        const combo = document.querySelector('.goog-te-combo') as HTMLSelectElement | null;
+        if (combo) {
+          combo.value = targetLang;
+          combo.dispatchEvent(new Event('change'));
+          clearInterval(interval);
+        } else if (attempts > 30) {
+          clearInterval(interval);
+          if (!document.documentElement.classList.contains('translated-ltr')) {
+            window.location.reload();
+          }
+        }
+      }, 100);
+    });
+  }
+
+  function applyTranslation(targetLang: string) {
     const langCode = (validLangs.includes(targetLang as LangCode) ? targetLang : 'es') as LangCode;
     closeAllLangMenus();
 
@@ -672,7 +757,7 @@ const whatsappCtaUrl = buildWhatsAppUrl({
     // Actualizar estados visuales de los selectores
     updateLangUI(langCode);
 
-    // Obtener diccionario de traducción
+    // Obtener diccionario nativo
     const dict = TRANSLATIONS[langCode] || TRANSLATIONS['es'];
 
     // Aplicar a todos los elementos con atributo data-i18n
@@ -685,7 +770,7 @@ const whatsappCtaUrl = buildWhatsAppUrl({
       }
     });
 
-    // Aplicar a elementos con atributos traducibles data-i18n-attr (ej. "placeholder:quiz.placeholder")
+    // Aplicar a elementos con atributos traducibles data-i18n-attr
     document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
       const attrConfig = el.getAttribute('data-i18n-attr');
       if (!attrConfig) return;
@@ -700,12 +785,15 @@ const whatsappCtaUrl = buildWhatsAppUrl({
       });
     });
 
-    // Notificar a componentes interactivos (ej. WhatsAppQuizModal en React)
+    // Notificar a componentes interactivos protegidos (React Quiz Modal y BioBodyScanner)
     window.dispatchEvent(
       new CustomEvent('alma:lang-changed', {
         detail: { lang: langCode, translations: dict }
       })
     );
+
+    // Ejecutar motor de traducción profunda para párrafos y páginas completas
+    triggerDeepTranslation(langCode);
   }
 
   // Registrar clics en todos los botones de idioma
@@ -718,16 +806,16 @@ const whatsappCtaUrl = buildWhatsAppUrl({
       }
       const code = (btnEl.getAttribute('data-lang-code') || '').toLowerCase();
       if (code) {
-        applyNativeTranslation(code);
+        applyTranslation(code);
       }
     });
   });
 
   // Restaurar idioma guardado al cargar
   try {
-    const savedLang = localStorage.getItem('alma_preferred_lang');
-    if (savedLang && validLangs.includes(savedLang as LangCode) && savedLang !== 'es') {
-      applyNativeTranslation(savedLang);
+    const savedLang = localStorage.getItem('alma_preferred_lang') as LangCode;
+    if (savedLang && validLangs.includes(savedLang) && savedLang !== 'es') {
+      applyTranslation(savedLang);
     } else {
       updateLangUI('es');
     }

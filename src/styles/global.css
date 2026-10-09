@@ -1373,4 +1373,33 @@ html.dark [data-journey-step="4"] .journey-phase-pill {
   }
 }
 
+/* ==========================================================================
+   SUPRESIÓN ABSOLUTA DE ELEMENTOS VISUALES DE GOOGLE TRANSLATE (HEADLESS)
+   Cero banners, cero tooltips, cero iframes, cero desplazamientos de layout.
+   ========================================================================== */
+.goog-te-banner-frame,
+.goog-te-balloon-frame,
+#goog-gt-tt,
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-text-highlight,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+.VIpgJd-ZVi9od-ORHb-OEVmcd,
+.VIpgJd-ZVi9od-l4eHX-hSRLGd,
+#goog-gt-votingHiddenPane,
+.goog-te-spinner-pos,
+.skiptranslate:not(.keep-translate) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+}
+
+body {
+  top: 0px !important;
+  position: static !important;
+}
+
 
