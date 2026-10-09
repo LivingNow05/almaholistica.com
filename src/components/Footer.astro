@@ -197,9 +197,9 @@ const instagramHandle = SITE_CONFIG.instagramHandle || '@almaholistica.lat';
       <div class="bg-[#0A1226] border border-slate-800/40 rounded-2xl p-6 lg:p-7">
         <h4 class="text-sm font-medium uppercase tracking-[0.15em] text-[#779DD1] mb-2.5 flex items-center gap-2">
           <span class="w-4 h-[1px] bg-[#779DD1]/50"></span>
-          Descargo de Responsabilidad Médica y Terapéutica
+          <span data-i18n="footer.disclaimer_title">Descargo de Responsabilidad Médica y Terapéutica</span>
         </h4>
-        <p class="text-sm font-normal text-slate-400 leading-relaxed">
+        <p data-i18n="footer.disclaimer_text" class="text-sm font-normal text-slate-400 leading-relaxed">
           La biodescodificación y las sesiones de terapia holística ofrecidas por Alma Holística constituyen un proceso de autoconocimiento, gestión emocional y toma de consciencia personal. Bajo ninguna circunstancia sustituyen, modifican, interrumpen ni reemplazan el diagnóstico clínico, consulta, examen o tratamiento médico ni farmacológico prescrito por profesionales sanitarios colegiados. Ante cualquier dolencia, síntoma agudo o enfermedad, consulte de forma prioritaria con su médico o especialista de la salud.
         </p>
       </div>
@@ -208,7 +208,7 @@ const instagramHandle = SITE_CONFIG.instagramHandle || '@almaholistica.lat';
     <!-- Barra Inferior de Derechos y Créditos -->
     <div class="border-t border-slate-800/40 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm font-normal text-slate-400">
       <p>
-        &copy; {currentYear} {SITE_CONFIG.name} (<a href="/" class="hover:text-white transition-colors duration-200">{SITE_CONFIG.url.replace('https://', '')}</a>). Todos los derechos reservados.
+        &copy; {currentYear} {SITE_CONFIG.name} (<a href="/" class="hover:text-white transition-colors duration-200">{SITE_CONFIG.url.replace('https://', '')}</a>). <span data-i18n="footer.rights">Todos los derechos reservados.</span>
       </p>
       <div class="flex flex-wrap items-center gap-6">
         <a href="/" class="hover:text-[#779DD1] transition-colors duration-200">Inicio</a>
@@ -218,7 +218,7 @@ const instagramHandle = SITE_CONFIG.instagramHandle || '@almaholistica.lat';
         <a href="https://share.google/otrUm918xRGNHTTkE" target="_blank" rel="noopener noreferrer" class="hover:text-[#779DD1] transition-colors duration-200 flex items-center gap-1">
           <span>Opiniones (5.0 ★)</span>
         </a>
-        <a href={whatsappFooterUrl} data-open-quiz="true" data-location="footer-bottom-contact" class="hover:text-[#779DD1] transition-colors duration-200">Contacto</a>
+        <a href={whatsappFooterUrl} data-open-quiz="true" data-location="footer-bottom-contact" class="hover:text-[#779DD1] transition-colors duration-200" data-i18n="footer.contact">Contacto</a>
         <a
           href={instagramUrl}
           target="_blank"
