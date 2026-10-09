@@ -56,46 +56,169 @@ interface CountryOption {
   currency: string;
 }
 
+function normalizeLoc(loc: string): string {
+  return (loc || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim();
+}
+
 // Helper para determinar la tarifa y moneda según la ubicación ingresada
 function resolveCountryPricing(loc: string): { country: string; price: string; currency: string } {
-  const norm = (loc || '').toLowerCase().trim();
-  if (norm.includes('colombia') || norm.includes('bogot') || norm.includes('medell') || norm.includes('cali') || norm.includes('barranquilla') || norm.includes('cartagena') || norm.includes('bucaramanga')) {
+  const norm = normalizeLoc(loc);
+
+  if (
+    norm.includes('colombia') ||
+    norm.includes('bogota') ||
+    norm.includes('medellin') ||
+    norm.includes('cali') ||
+    norm.includes('barranquilla') ||
+    norm.includes('cartagena') ||
+    norm.includes('bucaramanga')
+  ) {
     return { country: 'Colombia', price: '$140.000 - $220.000 COP', currency: 'COP' };
   }
-  if (norm.includes('mex') || norm.includes('méx') || norm.includes('cdmx') || norm.includes('guadalajara') || norm.includes('monterrey') || norm.includes('puebla') || norm.includes('cancun')) {
+  if (
+    norm.includes('mex') ||
+    norm.includes('cdmx') ||
+    norm.includes('guadalajara') ||
+    norm.includes('monterrey') ||
+    norm.includes('puebla') ||
+    norm.includes('toluca') ||
+    norm.includes('tijuana') ||
+    norm.includes('leon') ||
+    norm.includes('ciudad juarez') ||
+    norm.includes('torreon') ||
+    norm.includes('queretaro') ||
+    norm.includes('san luis potosi') ||
+    norm.includes('merida') ||
+    norm.includes('aguascalientes') ||
+    norm.includes('hermosillo') ||
+    norm.includes('saltillo') ||
+    norm.includes('cancun')
+  ) {
     return { country: 'México', price: '$800 - $1,400 MXN', currency: 'MXN' };
   }
-  if (norm.includes('españa') || norm.includes('espana') || norm.includes('madrid') || norm.includes('barcelona') || norm.includes('valencia') || norm.includes('sevilla') || norm.includes('malaga') || norm.includes('bilbao')) {
+  if (
+    norm.includes('espana') ||
+    norm.includes('madrid') ||
+    norm.includes('barcelona') ||
+    norm.includes('valencia') ||
+    norm.includes('sevilla') ||
+    norm.includes('malaga') ||
+    norm.includes('bilbao')
+  ) {
     return { country: 'España', price: '50€ - 85€ EUR', currency: 'EUR' };
   }
-  if (norm.includes('estados unidos') || norm.includes('eeuu') || norm.includes('usa') || norm.includes('miami') || norm.includes('los angeles') || norm.includes('houston') || norm.includes('nueva york') || norm.includes('chicago') || norm.includes('orlando')) {
+  if (
+    norm.includes('estados unidos') ||
+    norm.includes('eeuu') ||
+    norm.includes('usa') ||
+    norm.includes('miami') ||
+    norm.includes('los angeles') ||
+    norm.includes('houston') ||
+    norm.includes('nueva york') ||
+    norm.includes('chicago') ||
+    norm.includes('orlando') ||
+    norm.includes('san antonio')
+  ) {
     return { country: 'Estados Unidos', price: '$65 - $110 USD', currency: 'USD' };
   }
-  if (norm.includes('argentina') || norm.includes('buenos aires') || norm.includes('cordoba') || norm.includes('rosario') || norm.includes('mendoza')) {
+  if (
+    norm.includes('argentina') ||
+    norm.includes('buenos aires') ||
+    norm.includes('cordoba') ||
+    norm.includes('rosario') ||
+    norm.includes('mendoza') ||
+    norm.includes('la plata')
+  ) {
     return { country: 'Argentina', price: '$45.000 - $75.000 ARS', currency: 'ARS' };
   }
-  if (norm.includes('chile') || norm.includes('santiago') || norm.includes('valparaiso') || norm.includes('concepcion')) {
+  if (
+    norm.includes('chile') ||
+    norm.includes('santiago') ||
+    norm.includes('valparaiso') ||
+    norm.includes('concepcion') ||
+    norm.includes('la serena') ||
+    norm.includes('antofagasta')
+  ) {
     return { country: 'Chile', price: '$38.000 - $62.000 CLP', currency: 'CLP' };
   }
-  if (norm.includes('perú') || norm.includes('peru') || norm.includes('lima') || norm.includes('arequipa') || norm.includes('trujillo')) {
+  if (
+    norm.includes('peru') ||
+    norm.includes('lima') ||
+    norm.includes('arequipa') ||
+    norm.includes('trujillo') ||
+    norm.includes('chiclayo') ||
+    norm.includes('piura')
+  ) {
     return { country: 'Perú', price: 'S/ 150 - S/ 250 PEN', currency: 'PEN' };
   }
-  if (norm.includes('costa rica') || norm.includes('san jose') || norm.includes('alajuela')) {
+  if (
+    norm.includes('costa rica') ||
+    norm.includes('san jose') ||
+    norm.includes('alajuela') ||
+    norm.includes('cartago') ||
+    norm.includes('heredia') ||
+    norm.includes('puntarenas')
+  ) {
     return { country: 'Costa Rica', price: '₡25.000 - ₡40.000 CRC', currency: 'CRC' };
   }
-  if (norm.includes('uruguay') || norm.includes('montevideo')) {
+  if (
+    norm.includes('uruguay') ||
+    norm.includes('montevideo') ||
+    norm.includes('salto') ||
+    norm.includes('ciudad de la costa') ||
+    norm.includes('paysandu') ||
+    norm.includes('maldonado')
+  ) {
     return { country: 'Uruguay', price: '$1.800 - $2.900 UYU', currency: 'UYU' };
   }
-  if (norm.includes('bolivia') || norm.includes('la paz') || norm.includes('santa cruz')) {
+  if (
+    norm.includes('bolivia') ||
+    norm.includes('la paz') ||
+    norm.includes('santa cruz') ||
+    norm.includes('cochabamba') ||
+    norm.includes('sucre') ||
+    norm.includes('el alto')
+  ) {
     return { country: 'Bolivia', price: '280 Bs - 450 Bs BOB', currency: 'BOB' };
   }
-  if (norm.includes('paraguay') || norm.includes('asuncion')) {
+  if (
+    norm.includes('paraguay') ||
+    norm.includes('asuncion') ||
+    norm.includes('ciudad del este') ||
+    norm.includes('san lorenzo') ||
+    norm.includes('luque') ||
+    norm.includes('capiata')
+  ) {
     return { country: 'Paraguay', price: '₲300.000 - ₲500.000 PYG', currency: 'PYG' };
   }
-  if (norm.includes('dominicana') || norm.includes('santo domingo')) {
+  if (
+    norm.includes('dominicana') ||
+    norm.includes('santo domingo') ||
+    norm.includes('santiago rd') ||
+    norm.includes('la romana') ||
+    norm.includes('san pedro macoris') ||
+    norm.includes('punta cana')
+  ) {
     return { country: 'República Dominicana', price: 'RD$2.500 - RD$3.800 DOP', currency: 'DOP' };
   }
-  if (norm.includes('ecuador') || norm.includes('quito') || norm.includes('guayaquil') || norm.includes('cuenca') || norm.includes('panam') || norm.includes('venezuela') || norm.includes('salvador')) {
+  if (
+    norm.includes('ecuador') ||
+    norm.includes('quito') ||
+    norm.includes('guayaquil') ||
+    norm.includes('cuenca') ||
+    norm.includes('ambato') ||
+    norm.includes('panam') ||
+    norm.includes('venezuela') ||
+    norm.includes('salvador') ||
+    norm.includes('guatemala') ||
+    norm.includes('honduras') ||
+    norm.includes('nicaragua') ||
+    norm.includes('brasil')
+  ) {
     return { country: loc || 'Latinoamérica', price: '$40 - $65 USD', currency: 'USD' };
   }
   return { country: loc || 'Atención Online', price: '$40 - $70 USD', currency: 'USD' };
@@ -212,7 +335,18 @@ export function WhatsAppQuizModal({
   // Manejador de apertura con soporte de precarga contextual
   const handleOpen = useCallback((params?: { symptom?: string; city?: string }) => {
     const sym = params?.symptom?.trim() || '';
-    const loc = params?.city?.trim() || '';
+    let loc = params?.city?.trim() || '';
+
+    // Si no se proporcionó ciudad o es un marcador genérico de botón, inferir de la URL actual
+    if (!loc || loc === 'floating-whatsapp-button' || loc === 'sticky-mobile-bar' || loc === 'footer-bottom-contact') {
+      if (typeof window !== 'undefined') {
+        const path = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
+        if (path.startsWith('biodescodificacion-')) {
+          const rawCity = path.replace('biodescodificacion-', '');
+          loc = rawCity.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        }
+      }
+    }
 
     if (sym) {
       setSymptom(sym);
@@ -772,7 +906,8 @@ export function WhatsAppQuizModal({
 
             <div className="flex flex-wrap gap-2 mb-4">
               {presetCountries.map((ctry) => {
-                const isSelected = location === ctry.name && !customLocation;
+                const matchedCountry = resolveCountryPricing(effectiveLocation).country;
+                const isSelected = (location === ctry.name || matchedCountry === ctry.name) && !customLocation;
                 return (
                   <button
                     key={ctry.name}
