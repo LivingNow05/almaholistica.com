@@ -25,6 +25,7 @@ import BioBodyScanner from '../components/BioBodyScanner.astro';
 import ClinicalApproachTable from '../components/ClinicalApproachTable.astro';
 import BiologicalMatrixTable from '../components/BiologicalMatrixTable.astro';
 import AccompanimentStagesTable from '../components/AccompanimentStagesTable.astro';
+import GoogleReviewsSection from '../components/GoogleReviewsSection.astro';
 
 // Obtención memoizada de datasets SSG
 const allDolencias = getDolencias();
@@ -879,6 +880,17 @@ const evaluationWhatsAppUrl = buildWhatsAppUrl({
 
     </div>
   </section>
+
+  <!-- ========================================================================= -->
+  <!-- RESEÑAS VERIFICADAS EN GOOGLE (https://share.google/otrUm918xRGNHTTkE)     -->
+  <!-- ========================================================================= -->
+  <GoogleReviewsSection
+    sectionId="opiniones-google"
+    title="Opiniones de Consultantes en Google Reviews"
+    subtitle="Testimonios certificados de personas que han transformado la relación con sus síntomas corporales a través de nuestras sesiones online de biodescodificación 1 a 1."
+    limit={6}
+    showCta={true}
+  />
 
   <!-- ========================================================================= -->
   <!-- PREGUNTAS FRECUENTES (FAQ)                                                -->

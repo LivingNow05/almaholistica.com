@@ -15,6 +15,7 @@ import { getCountries, countryNameToSlug } from '../lib/countries';
 import type { CityData } from '../types/city';
 import type { CountryData } from '../types/country';
 import CountryHubView from '../components/country/CountryHubView.astro';
+import GoogleReviewsSection from '../components/GoogleReviewsSection.astro';
 import { SITE_CONFIG, buildWhatsAppUrl } from '../config/site';
 import {
   buildLocalServiceSchema,
@@ -1047,6 +1048,15 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
       </div>
     </div>
   </section>
+
+  <!-- ========================================================================= -->
+  <!-- RESEÑAS VERIFICADAS EN GOOGLE (https://share.google/otrUm918xRGNHTTkE)     -->
+  <!-- ========================================================================= -->
+  <GoogleReviewsSection
+    cityName={cityName}
+    limit={3}
+    showCta={true}
+  />
 
   <!-- ========================================================================= -->
   <!-- PREGUNTAS FRECUENTES HIPERLOCALES                                         -->

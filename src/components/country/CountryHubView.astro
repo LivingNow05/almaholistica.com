@@ -13,6 +13,7 @@
 
 import type { CountryData } from '../../types/country';
 import { SITE_CONFIG, buildWhatsAppUrl } from '../../config/site';
+import GoogleReviewsSection from '../GoogleReviewsSection.astro';
 
 export interface Props {
   country: CountryData;
@@ -465,6 +466,15 @@ const cities = country.ciudades || [];
 
   </div>
 </section>
+
+<!-- ========================================================================= -->
+<!-- RESEÑAS VERIFICADAS EN GOOGLE (https://share.google/otrUm918xRGNHTTkE)     -->
+<!-- ========================================================================= -->
+<GoogleReviewsSection
+  cityName={country.pais}
+  limit={3}
+  showCta={true}
+/>
 
 <!-- ========================================================================= -->
 <!-- 6. ACORDEÓN DE PREGUNTAS FRECUENTES (FAQS CON SCHEMA FAQPAGE)              -->

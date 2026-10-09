@@ -19,6 +19,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { buildWhatsAppUrl } from '../../config/site';
 import { getDolencias, getBiologicalBorderClass, getBiologicalBadgeClass } from '../../lib/dolencias';
 import type { BodilySystem, DolenciaData } from '../../types/dolencia';
+import GoogleReviewsSection from '../../components/GoogleReviewsSection.astro';
 
 // Carga memoizada de las 45 dolencias del catálogo
 const dolencias = getDolencias();
@@ -381,6 +382,16 @@ const catalogoWhatsAppUrl = buildWhatsAppUrl({
 
     </div>
   </section>
+
+  <!-- ========================================================================= -->
+  <!-- RESEÑAS VERIFICADAS EN GOOGLE (https://share.google/otrUm918xRGNHTTkE)     -->
+  <!-- ========================================================================= -->
+  <GoogleReviewsSection
+    title="Opiniones de Consultantes en Google Reviews"
+    subtitle="Testimonios reales de personas que han decodificado sus síntomas físicos en sesiones online 1 a 1."
+    limit={6}
+    showCta={true}
+  />
 
   <!-- ========================================================================= -->
   <!-- 4. CTA GLOBAL CON MODAL DE EVALUACIÓN                                     -->

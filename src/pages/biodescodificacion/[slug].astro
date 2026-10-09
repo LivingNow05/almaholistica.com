@@ -18,6 +18,7 @@ import {
 } from '../../lib/dolencias';
 import type { DolenciaData, DolenciaStaticPath } from '../../types/dolencia';
 import { SITE_CONFIG, buildWhatsAppUrl } from '../../config/site';
+import GoogleReviewsSection from '../../components/GoogleReviewsSection.astro';
 import {
   buildMedicalWebPageSchema,
   buildFAQSchema,
@@ -430,6 +431,15 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
         </div>
       </div>
     </section>
+
+    <!-- RESEÑAS VERIFICADAS EN GOOGLE (https://share.google/otrUm918xRGNHTTkE) -->
+    <div class="mb-12">
+      <GoogleReviewsSection
+        symptom={nombre}
+        limit={3}
+        showCta={true}
+      />
+    </div>
 
     <!-- SECCIÓN 6: PREGUNTAS FRECUENTES (FAQS) (T1.16.4) -->
     {faqs.length > 0 && (

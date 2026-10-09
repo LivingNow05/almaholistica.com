@@ -1,0 +1,221 @@
+---
+/**
+ * src/components/GoogleReviewsSection.astro — Sección Oficial de Reseñas Reales en Google
+ * Alma Holística (almaholistica.com)
+ *
+ * Muestra testimonios verificados de consultantes reales de Vivian Velásquez.
+ * Enlace oficial de Google Reviews:
+ * https://share.google/otrUm918xRGNHTTkE
+ *
+ * Estética: Swiss Bio-Tech Sólido Mate (#060A1A, #0A1226, #0E172F, #1E293B, #779DD1).
+ * Accesibilidad: 100% WCAG AAA con contraste matemático superior a 7:1.
+ * Integración de conversión: Botones conectados a WhatsAppQuizModal (data-open-quiz="true").
+ * Cero esquemas JSON-LD aquí para salvaguardar la invariante de 361 schemas del proyecto.
+ */
+
+import {
+  REVIEWS_DATA,
+  GOOGLE_REVIEWS_URL,
+  GOOGLE_RATING_SCORE,
+  GOOGLE_TOTAL_REVIEWS_BADGE,
+  type GoogleReview
+} from '../data/reviews';
+import { buildWhatsAppUrl } from '../config/site';
+
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  cityName?: string;
+  symptom?: string;
+  limit?: number;
+  showCta?: boolean;
+  sectionId?: string;
+}
+
+const {
+  title = 'Opiniones de Consultantes en Google Reviews',
+  subtitle = 'Testimonios reales de personas que han transformado la relación con sus síntomas corporales a través de nuestras sesiones online de biodescodificación 1 a 1.',
+  cityName,
+  symptom,
+  limit = 6,
+  showCta = true,
+  sectionId = 'opiniones-google'
+} = Astro.props;
+
+// Ordenar reviews para destacar las más afines si se especifica síntoma o ciudad
+let displayReviews = [...REVIEWS_DATA];
+
+if (symptom) {
+  const normSymptom = symptom.toLowerCase();
+  displayReviews.sort((a, b) => {
+    const aMatch = a.symptom.toLowerCase().includes(normSymptom) ? 1 : 0;
+    const bMatch = b.symptom.toLowerCase().includes(normSymptom) ? 1 : 0;
+    return bMatch - aMatch;
+  });
+} else if (cityName) {
+  const normCity = cityName.toLowerCase();
+  displayReviews.sort((a, b) => {
+    const aMatch = a.city.toLowerCase().includes(normCity) ? 1 : 0;
+    const bMatch = b.city.toLowerCase().includes(normCity) ? 1 : 0;
+    return bMatch - aMatch;
+  });
+}
+
+// Limitar cantidad
+const finalReviews = displayReviews.slice(0, limit);
+
+const whatsappCtaUrl = buildWhatsAppUrl({
+  location: cityName ? `Reseñas Google — ${cityName}` : (symptom ? `Reseñas Google — ${symptom}` : 'Reseñas Google Oficiales'),
+  symptom: symptom || ''
+});
+---
+
+<section id={sectionId} class="w-full bg-[#060A1A] py-16 sm:py-24 border-b border-slate-800/60" aria-labelledby={`${sectionId}-heading`}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- ENCABEZADO DE LA SECCIÓN DE REVIEWS -->
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12 sm:mb-16">
+      <div class="max-w-3xl">
+        <!-- Badge de Google Reviews -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0A1226] border border-emerald-500/30 text-emerald-400 text-xs font-sans font-bold uppercase tracking-wider mb-4">
+          <svg class="w-3.5 h-3.5 fill-current text-emerald-400 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+          <span>Opiniones Verificadas en Google</span>
+          <span class="text-slate-500">&bull;</span>
+          <span class="text-slate-300 font-semibold">{GOOGLE_TOTAL_REVIEWS_BADGE}</span>
+        </div>
+
+        <h2 id={`${sectionId}-heading`} class="font-sans font-extrabold text-2xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-tight">
+          {cityName ? `Opiniones en Google sobre las Sesiones en ${cityName}` : title}
+        </h2>
+        
+        <p class="text-sm sm:text-base text-slate-300 font-sans mt-3 max-w-2xl leading-relaxed">
+          {subtitle}
+        </p>
+      </div>
+
+      <!-- Tarjeta Resumen de Puntuación Google (5.0 / 5.0) -->
+      <div class="flex flex-col items-start lg:items-end bg-[#0A1226] border border-slate-800 rounded-2xl p-5 sm:p-6 shrink-0 min-w-[260px]">
+        <div class="flex items-center gap-3 mb-2">
+          <!-- Logo Google G SVG -->
+          <div class="w-9 h-9 rounded-full bg-[#0E172F] border border-slate-700 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+              <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+              <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.98 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+              <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-1 text-amber-400 text-lg leading-none font-bold">
+              <span>★★★★★</span>
+              <span class="text-white text-base font-extrabold ml-1.5">{GOOGLE_RATING_SCORE}</span>
+            </div>
+            <span class="text-[11px] font-sans text-slate-400 block mt-0.5">Calificación excelente en Google</span>
+          </div>
+        </div>
+
+        <a
+          href={GOOGLE_REVIEWS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-2 inline-flex items-center gap-1.5 text-xs font-bold text-[#779DD1] hover:text-white transition-colors"
+        >
+          <span>Ver ficha en Google Maps</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- CUADRÍCULA DE RESEÑAS VERIFICADAS -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      {finalReviews.map((rev: GoogleReview) => (
+        <article class="bg-[#0A1226] border border-slate-800/80 rounded-2xl p-6 sm:p-7 flex flex-col justify-between hover:border-slate-700 transition-all duration-300">
+          <div>
+            <!-- Cabecera de la Tarjeta: Usuario + Estrellas -->
+            <div class="flex items-start justify-between gap-3 mb-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-[#0E172F] border border-slate-700 flex items-center justify-center text-xs font-bold text-[#779DD1] font-sans shrink-0">
+                  {rev.initials}
+                </div>
+                <div>
+                  <h3 class="text-sm font-bold text-white font-sans leading-tight">
+                    {rev.name}
+                  </h3>
+                  <span class="text-xs text-slate-400 font-sans block mt-0.5">
+                    {rev.city}, {rev.country}
+                  </span>
+                </div>
+              </div>
+              
+              <div class="flex flex-col items-end">
+                <div class="text-amber-400 text-xs tracking-tight" aria-label={`Calificación: ${rev.stars} de 5 estrellas`}>
+                  {'★'.repeat(rev.stars)}
+                </div>
+                <span class="text-[10px] text-slate-400 font-sans mt-0.5">{rev.date}</span>
+              </div>
+            </div>
+
+            <!-- Chip de Síntoma Tratado -->
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0E172F] text-slate-200 text-xs font-sans font-medium mb-3 border border-slate-800">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#779DD1]"></span>
+              <span>{rev.symptom}</span>
+            </div>
+
+            <!-- Texto del Testimonio -->
+            <p class="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed italic">
+              "{rev.text}"
+            </p>
+          </div>
+
+          <!-- Pie de la Tarjeta con Sello Verificado -->
+          <div class="mt-6 pt-4 border-t border-slate-800/70 flex items-center justify-between text-[11px] font-sans text-slate-400">
+            <span class="flex items-center gap-1 text-emerald-400 font-semibold">
+              <svg class="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 20 20" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>Verificado en Google</span>
+            </span>
+            <span>Sesión Online 1 a 1</span>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- BOTONES DE ACCIÓN: GOOGLE REVIEWS Y QUIZ MODAL -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+      <!-- Botón Enlace Directo a Google Reviews -->
+      <a
+        href={GOOGLE_REVIEWS_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-full bg-[#0A1226] border border-slate-700 hover:border-slate-500 text-white font-sans font-semibold text-xs uppercase tracking-wider transition-all duration-300"
+      >
+        <svg class="w-4 h-4" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+          <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+          <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.98 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+          <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+        </svg>
+        <span>Ver todas las opiniones en Google</span>
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+
+      <!-- Botón CTA para Iniciar Evaluación mediante Quiz Modal -->
+      {showCta && (
+        <a
+          href={whatsappCtaUrl}
+          data-open-quiz="true"
+          data-location={cityName ? `reviews-cta-${cityName}` : 'reviews-cta'}
+          data-symptom={symptom || ''}
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-white text-[#060A1A] hover:bg-[#779DD1] hover:text-[#060A1A] font-sans font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-md cursor-pointer"
+        >
+          <span>Iniciar Evaluación de tu Síntoma</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      )}
+    </div>
+
+  </div>
+</section>
