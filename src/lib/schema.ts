@@ -154,6 +154,15 @@ export interface LocalBusinessSchema {
       readonly name: string;
     };
   };
+  readonly aggregateRating?: {
+    readonly '@type': 'AggregateRating';
+    readonly ratingValue: string;
+    readonly reviewCount: string;
+    readonly bestRating: string;
+    readonly worstRating: string;
+  };
+  readonly hasMap?: string;
+  readonly sameAs?: readonly string[];
 }
 
 /**
@@ -313,5 +322,18 @@ export function buildLocalServiceSchema(
         name: pais,
       },
     },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.3',
+      reviewCount: '6',
+      bestRating: '5',
+      worstRating: '1',
+    },
+    hasMap: 'https://maps.google.com/?cid=4077548945231278670',
+    sameAs: [
+      'https://share.google/otrUm918xRGNHTTkE',
+      'https://maps.google.com/?cid=4077548945231278670',
+      'https://www.instagram.com/almaholistica.lat'
+    ],
   };
 }

@@ -63,6 +63,33 @@ const aboutPageSchema = {
       ]
     },
     {
+      '@type': 'HealthAndBeautyBusiness',
+      '@id': 'https://almaholistica.com/#business',
+      'name': 'Alma Holística — Biodescodificación y Terapia en Córdoba',
+      'url': 'https://almaholistica.com',
+      'telephone': '+5491128429822',
+      'priceRange': '$$',
+      'image': 'https://almaholistica.com/images/vivian-velasquez.jpg',
+      'address': {
+        '@type': 'PostalAddress',
+        'addressLocality': 'Capilla del Monte, Córdoba',
+        'addressCountry': 'Argentina'
+      },
+      'hasMap': 'https://maps.google.com/?cid=4077548945231278670',
+      'sameAs': [
+        'https://share.google/otrUm918xRGNHTTkE',
+        'https://maps.google.com/?cid=4077548945231278670',
+        'https://www.instagram.com/almaholistica.lat'
+      ],
+      'aggregateRating': {
+        '@type': 'AggregateRating',
+        'ratingValue': '4.3',
+        'reviewCount': '6',
+        'bestRating': '5',
+        'worstRating': '1'
+      }
+    },
+    {
       '@type': 'BreadcrumbList',
       '@id': 'https://almaholistica.com/sobre-nosotros/#breadcrumb',
       'itemListElement': [
@@ -139,9 +166,10 @@ const aboutPageSchema = {
           target="_blank"
           rel="noopener noreferrer"
           class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-500/10 border border-emerald-600/30 dark:border-emerald-500/25 text-emerald-900 dark:text-emerald-400 hover:bg-emerald-500/20 transition-colors"
+          title="Ver perfil oficial en Google Maps (4.3 estrellas de 6 opiniones)"
         >
-          <span class="text-amber-500 dark:text-amber-400">★★★★★</span>
-          <span class="font-semibold text-emerald-950 dark:text-emerald-300">5.0 en Google Reviews</span>
+          <span class="text-emerald-600 dark:text-emerald-400">★★★★½</span>
+          <span class="font-semibold text-emerald-950 dark:text-emerald-300">4.3 en Google Reviews (6 opiniones)</span>
           <span class="text-xs">&rarr;</span>
         </a>
       </div>
