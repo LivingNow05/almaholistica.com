@@ -8,14 +8,10 @@
  * 100% sólido mate, cero transparencias en superficies, cero rastros de neón o amarillo.
  * Cumple estrictamente con React 19, TypeScript estricto y suites de pruebas E2E (Tiers 1-4, ADV-M2, ADV-M3, ADV-M4).
  *
- * Características Clave:
- * - Flujo ultra-dinámico "Tap & Flow": selección con micro-retraso táctil (160ms) que avanza automáticamente.
- * - Micro-chips visuales con iconografía semántica para eliminar paredes de texto.
- * - Transparencia de precios por país y propuesta de valor de 2 etapas (Llamada de Valoración de 15 min sin costo + Sesión profunda).
- * - Enlace de escape directo a WhatsApp en cada paso para usuarios que prefieren consultar sin completar el quiz.
+ * Soporte Nativo Multilingüe Dinámico: Español, English, Deutsch, Français, Italiano.
  */
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { SITE_CONFIG, buildWhatsAppUrl } from '../../config/site';
 import { TRANSLATIONS, type LangCode } from '../../i18n/translations';
 
@@ -26,118 +22,39 @@ export interface WhatsAppQuizModalProps {
   initialLocation?: string;
 }
 
-// Opciones enriquecidas para el Paso 1 (Síntomas y Dolencias Frecuentes)
-interface SymptomOption {
-  label: string;
-  shortLabel: string;
-  icon: string;
-  category: string;
-}
+const SYMPTOM_KEYS = [
+  { key: 'gastritis', icon: '🔥' },
+  { key: 'ansiedad', icon: '⚡' },
+  { key: 'lumbalgia', icon: '🛡️' },
+  { key: 'ciatica', icon: '⚡' },
+  { key: 'hipotiroidismo', icon: '🦋' },
+  { key: 'migrana', icon: '🧠' },
+  { key: 'colon', icon: '🌊' },
+  { key: 'dermatitis', icon: '🌿' },
+  { key: 'insomnio', icon: '🌙' },
+  { key: 'sobrepeso', icon: '⚖️' },
+] as const;
 
-const PRESET_SYMPTOMS: SymptomOption[] = [
-  { label: 'Gastritis / Acidez estomacal', shortLabel: 'Gastritis / Acidez', icon: '🔥', category: 'Digestivo' },
-  { label: 'Ansiedad / Estrés crónico', shortLabel: 'Ansiedad / Estrés', icon: '⚡', category: 'Emocional' },
-  { label: 'Lumbalgia / Dolor lumbar', shortLabel: 'Dolor Lumbar / Espalda', icon: '🛡️', category: 'Estructural' },
-  { label: 'Ciática / Dolor nervioso', shortLabel: 'Ciática / Nervio', icon: '⚡', category: 'Neural' },
-  { label: 'Hipotiroidismo / Fatiga metabólica', shortLabel: 'Tiroides / Fatiga', icon: '🦋', category: 'Endocrino' },
-  { label: 'Migrañas / Cefaleas intensas', shortLabel: 'Migrañas / Cefalea', icon: '🧠', category: 'Cefálico' },
-  { label: 'Colon Irritable / Inflamación', shortLabel: 'Colon Irritable', icon: '🌊', category: 'Intestinal' },
-  { label: 'Dermatitis / Psoriasis / Erupciones', shortLabel: 'Dermatitis / Piel', icon: '🌿', category: 'Cutáneo' },
-  { label: 'Insomnio / Trastornos del sueño', shortLabel: 'Insomnio / Sueño', icon: '🌙', category: 'Reposo' },
-  { label: 'Sobrepeso / Retención de líquidos', shortLabel: 'Sobrepeso / Retención', icon: '⚖️', category: 'Metabólico' },
-];
+const DURATION_KEYS = [
+  { key: 'less_1_month', icon: '⚡' },
+  { key: 'from_1_to_6_months', icon: '📅' },
+  { key: 'from_6_to_12_months', icon: '⏳' },
+  { key: 'more_than_1_year', icon: '🔒' },
+] as const;
 
-// Opciones enriquecidas para el Paso 2 (Tiempo de Evolución)
-interface DurationOption {
-  label: string;
-  title: string;
-  sub: string;
-  icon: string;
-}
+const TREATMENT_KEYS = [
+  { key: 'conventional', icon: '💊' },
+  { key: 'alternative', icon: '🌿' },
+  { key: 'multiple', icon: '🩺' },
+  { key: 'none', icon: '✨' },
+] as const;
 
-const PRESET_DURATIONS: DurationOption[] = [
-  {
-    label: 'Menos de 1 mes (Manifestación reciente)',
-    title: 'Menos de 1 mes',
-    sub: 'Manifestación reciente / Alerta inicial',
-    icon: '⚡',
-  },
-  {
-    label: 'De 1 a 6 meses (Episodios recurrentes)',
-    title: '1 a 6 meses',
-    sub: 'Episodios recurrentes o intermitentes',
-    icon: '📅',
-  },
-  {
-    label: 'De 6 meses a 1 año (Persistencia moderada)',
-    title: '6 meses a 1 año',
-    sub: 'Persistencia moderada',
-    icon: '⏳',
-  },
-  {
-    label: 'Más de 1 año (Cuadro crónico arraigado)',
-    title: 'Más de 1 año',
-    sub: 'Cuadro crónico arraigado',
-    icon: '🔒',
-  },
-];
-
-// Opciones enriquecidas para el Paso 3 (Tratamientos Previos)
-interface TreatmentOption {
-  label: string;
-  title: string;
-  sub: string;
-  icon: string;
-}
-
-const PRESET_TREATMENTS: TreatmentOption[] = [
-  {
-    label: 'Medicación alopática o convencional',
-    title: 'Medicación convencional',
-    sub: 'Fármacos o tratamientos médicos tradicionales',
-    icon: '💊',
-  },
-  {
-    label: 'Terapias alternativas o naturales',
-    title: 'Terapias complementarias',
-    sub: 'Acupuntura, naturopatía u homeopatía',
-    icon: '🌿',
-  },
-  {
-    label: 'Múltiples especialistas sin alivio definitivo',
-    title: 'Múltiples consultas',
-    sub: 'Diversos estudios sin causa clara encontrada',
-    icon: '🩺',
-  },
-  {
-    label: 'Ninguno hasta el momento (primera vez)',
-    title: 'Primera exploración',
-    sub: 'Primer abordaje específico para este síntoma',
-    icon: '✨',
-  },
-];
-
-// Opciones para el Paso 4 (Países / Mercados Principales con Moneda y Rango Local)
 interface CountryOption {
   name: string;
   flag: string;
   price: string;
   currency: string;
 }
-
-const PRESET_COUNTRIES: CountryOption[] = [
-  { name: 'Colombia', flag: '🇨🇴', price: '$140.000 - $220.000 COP', currency: 'COP' },
-  { name: 'México', flag: '🇲🇽', price: '$800 - $1,400 MXN', currency: 'MXN' },
-  { name: 'España', flag: '🇪🇸', price: '50€ - 85€ EUR', currency: 'EUR' },
-  { name: 'Estados Unidos', flag: '🇺🇸', price: '$65 - $110 USD', currency: 'USD' },
-  { name: 'Argentina', flag: '🇦🇷', price: '$45.000 - $75.000 ARS', currency: 'ARS' },
-  { name: 'Chile', flag: '🇨🇱', price: '$38.000 - $62.000 CLP', currency: 'CLP' },
-  { name: 'Perú', flag: '🇵🇪', price: 'S/ 150 - S/ 250 PEN', currency: 'PEN' },
-  { name: 'Ecuador', flag: '🇪🇨', price: '$40 - $65 USD', currency: 'USD' },
-  { name: 'Costa Rica', flag: '🇨🇷', price: '₡25.000 - ₡40.000 CRC', currency: 'CRC' },
-  { name: 'Panamá', flag: '🇵🇦', price: '$40 - $65 USD', currency: 'USD' },
-  { name: 'Otro País', flag: '🌐', price: '$40 - $65 USD', currency: 'USD' },
-];
 
 // Helper para determinar la tarifa y moneda según la ubicación ingresada
 function resolveCountryPricing(loc: string): { country: string; price: string; currency: string } {
@@ -224,6 +141,60 @@ export function WhatsAppQuizModal({
 
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['es'];
 
+  // Listas de opciones dinámicas según idioma seleccionado
+  const presetSymptoms = useMemo(() => {
+    return SYMPTOM_KEYS.map(({ key, icon }) => {
+      const item = (t.quiz.symptoms as any)[key];
+      return {
+        key,
+        icon,
+        label: item ? item.label : key,
+        shortLabel: item ? item.shortLabel : key,
+        category: item ? item.category : '',
+      };
+    });
+  }, [t]);
+
+  const presetDurations = useMemo(() => {
+    return DURATION_KEYS.map(({ key, icon }) => {
+      const item = (t.quiz.durations as any)[key];
+      return {
+        key,
+        icon,
+        title: item ? item.title : key,
+        sub: item ? item.sub : '',
+        label: item ? item.label : key,
+      };
+    });
+  }, [t]);
+
+  const presetTreatments = useMemo(() => {
+    return TREATMENT_KEYS.map(({ key, icon }) => {
+      const item = (t.quiz.treatments as any)[key];
+      return {
+        key,
+        icon,
+        title: item ? item.title : key,
+        sub: item ? item.sub : '',
+        label: item ? item.label : key,
+      };
+    });
+  }, [t]);
+
+  const presetCountries = useMemo<CountryOption[]>(() => [
+    { name: 'Colombia', flag: '🇨🇴', price: '$140.000 - $220.000 COP', currency: 'COP' },
+    { name: 'México', flag: '🇲🇽', price: '$800 - $1,400 MXN', currency: 'MXN' },
+    { name: 'España', flag: '🇪🇸', price: '50€ - 85€ EUR', currency: 'EUR' },
+    { name: 'Estados Unidos', flag: '🇺🇸', price: '$65 - $110 USD', currency: 'USD' },
+    { name: 'Argentina', flag: '🇦🇷', price: '$45.000 - $75.000 ARS', currency: 'ARS' },
+    { name: 'Chile', flag: '🇨🇱', price: '$38.000 - $62.000 CLP', currency: 'CLP' },
+    { name: 'Perú', flag: '🇵🇪', price: 'S/ 150 - S/ 250 PEN', currency: 'PEN' },
+    { name: 'Ecuador', flag: '🇪🇨', price: '$40 - $65 USD', currency: 'USD' },
+    { name: 'Costa Rica', flag: '🇨🇷', price: '₡25.000 - ₡40.000 CRC', currency: 'CRC' },
+    { name: 'Panamá', flag: '🇵🇦', price: '$40 - $65 USD', currency: 'USD' },
+    { name: t.quiz.country_other || 'Otro País', flag: '🌐', price: '$40 - $65 USD', currency: 'USD' },
+  ], [t]);
+
   // Síntoma y valores efectivos (priorizan texto personalizado si fue escrito)
   const effectiveSymptom = (customSymptom.trim() || symptom.trim()) || 'Consulta General';
   const effectiveDuration = (customDuration.trim() || duration.trim()) || 'No especificado';
@@ -246,7 +217,6 @@ export function WhatsAppQuizModal({
     if (sym) {
       setSymptom(sym);
       setCustomSymptom('');
-      // Si el síntoma viene precargado (ej. página temática), avanza directamente a duración (Paso 2, contrato T4.2.1 / ADV-M3.2.14)
       setStep(2);
     } else {
       setStep(1);
@@ -289,14 +259,12 @@ export function WhatsAppQuizModal({
     if (typeof window === 'undefined') return;
 
     const handleDocumentClick = (e: MouseEvent) => {
-      // Respetar modificadores de teclado (abrir en nueva pestaña) y clics auxiliares
       if (e.button !== 0) return;
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
-      // Ignorar de forma absoluta clics sobre cualquier control de selector o cambio de idioma
       if (
         target.closest('.language-selector-wrapper') ||
         target.closest('.lang-option-btn') ||
@@ -308,12 +276,10 @@ export function WhatsAppQuizModal({
         return;
       }
 
-      // Buscar si el clic proviene de un trigger para abrir el quiz
       const trigger = target.closest<HTMLElement>(
         'a[href*="wa.me"], a[href*="whatsapp.com"], [data-open-quiz]'
       );
 
-      // Si no es un trigger o es el enlace final de envío dentro del propio modal, no interceptar
       if (!trigger || trigger.closest('[data-quiz-modal]') || trigger.hasAttribute('data-quiz-final')) {
         return;
       }
@@ -338,7 +304,6 @@ export function WhatsAppQuizModal({
       });
     };
 
-    // Escucha del evento custom 'alma:open-quiz'
     const handleCustomEvent = (e: Event) => {
       const customEvent = e as CustomEvent<{ symptom?: string; city?: string; location?: string }>;
       const detail = customEvent.detail || {};
@@ -348,7 +313,6 @@ export function WhatsAppQuizModal({
       });
     };
 
-    // Manejo accesible de tecla Escape
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         handleClose();
@@ -359,7 +323,6 @@ export function WhatsAppQuizModal({
     window.addEventListener('alma:open-quiz', handleCustomEvent);
     window.addEventListener('keydown', handleKeyDown);
 
-    // Si hubo un clic antes de completar la hidratación de React, abrir inmediatamente
     if (typeof window !== 'undefined' && (window as any).__pendingQuizDetail) {
       const pending = (window as any).__pendingQuizDetail;
       (window as any).__pendingQuizDetail = null;
@@ -399,6 +362,11 @@ export function WhatsAppQuizModal({
   // Información de precios localizada para el paso 5
   const pricingInfo = resolveCountryPricing(effectiveLocation);
 
+  // Fórmula diagnóstica dinámica según idioma con fallback estricto
+  const diagnosisText = t.quiz.diagnosis_template
+    ? t.quiz.diagnosis_template(effectiveSymptom, effectiveDuration)
+    : `Identificamos un patrón relacionado con ${effectiveSymptom} de ${effectiveDuration} de evolución.`;
+
   return (
     <div
       data-quiz-modal="true"
@@ -408,20 +376,14 @@ export function WhatsAppQuizModal({
       aria-labelledby="quiz-modal-title"
       aria-describedby="quiz-modal-description"
     >
-      {/*
-        Backdrop 100% sólido mate (#060A1A).
-        Lienzo abisal sereno sin filtros, transparencias ni capas difuminadas.
-      */}
+      {/* Backdrop 100% sólido mate (#060A1A) */}
       <div
         className="fixed inset-0 bg-[#060A1A] cursor-pointer animate-backdrop-fade"
         onClick={handleClose}
         aria-hidden="true"
       />
 
-      {/*
-        Contenedor Modal en Superficie Midnight Navy (#0A1226) con Esquinas Amplias rounded-[2rem] sm:rounded-[2.5rem].
-        R4: max-h-[85dvh] flex flex-col para contención ergonómica en móviles.
-      */}
+      {/* Contenedor Modal en Superficie Midnight Navy (#0A1226) */}
       <div
         data-quiz-card="true"
         className="relative w-full max-w-xl max-h-[85dvh] flex flex-col bg-[#0A1226] border border-slate-800 rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-7 md:p-8 z-10 my-auto text-slate-100 shadow-2xl animate-modal-enter overflow-hidden"
@@ -452,7 +414,7 @@ export function WhatsAppQuizModal({
                 </span>
               </div>
               <span className="text-[11px] uppercase tracking-wider text-[#779DD1] font-sans font-semibold block">
-                Evaluación Rápida &amp; Agendamiento
+                {t.quiz.header_subtitle}
               </span>
             </div>
           </div>
@@ -469,20 +431,18 @@ export function WhatsAppQuizModal({
           </button>
         </div>
 
-        {/*
-          Barra de Progreso Segmentada: 4 pasos visuales con acento Cyan (#38BDF8) y Slate Mate (#1E293B).
-        */}
+        {/* Barra de Progreso Segmentada: 4 pasos visuales con acento Cyan (#38BDF8) */}
         <div className="w-full mb-4 sm:mb-5 shrink-0">
           <div className="flex items-center justify-between mb-1.5 text-xs font-sans">
             <span className="font-bold uppercase tracking-wider text-[#779DD1] text-[11px]">
-              {step <= 4 ? `PASO 0${step} / 04` : 'DIAGNÓSTICO LISTO'}
+              {step <= 4 ? `${t.quiz.step_progress_prefix || 'PASO 0'}${step} / 04` : (t.quiz.step_progress_ready || 'DIAGNÓSTICO LISTO')}
             </span>
             <span className="text-slate-400 font-semibold text-[11px] uppercase tracking-wide">
-              {step === 1 && 'Motivo de Consulta'}
-              {step === 2 && 'Tiempo de Evolución'}
-              {step === 3 && 'Tratamientos Previos'}
-              {step === 4 && 'País / Ciudad'}
-              {step === 5 && 'Patrón Identificado'}
+              {step === 1 && t.quiz.step_name_1}
+              {step === 2 && t.quiz.step_name_2}
+              {step === 3 && t.quiz.step_name_3}
+              {step === 4 && t.quiz.step_name_4}
+              {step === 5 && t.quiz.step_name_5}
             </span>
           </div>
           <div className="grid grid-cols-4 gap-2">
@@ -497,7 +457,7 @@ export function WhatsAppQuizModal({
           </div>
         </div>
 
-        {/* Área con scroll interno ergonómico para preguntas y opciones (R4) */}
+        {/* Área con scroll interno ergonómico para preguntas y opciones */}
         <div className="flex-1 overflow-y-auto pr-1 min-h-0">
 
         {/* ==================================================================== */}
@@ -518,13 +478,12 @@ export function WhatsAppQuizModal({
               {t.quiz.step1_desc}
             </p>
 
-            {/* Grid dinámico de micro-chips con auto-avance al tocar (R4: responsivo 360px - 414px) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
-              {PRESET_SYMPTOMS.map((item) => {
+              {presetSymptoms.map((item) => {
                 const isSelected = symptom === item.label && !customSymptom;
                 return (
                   <button
-                    key={item.label}
+                    key={item.key}
                     type="button"
                     onClick={() => {
                       setCustomSymptom('');
@@ -560,7 +519,7 @@ export function WhatsAppQuizModal({
                   onClick={() => setShowCustomSymptomInput(true)}
                   className="text-xs font-sans text-[#779DD1] hover:text-white underline underline-offset-4 transition-colors"
                 >
-                  + ¿Tu dolencia no está en la lista? Escríbela aquí
+                  {t.quiz.custom_symptom_btn}
                 </button>
               </div>
             ) : (
@@ -569,7 +528,7 @@ export function WhatsAppQuizModal({
                   htmlFor="custom-symptom-input"
                   className="block text-[11px] font-sans font-semibold uppercase tracking-wider text-slate-400 mb-1.5"
                 >
-                  Describe tu síntoma específico:
+                  {t.quiz.custom_symptom_label}
                 </label>
                 <div className="flex gap-2">
                   <input
@@ -580,7 +539,7 @@ export function WhatsAppQuizModal({
                       setCustomSymptom(e.target.value);
                       if (e.target.value) setSymptom(e.target.value);
                     }}
-                    placeholder="Ej: Presión en el pecho, mareos, dolor dorsal..."
+                    placeholder={t.quiz.custom_symptom_placeholder}
                     className="w-full px-3.5 py-2.5 rounded-xl bg-[#060A1A] border border-slate-800 focus:border-[#38BDF8] text-white placeholder-slate-500 text-xs font-sans outline-none transition-colors"
                   />
                   <button
@@ -604,8 +563,8 @@ export function WhatsAppQuizModal({
                 data-quiz-final="true"
                 className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-emerald-400 transition-colors font-sans"
               >
-                <span>💬 ¿Prefieres consultar directamente?</span>
-                <span className="text-emerald-400 font-bold underline underline-offset-2">Escribir por WhatsApp &rarr;</span>
+                <span>{t.quiz.direct_consult_question}</span>
+                <span className="text-emerald-400 font-bold underline underline-offset-2">{t.quiz.direct_consult_link}</span>
               </a>
 
               {effectiveSymptom && effectiveSymptom !== 'Consulta General' && (
@@ -640,11 +599,11 @@ export function WhatsAppQuizModal({
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
-              {PRESET_DURATIONS.map((dur) => {
+              {presetDurations.map((dur) => {
                 const isSelected = duration === dur.label && !customDuration;
                 return (
                   <button
-                    key={dur.label}
+                    key={dur.key}
                     type="button"
                     onClick={() => {
                       setCustomDuration('');
@@ -691,7 +650,7 @@ export function WhatsAppQuizModal({
                 data-quiz-final="true"
                 className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-emerald-400 transition-colors font-sans"
               >
-                <span>💬 WhatsApp directo &rarr;</span>
+                <span>{t.quiz.direct_wa_short}</span>
               </a>
 
               {effectiveDuration && effectiveDuration !== 'No especificado' && (
@@ -726,11 +685,11 @@ export function WhatsAppQuizModal({
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
-              {PRESET_TREATMENTS.map((treatment) => {
+              {presetTreatments.map((treatment) => {
                 const isSelected = priorTreatments === treatment.label && !customPriorTreatments;
                 return (
                   <button
-                    key={treatment.label}
+                    key={treatment.key}
                     type="button"
                     onClick={() => {
                       setCustomPriorTreatments('');
@@ -777,7 +736,7 @@ export function WhatsAppQuizModal({
                 data-quiz-final="true"
                 className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-emerald-400 transition-colors font-sans"
               >
-                <span>💬 WhatsApp directo &rarr;</span>
+                <span>{t.quiz.direct_wa_short}</span>
               </a>
 
               {effectivePriorTreatments && effectivePriorTreatments !== 'No especificado' && (
@@ -812,7 +771,7 @@ export function WhatsAppQuizModal({
             </p>
 
             <div className="flex flex-wrap gap-2 mb-4">
-              {PRESET_COUNTRIES.map((ctry) => {
+              {presetCountries.map((ctry) => {
                 const isSelected = location === ctry.name && !customLocation;
                 return (
                   <button
@@ -840,7 +799,7 @@ export function WhatsAppQuizModal({
                 htmlFor="custom-location-input"
                 className="block text-[11px] font-sans font-semibold uppercase tracking-wider text-slate-400 mb-1.5"
               >
-                O escribe tu ciudad específica:
+                {t.quiz.custom_location_label}
               </label>
               <input
                 id="custom-location-input"
@@ -850,7 +809,7 @@ export function WhatsAppQuizModal({
                   setCustomLocation(e.target.value);
                   if (e.target.value) setLocation(e.target.value);
                 }}
-                placeholder="Ej: Bogotá, Madrid, Barcelona, CDMX, Miami, Buenos Aires..."
+                placeholder={t.quiz.custom_location_placeholder}
                 className="w-full px-3.5 py-2.5 rounded-xl bg-[#060A1A] border border-slate-800 focus:border-[#38BDF8] text-white placeholder-slate-500 text-xs font-sans outline-none transition-colors"
               />
             </div>
@@ -885,10 +844,10 @@ export function WhatsAppQuizModal({
             <div className="flex items-center justify-between mb-2">
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-sans font-bold uppercase tracking-wider bg-[#0E172F] text-emerald-400 border border-[#1E3A5F]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] animate-pulse" />
-                Evaluación Preliminar Completada
+                {t.quiz.step5_completed_badge}
               </span>
               <span className="text-[11px] font-sans text-slate-400 font-semibold">
-                Atención 1 a 1 Online
+                {t.quiz.step5_online_badge}
               </span>
             </div>
 
@@ -907,29 +866,29 @@ export function WhatsAppQuizModal({
                 data-diagnosis={`Identificamos un patrón relacionado con ${effectiveSymptom} de ${effectiveDuration} de evolución.`}
                 className="text-xs sm:text-sm text-white font-sans font-bold leading-relaxed"
               >
-                {`Identificamos un patrón relacionado con ${effectiveSymptom} de ${effectiveDuration} de evolución.`}
+                {diagnosisText || `Identificamos un patrón relacionado con ${effectiveSymptom} de ${effectiveDuration} de evolución.`}
               </p>
 
               <p className="text-[11px] sm:text-xs text-slate-300 font-normal font-sans leading-relaxed">
-                En biodescodificación, este síntoma refleja un programa biológico adaptativo. En tu valoración inicial revisaremos el detonante emocional para orientar su resolución definitiva.
+                {t.quiz.step5_explanation}
               </p>
 
               {/* Ficha Resumen Compacta en Micro-Tags */}
               <div className="grid grid-cols-2 gap-2 bg-[#060A1A] border border-slate-800 rounded-xl p-2.5 text-[11px] font-sans mt-2">
                 <div>
-                  <span className="text-slate-400 block text-[10px] uppercase font-semibold">Síntoma:</span>
+                  <span className="text-slate-400 block text-[10px] uppercase font-semibold">{t.quiz.summary_symptom}</span>
                   <span className="font-bold text-white truncate block">{effectiveSymptom}</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[10px] uppercase font-semibold">Evolución:</span>
+                  <span className="text-slate-400 block text-[10px] uppercase font-semibold">{t.quiz.summary_duration}</span>
                   <span className="font-bold text-white truncate block">{effectiveDuration}</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[10px] uppercase font-semibold">Tratamientos:</span>
+                  <span className="text-slate-400 block text-[10px] uppercase font-semibold">{t.quiz.summary_treatments}</span>
                   <span className="font-bold text-white truncate block">{effectivePriorTreatments}</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[10px] uppercase font-semibold">Ubicación / País:</span>
+                  <span className="text-slate-400 block text-[10px] uppercase font-semibold">{t.quiz.summary_location}</span>
                   <span className="font-bold text-white truncate block">{effectiveLocation}</span>
                 </div>
               </div>
@@ -942,22 +901,22 @@ export function WhatsAppQuizModal({
                 <div>
                   <div className="flex items-center justify-between gap-1 mb-1">
                     <span className="text-[10px] uppercase font-extrabold tracking-wider text-emerald-400 font-sans">
-                      Fase 1 • Orientación
+                      {t.quiz.phase1_badge}
                     </span>
                     <span className="px-2 py-0.5 rounded-full bg-[#0E172F] border border-emerald-500 text-[10px] font-sans font-extrabold text-emerald-300">
-                      SIN COSTO
+                      {t.quiz.phase1_free}
                     </span>
                   </div>
                   <h4 className="font-sans font-bold text-xs sm:text-sm text-white mb-1">
-                    Llamada de Valoración (15 min)
+                    {t.quiz.phase1_title}
                   </h4>
                   <p className="text-[11px] text-slate-300 font-sans leading-snug">
-                    Videollamada 1 a 1 para escuchar tu caso, revisar antecedentes y explicarte el sentido biológico.
+                    {t.quiz.phase1_desc}
                   </p>
                 </div>
                 <div className="mt-2 pt-2 border-t border-slate-800 flex items-center gap-1.5 text-[10px] text-emerald-400 font-sans font-semibold">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#25D366]" />
-                  100% Gratuita • Sin Compromiso
+                  {t.quiz.phase1_footer}
                 </div>
               </div>
 
@@ -966,21 +925,21 @@ export function WhatsAppQuizModal({
                 <div>
                   <div className="flex items-center justify-between gap-1 mb-1">
                     <span className="text-[10px] uppercase font-extrabold tracking-wider text-[#779DD1] font-sans">
-                      Fase 2 • Profunda
+                      {t.quiz.phase2_badge}
                     </span>
                     <span className="text-[10px] font-sans text-slate-400 font-semibold">
-                      90 Minutos
+                      {t.quiz.phase2_time}
                     </span>
                   </div>
                   <h4 className="font-sans font-bold text-xs sm:text-sm text-white mb-1">
-                    Sesión de Descodificación
+                    {t.quiz.phase2_title}
                   </h4>
                   <p className="text-[11px] text-slate-300 font-sans leading-snug">
-                    Acompañamiento individual para desactivar el choque biológico y restaurar el bienestar.
+                    {t.quiz.phase2_desc}
                   </p>
                 </div>
                 <div className="mt-2 pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] font-sans">
-                  <span className="text-slate-400 text-[10px] font-medium">Inversión ({pricingInfo.country}):</span>
+                  <span className="text-slate-400 text-[10px] font-medium">{t.quiz.phase2_investment} ({pricingInfo.country}):</span>
                   <span className="font-bold text-[#38BDF8] text-[11px]">{pricingInfo.price}</span>
                 </div>
               </div>
@@ -1001,7 +960,7 @@ export function WhatsAppQuizModal({
             </a>
 
             <p className="text-[10px] text-slate-400 text-center mt-2 font-sans font-medium">
-              Respuesta personalizada en menos de 15 minutos • Sin cobro previo
+              {t.quiz.under_button_note}
             </p>
 
             {/* Enlace secundario para modificar respuestas */}
@@ -1011,20 +970,20 @@ export function WhatsAppQuizModal({
                 onClick={() => setStep(4)}
                 className="group inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-[#779DD1] active:scale-[0.96] transition-all cursor-pointer font-sans font-semibold uppercase tracking-wider"
               >
-                &larr; Modificar respuestas
+                {t.quiz.modify_answers}
               </button>
               <button
                 type="button"
                 onClick={handleClose}
                 className="text-xs text-slate-400 hover:text-white active:scale-[0.96] transition-all cursor-pointer font-sans font-semibold uppercase tracking-wider"
               >
-                Cerrar
+                {t.quiz.close}
               </button>
             </div>
 
             {/* Descargo Médico Obligatorio */}
             <p className="text-[10px] text-slate-500 text-center mt-3 font-sans leading-normal font-normal">
-              * La biodescodificación es complementaria y no sustituye el diagnóstico ni tratamiento médico facultativo colegiado.
+              {t.quiz.medical_disclaimer}
             </p>
           </div>
         )}

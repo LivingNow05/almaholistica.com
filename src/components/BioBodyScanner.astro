@@ -8,6 +8,7 @@
  * - Despliega en tiempo real la ficha preliminar del conflicto biológico.
  * - Disparador data-open-quiz="true" con data-symptom para abrir el WhatsAppQuizModal.
  * - 100% Sólido Mate (Cero efecto vidrio, cero transparencias, cero CLS).
+ * - Soporte nativo multilingüe reactivo (ES, EN, DE, FR, IT).
  */
 
 import { buildWhatsAppUrl } from '../config/site';
@@ -16,6 +17,7 @@ interface Hotspot {
   id: string;
   code: string;
   label: string;
+  shortLabel: string;
   organ: string;
   layer: 'Endodermo' | 'Mesodermo' | 'Ectodermo';
   conflict: string;
@@ -31,6 +33,7 @@ const hotspots: Hotspot[] = [
     id: 'craneo',
     code: 'ZONA-01 // CEPHALIC',
     label: 'Cráneo y Sistema Nervioso',
+    shortLabel: 'Cráneo',
     organ: 'Corteza Cerebral y Vasos Craneales',
     layer: 'Ectodermo',
     conflict: 'Miedo frontal, sobreexigencia intelectual, impotencia o rabia no expresada retenida en el pensamiento.',
@@ -44,6 +47,7 @@ const hotspots: Hotspot[] = [
     id: 'tiroides',
     code: 'ZONA-02 // LARYNGEAL',
     label: 'Garganta y Glándula Tiroides',
+    shortLabel: 'Garganta',
     organ: 'Tiroides y Conductos Faríngeos',
     layer: 'Endodermo',
     conflict: 'Urgencia de tiempo: "El tiempo pasa demasiado rápido y no llego" o impotencia para atrapar o expulsar la palabra.',
@@ -57,6 +61,7 @@ const hotspots: Hotspot[] = [
     id: 'torax',
     code: 'ZONA-03 // THORACIC',
     label: 'Tórax, Pulmones y Corazón',
+    shortLabel: 'Tórax',
     organ: 'Alvéolos Pulmonares y Miocardio',
     layer: 'Endodermo',
     conflict: 'Miedo visceral a la asfixia o pérdida de territorio: "Siento que me quitan el aire o el sustento".',
@@ -70,6 +75,7 @@ const hotspots: Hotspot[] = [
     id: 'digestivo',
     code: 'ZONA-04 // GASTRIC',
     label: 'Abdomen y Aparato Digestivo',
+    shortLabel: 'Abdomen',
     organ: 'Estómago, Duodeno y Colon',
     layer: 'Endodermo',
     conflict: 'Bocado indigesto: una situación o traición que no puedes tolerar, digerir ni expulsar de tu vida.',
@@ -83,6 +89,7 @@ const hotspots: Hotspot[] = [
     id: 'columna',
     code: 'ZONA-05 // LUMBAR',
     label: 'Columna Vertebral y Lumbar',
+    shortLabel: 'Columna',
     organ: 'Vértebras Lumbares y Músculos Espinales',
     layer: 'Mesodermo',
     conflict: 'Desvalorización estructural: "No puedo sostener esta carga económica o familiar por mí mismo".',
@@ -96,6 +103,7 @@ const hotspots: Hotspot[] = [
     id: 'epidermis',
     code: 'ZONA-06 // DERMAL',
     label: 'Piel y Tejido Tegumentario',
+    shortLabel: 'Piel',
     organ: 'Epidermis y Capa Basal Cutánea',
     layer: 'Ectodermo',
     conflict: 'Conflicto de separación: ruptura involuntaria de contacto físico, afectivo o protección con alguien vital.',
@@ -120,9 +128,9 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
     <div class="space-y-1">
       <div class="inline-flex items-center gap-2 text-xs font-sans font-bold tracking-wider text-[#779DD1] uppercase">
         <span class="w-2 h-2 rounded-full bg-[#779DD1] animate-pulse"></span>
-        <span>SYS // BIO-SCANNER ANATÓMICO v2.4</span>
+        <span data-i18n="body_scanner.header_tag">SYS // BIO-SCANNER ANATÓMICO v2.4</span>
       </div>
-      <p class="text-sm text-slate-400 font-sans">
+      <p data-i18n="body_scanner.header_desc" class="text-sm text-slate-400 font-sans">
         Interactúa con la silueta biológica para decodificar el conflicto subyacente a tu síntoma físico
       </p>
     </div>
@@ -131,11 +139,11 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
     <div class="flex items-center gap-4 text-xs font-sans font-medium shrink-0">
       <div class="flex items-center gap-1.5 text-slate-300">
         <span class="w-2.5 h-2.5 rounded-full bg-[#F97316]"></span>
-        <span>Estrés Activo</span>
+        <span data-i18n="body_scanner.legend_stress">Estrés Activo</span>
       </div>
       <div class="flex items-center gap-1.5 text-slate-300">
         <span class="w-2.5 h-2.5 rounded-full bg-[#779DD1]"></span>
-        <span>Reparación</span>
+        <span data-i18n="body_scanner.legend_healing">Reparación</span>
       </div>
     </div>
   </div>
@@ -145,12 +153,13 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
     
     <!-- Columna 1: Silueta Anatómica Vectorial -->
     <div class="lg:col-span-5 flex flex-col items-center justify-center p-4 bg-[#060A1A] rounded-[2rem] border border-slate-800/40 relative">
-      <div class="text-[10px] font-sans font-semibold text-slate-500 uppercase tracking-wider absolute top-3 left-4">
+      <div data-i18n="body_scanner.plane_tag" class="text-[10px] font-sans font-semibold text-slate-500 uppercase tracking-wider absolute top-3 left-4">
         RAD // CORONAL PLANE
       </div>
       
       <!-- SVG con dimensiones fijas rígidas (280x440) para prevenir CLS -->
       <svg 
+        id="bio-scanner-svg"
         class="w-full max-w-[280px] h-auto select-none" 
         viewBox="0 0 280 440" 
         width="280" 
@@ -233,7 +242,7 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
             class="bio-zone-pill text-[11px] font-sans font-medium px-2.5 py-1 rounded-full border border-slate-700 bg-[#0E172F] text-slate-300 hover:border-slate-500 transition-colors"
             data-hotspot-target={hs.id}
           >
-            {hs.label.split(' ')[0]}
+            {hs.shortLabel}
           </button>
         ))}
       </div>
@@ -261,10 +270,10 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
         </h3>
         
         <div class="flex items-center gap-3 text-xs font-sans text-slate-400">
-          <span class="text-slate-500 font-semibold">ÓRGANO:</span>
+          <span data-i18n="body_scanner.label_organ" class="text-slate-500 font-semibold">ÓRGANO:</span>
           <span id="hud-organ" class="text-slate-200">{initialHotspot.organ}</span>
           <span class="text-slate-600">|</span>
-          <span class="text-slate-500 font-semibold">CAPA:</span>
+          <span data-i18n="body_scanner.label_layer" class="text-slate-500 font-semibold">CAPA:</span>
           <span id="hud-layer" class="text-slate-200">{initialHotspot.layer}</span>
         </div>
       </div>
@@ -273,7 +282,7 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
       <div class="p-4 sm:p-5 rounded-xl bg-[#060A1A] border border-slate-800/80 space-y-2">
         <div class="text-[11px] font-sans font-semibold text-slate-500 uppercase tracking-wider flex items-center gap-2">
           <span class="w-1.5 h-1.5 rounded-full bg-[#F97316]"></span>
-          <span>Conflicto Biológico Raíz (Sentido de Supervivencia)</span>
+          <span data-i18n="body_scanner.label_conflict">Conflicto Biológico Raíz (Sentido de Supervivencia)</span>
         </div>
         <p id="hud-conflict" class="text-sm sm:text-base text-slate-200 font-sans leading-relaxed">
           "{initialHotspot.conflict}"
@@ -282,7 +291,7 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
 
       <!-- Patologías y síntomas asociados -->
       <div class="space-y-2">
-        <span class="text-[11px] font-sans font-semibold text-slate-400 uppercase tracking-wider">
+        <span data-i18n="body_scanner.label_symptoms" class="text-[11px] font-sans font-semibold text-slate-400 uppercase tracking-wider">
           Síntomas frecuentes en este eje:
         </span>
         <div id="hud-symptoms" class="flex flex-wrap gap-2">
@@ -296,7 +305,7 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
 
       <!-- Disparador directo hacia Consulta Privada / Modal de Triaje -->
       <div class="pt-4 border-t border-slate-800/60 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-        <div class="text-xs text-slate-400 font-sans">
+        <div data-i18n="body_scanner.label_cta_question" class="text-xs text-slate-400 font-sans">
           ¿Presentas alguno de estos síntomas? Puedes evaluar tu caso ahora.
         </div>
 
@@ -308,7 +317,7 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
           data-location="bio-body-scanner-cta"
           class="inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full bg-white text-[#060A1A] font-sans font-bold text-sm tracking-wide shadow-pill-white hover:bg-slate-100 transition-all text-center shrink-0"
         >
-          <span>Iniciar Triaje de Mi Síntoma</span>
+          <span data-i18n="body_scanner.btn_cta">Iniciar Triaje de Mi Síntoma</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
           </svg>
@@ -320,16 +329,35 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
   </div>
 </div>
 
-<!-- Dataset embebido en JSON para interacción instantánea del cliente sin peticiones de red -->
-<script is:inline define:vars={{ hotspotsJson: JSON.stringify(hotspots) }}>
-  (function() {
-    const rawData = hotspotsJson;
-    const hotspots = JSON.parse(rawData);
-    const dataMap = new Map(hotspots.map(h => [h.id, h]));
+<script>
+  import { TRANSLATIONS, type LangCode } from '../i18n/translations';
 
-    function updateHUD(hotspotId) {
-      const data = dataMap.get(hotspotId);
-      if (!data) return;
+  (function() {
+    let currentLang: LangCode = 'es';
+    try {
+      const saved = localStorage.getItem('alma_preferred_lang') as LangCode;
+      if (saved && ['es', 'en', 'de', 'fr', 'it'].includes(saved)) {
+        currentLang = saved;
+      }
+    } catch (e) {}
+
+    let currentHotspotId = 'digestivo';
+
+    const hotspotConfig: Record<string, { code: string; phase: 'stress' | 'healing'; slug: string }> = {
+      craneo: { code: 'ZONA-01 // CEPHALIC', phase: 'stress', slug: 'migrana' },
+      tiroides: { code: 'ZONA-02 // LARYNGEAL', phase: 'stress', slug: 'hipotiroidismo' },
+      torax: { code: 'ZONA-03 // THORACIC', phase: 'healing', slug: 'ansiedad' },
+      digestivo: { code: 'ZONA-04 // GASTRIC', phase: 'healing', slug: 'gastritis' },
+      columna: { code: 'ZONA-05 // LUMBAR', phase: 'healing', slug: 'lumbalgia' },
+      epidermis: { code: 'ZONA-06 // DERMAL', phase: 'healing', slug: 'dermatitis' },
+    };
+
+    function updateHUD(hotspotId: string) {
+      currentHotspotId = hotspotId;
+      const dict = TRANSLATIONS[currentLang] || TRANSLATIONS['es'];
+      const zoneData = (dict.body_scanner.zones as any)[hotspotId];
+      const cfg = hotspotConfig[hotspotId];
+      if (!zoneData || !cfg) return;
 
       const codeEl = document.getElementById('hud-code');
       const badgeEl = document.getElementById('hud-phase-badge');
@@ -340,15 +368,23 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
       const symptomsEl = document.getElementById('hud-symptoms');
       const ctaBtn = document.getElementById('hud-cta-button');
 
-      if (codeEl) codeEl.textContent = data.code;
-      if (titleEl) titleEl.textContent = data.label;
-      if (organEl) organEl.textContent = data.organ;
-      if (layerEl) layerEl.textContent = data.layer;
-      if (conflictEl) conflictEl.textContent = `"${data.conflict}"`;
+      if (codeEl) codeEl.textContent = cfg.code;
+      if (titleEl) titleEl.textContent = zoneData.label;
+      if (organEl) organEl.textContent = zoneData.organ;
+
+      let layerName = dict.body_scanner.layers.Endodermo;
+      if (hotspotId === 'columna') {
+        layerName = dict.body_scanner.layers.Mesodermo;
+      } else if (hotspotId === 'craneo' || hotspotId === 'epidermis') {
+        layerName = dict.body_scanner.layers.Ectodermo;
+      }
+      if (layerEl) layerEl.textContent = layerName;
+
+      if (conflictEl) conflictEl.textContent = `"${zoneData.conflict}"`;
 
       if (badgeEl) {
-        badgeEl.textContent = data.phaseText;
-        if (data.phase === 'stress') {
+        badgeEl.textContent = zoneData.phaseText;
+        if (cfg.phase === 'stress') {
           badgeEl.className = 'text-[11px] font-sans px-3 py-1 rounded-full bg-[#0A1226] border border-[#F97316] text-[#F97316] font-medium';
         } else {
           badgeEl.className = 'text-[11px] font-sans px-3 py-1 rounded-full bg-[#0A1226] border border-[#779DD1] text-[#779DD1] font-medium';
@@ -356,13 +392,13 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
       }
 
       if (symptomsEl) {
-        symptomsEl.innerHTML = data.symptoms.map(s => 
+        symptomsEl.innerHTML = zoneData.symptoms.map((s: string) => 
           `<span class="px-3 py-1 text-xs font-sans rounded-lg bg-[#0A1226] border border-slate-800 text-slate-300">${s}</span>`
         ).join('');
       }
 
       if (ctaBtn) {
-        ctaBtn.setAttribute('data-symptom', data.slug);
+        ctaBtn.setAttribute('data-symptom', cfg.slug);
       }
 
       // Actualizar estados visuales de los nodos SVG
@@ -379,9 +415,13 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
         }
       });
 
-      // Actualizar botones móviles
+      // Actualizar botones móviles con labels traducidos
       document.querySelectorAll('.bio-zone-pill').forEach(btn => {
         const target = btn.getAttribute('data-hotspot-target');
+        const pillData = target ? (dict.body_scanner.zones as any)[target] : null;
+        if (pillData) {
+          btn.textContent = pillData.shortLabel;
+        }
         if (target === hotspotId) {
           btn.classList.add('border-[#779DD1]', 'text-[#779DD1]', 'bg-[#1E293B]');
         } else {
@@ -390,15 +430,27 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
       });
     }
 
+    // Escuchar eventos de cambio de idioma emitidos por el selector
+    window.addEventListener('alma:lang-changed', (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail && detail.lang && ['es', 'en', 'de', 'fr', 'it'].includes(detail.lang)) {
+        currentLang = detail.lang;
+        updateHUD(currentHotspotId);
+      }
+    });
+
     // Delegación de eventos para clicks en hotspots SVG
     document.addEventListener('click', (e) => {
-      const hotspotNode = e.target.closest('.bio-hotspot-node');
+      const targetEl = e.target as HTMLElement | null;
+      if (!targetEl) return;
+
+      const hotspotNode = targetEl.closest('.bio-hotspot-node');
       if (hotspotNode) {
         const id = hotspotNode.getAttribute('data-hotspot-id');
         if (id) updateHUD(id);
       }
 
-      const zonePill = e.target.closest('.bio-zone-pill');
+      const zonePill = targetEl.closest('.bio-zone-pill');
       if (zonePill) {
         const target = zonePill.getAttribute('data-hotspot-target');
         if (target) updateHUD(target);
@@ -408,7 +460,8 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
     // Soporte para teclado (Enter o Espacio)
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
-        const hotspotNode = e.target.closest('.bio-hotspot-node');
+        const targetEl = e.target as HTMLElement | null;
+        const hotspotNode = targetEl?.closest('.bio-hotspot-node');
         if (hotspotNode) {
           e.preventDefault();
           const id = hotspotNode.getAttribute('data-hotspot-id');
@@ -416,5 +469,10 @@ const initialWhatsAppUrl = buildWhatsAppUrl({
         }
       }
     });
+
+    // Inicializar si el idioma inicial no es español
+    if (currentLang !== 'es') {
+      updateHUD(currentHotspotId);
+    }
   })();
 </script>
