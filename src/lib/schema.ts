@@ -299,6 +299,8 @@ export function buildLocalServiceSchema(
     ? SITE_CONFIG.defaultOgImage
     : new URL(SITE_CONFIG.defaultOgImage, SITE_CONFIG.url).href;
 
+    const isArgentina = pais.toLowerCase().includes('argentina') || rawSlug.toLowerCase().includes('cordoba');
+
   return {
     '@context': 'https://schema.org',
     '@type': 'HealthAndBeautyBusiness',
@@ -329,11 +331,19 @@ export function buildLocalServiceSchema(
       bestRating: '5',
       worstRating: '1',
     },
-    hasMap: 'https://maps.google.com/?cid=4077548945231278670',
-    sameAs: [
-      'https://share.google/otrUm918xRGNHTTkE',
-      'https://maps.google.com/?cid=4077548945231278670',
-      'https://www.instagram.com/almaholistica.lat'
-    ],
+    ...(isArgentina
+      ? {
+          hasMap: 'https://maps.google.com/?cid=4077548945231278670',
+          sameAs: [
+            'https://share.google/otrUm918xRGNHTTkE',
+            'https://maps.google.com/?cid=4077548945231278670',
+            'https://www.instagram.com/almaholistica.lat'
+          ],
+        }
+      : {
+          sameAs: [
+            'https://www.instagram.com/almaholistica.lat'
+          ],
+        }),
   };
 }
