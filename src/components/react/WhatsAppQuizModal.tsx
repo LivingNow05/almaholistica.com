@@ -271,6 +271,18 @@ export function WhatsAppQuizModal({
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
+      // Ignorar de forma absoluta clics sobre cualquier control de selector o cambio de idioma
+      if (
+        target.closest('.language-selector-wrapper') ||
+        target.closest('.lang-option-btn') ||
+        target.closest('#lang-menu-desktop') ||
+        target.closest('#lang-menu-mobile') ||
+        target.closest('#lang-mobile-selector-section') ||
+        target.closest('#lang-backdrop-mobile')
+      ) {
+        return;
+      }
+
       // Buscar si el clic proviene de un trigger para abrir el quiz
       const trigger = target.closest<HTMLElement>(
         'a[href*="wa.me"], a[href*="whatsapp.com"], [data-open-quiz]'

@@ -159,6 +159,18 @@ const ogImageUrl = image.startsWith('http')
             var target = e.target;
             if (!target) return;
             
+            // Ignorar de forma absoluta clics sobre cualquier control de selector o cambio de idioma
+            if (target.closest && (
+              target.closest('.language-selector-wrapper') ||
+              target.closest('.lang-option-btn') ||
+              target.closest('#lang-menu-desktop') ||
+              target.closest('#lang-menu-mobile') ||
+              target.closest('#lang-mobile-selector-section') ||
+              target.closest('#lang-backdrop-mobile')
+            )) {
+              return;
+            }
+
             // Buscar elemento disparador
             var trigger = null;
             var curr = target;

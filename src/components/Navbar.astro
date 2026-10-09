@@ -100,7 +100,7 @@ const whatsappCtaUrl = buildWhatsAppUrl({
       </nav>
 
       <!-- Botón CTA WhatsApp, Selector de Idioma & Theme Toggle (Desktop) -->
-      <div class="hidden sm:flex items-center gap-3">
+      <div class="hidden md:flex items-center gap-3">
         <!-- Selector de Idioma Desktop -->
         <div class="relative language-selector-wrapper">
           <button
@@ -249,23 +249,33 @@ const whatsappCtaUrl = buildWhatsAppUrl({
             </svg>
           </button>
 
-          <!-- Menú flotante móvil de Idioma -->
+          <!-- Menú flotante móvil de Idioma (Centrado y con contención segura para evitar recortes) -->
           <div
             id="lang-menu-mobile"
-            class="hidden absolute right-0 mt-2 w-56 rounded-2xl bg-white dark:bg-[#0A1226] border border-slate-200 dark:border-slate-800 shadow-2xl p-2 z-50 text-xs font-sans"
+            class="hidden fixed inset-x-4 top-20 sm:absolute sm:inset-auto sm:right-0 sm:top-full mt-2 sm:w-64 max-w-sm mx-auto sm:mx-0 rounded-2xl bg-white dark:bg-[#0A1226] border border-slate-200 dark:border-slate-800 shadow-2xl p-3 z-50 text-xs font-sans"
           >
-            <div class="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 dark:border-slate-800 mb-1">
-              Idioma / Language
+            <div class="flex items-center justify-between px-2 py-1.5 border-b border-slate-100 dark:border-slate-800 mb-2">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                Idioma / Language
+              </span>
+              <button
+                type="button"
+                id="lang-menu-close-mobile"
+                class="p-1 text-slate-400 hover:text-slate-600 dark:hover:text-white rounded-lg focus:outline-none cursor-pointer"
+                aria-label="Cerrar selector de idioma"
+              >
+                ✕
+              </button>
             </div>
-            <div class="space-y-1">
+            <div class="space-y-1.5">
               <button
                 type="button"
                 data-lang-code="es"
-                class="lang-option-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-900 dark:text-white"
+                class="lang-option-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-900 dark:text-white min-h-[44px]"
               >
-                <span class="flex items-center gap-2">
-                  <span>🇪🇸</span>
-                  <span>Español (ES)</span>
+                <span class="flex items-center gap-2.5 text-sm">
+                  <span class="text-lg">🇪🇸</span>
+                  <span class="font-semibold">Español (ES)</span>
                 </span>
                 <span class="lang-check text-emerald-500 font-bold" data-check-lang="es">✓</span>
               </button>
@@ -273,11 +283,11 @@ const whatsappCtaUrl = buildWhatsAppUrl({
               <button
                 type="button"
                 data-lang-code="en"
-                class="lang-option-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-700 dark:text-slate-300"
+                class="lang-option-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-700 dark:text-slate-300 min-h-[44px]"
               >
-                <span class="flex items-center gap-2">
-                  <span>🇬🇧</span>
-                  <span>English (EN)</span>
+                <span class="flex items-center gap-2.5 text-sm">
+                  <span class="text-lg">🇬🇧</span>
+                  <span class="font-semibold">English (EN)</span>
                 </span>
                 <span class="lang-check text-emerald-500 font-bold hidden" data-check-lang="en">✓</span>
               </button>
@@ -285,11 +295,11 @@ const whatsappCtaUrl = buildWhatsAppUrl({
               <button
                 type="button"
                 data-lang-code="de"
-                class="lang-option-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-700 dark:text-slate-300"
+                class="lang-option-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-700 dark:text-slate-300 min-h-[44px]"
               >
-                <span class="flex items-center gap-2">
-                  <span>🇩🇪</span>
-                  <span>Deutsch (DE)</span>
+                <span class="flex items-center gap-2.5 text-sm">
+                  <span class="text-lg">🇩🇪</span>
+                  <span class="font-semibold">Deutsch (DE)</span>
                 </span>
                 <span class="lang-check text-emerald-500 font-bold hidden" data-check-lang="de">✓</span>
               </button>
@@ -297,11 +307,11 @@ const whatsappCtaUrl = buildWhatsAppUrl({
               <button
                 type="button"
                 data-lang-code="fr"
-                class="lang-option-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-700 dark:text-slate-300"
+                class="lang-option-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-700 dark:text-slate-300 min-h-[44px]"
               >
-                <span class="flex items-center gap-2">
-                  <span>🇫🇷</span>
-                  <span>Français (FR)</span>
+                <span class="flex items-center gap-2.5 text-sm">
+                  <span class="text-lg">🇫🇷</span>
+                  <span class="font-semibold">Français (FR)</span>
                 </span>
                 <span class="lang-check text-emerald-500 font-bold hidden" data-check-lang="fr">✓</span>
               </button>
@@ -309,26 +319,29 @@ const whatsappCtaUrl = buildWhatsAppUrl({
               <button
                 type="button"
                 data-lang-code="it"
-                class="lang-option-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-700 dark:text-slate-300"
+                class="lang-option-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-700 dark:text-slate-300 min-h-[44px]"
               >
-                <span class="flex items-center gap-2">
-                  <span>🇮🇹</span>
-                  <span>Italiano (IT)</span>
+                <span class="flex items-center gap-2.5 text-sm">
+                  <span class="text-lg">🇮🇹</span>
+                  <span class="font-semibold">Italiano (IT)</span>
                 </span>
                 <span class="lang-check text-emerald-500 font-bold hidden" data-check-lang="it">✓</span>
               </button>
             </div>
 
-            <div class="mt-2 pt-1.5 border-t border-slate-100 dark:border-slate-800">
+            <div class="mt-2.5 pt-2 border-t border-slate-100 dark:border-slate-800">
               <a
                 href="/#paises"
-                class="block px-2 py-1 text-[10px] text-slate-500 dark:text-slate-400 hover:text-[#779DD1] transition-colors"
+                class="block px-2 py-1 text-[11px] text-slate-500 dark:text-slate-400 hover:text-[#779DD1] transition-colors"
               >
                 🌎 Ver 20 Países y Monedas &rarr;
               </a>
             </div>
           </div>
         </div>
+
+        <!-- Backdrop invisible para cerrar menú de idioma en móvil -->
+        <div id="lang-backdrop-mobile" class="hidden fixed inset-0 z-40 sm:hidden" aria-hidden="true"></div>
 
         <button
           type="button"
@@ -411,61 +424,74 @@ const whatsappCtaUrl = buildWhatsAppUrl({
       <span>⭐ Opiniones en Google (4.3 / 5.0)</span>
       <span class="text-xs">&rarr;</span>
     </a>
-    <!-- Selector Rápido de Idioma Móvil -->
-    <div class="px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0A1226] border border-slate-200 dark:border-slate-800 text-xs space-y-1.5">
-      <div class="flex items-center justify-between text-slate-600 dark:text-slate-400 font-medium">
-        <span>Idioma / Language:</span>
-        <span class="text-[10px] text-slate-400 uppercase">Traducción directa</span>
+    <!-- Selector de Idioma en Menú Drawer Móvil (Visible, táctil y con nombres completos) -->
+    <div id="lang-mobile-selector-section" class="my-3 px-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-[#0A1226] border border-slate-200 dark:border-slate-800 space-y-2.5">
+      <div class="flex items-center justify-between text-slate-700 dark:text-slate-300 font-semibold text-xs border-b border-slate-200/60 dark:border-slate-800 pb-2">
+        <span class="flex items-center gap-1.5">
+          <span>🌐</span>
+          <span>Seleccionar Idioma / Select Language</span>
+        </span>
+        <span class="text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400">5 Idiomas</span>
       </div>
-      <div class="grid grid-cols-5 gap-1">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
         <button
           type="button"
           data-lang-code="es"
-          class="lang-option-btn lang-pill-btn lang-pill-es py-1.5 rounded-lg border text-center font-bold bg-[#779DD1] text-[#060A1A] border-[#779DD1] transition-all"
-          title="Español"
+          class="lang-option-btn lang-pill-btn lang-pill-es flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-left font-bold text-xs bg-[#779DD1] text-[#060A1A] border-[#779DD1] transition-all min-h-[44px]"
         >
-          <span class="block text-xs">🇪🇸</span>
-          <span class="block text-[10px] mt-0.5">ES</span>
+          <span class="flex items-center gap-2">
+            <span class="text-base">🇪🇸</span>
+            <span>Español (ES)</span>
+          </span>
+          <span class="lang-check text-emerald-600 dark:text-emerald-400 font-bold" data-check-lang="es">✓</span>
         </button>
         <button
           type="button"
           data-lang-code="en"
-          class="lang-option-btn lang-pill-btn lang-pill-en py-1.5 rounded-lg border text-center font-medium bg-slate-200 dark:bg-[#0E172F] text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-700 transition-all hover:border-[#779DD1]"
-          title="English"
+          class="lang-option-btn lang-pill-btn lang-pill-en flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-left font-medium text-xs bg-white dark:bg-[#0E172F] text-slate-800 dark:text-slate-200 border-slate-200 dark:border-slate-700 transition-all hover:border-[#779DD1] min-h-[44px]"
         >
-          <span class="block text-xs">🇬🇧</span>
-          <span class="block text-[10px] mt-0.5">EN</span>
+          <span class="flex items-center gap-2">
+            <span class="text-base">🇬🇧</span>
+            <span>English (EN)</span>
+          </span>
+          <span class="lang-check text-emerald-600 dark:text-emerald-400 font-bold hidden" data-check-lang="en">✓</span>
         </button>
         <button
           type="button"
           data-lang-code="de"
-          class="lang-option-btn lang-pill-btn lang-pill-de py-1.5 rounded-lg border text-center font-medium bg-slate-200 dark:bg-[#0E172F] text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-700 transition-all hover:border-[#779DD1]"
-          title="Deutsch"
+          class="lang-option-btn lang-pill-btn lang-pill-de flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-left font-medium text-xs bg-white dark:bg-[#0E172F] text-slate-800 dark:text-slate-200 border-slate-200 dark:border-slate-700 transition-all hover:border-[#779DD1] min-h-[44px]"
         >
-          <span class="block text-xs">🇩🇪</span>
-          <span class="block text-[10px] mt-0.5">DE</span>
+          <span class="flex items-center gap-2">
+            <span class="text-base">🇩🇪</span>
+            <span>Deutsch (DE)</span>
+          </span>
+          <span class="lang-check text-emerald-600 dark:text-emerald-400 font-bold hidden" data-check-lang="de">✓</span>
         </button>
         <button
           type="button"
           data-lang-code="fr"
-          class="lang-option-btn lang-pill-btn lang-pill-fr py-1.5 rounded-lg border text-center font-medium bg-slate-200 dark:bg-[#0E172F] text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-700 transition-all hover:border-[#779DD1]"
-          title="Français"
+          class="lang-option-btn lang-pill-btn lang-pill-fr flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-left font-medium text-xs bg-white dark:bg-[#0E172F] text-slate-800 dark:text-slate-200 border-slate-200 dark:border-slate-700 transition-all hover:border-[#779DD1] min-h-[44px]"
         >
-          <span class="block text-xs">🇫🇷</span>
-          <span class="block text-[10px] mt-0.5">FR</span>
+          <span class="flex items-center gap-2">
+            <span class="text-base">🇫🇷</span>
+            <span>Français (FR)</span>
+          </span>
+          <span class="lang-check text-emerald-600 dark:text-emerald-400 font-bold hidden" data-check-lang="fr">✓</span>
         </button>
         <button
           type="button"
           data-lang-code="it"
-          class="lang-option-btn lang-pill-btn lang-pill-it py-1.5 rounded-lg border text-center font-medium bg-slate-200 dark:bg-[#0E172F] text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-700 transition-all hover:border-[#779DD1]"
-          title="Italiano"
+          class="lang-option-btn lang-pill-btn lang-pill-it flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-left font-medium text-xs bg-white dark:bg-[#0E172F] text-slate-800 dark:text-slate-200 border-slate-200 dark:border-slate-700 transition-all hover:border-[#779DD1] min-h-[44px]"
         >
-          <span class="block text-xs">🇮🇹</span>
-          <span class="block text-[10px] mt-0.5">IT</span>
+          <span class="flex items-center gap-2">
+            <span class="text-base">🇮🇹</span>
+            <span>Italiano (IT)</span>
+          </span>
+          <span class="lang-check text-emerald-600 dark:text-emerald-400 font-bold hidden" data-check-lang="it">✓</span>
         </button>
       </div>
     </div>
-    <div class="pt-2">
+    <div class="pt-3 border-t border-slate-200 dark:border-slate-800">
       <a
         href={whatsappCtaUrl}
         data-open-quiz="true"
@@ -513,6 +539,10 @@ const whatsappCtaUrl = buildWhatsAppUrl({
       langMenuMobile.classList.add('hidden');
       langBtnMobile?.setAttribute('aria-expanded', 'false');
     }
+    const backdrop = document.getElementById('lang-backdrop-mobile');
+    if (backdrop) {
+      backdrop.classList.add('hidden');
+    }
   };
 
   if (langBtnDesktop && langMenuDesktop) {
@@ -535,7 +565,25 @@ const whatsappCtaUrl = buildWhatsAppUrl({
       if (isHidden) {
         langMenuMobile.classList.remove('hidden');
         langBtnMobile.setAttribute('aria-expanded', 'true');
+        const backdrop = document.getElementById('lang-backdrop-mobile');
+        if (backdrop) backdrop.classList.remove('hidden');
       }
+    });
+  }
+
+  const langCloseBtnMobile = document.getElementById('lang-menu-close-mobile');
+  if (langCloseBtnMobile) {
+    langCloseBtnMobile.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeAllLangMenus();
+    });
+  }
+
+  const langBackdropMobile = document.getElementById('lang-backdrop-mobile');
+  if (langBackdropMobile) {
+    langBackdropMobile.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeAllLangMenus();
     });
   }
 
@@ -604,14 +652,14 @@ const whatsappCtaUrl = buildWhatsAppUrl({
       }
     });
 
-    // Actualizar píldoras del menú móvil drawer
+    // Actualizar píldoras/botones del menú móvil drawer
     validLangs.forEach((l) => {
       const pills = document.querySelectorAll(`.lang-pill-${l}`);
       pills.forEach((p) => {
         if (l === langCode) {
-          p.className = `lang-option-btn lang-pill-btn lang-pill-${l} py-1.5 rounded-lg border text-center font-bold bg-[#779DD1] text-[#060A1A] border-[#779DD1] transition-all`;
+          p.className = `lang-option-btn lang-pill-btn lang-pill-${l} flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-left font-bold text-xs bg-[#779DD1] text-[#060A1A] border-[#779DD1] transition-all min-h-[44px]`;
         } else {
-          p.className = `lang-option-btn lang-pill-btn lang-pill-${l} py-1.5 rounded-lg border text-center font-medium bg-slate-200 dark:bg-[#0E172F] text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-700 transition-all hover:border-[#779DD1]`;
+          p.className = `lang-option-btn lang-pill-btn lang-pill-${l} flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-left font-medium text-xs bg-white dark:bg-[#0E172F] text-slate-800 dark:text-slate-200 border-slate-200 dark:border-slate-700 transition-all hover:border-[#779DD1] min-h-[44px]`;
         }
       });
     });
@@ -694,7 +742,11 @@ const whatsappCtaUrl = buildWhatsAppUrl({
   // Registrar clics en todos los botones de idioma
   document.querySelectorAll('.lang-option-btn').forEach((btnEl) => {
     btnEl.addEventListener('click', (e) => {
+      e.preventDefault();
       e.stopPropagation();
+      if ((e as any).stopImmediatePropagation) {
+        (e as any).stopImmediatePropagation();
+      }
       const code = (btnEl.getAttribute('data-lang-code') || '').toLowerCase();
       if (code) {
         triggerTranslation(code);
