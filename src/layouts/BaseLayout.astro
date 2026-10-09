@@ -122,6 +122,9 @@ const ogImageUrl = image.startsWith('http')
       <!-- Navegación global sólida mate -->
       <Navbar />
 
+      <!-- Contenedor del traductor dinámico instantáneo -->
+      <div id="google_translate_element" class="hidden" style="display:none" aria-hidden="true"></div>
+
       <!-- Contenido principal de la página -->
       <main class="flex-grow pb-20 md:pb-0">
         <slot />

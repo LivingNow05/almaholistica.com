@@ -114,7 +114,7 @@ const whatsappCtaUrl = buildWhatsAppUrl({
               <circle cx="12" cy="12" r="10" stroke-width="1.8"/>
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
             </svg>
-            <span class="font-bold">ES</span>
+            <span id="lang-current-label-desktop" class="font-bold">ES</span>
             <svg class="w-2.5 h-2.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
@@ -123,31 +123,74 @@ const whatsappCtaUrl = buildWhatsAppUrl({
           <!-- Menú flotante de Idioma y Cobertura -->
           <div
             id="lang-menu-desktop"
-            class="hidden absolute right-0 mt-2 w-56 rounded-2xl bg-white dark:bg-[#0A1226] border border-slate-200 dark:border-slate-800 shadow-2xl p-2 z-50 text-xs font-sans"
+            class="hidden absolute right-0 mt-2 w-60 rounded-2xl bg-white dark:bg-[#0A1226] border border-slate-200 dark:border-slate-800 shadow-2xl p-2 z-50 text-xs font-sans"
           >
-            <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 dark:border-slate-800/80 mb-1">
+            <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 dark:border-slate-800 mb-1">
               Idioma / Language
             </div>
-            <div
-              class="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-slate-100 dark:bg-[#0E172F] text-slate-900 dark:text-white font-semibold"
-            >
-              <span class="flex items-center gap-2">
-                <span>🇪🇸</span>
-                <span>Español (ES)</span>
-              </span>
-              <span class="text-emerald-500 font-bold">✓</span>
+            <div class="space-y-1">
+              <button
+                type="button"
+                data-lang-code="es"
+                class="lang-option-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-900 dark:text-white"
+              >
+                <span class="flex items-center gap-2">
+                  <span class="text-base">🇪🇸</span>
+                  <span class="font-semibold">Español (ES)</span>
+                </span>
+                <span class="lang-check text-emerald-500 font-bold" data-check-lang="es">✓</span>
+              </button>
+
+              <button
+                type="button"
+                data-lang-code="en"
+                class="lang-option-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-700 dark:text-slate-300"
+              >
+                <span class="flex items-center gap-2">
+                  <span class="text-base">🇬🇧</span>
+                  <span class="font-semibold">English (EN)</span>
+                </span>
+                <span class="lang-check text-emerald-500 font-bold hidden" data-check-lang="en">✓</span>
+              </button>
+
+              <button
+                type="button"
+                data-lang-code="de"
+                class="lang-option-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-700 dark:text-slate-300"
+              >
+                <span class="flex items-center gap-2">
+                  <span class="text-base">🇩🇪</span>
+                  <span class="font-semibold">Deutsch (DE)</span>
+                </span>
+                <span class="lang-check text-emerald-500 font-bold hidden" data-check-lang="de">✓</span>
+              </button>
+
+              <button
+                type="button"
+                data-lang-code="fr"
+                class="lang-option-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-700 dark:text-slate-300"
+              >
+                <span class="flex items-center gap-2">
+                  <span class="text-base">🇫🇷</span>
+                  <span class="font-semibold">Français (FR)</span>
+                </span>
+                <span class="lang-check text-emerald-500 font-bold hidden" data-check-lang="fr">✓</span>
+              </button>
+
+              <button
+                type="button"
+                data-lang-code="it"
+                class="lang-option-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-700 dark:text-slate-300"
+              >
+                <span class="flex items-center gap-2">
+                  <span class="text-base">🇮🇹</span>
+                  <span class="font-semibold">Italiano (IT)</span>
+                </span>
+                <span class="lang-check text-emerald-500 font-bold hidden" data-check-lang="it">✓</span>
+              </button>
             </div>
-            <a
-              href={buildWhatsAppUrl({ location: 'Language Switcher — English Inquiry' })}
-              class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#0E172F] transition-colors mt-1"
-            >
-              <span class="flex items-center gap-2">
-                <span>🇺🇸</span>
-                <span>English (EN)</span>
-              </span>
-              <span class="text-[10px] text-[#779DD1] uppercase font-bold">WhatsApp</span>
-            </a>
-            <div class="mt-2 pt-2 border-t border-slate-100 dark:border-slate-800/80">
+
+            <div class="mt-2 pt-2 border-t border-slate-100 dark:border-slate-800">
               <a
                 href="/#paises"
                 class="block px-3 py-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-[#779DD1] transition-colors text-[11px]"
@@ -200,29 +243,83 @@ const whatsappCtaUrl = buildWhatsAppUrl({
             aria-expanded="false"
           >
             <span>🌐</span>
-            <span class="font-bold">ES</span>
+            <span id="lang-current-label-mobile" class="font-bold">ES</span>
+            <svg class="w-2 h-2 text-slate-400 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
           </button>
 
           <!-- Menú flotante móvil de Idioma -->
           <div
             id="lang-menu-mobile"
-            class="hidden absolute right-0 mt-2 w-52 rounded-2xl bg-white dark:bg-[#0A1226] border border-slate-200 dark:border-slate-800 shadow-2xl p-2 z-50 text-xs font-sans"
+            class="hidden absolute right-0 mt-2 w-56 rounded-2xl bg-white dark:bg-[#0A1226] border border-slate-200 dark:border-slate-800 shadow-2xl p-2 z-50 text-xs font-sans"
           >
-            <div class="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 dark:border-slate-800/80 mb-1">
+            <div class="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 dark:border-slate-800 mb-1">
               Idioma / Language
             </div>
-            <div class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-[#0E172F] text-slate-900 dark:text-white font-semibold">
-              <span>🇪🇸 Español (ES)</span>
-              <span class="text-emerald-500 font-bold">✓</span>
+            <div class="space-y-1">
+              <button
+                type="button"
+                data-lang-code="es"
+                class="lang-option-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-900 dark:text-white"
+              >
+                <span class="flex items-center gap-2">
+                  <span>🇪🇸</span>
+                  <span>Español (ES)</span>
+                </span>
+                <span class="lang-check text-emerald-500 font-bold" data-check-lang="es">✓</span>
+              </button>
+
+              <button
+                type="button"
+                data-lang-code="en"
+                class="lang-option-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-700 dark:text-slate-300"
+              >
+                <span class="flex items-center gap-2">
+                  <span>🇬🇧</span>
+                  <span>English (EN)</span>
+                </span>
+                <span class="lang-check text-emerald-500 font-bold hidden" data-check-lang="en">✓</span>
+              </button>
+
+              <button
+                type="button"
+                data-lang-code="de"
+                class="lang-option-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-700 dark:text-slate-300"
+              >
+                <span class="flex items-center gap-2">
+                  <span>🇩🇪</span>
+                  <span>Deutsch (DE)</span>
+                </span>
+                <span class="lang-check text-emerald-500 font-bold hidden" data-check-lang="de">✓</span>
+              </button>
+
+              <button
+                type="button"
+                data-lang-code="fr"
+                class="lang-option-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-700 dark:text-slate-300"
+              >
+                <span class="flex items-center gap-2">
+                  <span>🇫🇷</span>
+                  <span>Français (FR)</span>
+                </span>
+                <span class="lang-check text-emerald-500 font-bold hidden" data-check-lang="fr">✓</span>
+              </button>
+
+              <button
+                type="button"
+                data-lang-code="it"
+                class="lang-option-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-left font-medium transition-colors hover:bg-slate-100 dark:hover:bg-[#0E172F] text-slate-700 dark:text-slate-300"
+              >
+                <span class="flex items-center gap-2">
+                  <span>🇮🇹</span>
+                  <span>Italiano (IT)</span>
+                </span>
+                <span class="lang-check text-emerald-500 font-bold hidden" data-check-lang="it">✓</span>
+              </button>
             </div>
-            <a
-              href={buildWhatsAppUrl({ location: 'Mobile Lang — English Inquiry' })}
-              class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#0E172F] transition-colors mt-1"
-            >
-              <span>🇺🇸 English (EN)</span>
-              <span class="text-[10px] text-[#779DD1] uppercase font-bold">Online</span>
-            </a>
-            <div class="mt-2 pt-1.5 border-t border-slate-100 dark:border-slate-800/80">
+
+            <div class="mt-2 pt-1.5 border-t border-slate-100 dark:border-slate-800">
               <a
                 href="/#paises"
                 class="block px-2 py-1 text-[10px] text-slate-500 dark:text-slate-400 hover:text-[#779DD1] transition-colors"
@@ -315,16 +412,57 @@ const whatsappCtaUrl = buildWhatsAppUrl({
       <span class="text-xs">&rarr;</span>
     </a>
     <!-- Selector Rápido de Idioma Móvil -->
-    <div class="flex items-center justify-between px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-[#0A1226] border border-slate-200 dark:border-slate-800 text-xs">
-      <span class="text-slate-600 dark:text-slate-400 font-medium">Idioma:</span>
-      <div class="flex items-center gap-2">
-        <span class="px-2.5 py-1 rounded-md bg-[#779DD1] text-[#060A1A] font-bold">ES</span>
-        <a
-          href={buildWhatsAppUrl({ location: 'Mobile Nav — English' })}
-          class="px-2.5 py-1 rounded-md bg-slate-200 dark:bg-[#0E172F] text-slate-700 dark:text-slate-300 hover:text-white font-medium transition-colors"
+    <div class="px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0A1226] border border-slate-200 dark:border-slate-800 text-xs space-y-1.5">
+      <div class="flex items-center justify-between text-slate-600 dark:text-slate-400 font-medium">
+        <span>Idioma / Language:</span>
+        <span class="text-[10px] text-slate-400 uppercase">Traducción directa</span>
+      </div>
+      <div class="grid grid-cols-5 gap-1">
+        <button
+          type="button"
+          data-lang-code="es"
+          class="lang-option-btn lang-pill-btn lang-pill-es py-1.5 rounded-lg border text-center font-bold bg-[#779DD1] text-[#060A1A] border-[#779DD1] transition-all"
+          title="Español"
         >
-          EN
-        </a>
+          <span class="block text-xs">🇪🇸</span>
+          <span class="block text-[10px] mt-0.5">ES</span>
+        </button>
+        <button
+          type="button"
+          data-lang-code="en"
+          class="lang-option-btn lang-pill-btn lang-pill-en py-1.5 rounded-lg border text-center font-medium bg-slate-200 dark:bg-[#0E172F] text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-700 transition-all hover:border-[#779DD1]"
+          title="English"
+        >
+          <span class="block text-xs">🇬🇧</span>
+          <span class="block text-[10px] mt-0.5">EN</span>
+        </button>
+        <button
+          type="button"
+          data-lang-code="de"
+          class="lang-option-btn lang-pill-btn lang-pill-de py-1.5 rounded-lg border text-center font-medium bg-slate-200 dark:bg-[#0E172F] text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-700 transition-all hover:border-[#779DD1]"
+          title="Deutsch"
+        >
+          <span class="block text-xs">🇩🇪</span>
+          <span class="block text-[10px] mt-0.5">DE</span>
+        </button>
+        <button
+          type="button"
+          data-lang-code="fr"
+          class="lang-option-btn lang-pill-btn lang-pill-fr py-1.5 rounded-lg border text-center font-medium bg-slate-200 dark:bg-[#0E172F] text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-700 transition-all hover:border-[#779DD1]"
+          title="Français"
+        >
+          <span class="block text-xs">🇫🇷</span>
+          <span class="block text-[10px] mt-0.5">FR</span>
+        </button>
+        <button
+          type="button"
+          data-lang-code="it"
+          class="lang-option-btn lang-pill-btn lang-pill-it py-1.5 rounded-lg border text-center font-medium bg-slate-200 dark:bg-[#0E172F] text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-700 transition-all hover:border-[#779DD1]"
+          title="Italiano"
+        >
+          <span class="block text-xs">🇮🇹</span>
+          <span class="block text-[10px] mt-0.5">IT</span>
+        </button>
       </div>
     </div>
     <div class="pt-2">
@@ -360,19 +498,32 @@ const whatsappCtaUrl = buildWhatsAppUrl({
     });
   }
 
-  // Alternador de Idioma (Desktop y Móvil)
+  // Alternador de Menús de Idioma (Desktop y Móvil)
   const langBtnDesktop = document.getElementById('lang-btn-desktop');
   const langMenuDesktop = document.getElementById('lang-menu-desktop');
   const langBtnMobile = document.getElementById('lang-btn-mobile');
   const langMenuMobile = document.getElementById('lang-menu-mobile');
 
+  const closeAllLangMenus = () => {
+    if (langMenuDesktop) {
+      langMenuDesktop.classList.add('hidden');
+      langBtnDesktop?.setAttribute('aria-expanded', 'false');
+    }
+    if (langMenuMobile) {
+      langMenuMobile.classList.add('hidden');
+      langBtnMobile?.setAttribute('aria-expanded', 'false');
+    }
+  };
+
   if (langBtnDesktop && langMenuDesktop) {
     langBtnDesktop.addEventListener('click', (e) => {
       e.stopPropagation();
       const isHidden = langMenuDesktop.classList.contains('hidden');
-      langMenuDesktop.classList.toggle('hidden');
-      langBtnDesktop.setAttribute('aria-expanded', String(isHidden));
-      if (langMenuMobile) langMenuMobile.classList.add('hidden');
+      closeAllLangMenus();
+      if (isHidden) {
+        langMenuDesktop.classList.remove('hidden');
+        langBtnDesktop.setAttribute('aria-expanded', 'true');
+      }
     });
   }
 
@@ -380,25 +531,201 @@ const whatsappCtaUrl = buildWhatsAppUrl({
     langBtnMobile.addEventListener('click', (e) => {
       e.stopPropagation();
       const isHidden = langMenuMobile.classList.contains('hidden');
-      langMenuMobile.classList.toggle('hidden');
-      langBtnMobile.setAttribute('aria-expanded', String(isHidden));
-      if (langMenuDesktop) langMenuDesktop.classList.add('hidden');
+      closeAllLangMenus();
+      if (isHidden) {
+        langMenuMobile.classList.remove('hidden');
+        langBtnMobile.setAttribute('aria-expanded', 'true');
+      }
     });
   }
 
-  // Cerrar menús de idioma al hacer clic fuera
   document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement | null;
     if (!target) return;
-    if (langMenuDesktop && !langMenuDesktop.contains(target) && !langBtnDesktop?.contains(target)) {
-      langMenuDesktop.classList.add('hidden');
-      langBtnDesktop?.setAttribute('aria-expanded', 'false');
-    }
-    if (langMenuMobile && !langMenuMobile.contains(target) && !langBtnMobile?.contains(target)) {
-      langMenuMobile.classList.add('hidden');
-      langBtnMobile?.setAttribute('aria-expanded', 'false');
+    if (
+      langMenuDesktop &&
+      !langMenuDesktop.contains(target) &&
+      !langBtnDesktop?.contains(target) &&
+      langMenuMobile &&
+      !langMenuMobile.contains(target) &&
+      !langBtnMobile?.contains(target)
+    ) {
+      closeAllLangMenus();
     }
   });
+
+  // ========================================================================
+  // MOTOR DE TRADUCCIÓN INSTANTÁNEA (ES, EN, DE, FR, IT)
+  // ========================================================================
+  const validLangs = ['es', 'en', 'de', 'fr', 'it'];
+
+  function setGoogTransCookie(targetLang: string) {
+    const domain = window.location.hostname;
+    const cookieVal = `/es/${targetLang}`;
+    document.cookie = `googtrans=${cookieVal}; path=/;`;
+    document.cookie = `googtrans=${cookieVal}; path=/; domain=${domain};`;
+    if (domain.includes('.')) {
+      const parts = domain.split('.');
+      const rootDomain = '.' + parts.slice(-2).join('.');
+      document.cookie = `googtrans=${cookieVal}; path=/; domain=${rootDomain};`;
+    }
+  }
+
+  function clearGoogTransCookie() {
+    const domain = window.location.hostname;
+    const past = 'expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    document.cookie = `googtrans=; ${past}`;
+    document.cookie = `googtrans=; ${past} domain=${domain};`;
+    if (domain.includes('.')) {
+      const parts = domain.split('.');
+      const rootDomain = '.' + parts.slice(-2).join('.');
+      document.cookie = `googtrans=; ${past} domain=${rootDomain};`;
+    }
+  }
+
+  function updateLangUI(currentLang: string) {
+    const langCode = validLangs.includes(currentLang) ? currentLang : 'es';
+    const upper = langCode.toUpperCase();
+
+    // Actualizar etiquetas en botones
+    const labelDesktop = document.getElementById('lang-current-label-desktop');
+    if (labelDesktop) labelDesktop.textContent = upper;
+    const labelMobile = document.getElementById('lang-current-label-mobile');
+    if (labelMobile) labelMobile.textContent = upper;
+
+    // Actualizar checks en menús desplegables
+    document.querySelectorAll('.lang-check').forEach((checkEl) => {
+      const el = checkEl as HTMLElement;
+      const checkLang = el.getAttribute('data-check-lang');
+      if (checkLang === langCode) {
+        el.classList.remove('hidden');
+      } else {
+        el.classList.add('hidden');
+      }
+    });
+
+    // Actualizar píldoras del menú móvil drawer
+    validLangs.forEach((l) => {
+      const pills = document.querySelectorAll(`.lang-pill-${l}`);
+      pills.forEach((p) => {
+        if (l === langCode) {
+          p.className = `lang-option-btn lang-pill-btn lang-pill-${l} py-1.5 rounded-lg border text-center font-bold bg-[#779DD1] text-[#060A1A] border-[#779DD1] transition-all`;
+        } else {
+          p.className = `lang-option-btn lang-pill-btn lang-pill-${l} py-1.5 rounded-lg border text-center font-medium bg-slate-200 dark:bg-[#0E172F] text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-700 transition-all hover:border-[#779DD1]`;
+        }
+      });
+    });
+  }
+
+  function ensureGoogleTranslate(callback?: () => void) {
+    if ((window as any).google?.translate?.TranslateElement) {
+      if (callback) callback();
+      return;
+    }
+
+    (window as any).googleTranslateElementInit = () => {
+      try {
+        new (window as any).google.translate.TranslateElement(
+          {
+            pageLanguage: 'es',
+            includedLanguages: 'es,en,de,fr,it',
+            autoDisplay: false
+          },
+          'google_translate_element'
+        );
+      } catch (err) {
+        console.error('Error inicializando traductor:', err);
+      }
+      if (callback) setTimeout(callback, 200);
+    };
+
+    if (!document.getElementById('google-translate-script')) {
+      const script = document.createElement('script');
+      script.id = 'google-translate-script';
+      script.type = 'text/javascript';
+      script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      script.async = true;
+      document.head.appendChild(script);
+    }
+  }
+
+  function triggerTranslation(targetLang: string) {
+    if (!validLangs.includes(targetLang)) return;
+    closeAllLangMenus();
+
+    if (targetLang === 'es') {
+      clearGoogTransCookie();
+      try { localStorage.setItem('alma_preferred_lang', 'es'); } catch (e) {}
+      updateLangUI('es');
+      const combo = document.querySelector('.goog-te-combo') as HTMLSelectElement | null;
+      if (combo) {
+        combo.value = 'es';
+        combo.dispatchEvent(new Event('change'));
+      }
+      // Si ya se aplicó mutación al DOM de Google Translate, recargar garantiza texto 100% canónico en español
+      if (document.documentElement.classList.contains('translated-ltr') || document.querySelector('.goog-te-banner-frame')) {
+        window.location.reload();
+      }
+      return;
+    }
+
+    setGoogTransCookie(targetLang);
+    try { localStorage.setItem('alma_preferred_lang', targetLang); } catch (e) {}
+    updateLangUI(targetLang);
+
+    ensureGoogleTranslate(() => {
+      let attempts = 0;
+      const interval = setInterval(() => {
+        attempts++;
+        const combo = document.querySelector('.goog-te-combo') as HTMLSelectElement | null;
+        if (combo) {
+          combo.value = targetLang;
+          combo.dispatchEvent(new Event('change'));
+          clearInterval(interval);
+        } else if (attempts > 25) {
+          clearInterval(interval);
+          // Si el widget no montó el combo a tiempo, recarga con cookie para traducción nativa del navegador
+          window.location.reload();
+        }
+      }, 100);
+    });
+  }
+
+  // Registrar clics en todos los botones de idioma
+  document.querySelectorAll('.lang-option-btn').forEach((btnEl) => {
+    btnEl.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const code = (btnEl.getAttribute('data-lang-code') || '').toLowerCase();
+      if (code) {
+        triggerTranslation(code);
+      }
+    });
+  });
+
+  // Restaurar idioma guardado al cargar
+  try {
+    let savedLang = localStorage.getItem('alma_preferred_lang');
+    if (!savedLang) {
+      const match = document.cookie.match(/(?:^|;\s*)googtrans=\/es\/([a-z]{2})/);
+      if (match && validLangs.includes(match[1])) {
+        savedLang = match[1];
+      }
+    }
+    if (savedLang && validLangs.includes(savedLang) && savedLang !== 'es') {
+      updateLangUI(savedLang);
+      ensureGoogleTranslate(() => {
+        setTimeout(() => {
+          const combo = document.querySelector('.goog-te-combo') as HTMLSelectElement | null;
+          if (combo && combo.value !== savedLang) {
+            combo.value = savedLang!;
+            combo.dispatchEvent(new Event('change'));
+          }
+        }, 300);
+      });
+    } else {
+      updateLangUI('es');
+    }
+  } catch (e) {}
 
   // Alternador de Tema (Modo Claro / Modo Oscuro)
   const themeToggles = document.querySelectorAll('.theme-toggle-btn');
