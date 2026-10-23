@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="day">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biblioteca Práctica de Reflexión Nocturna (30 Fichas) | Protocolo 3-3-3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #F6F2EA;
+      --bg-paper: #FBF9F5;
+      --bg-subtle: #EFE9DC;
+      --bg-elevated: #FFFFFF;
+      --ink-primary: #1C1E1B;
+      --ink-secondary: #444741;
+      --ink-muted: #686B63;
+      --olive-primary: #3B5240;
+      --olive-hover: #2B3E2F;
+      --olive-surface: #E4ECE5;
+      --olive-border: #B8CBB9;
+      --terracotta-primary: #9E4F33;
+      --terracotta-surface: #F6EAE4;
+      --terracotta-border: #E0BFB2;
+      --border-hairline: #D8D1C3;
+      --border-strong: #B8B0A0;
+      --shadow-editorial: 0 8px 30px -6px rgba(28, 30, 27, 0.07);
+      --focus-ring: #3B5240;
+    }
+
+    html[data-theme="night"] {
+      --bg-canvas: #121513;
+      --bg-paper: #191D1A;
+      --bg-subtle: #222723;
+      --bg-elevated: #202521;
+      --ink-primary: #E6E1D6;
+      --ink-secondary: #B8B4A9;
+      --ink-muted: #8E8B80;
+      --olive-primary: #8FB396;
+      --olive-hover: #A6C6AC;
+      --olive-surface: #1F2B22;
+      --olive-border: #384D3C;
+      --terracotta-primary: #D98A6C;
+      --terracotta-surface: #2B201C;
+      --terracotta-border: #593B30;
+      --border-hairline: #2E342F;
+      --border-strong: #454D46;
+      --shadow-editorial: 0 10px 32px -6px rgba(0, 0, 0, 0.45);
+      --focus-ring: #8FB396;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 86px;
+    }
+    section[id], article[id], div[id], h1[id], h2[id], h3[id] {
+      scroll-margin-top: 86px;
+    }
+    body {
+      font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-size: 17.5px;
+      line-height: 1.62;
+      padding-bottom: 80px;
+    }
+    :focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; }
+
+    .editorial-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--bg-paper);
+      border-bottom: 1px solid var(--border-hairline);
+      padding: 12px 20px;
+    }
+    .topbar-inner {
+      max-width: 1220px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .edition-mark {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--ink-primary);
+    }
+    .edition-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      background: var(--terracotta-surface);
+      color: var(--terracotta-primary);
+      border: 1px solid var(--terracotta-border);
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .btn-editorial {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-elevated);
+      color: var(--ink-primary);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn-editorial:hover { border-color: var(--olive-primary); background: var(--olive-surface); }
+    .btn-editorial.primary { background: var(--olive-primary); color: var(--bg-paper); border-color: var(--olive-primary); }
+
+    .mobile-label { display: none; }
+    .mobile-quick-resources { display: none; }
+
+    @media screen and (max-width: 980px) {
+      .editorial-topbar {
+        padding: 8px 12px;
+      }
+      .topbar-inner {
+        flex-wrap: nowrap;
+        gap: 8px;
+      }
+      .edition-mark {
+        min-width: 0;
+        gap: 6px;
+      }
+      .edition-mark .edition-badge,
+      .edition-mark .desktop-label {
+        display: none;
+      }
+      .edition-mark .mobile-label {
+        display: inline;
+        font-family: 'Newsreader', Georgia, serif;
+        font-size: 1.02rem;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .topbar-actions {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 6px;
+        flex-shrink: 0;
+      }
+      .topbar-actions .desktop-only-action {
+        display: none !important;
+      }
+      .topbar-actions .desktop-label {
+        display: none;
+      }
+      .topbar-actions .mobile-label {
+        display: inline;
+      }
+      .topbar-actions .btn-editorial {
+        padding: 6px 10px;
+        font-size: 0.84rem;
+        white-space: nowrap;
+      }
+      .mobile-quick-resources {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 14px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--border-hairline);
+      }
+    }
+
+    .container {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 32px 20px;
+    }
+
+    .intro-panel {
+      background: var(--bg-paper);
+      border: 1px solid var(--border-strong);
+      border-radius: 12px;
+      padding: 36px 38px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-editorial);
+    }
+    @media (max-width: 640px) {
+      .intro-panel { padding: 24px 18px; }
+    }
+    h1 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(1.85rem, 3.6vw, 2.55rem);
+      font-weight: 600;
+      line-height: 1.18;
+      margin: 8px 0 14px;
+    }
+    .methodology-notice {
+      background: var(--bg-subtle);
+      border-left: 4px solid var(--terracotta-primary);
+      padding: 16px 20px;
+      border-radius: 6px;
+      margin-top: 18px;
+      font-size: 0.94rem;
+      color: var(--ink-secondary);
+    }
+
+    /* Controles de Búsqueda, Categorías y Consentimiento */
+    .controls-panel {
+      background: var(--bg-paper);
+      border: 1px solid var(--border-hairline);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .search-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      padding: 13px 16px;
+      font-family: inherit;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-elevated);
+      color: var(--ink-primary);
+    }
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .filter-pill {
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border-hairline);
+      background: var(--bg-elevated);
+      color: var(--ink-secondary);
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .filter-pill.active {
+      background: var(--olive-primary);
+      color: var(--bg-paper);
+      border-color: var(--olive-primary);
+    }
+
+    /* Grilla de 30 Fichas */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+      gap: 22px;
+    }
+    @media (max-width: 480px) {
+      .container { padding: 20px 12px; }
+      .controls-panel { padding: 16px 14px; }
+      .search-input { min-width: 0; width: 100%; }
+      .cards-grid { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    .reflection-card {
+      background: var(--bg-paper);
+      border: 1px solid var(--border-hairline);
+      border-radius: 10px;
+      padding: 26px;
+      box-shadow: var(--shadow-editorial);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      min-width: 0;
+    }
+    @media (max-width: 480px) {
+      .reflection-card { padding: 18px 14px; }
+    }
+    .card-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .card-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--terracotta-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .card-title {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      line-height: 1.25;
+      margin-top: 4px;
+      color: var(--ink-primary);
+    }
+    .fav-btn {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-strong);
+      border-radius: 6px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      color: var(--ink-secondary);
+      flex-shrink: 0;
+    }
+    .fav-btn.active {
+      background: var(--terracotta-surface);
+      color: var(--terracotta-primary);
+      border-color: var(--terracotta-primary);
+      font-weight: 700;
+    }
+
+    .field-block {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-hairline);
+      border-radius: 8px;
+      padding: 13px 15px;
+      font-size: 0.93rem;
+    }
+    .field-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--olive-primary);
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .field-limit {
+      border-left: 3px solid var(--terracotta-primary);
+      background: var(--terracotta-surface);
+    }
+
+    .personal-plan-panel {
+      background: var(--bg-paper);
+      border: 1px solid var(--border-strong);
+      border-radius: 12px;
+      padding: 32px;
+      margin-top: 36px;
+    }
+
+    @media print {
+      .editorial-topbar, .controls-panel, .no-print { display: none !important; }
+      body { background: #fff; color: #111; font-size: 10.5pt; }
+      .reflection-card { page-break-inside: avoid; box-shadow: none; border: 1px solid #bbb; margin-bottom: 10mm; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="editorial-topbar no-print">
+    <div class="topbar-inner">
+      <a href="producto-digital.html" class="edition-mark">
+        <span class="edition-badge">Complemento Editorial</span>
+        <strong class="desktop-label" style="font-family: 'Newsreader', serif; font-size: 1.08rem;">Biblioteca Práctica de Reflexión Nocturna (30 Fichas)</strong>
+        <strong class="mobile-label">Biblioteca 3-3-3</strong>
+      </a>
+      <div class="topbar-actions" style="display: flex; flex-wrap: wrap; gap: 8px;">
+        <a href="producto-digital.html" class="btn-editorial"><span class="desktop-label">← Volver a la Guía 3-3-3</span><span class="mobile-label">← Guía</span></a>
+        <a href="#mi-plan-seleccion" class="btn-editorial primary desktop-only-action">★ Mi Plan Personal (<span id="plan-count-badge">0</span>)</a>
+        <button type="button" id="theme-btn" class="btn-editorial" onclick="toggleTheme()"><span class="desktop-label" id="lib-theme-desktop">◑ Modo Noche</span><span class="mobile-label" id="lib-theme-mobile">◑ Noche</span></button>
+        <button type="button" onclick="window.print()" class="btn-editorial desktop-only-action">🖨 Imprimir Fichas</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="intro-panel">
+      <span class="edition-badge">Colección Curada de 30 Fichas de Reflexión Personal</span>
+      <h1>Biblioteca Práctica de Reflexión Nocturna y Emocional</h1>
+      <p style="color: var(--ink-secondary); max-width: 820px;">
+        Esta biblioteca reúne <strong>30 fichas de trabajo individuales</strong> para explorar las preocupaciones, tensiones cotidianas y hábitos que suelen hacerse presentes cuando se apaga la luz. Cada ficha ofrece un marco de observación, pasos concretos de descarga, un ejemplo práctico, una pregunta de escritura y sus límites clínicos.
+      </p>
+
+      <div class="methodology-notice">
+        <strong>Distinción importante sobre el enfoque reflexivo y simbólico:</strong>
+        Cuando en el ámbito del bienestar o de la llamada <em>biodescodificación</em> se explora la relación entre una tensión corporal y una vivencia emocional, debe comprenderse estrictamente como un <strong>marco simbólico y subjetivo de autoconocimiento no probado científicamente</strong>. <strong>Las enfermedades médicas no tienen una causa emocional única ni se curan mediante frases o interpretaciones simbólicas.</strong> Ante cualquier síntoma físico nuevo, intenso o persistente (y de forma inmediata si existe dolor torácico o falta de aire), la ruta correcta es siempre la valoración médica profesional (<a href="https://www.nhlbi.nih.gov/health/insomnia/causes" target="_blank" rel="noopener" style="color: var(--olive-primary);">NHLBI</a>).
+      </div>
+    </section>
+
+    <!-- BUSCADOR TOLERANTE A ACENTOS, FILTROS Y CONSENTIMIENTO LOCAL -->
+    <section class="controls-panel no-print">
+      <div class="mobile-quick-resources">
+        <a href="#mi-plan-seleccion" class="btn-editorial primary" style="font-size: 0.85rem; padding: 6px 12px;">★ Mi Plan Personal (<span id="plan-count-badge-mobile">0</span>)</a>
+        <button type="button" onclick="window.print()" class="btn-editorial" style="font-size: 0.85rem; padding: 6px 12px;">🖨 Imprimir Fichas</button>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--border-hairline);">
+        <label style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.92rem; font-weight: 600; cursor: pointer;">
+          <input type="checkbox" id="lib-consent-check" style="width: 18px; height: 18px; accent-color: var(--olive-primary);" onchange="toggleLibConsent(this.checked)" />
+          <span>🔒 Guardar mis favoritas en este navegador (sin envío a servidores, no cifrado; accesible a quien use este dispositivo)</span>
+        </label>
+        <button type="button" class="btn-editorial" style="font-size: 0.82rem; padding: 5px 10px;" onclick="clearLibData()">🗑 Borrar mis favoritos guardados</button>
+      </div>
+
+      <div class="search-row">
+        <input
+          type="search"
+          id="lib-search-input"
+          class="search-input"
+          placeholder="Buscar por tema, situación o palabra clave (tolera búsqueda con o sin tildes: ej. mandibula, reloj, trabajo, vinculos, 3 am)..."
+          oninput="applyFilters()"
+          aria-label="Buscar en las 30 fichas de reflexión"
+        />
+        <button type="button" class="btn-editorial" onclick="resetSearch()">Limpiar filtros</button>
+      </div>
+
+      <div class="filter-pills" role="group" aria-label="Filtrar por categoría">
+        <button type="button" class="filter-pill active" onclick="selectCategory('all', this)">Todas las fichas (30)</button>
+        <button type="button" class="filter-pill" onclick="selectCategory('noches', this)">1. Despertares y Hábitos (6)</button>
+        <button type="button" class="filter-pill" onclick="selectCategory('cuerpo', this)">2. Tensión Corporal y Alerta (6)</button>
+        <button type="button" class="filter-pill" onclick="selectCategory('trabajo', this)">3. Trabajo, Límites y Finanzas (6)</button>
+        <button type="button" class="filter-pill" onclick="selectCategory('vinculos', this)">4. Vínculos y Cuidado Familiar (6)</button>
+        <button type="button" class="filter-pill" onclick="selectCategory('decisiones', this)">5. Decisiones y Cambios Vitales (6)</button>
+        <button type="button" class="filter-pill" onclick="selectCategory('favs', this)">★ Mis Favoritas</button>
+      </div>
+    </section>
+
+    <div id="results-summary" style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--ink-muted); margin-bottom: 16px;" aria-live="polite">
+      Mostrando 30 de 30 fichas de reflexión:
+    </div>
+
+    <!-- CONTENEDOR DE LAS 30 FICHAS -->
+    <section class="cards-grid" id="cards-container"></section>
+
+    <!-- MI PLAN PERSONAL DE FICHAS SELECCIONADAS -->
+    <section class="personal-plan-panel" id="mi-plan-seleccion">
+      <span class="edition-badge">Selección Personal</span>
+      <h2 style="font-family: 'Newsreader', serif; font-size: 1.7rem; margin: 8px 0 10px;">Mi Plan Personal de Reflexión Nocturna</h2>
+      <p style="color: var(--ink-secondary); font-size: 0.95rem; margin-bottom: 18px;">
+        Aquí se reúnen las fichas que marcaste con <strong>«★ Guardar en mi plan»</strong> para trabajar durante la semana, junto con sus preguntas de escritura y pasos prácticos.
+      </p>
+      <div id="selected-plan-list">
+        <p style="color: var(--ink-muted); font-style: italic;">Aún no has marcado fichas como favoritas. Usa el botón «☆ Guardar en mi plan» en cualquier tarjeta para armar tu selección.</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px;" class="no-print">
+        <button type="button" class="btn-editorial primary" onclick="exportSelectedPlanTxt()">⬇ Descargar mi selección (.TXT)</button>
+        <a href="producto-digital.html#diario-privado" class="btn-editorial">Ir al Diario de 3 Columnas →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const LIB_KEYS = {
+      CONSENT: 'p333_lib_consent_v2',
+      FAVS: 'p333_lib_favs_v2',
+      THEME: 'p333_theme_v2'
+    };
+
+    // 30 Fichas Profundas y Distintas (Sin clones ni promesas médicas)
+    const CARDS_DATA = [
+      // CATEGORÍA 1: DESPERTARES Y HÁBITOS NOCTURNOS (1 a 6)
+      {
+        id: 1,
+        cat: 'noches',
+        catName: 'Despertares y Hábitos',
+        title: 'Despertar a mitad de la madrugada repasando pendientes del día siguiente',
+        context: 'Te duermes con relativa rapidez por el cansancio acumulado, pero entre las 2:00 y las 4:00 AM abres los ojos en una transición natural entre ciclos de sueño y tu mente activa de inmediato la lista de obligaciones del día siguiente.',
+        reflection: 'Cuando pasamos del ajetreo del día a la cama sin anotar lo pendiente, nuestra cabeza intenta recordarlo todo de memoria. En el plano personal, invita a mirar cuánta exigencia cargas a solas.',
+        steps: '1) No enciendas pantallas. 2) Si un pendiente nuevo insiste, anota solo 3 palabras clave en papel. 3) Recuerda tu acuerdo: la planificación pertenece al horario diurno.',
+        example: '«Correo proveedor martes 9 AM» anotado a lápiz; luego 4 respiraciones 4–6 soltando los hombros.',
+        question: '¿Qué tarea puntual teme mi mente que yo olvide mañana si no la vigilo esta noche?',
+        limits: 'Los despertares también pueden deberse a ambiente caluroso, alcohol vespertino, reflujo o apnea (NHLBI Causes). Si ocurre ≥3 noches/semana por ≥3 meses, consulta al médico.'
+      },
+      {
+        id: 2,
+        cat: 'noches',
+        catName: 'Despertares y Hábitos',
+        title: 'Mirar repetidamente el reloj y calcular cuántas horas faltan para levantarse',
+        context: 'Cada vez que te despiertas miras el teléfono o el reloj digital y haces cuentas mentales («si me duermo ya, tendré 3 horas y 40 minutos»), aumentando tu frustración.',
+        reflection: 'Convertir el descanso en una cuenta regresiva instala urgencia y amenaza. La mente interpreta que el tiempo se agota y libera mayor estado de alerta.',
+        steps: '1) Gira el reloj o coloca el teléfono fuera de tu alcance antes de acostarte. 2) Renuncia a saber qué hora es hasta que suene la alarma.',
+        example: 'Colocar el móvil cargando en una cómoda lejos de la cama y usar el descanso en quietud como meta suficiente.',
+        question: '¿Qué cambia realmente a las 3:00 AM por saber el minuto exacto en que abrí los ojos?',
+        limits: 'Vigilar el reloj es uno de los principales mantenedores conductuales del insomnio descritos en las guías clínicas del NHLBI.'
+      },
+      {
+        id: 3,
+        cat: 'noches',
+        catName: 'Despertares y Hábitos',
+        title: 'Dificultad para desconectar al apagar la luz pese al cansancio físico',
+        context: 'Sientes el cuerpo agotado durante la cena, pero apenas apagas la lámpara tu mente parece encenderse con ideas, recuerdos o diálogos internos.',
+        reflection: 'A menudo pasamos de la actividad intensa o las pantallas directamente a la oscuridad sin una rampa de desaceleración previa.',
+        steps: '1) Crea un bloque de transición de 30 minutos con luz cálida baja. 2) Realiza tu descarga de 3 columnas fuera de la cama antes de acostarte.',
+        example: 'Cerrar computadora y redes a las 9:45 PM, anotar 3 pendientes y escuchar el Audio 02 al acostarse.',
+        question: '¿En qué momento del día me permito estar en silencio antes de apoyar la cabeza en la almohada?',
+        limits: 'Revisa también el consumo de cafeína, té negro, mate o chocolate en la tarde, que prolongan la latencia del sueño.'
+      },
+      {
+        id: 4,
+        cat: 'noches',
+        catName: 'Despertares y Hábitos',
+        title: 'Despertar temprano antes de la alarma con sensación de prisa anticipada',
+        context: 'Abres los ojos entre las 4:30 y las 5:30 AM, antes del despertador, con la sensación de que el día ya empezó y no puedes volver a conciliar el sueño.',
+        reflection: 'Puede reflejar un estado de hipervigilancia matutina («tengo que estar listo antes de que empiece la exigencia»).',
+        steps: '1) No revises noticias ni mensajes laborales desde la cama. 2) Permanece 15 minutos en reposo respiratorio o inicia el día con calma si ya faltan pocos minutos.',
+        example: 'Dejar el teléfono fuera del dormitorio para que el primer estímulo de la mañana no sea una bandeja de entrada.',
+        question: '¿Qué exigencia del día siento que me persigue incluso antes de que salga el sol?',
+        limits: 'El despertar precoz persistente acompañado de tristeza, apatía o pérdida de interés diurno debe evaluarse clínicamente con un profesional de salud mental.'
+      },
+      {
+        id: 5,
+        cat: 'noches',
+        catName: 'Despertares y Hábitos',
+        title: 'Quedarse dormido en el sofá y desvelarse al pasar a la cama',
+        context: 'Cabeceas de sueño viendo televisión en el sillón, pero al levantarte, lavarte los dientes y meterte en la cama, el sueño desaparece por completo.',
+        reflection: 'Las micro-siestas nocturnas en el sofá disminuyen la presión homeostática de sueño justo antes de ir al dormitorio.',
+        steps: '1) Prepara el dormitorio y haz tu higiene dental más temprano. 2) En cuanto sientas la primera señal de somnolencia en la noche, ve directamente a la cama.',
+        example: 'Ponerse ropa de descanso y dejar lista la habitación a las 9:15 PM para no interrumpir la somnolencia cuando aparezca.',
+        question: '¿Uso la televisión o el sofá para anestesiar el cansancio en lugar de ir a descansar conscientemente?',
+        limits: 'Pauta respaldada por las recomendaciones de higiene del sueño y control de estímulos del NHLBI.'
+      },
+      {
+        id: 6,
+        cat: 'noches',
+        catName: 'Despertares y Hábitos',
+        title: 'Temor anticipatorio a «tener otra mala noche» al acercarse la hora de dormir',
+        context: 'Después de varias noches difíciles, empiezas a sentir inquietud desde las 8:00 o 9:00 PM pensando: «Seguro hoy tampoco voy a poder dormir».',
+        reflection: 'El miedo a no dormir se convierte en la principal fuente de alerta nocturna. Cambiar la meta de «dormir por obligación» a «reposar en calma» reduce esa presión.',
+        steps: '1) Reconoce el pensamiento anticipatorio sin darlo por profecía. 2) Prepara un plan tranquilo (Audio 02 o lectura suave en papel) para no sentirte indefenso.',
+        example: 'Escribir en la Columna 2: «Incluso si tardo en dormirme, hoy tengo una rutina serena para acompañar mi cuerpo».',
+        question: '¿Cómo cambia mi tensión corporal si hoy me doy permiso de simplemente descansar sin exigirme rendimiento?',
+        limits: 'Cuando el temor al insomnio es crónico, la Terapia Cognitivo-Conductual para el Insomnio (TCC-I) es el abordaje clínico de elección.'
+      },
+
+      // CATEGORÍA 2: TENSIÓN CORPORAL Y SEÑALES DE SOBRECARGA (7 a 12)
+      {
+        id: 7,
+        cat: 'cuerpo',
+        catName: 'Tensión Corporal y Alerta',
+        title: 'Apretar la mandíbula o los dientes al acostarse (tensión mandibular)',
+        context: 'Al apoyar la cabeza en la almohada —o al despertar a mitad de la noche— notas los molares apretados, las sienes tensas o la lengua presionando fuerte el paladar.',
+        reflection: 'En un marco de reflexión personal (no diagnóstico), contener tensión en la mandíbula suele coincidir con jornadas de mucha contención verbal o esfuerzo sostenido.',
+        steps: '1) Separa suavemente los labios un milímetro. 2) Deja caer la lengua blanda en el piso de la boca. 3) Masajea con las yemas debajo de los pómulos durante 40 segundos.',
+        example: 'Practicar la pausa de mandíbula suelta cada vez que apagas la lámpara y en la Noche 3 del recorrido.',
+        question: '¿En qué momentos del día estuve apretando los dientes para aguantar presión o prisa sin darme cuenta?',
+        limits: 'El bruxismo nocturno tiene factores oclusales, neurológicos y de sueño; consulta siempre a tu odontólogo para proteger el esmalte dental.'
+      },
+      {
+        id: 8,
+        cat: 'cuerpo',
+        catName: 'Tensión Corporal y Alerta',
+        title: 'Rigidez en nuca, trapecios y hombros al final de la jornada',
+        context: 'Sientes que los hombros quedan «pegados a las orejas» al acostarte y te cuesta encontrar una postura donde el cuello descanse sin tensión.',
+        reflection: 'Físicamente responde a posturas frente a pantallas y estrés sostenido; simbólicamente invita a revisar cuántas cargas ajenas estás intentando sostener.',
+        steps: '1) Inhala elevando levemente los hombros 3 segundos y suéltalos hacia el colchón al exhalar largo. 2) Verifica la altura de tu almohada.',
+        example: 'Realizar tres descensos conscientes de hombros antes de iniciar la respiración 4–7.',
+        question: '¿Qué responsabilidad que no me corresponde por completo puedo soltar al menos durante las horas de sueño?',
+        limits: 'Si el dolor cervical se acompaña de adormecimiento, hormigueo en brazos o debilidad, requiere valoración médica traumatológica/neurológica.'
+      },
+      {
+        id: 9,
+        cat: 'cuerpo',
+        catName: 'Tensión Corporal y Alerta',
+        title: 'Sensación de nudo en la garganta tras callar una opinión o desacuerdo',
+        context: 'Terminas el día con sensación de opresión leve en la garganta o ganas contenidas de suspirar después de una situación tensa en la que preferiste callar.',
+        reflection: 'Callar sistemáticamente lo que nos incomoda suele dejar un residuo de activación emocional al llegar el silencio nocturno.',
+        steps: '1) Pon por escrito en tu diario privado qué te hubiera gustado expresar con respeto. 2) Bosteza suavemente dos veces para relajar la musculatura faríngea.',
+        example: 'Escribir: «Hoy me incomodó el cambio de último minuto; mañana pediré acordar entregas con 24h de aviso».',
+        question: '¿Qué verdad sencilla o límite respetuoso me guardé hoy por temor a generar incomodidad?',
+        limits: 'Si presentas dificultad real para tragar (disfagia), dolor físico, reflujo o falta de aire, acude a consulta médica.'
+      },
+      {
+        id: 10,
+        cat: 'cuerpo',
+        catName: 'Tensión Corporal y Alerta',
+        title: 'Respiración superficial o suspiros frecuentes al intentar descansar',
+        context: 'En la cama notas que respiras rápido y corto con la parte alta del pecho, como si acabaras de subir escaleras, aunque estás quieto.',
+        reflection: 'Cuando estamos preocupados solemos respirar corto y rápido con la parte alta del pecho. Las técnicas de relajación descritas en las guías conductuales del sueño (Guía AASM, PMC7853203) ayudan a disminuir la tensión física al acostarse; si contar la respiración te incomoda o te marea, respira a tu ritmo natural sintiendo el apoyo del colchón.',
+        steps: '1) No fuerces inhalaciones gigantes. 2) Toma aire normal por la nariz en 4 tiempos y suéltalo suave y continuo en 6 tiempos con el abdomen blando.',
+        example: 'Seguir los 4 ciclos guiados del Audio 01 (Pausa Serena de Madrugada) con una mano sobre el abdomen.',
+        question: '¿Con qué prisa del día sigue corriendo mi cuerpo aunque ya estoy bajo las sábanas?',
+        limits: 'IMPORTANTE: La falta de aire aguda (disnea), opresión torácica intensa, silbidos al respirar o pausas respiratorias en el sueño requieren atención médica inmediata.'
+      },
+      {
+        id: 11,
+        cat: 'cuerpo',
+        catName: 'Tensión Corporal y Alerta',
+        title: 'Inquietud postural en la cama y dar vueltas buscando acomodo',
+        context: 'Cambias de posición cada pocos minutos, sientes las sábanas incómodas o te frustras porque no logras quedarte quieto.',
+        reflection: 'Cuando la mente está impaciente por dormirse ya, cada cambio de postura suele ir acompañado de un gesto de fastidio que eleva las pulsaciones.',
+        steps: '1) Haz el recorrido corporal del Audio 02 notando el peso de piernas y espalda. 2) Si tras ~20 minutos la inquietud crece, levántate unos minutos a luz tenue.',
+        example: 'Salir 10 minutos a leer un capítulo impreso hasta que baje la agitación motora y regresar a la cama.',
+        question: '¿Estoy peleando contra la noche en lugar de permitir que mi cuerpo descanse paso a paso?',
+        limits: 'Si sientes una necesidad irresistible de mover las piernas acompañada de cosquilleo o calambres nocturnos, consulta al médico para descartar síndrome de piernas inquietas.'
+      },
+      {
+        id: 12,
+        cat: 'cuerpo',
+        catName: 'Tensión Corporal y Alerta',
+        title: 'Sensación de agotamiento al despertar tras una noche de tensión',
+        context: 'Aunque dormiste varias horas, al sonar la alarma sientes pesadez corporal, como si hubieras estado trabajando o alerta toda la noche.',
+        reflection: 'Acostarse con alta carga cognitiva sin un ritual de descarga hace que la transición al descanso sea tensa. También obliga a revisar factores físicos del sueño.',
+        steps: '1) Implementa la descarga escrita 45 minutos antes de dormir durante 7 noches seguidas. 2) Evita pantallas y alcohol en las últimas horas del día.',
+        example: 'Registrar en la Bitácora de 7 Noches cómo influye cenar liviano y hacer el vaciado escrito en la energía matutina.',
+        question: '¿Qué hábito de mis últimas dos horas del día está impidiendo que mi noche sea una verdadera tregua?',
+        limits: 'El sueño no reparador persistente es indicación directa de consulta médica para evaluar apnea del sueño, anemia, función tiroidea o causas clínicas (NHLBI).'
+      },
+
+      // CATEGORÍA 3: TRABAJO, LÍMITES Y EXIGENCIA (13 a 18)
+      {
+        id: 13,
+        cat: 'trabajo',
+        catName: 'Trabajo, Límites y Finanzas',
+        title: 'Llevarse discusiones o correos laborales no resueltos a la almohada',
+        context: 'Revisas un mensaje de trabajo a las 9:30 PM y pasas la madrugada redactando mentalmente respuestas o anticipando conflictos en la oficina.',
+        reflection: 'Abrir canales de comunicación laboral en la noche introduce demandas externas en un horario en el que no tienes margen de acción.',
+        steps: '1) Establece una hora de cierre digital laboral. 2) Si un tema quedó abierto, escribe en la Columna 3 el primer paso exacto que darás mañana a las 9:00 AM.',
+        example: 'Dejar escrito el borrador de 2 líneas en la libreta y silenciar notificaciones de correo después de las 8:00 PM.',
+        question: '¿Qué límite horario necesito proteger entre mi jornada laboral y mi espacio de descanso?',
+        limits: 'Práctica de higiene conductual y desconexión cognitiva vespertina.'
+      },
+      {
+        id: 14,
+        cat: 'trabajo',
+        catName: 'Trabajo, Límites y Finanzas',
+        title: 'Hiperresponsabilidad: sentir que si sueltas el control todo saldrá mal',
+        context: 'Te cuesta delegar en el trabajo o en casa y sientes que, si no repasas cada detalle de noche, ocurrirá un descuido grave.',
+        reflection: 'La hipervigilancia confunde «preocuparse de madrugada» con «ser responsable». En realidad, un cerebro fatigado por falta de sueño pierde capacidad resolutiva al día siguiente.',
+        steps: '1) Anota las 3 prioridades reales de mañana. 2) Identifica al menos una tarea que pueda delegarse o simplificarse.',
+        example: 'Escribir en la Columna 2: «Descansar hoy es parte de mi responsabilidad para pensar con claridad mañana».',
+        question: '¿En qué área de mi vida estoy confundiendo estar agotado y alerta con ser eficiente?',
+        limits: 'Herramienta de reflexión sobre organización personal y manejo de estrés.'
+      },
+      {
+        id: 15,
+        cat: 'trabajo',
+        catName: 'Trabajo, Límites y Finanzas',
+        title: 'Perfeccionismo vespertino y repaso de errores cometidos en el día',
+        context: 'Al apagar la luz tu mente selecciona el único error o detalle imperfecto de tu jornada y lo repite una y otra vez con autocrítica.',
+        reflection: 'El sesgo de negatividad se acentúa cuando estamos cansados. La autocrítica nocturna activa alarma emocional sin cambiar el pasado.',
+        steps: '1) Escribe el aprendizaje concreto en una sola línea objetiva. 2) Añade al lado dos cosas que sí resolviste adecuadamente hoy.',
+        example: '«Olvidé adjuntar un anexo; mañana a las 8:30 AM lo envío. Hoy cerré a tiempo las otras tres entregas».',
+        question: '¿Le hablaría a un colega estimado con la misma dureza con la que me juzgo a mí mismo a las 2:00 AM?',
+        limits: 'Enfoque de reencuadre cognitivo y autocompasión práctica.'
+      },
+      {
+        id: 16,
+        cat: 'trabajo',
+        catName: 'Trabajo, Límites y Finanzas',
+        title: 'Dificultad para decir «no» a demandas externas y resentimiento silencioso',
+        context: 'Aceptas compromisos, favores o cargas extra durante el día diciendo «sí», pero de noche te desvelas sintiendo fastidio y falta de tiempo para ti.',
+        reflection: 'Cuando no ponemos límites hacia afuera durante el día, la protesta suele aparecer hacia adentro durante la noche.',
+        steps: '1) Identifica el compromiso que aceptaste a disgusto. 2) Redacta una fórmula breve y cordial para renegociar plazos mañana.',
+        example: 'Preparar por escrito: «Puedo ayudarte con esta parte el jueves, pero mañana debo cerrar mis pendientes previos».',
+        question: '¿A qué pedido dije que sí hoy cuando en realidad necesitaba decir «en este momento no puedo»?',
+        limits: 'Ejercicio de comunicación asertiva y gestión de límites personales.'
+      },
+      {
+        id: 17,
+        cat: 'trabajo',
+        catName: 'Trabajo, Límites y Finanzas',
+        title: 'Preocupación por ingresos variables, facturas o estabilidad financiera',
+        context: 'Te despiertas en la madrugada haciendo cuentas mentales de gastos, deudas o presupuestos, sintiendo opresión o urgencia.',
+        reflection: 'El cálculo financiero a oscuras a las 3:00 AM distorsiona las cifras y genera angustia porque no tienes tus planillas ni herramientas reales delante.',
+        steps: '1) Prohíbete hacer cuentas de memoria en la cama. 2) Asigna en tu agenda un bloque fijo con luz del día («Cita financiera de 30 min») para ver números reales en papel.',
+        example: 'Columna 3: «Jueves 10:00 AM: revisar tabla de flujo mensual y llamar al contador».',
+        question: '¿Cuál es el único paso financiero concreto y medible que puedo ejecutar mañana con luz del día?',
+        limits: 'Ordenamiento práctico de preocupaciones económicas.'
+      },
+      {
+        id: 18,
+        cat: 'trabajo',
+        catName: 'Trabajo, Límites y Finanzas',
+        title: 'Inquietud del domingo por la noche ante el inicio de la semana',
+        context: 'Duermes mejor viernes y sábado, pero el domingo en la noche das vueltas en la cama anticipando toda la carga del lunes.',
+        reflection: 'Suele combinarse un desfase de horario el fin de semana (levantarse mucho más tarde el domingo) con la acumulación desordenada de tareas para el lunes.',
+        steps: '1) El viernes por la tarde o domingo a las 6:00 PM deja escrita tu hoja de ruta del lunes. 2) El domingo mantén un horario de levantarte similar al habitual.',
+        example: 'Dejar listas las 3 prioridades del lunes a las 6:30 PM del domingo para que la noche del domingo sea libre.',
+        question: '¿Cómo puedo preparar mi mañana del lunes en 15 minutos el domingo por la tarde para no cargarla en la cama?',
+        limits: 'Basado en regularidad circadiana e higiene del sueño (NHLBI Treatment).'
+      },
+
+      // CATEGORÍA 4: VÍNCULOS, CUIDADO Y VIDA FAMILIAR (19 a 24)
+      {
+        id: 19,
+        cat: 'vinculos',
+        catName: 'Vínculos y Cuidado Familiar',
+        title: 'Culpa nocturna respecto al cuidado de hijos o familiares («no hice suficiente»)',
+        context: 'Cuando la casa queda en silencio, aparecen reproches por haber tenido poca paciencia, haber trabajado muchas horas o no haber estado presente como quisieras.',
+        reflection: 'La culpa nocturna suele partir de un ideal de perfección inalcanzable que ignora tu propio agotamiento humano.',
+        steps: '1) Cambia el reproche abstracto por un gesto reparador concreto y sencillo para mañana. 2) Reconoce que cuidar tu descanso mejora tu paciencia familiar.',
+        example: 'Columna 3: «Mañana al volver dedicaré 15 minutos de juego o conversación sin mirar el teléfono».',
+        question: '¿Qué gesto pequeño y real de conexión quiero compartir mañana, en vez de castigarme esta noche?',
+        limits: 'Reflexión sobre crianza, cuidado y trato compasivo hacia uno mismo.'
+      },
+      {
+        id: 20,
+        cat: 'vinculos',
+        catName: 'Vínculos y Cuidado Familiar',
+        title: 'Conversaciones pendientes con la pareja que aparecen al apagar la luz',
+        context: 'Inicias o recuerdas reclamos importantes con tu pareja a las 11:30 PM en la cama, terminando ambos tensos y desvelados.',
+        reflection: 'A altas horas de la noche el agotamiento reduce la empatía y la regulación emocional; la cama deja de ser un refugio compartido.',
+        steps: '1) Acuerden la regla de «Cama libre de discusiones». 2) Si surge un tema importante de noche, anótenlo y agenden hablarlo al día siguiente con descanso.',
+        example: 'Decir: «Este tema es importante para los dos; hablemos mañana a las 7:00 PM en la sala, ahora descansemos».',
+        question: '¿Estoy intentando resolver a medianoche una conversación que merece tenerse con calma y energía de día?',
+        limits: 'Higiene del entorno de descanso y comunicación en pareja.'
+      },
+      {
+        id: 21,
+        cat: 'vinculos',
+        catName: 'Vínculos y Cuidado Familiar',
+        title: 'Sobrecarga del cuidador: estar pendiente de otros sin espacio propio',
+        context: 'Cuidas a un familiar enfermo, padres mayores o niños pequeños y duermes «con un ojo abierto», sobresaltándote ante cualquier ruido.',
+        reflection: 'El rol de cuidador mantiene el sistema de alerta en guardia permanente si no existen relevos ni filtros claros para las urgencias reales.',
+        steps: '1) Define qué canal o sonido corresponde a una urgencia real y silencia el resto. 2) Solicita turnos de apoyo familiar para recuperar noches completas.',
+        example: 'Configurar el teléfono en modo «No molestar» con excepción exclusiva para el contacto médico o familiar directo.',
+        question: '¿Qué apoyo concreto necesito pedir esta semana para no agotar mis propias reservas de salud?',
+        limits: 'El agotamiento del cuidador es un factor de riesgo clínico reconocido; buscar redes de apoyo es prioritario.'
+      },
+      {
+        id: 22,
+        cat: 'vinculos',
+        catName: 'Vínculos y Cuidado Familiar',
+        title: 'Duelo, nostalgia o ausencia de un ser querido que se intensifica en silencio',
+        context: 'Durante el día logras sostener tus actividades, pero al acostarte el silencio de la habitación trae recuerdos, tristeza o sensación de vacío.',
+        reflection: 'El duelo y las pérdidas afectivas necesitan momentos diurnos de expresión; si se reprimen todo el día, buscan espacio cuando se apaga la luz.',
+        steps: '1) Dedica 10 minutos en la tarde a escribir o honrar tu recuerdo con luz del día. 2) En la cama, acompáñate con respiración suave y calidez física.',
+        example: 'Escribir unas líneas en un cuaderno personal a las 6:00 PM y escuchar el Audio 02 al acostarse.',
+        question: '¿Qué espacio amable durante el día puedo darle a mi tristeza para que no tenga que despertarme de madrugada?',
+        limits: 'Si el duelo se acompaña de insomnio severo prolongado o desesperanza profunda, se recomienda acompañamiento psicológico especializado.'
+      },
+      {
+        id: 23,
+        cat: 'vinculos',
+        catName: 'Vínculos y Cuidado Familiar',
+        title: 'Costumbre familiar de autosacrificio («descansar es perder el tiempo»)',
+        context: 'Sientes incomodidad cuando te acuestas temprano o descansas, como si siempre debieras estar produciendo, limpiando o adelantando tareas.',
+        reflection: 'En muchas historias familiares se aprendió a asociar el valor personal con el agotamiento constante, viendo el reposo como pereza.',
+        steps: '1) Identifica esa creencia heredada por escrito. 2) Reencuadra el descanso como una necesidad fisiológica indispensable, igual que hidratarse o respirar.',
+        example: 'Columna 2: «El descanso nocturno repara mi salud; no tengo que ganarme el derecho a dormir agotándome hasta el límite».',
+        question: '¿De dónde aprendí que estar siempre cansado o apurado equivale a ser una persona valiosa?',
+        limits: 'Marco de reflexión sobre creencias familiares y autocuidado.'
+      },
+      {
+        id: 24,
+        cat: 'vinculos',
+        catName: 'Vínculos y Cuidado Familiar',
+        title: 'Tensión residual tras reuniones o desacuerdos con la familia extensa',
+        context: 'Después de una cena o llamada familiar con comentarios incómodos, te quedas en la cama reviviendo frases y sintiendo malestar.',
+        reflection: 'Los vínculos familiares suelen activar respuestas emocionales antiguas que tardan unas horas en decantar.',
+        steps: '1) Haz una descarga escrita breve separando los comentarios de otros de tu propia realidad actual. 2) Realiza 6 respiraciones largas soltando los hombros.',
+        example: 'Escribir: «La opinión de mi familiar refleja su propia preocupación, no mi camino actual. Hoy elijo descansar».',
+        question: '¿Qué comentario ajeno puedo devolver mentalmente a quien lo dijo para no llevarlo a mi descanso?',
+        limits: 'Herramienta de diferenciación emocional y cierre del día.'
+      },
+
+      // CATEGORÍA 5: CAMBIOS VITALES, INCERTIDUMBRE Y DECISIONES (25 a 30)
+      {
+        id: 25,
+        cat: 'decisiones',
+        catName: 'Decisiones y Cambios Vitales',
+        title: 'Dar vueltas a una decisión importante sin lograr cerrarla de noche',
+        context: 'Tienes que elegir entre dos opciones (laborales, personales o de vivienda) y a las 3:00 AM cada alternativa te parece peligrosa.',
+        reflection: 'Durante la madrugada disminuye la actividad racional de planificación y aumenta la sensibilidad a la amenaza; no es una hora fiable para decidir.',
+        steps: '1) Declara una «veda de decisiones nocturnas» entre las 10:00 PM y las 7:00 AM. 2) Anota los criterios a evaluar mañana en una tabla diurna.',
+        example: 'Columna 2: «Ninguna decisión importante se toma a oscuras. Mañana a las 10:00 AM compararé pros y contras en papel».',
+        question: '¿Qué información objetiva necesito consultar mañana de día para tomar esta decisión con serenidad?',
+        limits: 'Higiene cognitiva para la toma de decisiones.'
+      },
+      {
+        id: 26,
+        cat: 'decisiones',
+        catName: 'Decisiones y Cambios Vitales',
+        title: 'Incertidumbre ante una mudanza, cambio de etapa o transición laboral',
+        context: 'Estás atravesando un cambio vital importante y tu sueño se vuelve más superficial o fragmentado durante esas semanas.',
+        reflection: 'Ante entornos o etapas nuevas, el organismo eleva transitoriamente su nivel de vigilancia adaptativa.',
+        steps: '1) Mantén anclas estables en tu rutina nocturna (misma secuencia de descarga, misma luz tenue, mismo audio guía). 2) Separa lo controlable de lo incierto.',
+        example: 'Conservar los 15 minutos del Protocolo 3-3-3 todas las noches como espacio predecible en medio del cambio.',
+        question: '¿Qué pequeña rutina estable puedo ofrecerle hoy a mi cuerpo mientras se acomoda esta nueva etapa?',
+        limits: 'Las transiciones vitales son una causa frecuente de insomnio agudo transitorio según el NHLBI.'
+      },
+      {
+        id: 27,
+        cat: 'decisiones',
+        catName: 'Decisiones y Cambios Vitales',
+        title: 'Comparación social e inquietud tras usar redes sociales antes de dormir',
+        context: 'Pasas 40 minutos en la cama haciendo scroll en redes sociales y al apagar la pantalla sientes insatisfacción, prisa o sensación de estar atrasado en tu vida.',
+        reflection: 'El consumo nocturno de redes combina dos factores disruptivos: exposición ocular a luz de espectro azul y sobreestimulación comparativa.',
+        steps: '1) Sustituye los últimos 25 minutos de pantalla por tu libreta de descarga o lectura impresa. 2) Carga el teléfono fuera del alcance de tu mano.',
+        example: 'Activar el Modo Noche cálido a las 9:30 PM y cerrar aplicaciones de redes antes de entrar al dormitorio.',
+        question: '¿Cómo cambia mi paz mental cuando mis últimos 20 minutos del día me pertenecen a mí y no a una pantalla?',
+        limits: 'Recomendación directa de higiene lumínica y conductual del sueño (NHLBI).'
+      },
+      {
+        id: 28,
+        cat: 'decisiones',
+        catName: 'Decisiones y Cambios Vitales',
+        title: 'Sensación de postergación de proyectos propios por atender solo urgencias',
+        context: 'En la noche sientes frustración porque otro día entero se fue apagando incendios ajenos sin avanzar en lo que realmente te importa.',
+        reflection: 'A veces nos desvelamos o retrasamos la hora de dormir («venganza procrastinadora de la hora de acostarse») intentando recuperar tiempo propio de madrugada.',
+        steps: '1) No sacrifiques horas de sueño para compensar un día saturado. 2) Reserva en la Columna 3 un bloque de 25 minutos mañana para tu proyecto personal.',
+        example: 'Agendar de 8:00 a 8:25 AM mañana para avanzar en el proyecto propio antes de abrir el correo general.',
+        question: '¿Qué espacio real de 20 minutos puedo proteger mañana en mi agenda diurna para no robárselo a mi sueño?',
+        limits: 'Organización del tiempo y prevención de la postergación nocturna del sueño.'
+      },
+      {
+        id: 29,
+        cat: 'decisiones',
+        catName: 'Decisiones y Cambios Vitales',
+        title: 'Preocupación excesiva por el juicio o las expectativas de los demás',
+        context: 'Repasas en la almohada qué habrán pensado de ti en una reunión, evento o conversación, buscando aprobación o temiendo críticas.',
+        reflection: 'Intentar controlar en la madrugada la opinión subjetiva de otras personas es una tarea infinita que agota tu atención.',
+        steps: '1) Distingue entre tu conducta (que sí depende de ti) y la interpretación ajena (que no controlas). 2) Cierra el episodio por escrito.',
+        example: 'Escribir en la Columna 2: «Actué con buena intención y respeto; la opinión de los demás no está bajo mi control a esta hora».',
+        question: '¿Qué parte de esta preocupación intenta controlar algo que pertenece únicamente a la mirada de otra persona?',
+        limits: 'Reflexión cognitiva sobre límites interpersonales.'
+      },
+      {
+        id: 30,
+        cat: 'decisiones',
+        catName: 'Decisiones y Cambios Vitales',
+        title: 'Dificultad para habitar el silencio cuando baja el ritmo del día',
+        context: 'Acostumbrado a tener música, podcasts, videos o tareas todo el día, el silencio de la noche te resulta extraño o incómodo.',
+        reflection: 'Reacostumbrar al sistema nervioso a la quietud requiere una transición amable, sin exigir silencio absoluto de golpe si este te genera tensión.',
+        steps: '1) Comienza utilizando la guía hablada pausada del Audio 02 para acompañar la transición. 2) Practica 3 minutos de pausa tranquila también durante la tarde.',
+        example: 'Hacer una pausa de 3 minutos con té sin cafeína a las 7:00 PM mirando por la ventana sin teléfono.',
+        question: '¿Cómo puedo familiarizarme con pequeños momentos de calma durante el día para que el silencio nocturno me resulte amigable?',
+        limits: 'Práctica gradual de desaceleración vespertina.'
+      }
+    ];
+
+    let activeCat = 'all';
+    let favIds = [];
+    let hasConsent = false;
+
+    function normalizeText(str) {
+      return String(str || '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
+    }
+
+    function initLibrary() {
+      try {
+        if (localStorage.getItem(LIB_KEYS.CONSENT) === 'true') {
+          hasConsent = true;
+          document.getElementById('lib-consent-check').checked = true;
+          const savedFavs = localStorage.getItem(LIB_KEYS.FAVS);
+          if (savedFavs) favIds = JSON.parse(savedFavs) || [];
+        }
+        if (localStorage.getItem(LIB_KEYS.THEME) === 'night') {
+          document.documentElement.setAttribute('data-theme', 'night');
+          const d = document.getElementById('lib-theme-desktop');
+          const m = document.getElementById('lib-theme-mobile');
+          if (d) d.textContent = '☀ Modo Día';
+          if (m) m.textContent = '☀ Día';
+        }
+      } catch (e) {}
+
+      applyFilters();
+      renderSelectedPlan();
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isNight = html.getAttribute('data-theme') === 'night';
+      const next = isNight ? 'day' : 'night';
+      html.setAttribute('data-theme', next);
+      const d = document.getElementById('lib-theme-desktop');
+      const m = document.getElementById('lib-theme-mobile');
+      if (d) d.textContent = !isNight ? '☀ Modo Día' : '◑ Modo Noche';
+      if (m) m.textContent = !isNight ? '☀ Día' : '◑ Noche';
+      if (hasConsent) {
+        try { localStorage.setItem(LIB_KEYS.THEME, next); } catch (e) {}
+      }
+    }
+
+    function toggleLibConsent(checked) {
+      hasConsent = checked;
+      try {
+        if (checked) {
+          localStorage.setItem(LIB_KEYS.CONSENT, 'true');
+          localStorage.setItem(LIB_KEYS.FAVS, JSON.stringify(favIds));
+        } else {
+          localStorage.removeItem(LIB_KEYS.CONSENT);
+        }
+      } catch (e) {}
+    }
+
+    function toggleFavorite(id) {
+      if (favIds.includes(id)) {
+        favIds = favIds.filter(x => x !== id);
+      } else {
+        favIds.push(id);
+      }
+      if (hasConsent) {
+        try { localStorage.setItem(LIB_KEYS.FAVS, JSON.stringify(favIds)); } catch (e) {}
+      }
+      applyFilters();
+      renderSelectedPlan();
+    }
+
+    function clearLibData() {
+      favIds = [];
+      hasConsent = false;
+      document.getElementById('lib-consent-check').checked = false;
+      try {
+        localStorage.removeItem(LIB_KEYS.CONSENT);
+        localStorage.removeItem(LIB_KEYS.FAVS);
+      } catch (e) {}
+      applyFilters();
+      renderSelectedPlan();
+    }
+
+    function selectCategory(cat, btn) {
+      activeCat = cat;
+      document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilters();
+    }
+
+    function resetSearch() {
+      document.getElementById('lib-search-input').value = '';
+      activeCat = 'all';
+      document.querySelectorAll('.filter-pill').forEach((b, i) => b.classList.toggle('active', i === 0));
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const q = normalizeText(document.getElementById('lib-search-input').value.trim());
+      const filtered = CARDS_DATA.filter(card => {
+        const matchCat =
+          activeCat === 'all' ? true :
+          activeCat === 'favs' ? favIds.includes(card.id) :
+          card.cat === activeCat;
+
+        if (!matchCat) return false;
+        if (!q) return true;
+
+        const haystack = normalizeText(
+          `${card.title} ${card.catName} ${card.context} ${card.reflection} ${card.steps} ${card.example} ${card.question}`
+        );
+        return haystack.includes(q);
+      });
+
+      document.getElementById('results-summary').textContent =
+        `Mostrando ${filtered.length} de ${CARDS_DATA.length} fichas de reflexión:`;
+
+      const container = document.getElementById('cards-container');
+      if (!filtered.length) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; background: var(--bg-paper); padding: 28px; border-radius: 10px; border: 1px solid var(--border-hairline); text-align: center;">
+            <p style="font-weight: 600;">No se encontraron fichas con ese criterio. Prueba con términos como «reloj», «mandibula», «trabajo», «pareja», «3 am» o «decisiones».</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(c => {
+        const isFav = favIds.includes(c.id);
+        const numStr = String(c.id).padStart(2, '0');
+        return `
+          <article class="reflection-card">
+            <div>
+              <div class="card-top">
+                <div>
+                  <span class="card-num">Ficha ${numStr} • ${c.catName}</span>
+                  <h2 class="card-title">${c.title}</h2>
+                </div>
+                <button type="button" class="fav-btn no-print ${isFav ? 'active' : ''}" onclick="toggleFavorite(${c.id})">
+                  ${isFav ? '★ En mi plan' : '☆ Guardar en mi plan'}
+                </button>
+              </div>
+
+              <div class="field-block" style="margin-top: 12px;">
+                <span class="field-tag">1. Situación y experiencia habitual</span>
+                <p style="margin: 0; color: var(--ink-secondary);">${c.context}</p>
+              </div>
+
+              <div class="field-block" style="margin-top: 10px;">
+                <span class="field-tag">2. Marco de reflexión cognitiva y simbólica</span>
+                <p style="margin: 0; color: var(--ink-secondary);">${c.reflection}</p>
+              </div>
+
+              <div class="field-block" style="margin-top: 10px;">
+                <span class="field-tag">3. Pasos prácticos y ejemplo aplicable</span>
+                <p style="margin: 0 0 6px; color: var(--ink-secondary);"><strong>Pasos:</strong> ${c.steps}</p>
+                <p style="margin: 0; color: var(--ink-secondary);"><strong>Ejemplo:</strong> <em>${c.example}</em></p>
+              </div>
+
+              <div class="field-block" style="margin-top: 10px;">
+                <span class="field-tag">4. Pregunta guía para tu descarga escrita</span>
+                <p style="margin: 0; font-weight: 600; color: var(--ink-primary);">«${c.question}»</p>
+              </div>
+            </div>
+
+            <div class="field-block field-limit">
+              <span class="field-tag" style="color: var(--terracotta-primary);">5. Límite prudente y cuándo consultar</span>
+              <p style="margin: 0; font-size: 0.86rem; color: var(--ink-secondary);">${c.limits}</p>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function renderSelectedPlan() {
+      document.getElementById('plan-count-badge').textContent = String(favIds.length);
+      const mobBadge = document.getElementById('plan-count-badge-mobile');
+      if (mobBadge) mobBadge.textContent = String(favIds.length);
+      const box = document.getElementById('selected-plan-list');
+      const selected = CARDS_DATA.filter(c => favIds.includes(c.id));
+      if (!selected.length) {
+        box.innerHTML = '<p style="color: var(--ink-muted); font-style: italic;">Aún no has marcado fichas como favoritas. Usa el botón «☆ Guardar en mi plan» en cualquier tarjeta para armar tu selección.</p>';
+        return;
+      }
+      box.innerHTML = selected.map(c => `
+        <div class="field-block" style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 240px;">
+            <strong>Ficha ${String(c.id).padStart(2, '0')}: ${c.title}</strong>
+            <p style="margin: 4px 0; font-size: 0.9rem; color: var(--ink-secondary);"><strong>Acción:</strong> ${c.steps}</p>
+            <p style="margin: 0; font-size: 0.9rem; color: var(--olive-primary);"><strong>Pregunta:</strong> «${c.question}»</p>
+          </div>
+          <button type="button" class="btn-editorial no-print" style="font-size: 0.8rem; padding: 4px 10px;" onclick="toggleFavorite(${c.id})">Quitar</button>
+        </div>
+      `).join('');
+    }
+
+    function exportSelectedPlanTxt() {
+      const selected = CARDS_DATA.filter(c => favIds.includes(c.id));
+      const listToExport = selected.length ? selected : CARDS_DATA.slice(0, 3);
+      let lines = [
+        'MI SELECCIÓN PERSONAL — BIBLIOTECA PRÁCTICA DE REFLEXIÓN NOCTURNA',
+        '==================================================================',
+        selected.length ? `Fichas seleccionadas (${selected.length}):` : 'Muestra inicial (3 fichas):',
+        ''
+      ];
+      listToExport.forEach(c => {
+        lines.push(`FICHA ${String(c.id).padStart(2, '0')}: ${c.title}`);
+        lines.push(`- Situación: ${c.context}`);
+        lines.push(`- Pasos prácticos: ${c.steps}`);
+        lines.push(`- Ejemplo: ${c.example}`);
+        lines.push(`- Pregunta de descarga: ${c.question}`);
+        lines.push(`- Límite prudente: ${c.limits}`);
+        lines.push('');
+      });
+      const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'mi-plan-reflexion-nocturna.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    document.addEventListener('DOMContentLoaded', initLibrary);
+  </script>
+</body>
+</html>

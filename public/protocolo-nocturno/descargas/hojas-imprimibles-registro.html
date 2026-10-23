@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuaderno Imprimible de Registro y Estacionamiento Nocturno | Protocolo 3-3-3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-paper: #F6F2EA;
+      --bg-sheet: #FFFFFF;
+      --ink-main: #1C1E1B;
+      --ink-soft: #444741;
+      --ink-muted: #6B6E66;
+      --olive-main: #3B5240;
+      --olive-soft: #E4ECE5;
+      --terracotta: #A8583B;
+      --terracotta-soft: #F5E8E2;
+      --rule-line: #D5CFC2;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-paper);
+      color: var(--ink-main);
+      line-height: 1.55;
+      font-size: 16px;
+      padding: 24px 16px 64px;
+    }
+
+    .screen-toolbar {
+      max-width: 860px;
+      margin: 0 auto 24px;
+      background: var(--bg-sheet);
+      border: 1px solid var(--rule-line);
+      border-radius: 12px;
+      padding: 14px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .toolbar-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 9px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--rule-line);
+      background: var(--bg-paper);
+      color: var(--ink-main);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--olive-main);
+      color: #fff;
+      border-color: var(--olive-main);
+    }
+
+    .sheet {
+      max-width: 860px;
+      margin: 0 auto 32px;
+      background: var(--bg-sheet);
+      border: 1px solid var(--rule-line);
+      padding: 40px 44px;
+      box-shadow: 0 6px 24px rgba(28, 30, 27, 0.05);
+    }
+
+    .sheet-header {
+      border-bottom: 2px solid var(--olive-main);
+      padding-bottom: 14px;
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+    }
+    .kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--terracotta);
+      font-weight: 700;
+    }
+    h1, h2 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-weight: 600;
+      color: var(--ink-main);
+      line-height: 1.2;
+    }
+    h1 { font-size: 1.85rem; margin-top: 4px; }
+    h2 { font-size: 1.35rem; margin: 18px 0 10px; }
+
+    .meta-line {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 18px;
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+    }
+    .fill-blank {
+      border-bottom: 1px solid var(--ink-muted);
+      display: inline-block;
+      min-width: 140px;
+    }
+
+    table.worksheet-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 20px;
+      font-size: 0.92rem;
+    }
+    table.worksheet-table th {
+      background: var(--olive-soft);
+      color: var(--olive-main);
+      text-align: left;
+      padding: 10px 12px;
+      border: 1px solid var(--rule-line);
+      font-weight: 700;
+    }
+    table.worksheet-table td {
+      padding: 16px 12px;
+      border: 1px solid var(--rule-line);
+      vertical-align: top;
+      height: 58px;
+    }
+
+    .writing-lines {
+      margin: 12px 0 18px;
+    }
+    .line-row {
+      border-bottom: 1px dashed var(--rule-line);
+      height: 30px;
+    }
+
+    .nightstand-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 16px;
+    }
+    .cutout-card {
+      border: 1.5px dashed var(--olive-main);
+      border-radius: 10px;
+      padding: 20px;
+      background: var(--bg-paper);
+      page-break-inside: avoid;
+    }
+
+    .safety-footnote {
+      margin-top: 18px;
+      padding: 12px 14px;
+      background: var(--terracotta-soft);
+      border-left: 3px solid var(--terracotta);
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+    }
+
+    @media screen and (max-width: 760px) {
+      body { padding: 14px 10px 48px; }
+      .sheet { padding: 20px 14px; }
+      .sheet-header { flex-wrap: wrap; }
+      .meta-line { flex-wrap: wrap; gap: 10px; }
+      .fill-blank { min-width: 90px; }
+      .nightstand-cards { grid-template-columns: 1fr; }
+      table.worksheet-table,
+      table.worksheet-table tbody {
+        display: block;
+        width: 100%;
+      }
+      table.worksheet-table thead {
+        display: none;
+      }
+      table.worksheet-table tbody tr {
+        display: block;
+        border: 1px solid var(--rule-line);
+        border-radius: 8px;
+        padding: 12px 14px;
+        margin-bottom: 12px;
+        background: #fff;
+      }
+      table.worksheet-table tbody td {
+        display: block;
+        width: 100%;
+        height: auto;
+        min-height: 36px;
+        padding: 8px 0;
+        border: none;
+        border-bottom: 1px dashed var(--rule-line);
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+      table.worksheet-table tbody td:last-child {
+        border-bottom: none;
+      }
+      table.worksheet-table tbody td::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 0.76rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--olive-main);
+        margin-bottom: 4px;
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm 12mm 12mm 12mm;
+        @bottom-left {
+          content: "Cuaderno Imprimible • Protocolo Nocturno 3-3-3";
+          font-family: 'Source Sans 3', sans-serif;
+          font-size: 8pt;
+          color: #666;
+        }
+        @bottom-right {
+          content: "Hoja " counter(page) " de " counter(pages);
+          font-family: 'Source Sans 3', sans-serif;
+          font-size: 8pt;
+          color: #666;
+        }
+      }
+      body {
+        background: #fff !important;
+        padding: 0 !important;
+        font-size: 9.6pt;
+        line-height: 1.36;
+      }
+      .screen-toolbar { display: none !important; }
+      .sheet {
+        box-shadow: none !important;
+        border: 1px solid #999 !important;
+        margin: 0 !important;
+        padding: 8mm 10mm !important;
+        page-break-after: always;
+        break-after: page;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      .sheet:last-of-type {
+        page-break-after: auto;
+        break-after: auto;
+      }
+      .sheet-header {
+        padding-bottom: 8px;
+        margin-bottom: 12px;
+      }
+      h1 { font-size: 1.45rem; }
+      h2 { font-size: 1.12rem; margin: 12px 0 6px; }
+      .meta-line { margin-bottom: 10px; font-size: 0.86rem; }
+      table.worksheet-table {
+        margin: 8px 0 12px;
+        font-size: 0.84rem;
+      }
+      table.worksheet-table tr {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      table.worksheet-table th {
+        padding: 7px 9px;
+      }
+      table.worksheet-table td {
+        padding: 10px 9px;
+        height: 42px;
+      }
+      .writing-lines { margin: 6px 0 10px; }
+      .line-row { height: 22px; }
+      .safety-footnote {
+        margin-top: 10px;
+        padding: 8px 10px;
+        font-size: 0.78rem;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      .cutout-card {
+        padding: 14px;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="screen-toolbar">
+    <div>
+      <strong>Cuaderno de Hojas Imprimibles — Protocolo 3-3-3</strong>
+      <span style="color: var(--ink-muted); font-size: 0.9rem; margin-left: 8px;">Optimizado para papel A4 / Carta sin cortes</span>
+    </div>
+    <div class="toolbar-links">
+      <a href="../producto-digital.html" class="btn">← Volver a la Guía Principal</a>
+      <a href="hojas-imprimibles-registro.pdf" download class="btn">⬇ Descargar PDF Directo</a>
+      <button onclick="window.print()" class="btn btn-primary">🖨 Imprimir Hojas</button>
+    </div>
+  </div>
+
+  <!-- HOJA 1: ESTACIONAMIENTO COGNITIVO (3 COLUMNAS) -->
+  <section class="sheet">
+    <header class="sheet-header">
+      <div>
+        <div class="kicker">Hoja de Trabajo 01 • Uso Vespertino o Nocturno</div>
+        <h1>Plantilla de Descarga Escrita (Método de 3 Columnas)</h1>
+      </div>
+      <div style="font-size: 0.85rem; color: var(--ink-muted);">Protocolo 3-3-3 • Alma Holística</div>
+    </header>
+
+    <div class="meta-line">
+      <span>Fecha: <span class="fill-blank"></span></span>
+      <span>Hora de registro: <span class="fill-blank"></span></span>
+      <span>Nivel de tensión (1 a 10): <span class="fill-blank" style="min-width: 60px;"></span></span>
+    </div>
+
+    <p style="color: var(--ink-soft); font-size: 0.94rem; margin-bottom: 12px;">
+      <strong>Propósito:</strong> Sacar los pendientes de tu cabeza y pasarlos al papel antes de acostarte (o si te despiertas pensando en tareas), evitando quedarte haciendo planes a oscuras en la cama.
+    </p>
+
+    <table class="worksheet-table">
+      <thead>
+        <tr>
+          <th style="width: 36%;">1. Asunto que reclama atención<br><span style="font-weight: 400; font-size: 0.82rem;">Descríbelo en una sola frase objetiva, sin dramatizar.</span></th>
+          <th style="width: 30%;">2. Límite real a esta hora<br><span style="font-weight: 400; font-size: 0.82rem;">¿Qué parte NO depende de ti ni puede resolverse de madrugada?</span></th>
+          <th style="width: 34%;">3. Próximo paso concreto mañana<br><span style="font-weight: 400; font-size: 0.82rem;">Acción mínima verificable y hora asignada en tu agenda.</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="1. Asunto que reclama atención"></td>
+          <td data-label="2. Límite real a esta hora"></td>
+          <td data-label="3. Próximo paso concreto mañana"></td>
+        </tr>
+        <tr>
+          <td data-label="1. Asunto que reclama atención"></td>
+          <td data-label="2. Límite real a esta hora"></td>
+          <td data-label="3. Próximo paso concreto mañana"></td>
+        </tr>
+        <tr>
+          <td data-label="1. Asunto que reclama atención"></td>
+          <td data-label="2. Límite real a esta hora"></td>
+          <td data-label="3. Próximo paso concreto mañana"></td>
+        </tr>
+        <tr>
+          <td data-label="1. Asunto que reclama atención"></td>
+          <td data-label="2. Límite real a esta hora"></td>
+          <td data-label="3. Próximo paso concreto mañana"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Reflexión de Cierre del Día (Opcional — 2 minutos)</h2>
+    <p style="font-size: 0.9rem; color: var(--ink-soft);">¿Qué emoción o conversación quedó sin expresar hoy y elijo atender mañana con calma?</p>
+    <div class="writing-lines">
+      <div class="line-row"></div>
+      <div class="line-row"></div>
+      <div class="line-row"></div>
+    </div>
+
+    <div class="safety-footnote">
+      <strong>Nota de uso prudente:</strong> Este registro es una herramienta de orden mental y reflexión personal. Si presentas dificultades para dormir tres o más noches por semana durante tres meses o más, o síntomas físicos agudos (como opresión en el pecho o falta de aire), consulta a un profesional de la salud.
+    </div>
+  </section>
+
+  <!-- HOJA 2: BITÁCORA DE 7 NOCHES -->
+  <section class="sheet">
+    <header class="sheet-header">
+      <div>
+        <div class="kicker">Hoja de Trabajo 02 • Seguimiento Semanal</div>
+        <h1>Bitácora del Recorrido Guiado de 7 Noches</h1>
+      </div>
+      <div style="font-size: 0.85rem; color: var(--ink-muted);">Protocolo 3-3-3 • Alma Holística</div>
+    </header>
+
+    <p style="color: var(--ink-soft); font-size: 0.94rem; margin-bottom: 12px;">
+      Completa esta fila a la mañana siguiente (nunca midas el tiempo mirando el reloj durante la madrugada). Las guías clínicas del NHLBI recomiendan llevar un registro de sueño para identificar patrones objetivos.
+    </p>
+
+    <table class="worksheet-table">
+      <thead>
+        <tr>
+          <th style="width: 14%;">Noche</th>
+          <th style="width: 22%;">Objetivo de la Noche</th>
+          <th style="width: 16%;">¿Hice descarga previa?</th>
+          <th style="width: 24%;">Si desperté: ¿Qué apliqué?</th>
+          <th style="width: 24%;">Sensación al despertar (1–5) y observación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td data-label="Noche"><strong>Noche 1</strong></td><td data-label="Objetivo de la Noche">Entorno y retirar reloj de la vista</td><td data-label="¿Hice descarga previa?">☐ Sí  ☐ No</td><td data-label="Si desperté: ¿Qué apliqué?"></td><td data-label="Sensación al despertar (1–5) y observación"></td></tr>
+        <tr><td data-label="Noche"><strong>Noche 2</strong></td><td data-label="Objetivo de la Noche">Descarga escrita 45 min antes</td><td data-label="¿Hice descarga previa?">☐ Sí  ☐ No</td><td data-label="Si desperté: ¿Qué apliqué?"></td><td data-label="Sensación al despertar (1–5) y observación"></td></tr>
+        <tr><td data-label="Noche"><strong>Noche 3</strong></td><td data-label="Objetivo de la Noche">Soltar mandíbula, lengua y hombros</td><td data-label="¿Hice descarga previa?">☐ Sí  ☐ No</td><td data-label="Si desperté: ¿Qué apliqué?"></td><td data-label="Sensación al despertar (1–5) y observación"></td></tr>
+        <tr><td data-label="Noche"><strong>Noche 4</strong></td><td data-label="Objetivo de la Noche">Cero pantallas al despertar</td><td data-label="¿Hice descarga previa?">☐ Sí  ☐ No</td><td data-label="Si desperté: ¿Qué apliqué?"></td><td data-label="Sensación al despertar (1–5) y observación"></td></tr>
+        <tr><td data-label="Noche"><strong>Noche 5</strong></td><td data-label="Objetivo de la Noche">Distinguir pendiente vs. emoción</td><td data-label="¿Hice descarga previa?">☐ Sí  ☐ No</td><td data-label="Si desperté: ¿Qué apliqué?"></td><td data-label="Sensación al despertar (1–5) y observación"></td></tr>
+        <tr><td data-label="Noche"><strong>Noche 6</strong></td><td data-label="Objetivo de la Noche">Regla de 20 min sin pelear en cama</td><td data-label="¿Hice descarga previa?">☐ Sí  ☐ No</td><td data-label="Si desperté: ¿Qué apliqué?"></td><td data-label="Sensación al despertar (1–5) y observación"></td></tr>
+        <tr><td data-label="Noche"><strong>Noche 7</strong></td><td data-label="Objetivo de la Noche">Balance y plan de mantenimiento</td><td data-label="¿Hice descarga previa?">☐ Sí  ☐ No</td><td data-label="Si desperté: ¿Qué apliqué?"></td><td data-label="Sensación al despertar (1–5) y observación"></td></tr>
+      </tbody>
+    </table>
+
+    <h2>Conclusión al finalizar las 7 noches</h2>
+    <p style="font-size: 0.9rem; color: var(--ink-soft);">¿Qué hábito vespertino o nocturno me aportó mayor serenidad esta semana?</p>
+    <div class="writing-lines">
+      <div class="line-row"></div>
+      <div class="line-row"></div>
+    </div>
+  </section>
+
+  <!-- HOJA 3: TARJETAS RECORTABLES DE MESITA DE NOCHE -->
+  <section class="sheet">
+    <header class="sheet-header">
+      <div>
+        <div class="kicker">Hoja de Trabajo 03 • Guía sin Pantallas</div>
+        <h1>Tarjetas de Mesita de Noche y Plan Personal</h1>
+      </div>
+      <div style="font-size: 0.85rem; color: var(--ink-muted);">Recortar o dejar junto a la lámpara</div>
+    </header>
+
+    <div class="nightstand-cards">
+      <div class="cutout-card">
+        <div class="kicker">Tarjeta A • Si despiertas de madrugada</div>
+        <h2 style="font-size: 1.15rem; margin-top: 6px;">Ruta de 3 Pasos sin Encender Pantallas</h2>
+        <ol style="padding-left: 18px; font-size: 0.92rem; margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+          <li><strong>No mires la hora:</strong> Calcular cuánto falta para levantarte activa la alerta.</li>
+          <li><strong>Afloja tres puntos:</strong> Separa un milímetro las muelas, suelta la lengua del paladar y deja caer los hombros.</li>
+          <li><strong>Tres respiraciones tranquilas (o a tu ritmo natural):</strong> Inhala suave en 4 tiempos y suelta en 6 (si contar te incomoda o te marea, respira a tu ritmo natural sintiendo el peso de tu cuerpo). Si en ~20 minutos sigues muy despierto, pasa a luz tenue y anota el pendiente en papel.</li>
+        </ol>
+      </div>
+
+      <div class="cutout-card">
+        <div class="kicker">Tarjeta B • Lista Vespertina (30 min antes)</div>
+        <h2 style="font-size: 1.15rem; margin-top: 6px;">Preparación del Terreno Nocturno</h2>
+        <ul style="list-style: none; font-size: 0.92rem; margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+          <li>☐ Anotar los 3 asuntos del día siguiente en la hoja de 3 columnas.</li>
+          <li>☐ Pasar a iluminación cálida/baja y silenciar notificaciones.</li>
+          <li>☐ Evitar cafeína tardía, comidas copiosas o discusiones en cama.</li>
+          <li>☐ Recordar mi acuerdo: <em>«La cama es un espacio de tregua; el reposo tranquilo ya es valioso.»</em></li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 style="margin-top: 26px;">Mi Plan Personal de Mantenimiento Nocturno</h2>
+    <table class="worksheet-table">
+      <thead>
+        <tr>
+          <th>Mi señal temprana de sobrecarga diurna</th>
+          <th>Mi hora elegida para hacer la descarga escrita</th>
+          <th>Mi recurso favorito si despierto (Audio / Papel / Respiración)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Mi señal temprana de sobrecarga diurna"></td>
+          <td data-label="Mi hora elegida para hacer la descarga escrita"></td>
+          <td data-label="Mi recurso favorito si despierto (Audio / Papel / Respiración)"></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guía Interna de Creativos y Guiones Publicitarios | Uso Exclusivo del Operador</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #F6F2EA;
+      --bg-paper: #FBF9F5;
+      --bg-subtle: #EFE9DC;
+      --bg-elevated: #FFFFFF;
+      --ink-primary: #1C1E1B;
+      --ink-secondary: #444741;
+      --ink-muted: #686B63;
+      --olive-primary: #3B5240;
+      --olive-surface: #E4ECE5;
+      --olive-border: #B8CBB9;
+      --terracotta-primary: #9E4F33;
+      --terracotta-surface: #F6EAE4;
+      --terracotta-border: #E0BFB2;
+      --border-hairline: #D8D1C3;
+      --border-strong: #B8B0A0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-size: 17px;
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+    .operator-bar {
+      background: var(--bg-paper);
+      border-bottom: 1px solid var(--border-strong);
+      padding: 12px 20px;
+    }
+    .operator-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .badge-internal {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      background: var(--terracotta-surface);
+      color: var(--terracotta-primary);
+      border: 1px solid var(--terracotta-border);
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 32px 20px;
+    }
+    .panel {
+      background: var(--bg-paper);
+      border: 1px solid var(--border-hairline);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    h1, h2, h3 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+    h1 { font-size: clamp(1.8rem, 3.4vw, 2.35rem); margin: 8px 0 12px; }
+    h2 { font-size: 1.5rem; margin-bottom: 14px; }
+    h3 { font-size: 1.22rem; margin-bottom: 8px; }
+    p { color: var(--ink-secondary); margin-bottom: 12px; }
+
+    .script-box {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-hairline);
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin: 12px 0;
+      white-space: pre-line;
+      font-size: 0.95rem;
+      color: var(--ink-secondary);
+    }
+    .btn-copy {
+      background: var(--olive-surface);
+      color: var(--olive-primary);
+      border: 1px solid var(--olive-border);
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .statics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: 18px;
+      margin-top: 16px;
+    }
+    .static-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      padding: 22px;
+      min-width: 0;
+    }
+    @media (max-width: 640px) {
+      .container { padding: 20px 12px; }
+      .panel { padding: 20px 14px; }
+      .static-card { padding: 16px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="operator-bar">
+    <div class="operator-inner">
+      <div>
+        <span class="badge-internal">Documento Interno del Operador (Excluido de la vista del comprador)</span>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <a href="index.html" style="color: var(--olive-primary); font-weight: 600; text-decoration: none;">← Ver Landing Pública</a>
+        <a href="README.md" style="color: var(--ink-secondary); font-weight: 600; text-decoration: none;">Ver README de Auditoría</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="panel">
+      <span class="badge-internal">Pautas de Comunicación Honesta y Cumplimiento</span>
+      <h1>Materiales Publicitarios Coherentes con los Entregables Reales</h1>
+      <p>
+        Este archivo está separado de la experiencia del comprador (no aparece enlazado ni en <code>producto-digital.html</code> ni en <code>order-bump.html</code>). Todos los textos han sido alineados con las cantidades, duraciones y alcances reales del producto:
+      </p>
+      <ul style="padding-left: 22px; color: var(--ink-secondary); font-size: 0.95rem; display: flex; flex-direction: column; gap: 6px;">
+        <li><strong>Promesa tangible y verificable:</strong> Aplicar una rutina estructurada de 12 a 15 minutos (descarga escrita en 3 columnas + relajación mandibular/respiratoria) y obtener un plan personal nocturno. <strong>No se promete «dormirse garantizado en 15 minutos»</strong> ni «cero cortisol».</li>
+        <li><strong>Cantidades y duraciones exactas:</strong> Manual de 12 capítulos en web y PDF, 2 audios guiados en español en formato <code>.M4A</code> (<em>Pausa Serena de Madrugada</em> de <strong>03:00</strong> y <em>Sesión Guiada Nocturna</em> de <strong>12:00</strong>) con transcripciones íntegras palabra por palabra, plan de 7 noches, hojas imprimibles y complemento opcional de <strong>30 fichas curadas de reflexión</strong> (USD 12).</li>
+        <li><strong>Nota metodológica sobre Biblioteca de Anuncios de Meta:</strong> La antigüedad o días en circulación de anuncios de terceros en Facebook Ad Library es únicamente un indicador de continuidad de pauta, <strong>nunca una prueba de rentabilidad financiera ni de eficacia clínica</strong>.</li>
+        <li><strong>Prudencia médica:</strong> Ningún anuncio desaconseja tratamientos médicos o farmacológicos ni presenta esta guía educativa como sustituto de consulta médica o de TCC-I (CBT-I).</li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h2>1. Cinco Guiones de Video (35–45 segundos) — Coherentes con la Entrega Real</h2>
+
+      <h3>Guion 01 • El bucle de planificar el día siguiente a las 3:00 AM</h3>
+      <div class="script-box" id="ad-script-1">«Apertura (0–3s): ¿Te despiertas a mitad de la madrugada y tu cabeza empieza inmediatamente a repasar pendientes del trabajo o de la casa?
+
+Desarrollo: Cuando abrimos los ojos de noche y miramos el reloj para calcular cuántas horas faltan para sonar la alarma, activamos un estado de vigilancia. E intentar obligarnos a "poner la mente en blanco" suele generar más frustración.
+
+Solución y Entregables Reales: En el Protocolo de Descanso y Descarga Nocturna 3-3-3 aprenderás una rutina práctica de 12 a 15 minutos para:
+1. Sacar los pendientes de tu cabeza mediante una hoja sencilla de 3 columnas.
+2. Soltar la tensión acumulada en mandíbula y hombros con dos audios guiados en español (de 3 y 12 minutos, con transcripciones completas si prefieres silencio).
+3. Seguir una bitácora guiada de 7 noches para armar tu propio plan nocturno.
+
+Cierre (CTA): Explora el contenido completo de la guía por USD 27 en el enlace de abajo.»</div>
+      <button type="button" class="btn-copy" onclick="copyAd('ad-script-1', this)">Copiar Guion 01</button>
+
+      <h3 style="margin-top: 24px;">Guion 02 • Por qué forzar la mente a quedar en blanco aumenta la alerta</h3>
+      <div class="script-box" id="ad-script-2">«Apertura (0–3s): Si cuando te desvelas intentas obligarte a "no pensar en nada", probablemente hayas notado que tu mente insiste todavía más.
+
+Desarrollo: Cuando dejamos pendientes abiertos al terminar el día, nuestra cabeza intenta recordarlos una y otra vez hasta que los dejamos anotados por escrito con un primer paso claro para mañana.
+
+Solución y Entregables Reales: El Protocolo 3-3-3 es un cuaderno práctico e interactivo para adultos que incluye:
+• La hoja de descarga nocturna en 3 Columnas (Qué asunto es, Mi límite a esta hora y Primer paso mañana).
+• Un Diario interactivo en tu navegador e imprimibles en PDF para tu mesita de noche.
+• Pautas claras basadas en guías de higiene del sueño para saber qué hacer si pasan 20 minutos sin conciliar el descanso.
+
+Cierre (CTA): Haz clic en "Más información" para conocer el programa completo.»</div>
+      <button type="button" class="btn-copy" onclick="copyAd('ad-script-2', this)">Copiar Guion 02</button>
+
+      <h3 style="margin-top: 24px;">Guion 03 • Tensión mandibular y sobrecarga al apagar la luz</h3>
+      <div class="script-box" id="ad-script-3">«Apertura (0–3s): Al apoyar la cabeza en la almohada, ¿notas que tus muelas siguen apretadas y tus hombros siguen tensos?
+
+Desarrollo: Muchas veces pasamos de las pantallas y las obligaciones del día directamente a apagar la luz, sin darle al cuerpo una rampa de desaceleración física y mental.
+
+Solución y Entregables Reales: Diseñamos el Protocolo 3-3-3 como una guía paso a paso de autocuidado nocturno. Incluye un recorrido progresivo de 7 noches, hojas de registro imprimibles y dos sesiones de audio descargables en español que te guían para aflojar mandíbula, lengua y hombros mediante respiración suave de exhalación prolongada.
+
+Cierre (CTA): Revisa todos los módulos incluidos en la página oficial.»</div>
+      <button type="button" class="btn-copy" onclick="copyAd('ad-script-3', this)">Copiar Guion 03</button>
+
+      <h3 style="margin-top: 24px;">Guion 04 • El recorrido gradual de 7 noches</h3>
+      <div class="script-box" id="ad-script-4">«Apertura (0–3s): Cambiar la forma en que cierras tu día no requiere rutinas interminables, sino orden y constancia durante una semana.
+
+Desarrollo: En lugar de teoría abstracta, el Protocolo 3-3-3 organiza tu descanso en un recorrido práctico de 7 noches con un objetivo concreto cada día: desde retirar el reloj de tu vista y hacer tu vaciado escrito vespertino, hasta aplicar la pausa de madrugada sin encender pantallas.
+
+Solución y Entregables Reales: Recibes el manual digital en modo día y modo noche, el PDF completo para lectura sin conexión, las hojas imprimibles A4 y las dos guías de audio con sus transcripciones completas.
+
+Cierre (CTA): Consulta el temario detallado en el enlace.»</div>
+      <button type="button" class="btn-copy" onclick="copyAd('ad-script-4', this)">Copiar Guion 04</button>
+
+      <h3 style="margin-top: 24px;">Guion 05 • Presentación de la Biblioteca Complementaria de 30 Fichas</h3>
+      <div class="script-box" id="ad-script-5">«Apertura (0–3s): Cuando la preocupación nocturna gira en torno al trabajo, los límites familiares o decisiones pendientes, ayuda tener las preguntas adecuadas a mano.
+
+Desarrollo: Junto con el Protocolo 3-3-3 (USD 27), puedes sumar de forma opcional nuestra Biblioteca Práctica de Reflexión Nocturna por USD 12 adicionales.
+
+Solución y Entregables Reales: Es una colección curada de 30 fichas individuales distribuidas en 5 áreas: Despertares y hábitos, Tensión corporal, Trabajo y finanzas, Vínculos familiares y Decisiones vitales. Cada ficha incluye pasos prácticos, un ejemplo concreto, una pregunta de descarga escrita y criterios prudentes sobre cuándo consultar a un profesional de la salud.
+
+Cierre (CTA): Explora el manual y la colección de 30 fichas aquí.»</div>
+      <button type="button" class="btn-copy" onclick="copyAd('ad-script-5', this)">Copiar Guion 05</button>
+    </section>
+
+    <section class="panel">
+      <h2>2. Cinco Piezas Gráficas Estáticas (Copy Verificado y Sin Precios Tachados Falsos)</h2>
+      <div class="statics-grid">
+        <div class="static-card">
+          <span class="badge-internal">Estático 01 • Método 3 Columnas</span>
+          <h3 style="margin-top: 8px;">Descargar Pendientes en Papel</h3>
+          <p style="font-size: 0.92rem;"><strong>Texto en imagen:</strong><br>1. Qué asunto te preocupa hoy<br>2. Límite real a esta hora<br>3. Primer paso mañana con hora asignada</p>
+          <p style="font-size: 0.88rem; margin-bottom: 0;"><strong>Copy Meta Ads:</strong> Pasa de dar vueltas en la cama a ordenar tus pendientes en papel antes de dormir. Guía práctica + Hojas imprimibles + 2 Audios en español (USD 27).</p>
+        </div>
+
+        <div class="static-card">
+          <span class="badge-internal">Estático 02 • Tregua con el Reloj</span>
+          <h3 style="margin-top: 8px;">Dejar de vigilar la madrugada</h3>
+          <p style="font-size: 0.92rem;"><strong>Texto en imagen:</strong><br>Calcular cuántas horas faltan para que suene la alarma activa tu estado de alerta.</p>
+          <p style="font-size: 0.88rem; margin-bottom: 0;"><strong>Copy Meta Ads:</strong> Conoce la rutina de 12 a 15 minutos del Protocolo 3-3-3: descarga escrita, relajación mandibular y recorrido de 7 noches.</p>
+        </div>
+
+        <div class="static-card">
+          <span class="badge-internal">Estático 03 • Recursos sin Pantallas</span>
+          <h3 style="margin-top: 8px;">En pantalla, en audio o en papel</h3>
+          <p style="font-size: 0.92rem;"><strong>Texto en imagen:</strong><br>• Manual en Modo Noche y PDF<br>• 2 Audios (.M4A de 03:00 y 12:00)<br>• Transcripciones y Hojas Imprimibles</p>
+          <p style="font-size: 0.88rem; margin-bottom: 0;"><strong>Copy Meta Ads:</strong> Diseñado para acompañarte incluso si prefieres prescindir de pantallas por la noche.</p>
+        </div>
+
+        <div class="static-card">
+          <span class="badge-internal">Estático 04 • Recorrido 7 Noches</span>
+          <h3 style="margin-top: 8px;">Un ajuste concreto cada noche</h3>
+          <p style="font-size: 0.92rem;"><strong>Texto en imagen:</strong><br>Noche 1: Entorno y reloj<br>Noche 2: Vaciado escrito<br>Noche 3: Mandíbula y hombros<br>...hasta construir tu Plan Personal.</p>
+          <p style="font-size: 0.88rem; margin-bottom: 0;"><strong>Copy Meta Ads:</strong> Un cuaderno de trabajo estructurado y realista para ordenar tus noches paso a paso.</p>
+        </div>
+
+        <div class="static-card">
+          <span class="badge-internal">Estático 05 • Biblioteca de 30 Fichas</span>
+          <h3 style="margin-top: 8px;">30 Fichas de Reflexión Nocturna</h3>
+          <p style="font-size: 0.92rem;"><strong>Texto en imagen:</strong><br>5 Categorías · Buscador sin tildes · Pasos prácticos · Preguntas de escritura · Límites clínicos claros.</p>
+          <p style="font-size: 0.88rem; margin-bottom: 0;"><strong>Copy Meta Ads:</strong> Disponible como complemento opcional (+USD 12) junto al Protocolo 3-3-3.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    function copyAd(id, btn) {
+      const text = document.getElementById(id).textContent.trim();
+      navigator.clipboard.writeText(text);
+      const old = btn.textContent;
+      btn.textContent = '✓ Copiado';
+      setTimeout(() => { btn.textContent = old; }, 1800);
+    }
+  </script>
+</body>
+</html>

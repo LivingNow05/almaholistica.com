@@ -516,11 +516,52 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
   <!-- ========================================================================= -->
   {geoCitabilidad && (
     <section class="w-full bg-[#060A1A] py-10 sm:py-14 border-b border-slate-800/40" aria-label={`Atención Clínica y Metodología en ${cityName}`}>
-      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 space-y-6">
+        <!-- Guía Rápida en 3 Pasos Súper Fáciles para el Consultante Local -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="card-matte p-5 rounded-2xl border border-slate-800 border-t-4 border-t-[#F97316] flex items-start gap-3.5">
+            <span class="simple-number-circle">1</span>
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-[#F97316] block mb-0.5">Paso 1 • En 1 minuto</span>
+              <strong class="text-base font-bold text-white block mb-1">Elige tu síntoma 💡</strong>
+              <span class="text-xs sm:text-sm text-slate-300 leading-relaxed block">
+                Toca el botón de evaluación y cuéntanos qué parte de tu cuerpo te duele o molesta hoy.
+              </span>
+            </div>
+          </div>
+          <div class="card-matte p-5 rounded-2xl border border-slate-800 border-t-4 border-t-[#779DD1] flex items-start gap-3.5">
+            <span class="simple-number-circle">2</span>
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-[#779DD1] block mb-0.5">Paso 2 • En tu moneda ({moneda})</span>
+              <strong class="text-base font-bold text-white block mb-1">Agenda por WhatsApp 💬</strong>
+              <span class="text-xs sm:text-sm text-slate-300 leading-relaxed block">
+                Coordinamos tu turno en el horario de {cityName} con tarifa local ({precio}).
+              </span>
+            </div>
+          </div>
+          <div class="card-matte p-5 rounded-2xl border border-slate-800 border-t-4 border-t-[#2E854B] flex items-start gap-3.5">
+            <span class="simple-number-circle">3</span>
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 block mb-0.5">Paso 3 • 60 a 75 min en vivo</span>
+              <strong class="text-base font-bold text-white block mb-1">Sana desde tu casa 🌿</strong>
+              <span class="text-xs sm:text-sm text-slate-300 leading-relaxed block">
+                Nos conectamos 1 a 1 por videollamada para encontrar y soltar la emoción que activó tu síntoma.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bloque GEO Citabilidad Intacto + Píldoras de Lectura Rápida -->
         <div class="card-matte p-6 sm:p-8 rounded-2xl border border-slate-800 border-l-4 border-l-[#779DD1] relative">
-          <div class="flex items-center gap-2 text-xs font-sans font-bold tracking-wider text-[#779DD1] uppercase mb-3">
-            <span class="w-2 h-2 rounded-full bg-[#779DD1] animate-pulse"></span>
-            <span>ATENCIÓN CLÍNICA Y METODOLOGÍA EN {cityName.toUpperCase()}</span>
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div class="flex items-center gap-2 text-xs font-sans font-bold tracking-wider text-[#779DD1] uppercase">
+              <span class="w-2 h-2 rounded-full bg-[#779DD1] animate-pulse"></span>
+              <span>ATENCIÓN CLÍNICA Y METODOLOGÍA EN {cityName.toUpperCase()}</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 text-xs font-sans">
+              <span class="px-3 py-1 rounded-full bg-[#0E172F] border border-slate-800 text-slate-200 font-semibold">🏠 100% Online en {cityName}</span>
+              <span class="px-3 py-1 rounded-full bg-[#0E172F] border border-slate-800 text-emerald-400 font-semibold">💳 Moneda: {moneda}</span>
+            </div>
           </div>
           <p class="text-sm sm:text-base text-slate-200 font-sans leading-relaxed">
             {geoCitabilidad}
@@ -789,36 +830,42 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
         <a href="/biodescodificacion/gastritis" class="card-matte p-6 rounded-2xl border border-slate-800 hover:border-emerald-400 transition-all group">
           <span class="text-xs font-sans font-bold text-emerald-400 uppercase tracking-wider block mb-2">Sistema Digestivo</span>
           <h3 class="font-sans font-bold text-lg text-white group-hover:text-emerald-400 transition-colors mb-2 uppercase tracking-tight">Gastritis y Acidez</h3>
+          <span class="text-xs font-semibold text-emerald-400 block mb-1.5">💬 En simple: "Me tragué un enojo sin hablar"</span>
           <p class="text-sm text-slate-300 font-sans leading-relaxed">Conflicto de bocado indigesto e ira impotente ante situaciones no toleradas.</p>
         </a>
 
         <a href="/biodescodificacion/ansiedad" class="card-matte p-6 rounded-2xl border border-slate-800 hover:border-[#779DD1] transition-all group">
           <span class="text-xs font-sans font-bold text-[#779DD1] uppercase tracking-wider block mb-2">Nervioso / Emocional</span>
           <h3 class="font-sans font-bold text-lg text-white group-hover:text-[#779DD1] transition-colors mb-2 uppercase tracking-tight">Ansiedad Generalizada</h3>
+          <span class="text-xs font-semibold text-[#779DD1] block mb-1.5">💬 En simple: "Mi mente teme lo que pasará mañana"</span>
           <p class="text-sm text-slate-300 font-sans leading-relaxed">Miedo visceral a la anticipación del futuro y desprotección en el territorio.</p>
         </a>
 
         <a href="/biodescodificacion/lumbalgia" class="card-matte p-6 rounded-2xl border border-slate-800 hover:border-[#F97316] transition-all group">
           <span class="text-xs font-sans font-bold text-[#F97316] uppercase tracking-wider block mb-2">Osteoarticular</span>
           <h3 class="font-sans font-bold text-lg text-white group-hover:text-[#F97316] transition-colors mb-2 uppercase tracking-tight">Lumbalgia y Espalda Baja</h3>
+          <span class="text-xs font-semibold text-[#F97316] block mb-1.5">💬 En simple: "Cargo todo el peso familiar o económico"</span>
           <p class="text-sm text-slate-300 font-sans leading-relaxed">Sobrecarga de responsabilidades familiares y temor a la inestabilidad material.</p>
         </a>
 
         <a href="/biodescodificacion/colon-irritable" class="card-matte p-6 rounded-2xl border border-slate-800 hover:border-emerald-400 transition-all group">
           <span class="text-xs font-sans font-bold text-emerald-400 uppercase tracking-wider block mb-2">Sistema Digestivo</span>
           <h3 class="font-sans font-bold text-lg text-white group-hover:text-emerald-400 transition-colors mb-2 uppercase tracking-tight">Colon Irritable</h3>
+          <span class="text-xs font-semibold text-emerald-400 block mb-1.5">💬 En simple: "Me hicieron una jugada sucia o traición"</span>
           <p class="text-sm text-slate-300 font-sans leading-relaxed">Sentimiento de traición, afrentas sucias y miedo a perder el control.</p>
         </a>
 
         <a href="/biodescodificacion/migrana" class="card-matte p-6 rounded-2xl border border-slate-800 hover:border-indigo-400 transition-all group">
           <span class="text-xs font-sans font-bold text-indigo-400 uppercase tracking-wider block mb-2">Nervioso / Emocional</span>
           <h3 class="font-sans font-bold text-lg text-white group-hover:text-indigo-400 transition-colors mb-2 uppercase tracking-tight">Migrañas y Cefaleas</h3>
+          <span class="text-xs font-semibold text-indigo-400 block mb-1.5">💬 En simple: "Quiero solucionarlo todo con la cabeza"</span>
           <p class="text-sm text-slate-300 font-sans leading-relaxed">Exceso de control intelectual, autoexigencia y desvalorización mental.</p>
         </a>
 
         <a href="/biodescodificacion/hipotiroidismo" class="card-matte p-6 rounded-2xl border border-slate-800 hover:border-[#779DD1] transition-all group">
           <span class="text-xs font-sans font-bold text-[#779DD1] uppercase tracking-wider block mb-2">Endocrino / Metabólico</span>
           <h3 class="font-sans font-bold text-lg text-white group-hover:text-[#779DD1] transition-colors mb-2 uppercase tracking-tight">Hipotiroidismo</h3>
+          <span class="text-xs font-semibold text-[#779DD1] block mb-1.5">💬 En simple: "Siento que el tiempo no me alcanza"</span>
           <p class="text-sm text-slate-300 font-sans leading-relaxed">Conflicto con la gestión del tiempo: sensación de impotencia para actuar rápido.</p>
         </a>
       </div>

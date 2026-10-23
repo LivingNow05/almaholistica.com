@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="day">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Protocolo de Descanso y Descarga Nocturna 3-3-3 | Guía Práctica y Cuaderno de Trabajo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #F6F2EA;
+      --bg-paper: #FBF9F5;
+      --bg-subtle: #EFE9DC;
+      --bg-elevated: #FFFFFF;
+      --ink-primary: #1C1E1B;
+      --ink-secondary: #444741;
+      --ink-muted: #686B63;
+      --olive-primary: #3B5240;
+      --olive-hover: #2B3E2F;
+      --olive-surface: #E4ECE5;
+      --olive-border: #B8CBB9;
+      --terracotta-primary: #9E4F33;
+      --terracotta-surface: #F6EAE4;
+      --terracotta-border: #E0BFB2;
+      --border-hairline: #D8D1C3;
+      --border-strong: #B8B0A0;
+      --shadow-editorial: 0 10px 32px -6px rgba(28, 30, 27, 0.08);
+      --focus-ring: #3B5240;
+    }
+
+    html[data-theme="night"] {
+      --bg-canvas: #121513;
+      --bg-paper: #191D1A;
+      --bg-subtle: #222723;
+      --bg-elevated: #202521;
+      --ink-primary: #E6E1D6;
+      --ink-secondary: #B8B4A9;
+      --ink-muted: #8E8B80;
+      --olive-primary: #8FB396;
+      --olive-hover: #A6C6AC;
+      --olive-surface: #1F2B22;
+      --olive-border: #384D3C;
+      --terracotta-primary: #D98A6C;
+      --terracotta-surface: #2B201C;
+      --terracotta-border: #593B30;
+      --border-hairline: #2E342F;
+      --border-strong: #454D46;
+      --shadow-editorial: 0 12px 34px -6px rgba(0, 0, 0, 0.45);
+      --focus-ring: #8FB396;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 86px; }
+    section[id], article[id], div[id], h1[id], h2[id], h3[id] { scroll-margin-top: 86px; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    body {
+      font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-size: 18px;
+      line-height: 1.65;
+      padding-bottom: 84px;
+    }
+    :focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; }
+
+    .editorial-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-paper);
+      border-bottom: 1px solid var(--border-hairline);
+      padding: 12px 20px;
+    }
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand-title {
+      font-family: 'Newsreader', Georgia, serif;
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--ink-primary);
+      text-decoration: none;
+    }
+    .nav-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .btn-editorial {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-elevated);
+      color: var(--ink-primary);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn-editorial:hover { border-color: var(--olive-primary); background: var(--olive-surface); }
+    .btn-editorial.primary { background: var(--olive-primary); color: var(--bg-paper); border-color: var(--olive-primary); }
+    .btn-editorial.primary:hover { background: var(--olive-hover); }
+
+    .mobile-label { display: none; }
+    @media screen and (max-width: 980px) {
+      .editorial-header { padding: 8px 12px; }
+      .header-inner { flex-wrap: nowrap; gap: 8px; }
+      .brand-title .desktop-label { display: none; }
+      .brand-title .mobile-label { display: inline; font-size: 1.02rem; white-space: nowrap; }
+      .nav-group { flex-wrap: nowrap; gap: 6px; flex-shrink: 0; }
+      .nav-group .desktop-only-action { display: none !important; }
+      .nav-group .desktop-label { display: none; }
+      .nav-group .mobile-label { display: inline; }
+      .nav-group .btn-editorial { padding: 6px 10px; font-size: 0.84rem; white-space: nowrap; }
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Hero Editorial Adulto */
+    .hero-section {
+      padding: 48px 0 36px;
+    }
+    .hero-card {
+      background: var(--bg-paper);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      padding: 48px 44px;
+      box-shadow: var(--shadow-editorial);
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 36px;
+      align-items: center;
+    }
+    @media (max-width: 820px) {
+      .hero-card { grid-template-columns: 1fr; padding: 30px 20px; }
+    }
+    .kicker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--terracotta-primary);
+      display: block;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    h1 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(2rem, 4.1vw, 2.95rem);
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      color: var(--ink-primary);
+    }
+    .hero-lead {
+      font-size: 1.12rem;
+      color: var(--ink-secondary);
+      margin-bottom: 24px;
+    }
+
+    .section-card {
+      background: var(--bg-paper);
+      border: 1px solid var(--border-hairline);
+      border-radius: 12px;
+      padding: 40px 42px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-editorial);
+    }
+    @media (max-width: 640px) {
+      .section-card { padding: 26px 18px; }
+    }
+    h2 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(1.55rem, 3.2vw, 2.15rem);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    h3 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    p { margin-bottom: 14px; color: var(--ink-secondary); }
+
+    .three-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 22px;
+    }
+    .pillar-box {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-hairline);
+      border-radius: 10px;
+      padding: 24px;
+    }
+    .pillar-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--olive-primary);
+      background: var(--olive-surface);
+      border: 1px solid var(--olive-border);
+      padding: 3px 9px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .inventory-table-wrap {
+      overflow-x: auto;
+      margin-top: 18px;
+      border: 1px solid var(--border-hairline);
+      border-radius: 8px;
+    }
+    table.inventory-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    table.inventory-table th {
+      background: var(--bg-subtle);
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-strong);
+    }
+    table.inventory-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-hairline);
+      color: var(--ink-secondary);
+      vertical-align: top;
+    }
+    @media screen and (max-width: 760px) {
+      .inventory-table-wrap {
+        border: none;
+        background: transparent;
+        overflow-x: visible;
+      }
+      table.inventory-table,
+      table.inventory-table tbody {
+        display: block;
+        width: 100%;
+      }
+      table.inventory-table thead {
+        display: none;
+      }
+      table.inventory-table tbody tr {
+        display: block;
+        background: var(--bg-elevated);
+        border: 1px solid var(--border-strong);
+        border-radius: 10px;
+        padding: 14px 16px;
+        margin-bottom: 14px;
+      }
+      table.inventory-table tbody td {
+        display: block;
+        width: 100%;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--border-hairline);
+        font-size: 0.98rem;
+        line-height: 1.55;
+      }
+      table.inventory-table tbody td:last-child {
+        border-bottom: none;
+        padding-bottom: 2px;
+      }
+      table.inventory-table tbody td::before {
+        content: attr(data-label);
+        display: block;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.73rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--olive-primary);
+        margin-bottom: 4px;
+      }
+    }
+
+    /* Bloque de Configuración de Pedido (Demostración Honesta) */
+    .order-panel {
+      background: var(--bg-paper);
+      border: 2px solid var(--olive-primary);
+      border-radius: 14px;
+      padding: 40px 38px;
+      margin-bottom: 36px;
+      box-shadow: var(--shadow-editorial);
+    }
+    @media (max-width: 640px) {
+      .order-panel { padding: 26px 18px; }
+    }
+    .demo-banner {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      color: var(--ink-secondary);
+      margin-bottom: 22px;
+    }
+    .addon-selector {
+      background: var(--terracotta-surface);
+      border: 1.5px solid var(--terracotta-border);
+      border-radius: 10px;
+      padding: 22px;
+      margin: 22px 0;
+    }
+    .addon-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      cursor: pointer;
+    }
+    .addon-label input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      margin-top: 3px;
+      accent-color: var(--terracotta-primary);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .summary-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-hairline);
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+    }
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      font-size: 0.96rem;
+    }
+    .summary-total {
+      border-top: 1px solid var(--border-strong);
+      margin-top: 8px;
+      padding-top: 12px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--ink-primary);
+    }
+
+    details.faq-row {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-hairline);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 10px;
+    }
+    details.faq-row summary {
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--ink-primary);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="editorial-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand-title"><span class="desktop-label">Alma Holística • Edición Digital Nocturna</span><span class="mobile-label">Protocolo 3-3-3</span></a>
+      <nav class="nav-group" aria-label="Navegación de recursos">
+        <a href="producto-digital.html" class="btn-editorial"><span class="desktop-label">Abrir Guía 3-3-3</span><span class="mobile-label">Guía</span></a>
+        <a href="order-bump.html" class="btn-editorial desktop-only-action">Abrir Biblioteca (30 Fichas)</a>
+        <a href="descargas/hojas-imprimibles-registro.html" class="btn-editorial desktop-only-action">Hojas Imprimibles</a>
+        <button type="button" id="theme-btn" class="btn-editorial" onclick="toggleTheme()"><span class="desktop-label" id="idx-theme-desktop">◑ Modo Noche</span><span class="mobile-label" id="idx-theme-mobile">◑ Noche</span></button>
+        <a href="#seleccion-acceso" class="btn-editorial primary desktop-only-action">Ver Opciones (USD 27 / 39)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="hero-card">
+        <div>
+          <span class="kicker">Guía Práctica de Descanso y Cuaderno de Cabecera</span>
+          <h1>Una rutina sencilla de 12 a 15 minutos para sacar los pendientes de tu cabeza y volver a la cama en calma, sin obligarte a dormir</h1>
+          <p class="hero-lead">
+            Pensado para quienes se despiertan a mitad de la noche dándole vueltas a problemas del día o sienten que la cabeza se acelera apenas apagan la luz. Aprende a pasar tus pendientes a una hoja sencilla de 3 columnas, soltar la tensión de la mandíbula y los hombros, y acompañarte con dos audios tranquilos.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+            <a href="#seleccion-acceso" class="btn-editorial primary" style="padding: 13px 24px; font-size: 1rem;">Ver Opciones de la Guía (USD 27) →</a>
+            <a href="producto-digital.html" class="btn-editorial" style="padding: 13px 20px; font-size: 1rem;">Abrir el Manual Completo</a>
+          </div>
+        </div>
+
+        <!-- Composición Editorial en SVG -->
+        <div aria-hidden="true" style="display: flex; justify-content: center;">
+          <svg viewBox="0 0 280 310" width="248" height="274" fill="none" xmlns="http://www.w3.org/2000/svg" style="background: var(--bg-elevated); border: 1px solid var(--border-strong); border-radius: 10px; padding: 16px; max-width: 100%; height: auto;">
+            <rect x="14" y="14" width="252" height="282" rx="6" stroke="#3B5240" stroke-width="1.3"/>
+            <text x="140" y="42" text-anchor="middle" fill="#9E4F33" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.6">PROTOCOLO 3 · 3 · 3</text>
+            <circle cx="140" cy="112" r="48" stroke="#3B5240" stroke-width="1.3"/>
+            <path d="M150 78C130 82 116 99 120 120C124 140 143 151 162 146C148 156 127 154 114 139C101 124 103 100 118 86C127 78 139 75 150 78Z" fill="#3B5240" fill-opacity="0.22" stroke="#3B5240" stroke-width="1.4"/>
+            <line x1="42" y1="186" x2="238" y2="186" stroke="#D8D1C3" stroke-width="1"/>
+            <text x="140" y="212" text-anchor="middle" fill="#1C1E1B" font-family="Newsreader, serif" font-size="14" font-weight="600">Cuaderno de Cabecera</text>
+            <text x="140" y="232" text-anchor="middle" fill="#444741" font-family="Source Sans 3, sans-serif" font-size="11">3 Pasos · 7 Noches · 2 Audios</text>
+            <text x="140" y="252" text-anchor="middle" fill="#444741" font-family="Source Sans 3, sans-serif" font-size="11">Diario Personal + Hojas para Imprimir</text>
+            <text x="140" y="278" text-anchor="middle" fill="#3B5240" font-family="JetBrains Mono, monospace" font-size="9">ALMA HOLÍSTICA EDICIONES</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- POR QUÉ FUNCIONA ESTE ENFOQUE -->
+    <section class="section-card">
+      <span class="kicker">Por Qué Nos Desvelamos Más al Forzarnos</span>
+      <h2>Por qué exigirte «poner la mente en blanco» o mirar el reloj te quita más el sueño</h2>
+      <p>
+        Cuando abres los ojos a las 3:00 AM y sacas cuentas de cuánto tiempo te queda para levantarte, o te obligas a dormir rápido, tu cuerpo se pone en alerta. Las guías de salud del sueño muestran que el descanso llega mejor cuando dejas de pelear con la almohada, sacas los pendientes al papel y aflojas el cuerpo (<a href="https://www.nhlbi.nih.gov/health/insomnia/treatment" target="_blank" rel="noopener" style="color: var(--olive-primary);">NHLBI</a>; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7853203/" target="_blank" rel="noopener" style="color: var(--olive-primary);">Guía AASM, PMC7853203</a>).
+      </p>
+
+      <div class="three-pillars-grid">
+        <div class="pillar-box">
+          <span class="pillar-num">Paso 01 • Bajar la guardia (3–4 min)</span>
+          <h3>Salir de la pelea con el reloj</h3>
+          <p style="margin-bottom: 0; font-size: 0.95rem;">Distinguir si lo que te preocupa es una tarea de mañana, algo que ya pasó o un temor anticipado, sin quedarte discutiendo a oscuras.</p>
+        </div>
+        <div class="pillar-box">
+          <span class="pillar-num">Paso 02 • Vaciar (4–5 min)</span>
+          <h3>Anotar en 3 Columnas</h3>
+          <p style="margin-bottom: 0; font-size: 0.95rem;">Sacar el pendiente de tu cabeza y dejarlo en una hoja sencilla (<em>Qué asunto es → Mi límite a esta hora → Primer paso mañana</em>).</p>
+        </div>
+        <div class="pillar-box">
+          <span class="pillar-num">Paso 03 • Soltar (5–6 min)</span>
+          <h3>Aflojar el cuerpo y regla de 20 min</h3>
+          <p style="margin-bottom: 0; font-size: 0.95rem;">Soltar mandíbula y hombros con respiración suave (o a tu ritmo natural si contar te incomoda), sabiendo qué hacer si pasan ~20 minutos sin sueño.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INVENTARIO REAL Y VERIFICABLE DE ENTREGABLES -->
+    <section class="section-card">
+      <span class="kicker">Qué Recibes en Tu Acceso</span>
+      <h2>Todo lo que incluye el Protocolo 3-3-3 y su Biblioteca Complementaria</h2>
+      <p>
+        Cada parte del material está pensada para que puedas usarla cómodamente desde tu teléfono o computadora (en Modo Día o Modo Noche), escucharla con la pantalla apagada o imprimirla en papel.
+      </p>
+
+      <div class="inventory-table-wrap">
+        <table class="inventory-table">
+          <thead>
+            <tr>
+              <th>Qué incluye</th>
+              <th>Cómo te acompaña en la noche</th>
+              <th>Cómo puedes usarlo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Qué incluye"><strong>1. Guía Principal Protocolo 3-3-3</strong></td>
+              <td data-label="Cómo te acompaña en la noche">12 capítulos claros y directos: qué esperar y cuándo consultar, el método de 3 columnas paso a paso, cómo soltar el cuerpo, el recorrido de 7 noches, 6 casos de ejemplo y respuestas a dudas frecuentes.</td>
+              <td data-label="Cómo puedes usarlo">Lectura cómoda en pantalla (Modo Día y Modo Noche) + Libro completo en PDF de 12 páginas listo para descargar o imprimir.</td>
+            </tr>
+            <tr>
+              <td data-label="Qué incluye"><strong>2. Dos Audios Guiados en Español</strong></td>
+              <td data-label="Cómo te acompaña en la noche">• <em>Pausa Serena de Madrugada</em> (duración exacta: <strong>03:00</strong>)<br>• <em>Sesión Guiada de Descanso Nocturno</em> (duración exacta: <strong>12:00</strong>)<br><em>Nota transparente: Locución realizada con voz sintética local pausada en español (no es la voz grabada de Vivian Velásquez).</em></td>
+              <td data-label="Cómo puedes usarlo">Reproductor integrado con control de pausa y volumen + Descarga directa de los audios y de sus guiones completos por escrito para leer en silencio.</td>
+            </tr>
+            <tr>
+              <td data-label="Qué incluye"><strong>3. Tu Diario Nocturno y Plan Personal</strong></td>
+              <td data-label="Cómo te acompaña en la noche">Espacio práctico para anotar tus pendientes en 3 columnas y marcar tus 7 noches. Si activas el guardado, tus notas quedan en este navegador (sin enviarse a servidores ni cifrarse; accesibles a quien use este mismo dispositivo).</td>
+              <td data-label="Cómo puedes usarlo">Uso interactivo en tu navegador + Opción para descargar tus notas en texto o borrarlas cuando quieras con un botón.</td>
+            </tr>
+            <tr>
+              <td data-label="Qué incluye"><strong>4. Cuaderno de 3 Hojas Imprimibles</strong></td>
+              <td data-label="Cómo te acompaña en la noche">3 hojas tamaño A4/Carta listas para escribir a mano junto a tu lámpara: Plantilla de 3 Columnas, Bitácora de 7 Noches y Tarjetas de Mesita de Noche.</td>
+              <td data-label="Cómo puedes usarlo">Vista para imprimir desde el navegador + Cuaderno en PDF de 3 páginas listo para descargar.</td>
+            </tr>
+            <tr>
+              <td data-label="Qué incluye"><strong>5. Complemento Opcional (+USD 12): Biblioteca de 30 Fichas</strong></td>
+              <td data-label="Cómo te acompaña en la noche"><strong>30 fichas individuales de reflexión</strong> organizadas en 5 temas (Despertares, Tensión en el cuerpo, Trabajo y cuentas, Familia y Decisiones), cada una con pasos concretos, ejemplo, pregunta guía y límites saludables.</td>
+              <td data-label="Cómo puedes usarlo">Buscador rápido por palabra o tema + Armado de tu selección personal de fichas para descargar o imprimir.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MARCO DE PRUDENCIA CLÍNICA Y EVIDENCIA -->
+    <section class="section-card">
+      <span class="kicker">Uso Prudente y Fuentes de Salud</span>
+      <h2>Alcance de esta guía y cuándo consultar a un profesional</h2>
+      <p>
+        Despertarse en la noche puede deberse a muchas razones distintas (<a href="https://www.nhlbi.nih.gov/health/insomnia/causes" target="_blank" rel="noopener" style="color: var(--olive-primary);">NHLBI Causes</a>). Esta guía ofrece herramientas prácticas de escritura y hábitos nocturnos; <strong>no reemplaza una consulta médica ni equivale a la Terapia Cognitivo-Conductual para el Insomnio (TCC-I / CBT-I)</strong> (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7853203/" target="_blank" rel="noopener" style="color: var(--olive-primary);">Guía AASM, PMC7853203</a>).
+      </p>
+      <ul style="padding-left: 22px; color: var(--ink-secondary); display: flex; flex-direction: column; gap: 8px; font-size: 0.95rem;">
+        <li><strong>Señales que requieren atención médica inmediata:</strong> El dolor o presión en el pecho nuevo o intenso y la falta de aire nunca deben tratarse con ejercicios de relajación; acude a urgencias médicas.</li>
+        <li><strong>Cuándo pedir valoración médica:</strong> Si te cuesta dormir 3 o más noches por semana durante 3 meses o más (<a href="https://www.nhlbi.nih.gov/health/insomnia/diagnosis" target="_blank" rel="noopener" style="color: var(--olive-primary);">NHLBI Diagnosis</a>), o si hay ronquidos fuertes con pausas al respirar.</li>
+        <li><strong>Medicamentos:</strong> No suspendas ni cambies medicamentos recetados sin hablar antes con tu médico (<a href="https://www.nhlbi.nih.gov/health/insomnia/treatment" target="_blank" rel="noopener" style="color: var(--olive-primary);">NHLBI Treatment</a>).</li>
+        <li><strong>Sobre la reflexión emocional:</strong> En la biblioteca complementaria, las preguntas sobre estrés o lecturas simbólicas (como la biodescodificación) se usan solo como reflexión personal no probada científicamente, sin atribuir causas emocionales a enfermedades médicas.</li>
+      </ul>
+    </section>
+
+    <!-- BLOQUE DE SELECCIÓN DE ACCESO (DEMOSTRACIÓN LOCAL HONESTA) -->
+    <section class="order-panel" id="seleccion-acceso">
+      <div class="demo-banner">
+        <strong>ℹ️ Vista de Demostración (Sin Cobro):</strong> Aquí puedes probar el selector de precios (<strong>USD 27</strong> por la guía principal o <strong>USD 39</strong> sumando la Biblioteca de 30 Fichas) y abrir directamente todos los materiales. No se realiza ningún cobro bancario.
+      </div>
+
+      <span class="kicker">Elige tu Edición</span>
+      <h2>Selecciona cómo quieres empezar esta noche</h2>
+
+      <div class="addon-selector">
+        <label class="addon-label">
+          <input type="checkbox" id="include-library-check" onchange="updateOrderSelection()" />
+          <div>
+            <strong style="font-size: 1.08rem; color: var(--ink-primary); display: block;">
+              Sumar la «Biblioteca Práctica de Reflexión Nocturna (30 Fichas)» por +USD 12
+            </strong>
+            <p style="margin: 6px 0 0; font-size: 0.94rem; color: var(--ink-secondary);">
+              Agrega las <strong>30 fichas prácticas</strong> organizadas en 5 temas cotidianos (Despertares, Tensión corporal, Trabajo y finanzas, Familia y Decisiones), con buscador rápido, ejemplo paso a paso y pregunta para tu cuaderno.
+            </p>
+          </div>
+        </label>
+      </div>
+
+      <div class="summary-card">
+        <div class="summary-line">
+          <span>Protocolo 3-3-3 (Guía completa + 2 Audios guiados + Diario + PDF y Hojas para imprimir)</span>
+          <strong>USD 27.00</strong>
+        </div>
+        <div class="summary-line" id="addon-summary-line" style="display: none; color: var(--terracotta-primary); font-weight: 600;">
+          <span>Complemento: Biblioteca Práctica de Reflexión (30 Fichas)</span>
+          <strong>+USD 12.00</strong>
+        </div>
+        <div class="summary-line summary-total">
+          <span>Total seleccionado:</span>
+          <span id="total-price-display">USD 27.00</span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+        <a href="producto-digital.html" id="primary-access-link" class="btn-editorial primary" style="padding: 14px 26px; font-size: 1.02rem;">
+          Abrir el Protocolo 3-3-3 (Edición USD 27) →
+        </a>
+        <a href="order-bump.html" class="btn-editorial" style="padding: 14px 20px;">
+          Ver la Biblioteca de 30 Fichas (USD 12)
+        </a>
+        <a href="descargas/guia-protocolo-nocturno-3-3-3.pdf" download class="btn-editorial" style="padding: 14px 20px;">
+          ⬇ Descargar Guía en PDF
+        </a>
+      </div>
+    </section>
+
+    <!-- PREGUNTAS FRECUENTES REALISTAS -->
+    <section class="section-card">
+      <span class="kicker">Preguntas Frecuentes</span>
+      <h2>Dudas habituales antes de empezar</h2>
+
+      <details class="faq-row" open>
+        <summary>1. ¿Este protocolo promete que me quedaré dormido en 15 minutos?</summary>
+        <p style="margin-top: 10px; margin-bottom: 0;">
+          No. Ninguna guía seria puede prometer el minuto exacto en que te dormirás, porque vigilarte para dormir rápido te desvela más. Lo que sí te da en <strong>12 a 15 minutos</strong> es una rutina clara para sacar los pendientes al papel, aflojar el cuerpo y saber qué hacer si te despiertas a mitad de la noche.
+        </p>
+      </details>
+
+      <details class="faq-row">
+        <summary>2. ¿Qué pasa si prefiero no escuchar audios en la noche?</summary>
+        <p style="margin-top: 10px; margin-bottom: 0;">
+          Puedes hacer toda la rutina en silencio. Las dos guías de audio tienen su texto completo escrito paso a paso dentro del manual y en las tarjetas para tu mesa de noche, e incluyen la opción de respirar a tu ritmo natural si contar segundos no te resulta cómodo.
+        </p>
+      </details>
+
+      <details class="faq-row">
+        <summary>3. ¿Quién puede ver lo que escribo en el Diario Nocturno?</summary>
+        <p style="margin-top: 10px; margin-bottom: 0;">
+          Tus notas no se envían a ningún servidor ni salen de tu teléfono o computadora. Si activas la casilla para guardarlas, quedan guardadas sin cifrar en este navegador, por lo que otra persona que use tu mismo dispositivo podría verlas. Si compartes el equipo, puedes dejar el guardado desactivado o borrar tus notas con un clic.
+        </p>
+      </details>
+    </section>
+
+  </main>
+
+  <script>
+    function updateOrderSelection() {
+      const checked = document.getElementById('include-library-check').checked;
+      const line = document.getElementById('addon-summary-line');
+      const total = document.getElementById('total-price-display');
+      const btn = document.getElementById('primary-access-link');
+
+      if (checked) {
+        line.style.display = 'flex';
+        total.textContent = 'USD 39.00';
+        btn.textContent = 'Abrir Protocolo 3-3-3 + Biblioteca de 30 Fichas (USD 39) →';
+      } else {
+        line.style.display = 'none';
+        total.textContent = 'USD 27.00';
+        btn.textContent = 'Abrir el Protocolo 3-3-3 (Edición USD 27) →';
+      }
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isNight = html.getAttribute('data-theme') === 'night';
+      const next = isNight ? 'day' : 'night';
+      html.setAttribute('data-theme', next);
+      const d = document.getElementById('idx-theme-desktop');
+      const m = document.getElementById('idx-theme-mobile');
+      if (d) d.textContent = !isNight ? '☀ Modo Día' : '◑ Modo Noche';
+      if (m) m.textContent = !isNight ? '☀ Día' : '◑ Noche';
+    }
+  </script>
+</body>
+</html>

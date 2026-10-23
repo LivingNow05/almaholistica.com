@@ -1402,4 +1402,77 @@ body {
   position: static !important;
 }
 
+/* ==========================================================================
+   12. SISTEMA VISUAL DIDÁCTICO Y MAQUETACIÓN DINÁMICA ("LECTURA EN 10 SEGUNDOS")
+   Tarjetas de lectura infantil/universal, pasos visuales y tarjetas móviles
+   100% Sólido Mate, Cero CLS, Contraste WCAG AAA en Modo Claro y Oscuro
+   ========================================================================== */
+.simple-guide-box {
+  background-color: #FFFFFF;
+  border: 2px solid #CBD5E1;
+  border-radius: 1.5rem;
+  padding: 1.25rem;
+}
+
+html.dark .simple-guide-box {
+  background-color: #0E172F !important;
+  border-color: #1E3A5F !important;
+}
+
+.simple-step-card {
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+}
+
+.simple-step-card:hover {
+  transform: translateY(-2px);
+  border-color: #779DD1;
+}
+
+html.dark .simple-step-card {
+  background-color: #0A1226 !important;
+  border-color: #1E293B !important;
+}
+
+html.dark .simple-step-card:hover {
+  border-color: #38BDF8 !important;
+}
+
+.simple-number-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  background-color: #E0EAF5;
+  color: #1E3A8A;
+  border: 1px solid #A8C4E0;
+  flex-shrink: 0;
+}
+
+html.dark .simple-number-circle {
+  background-color: #0E172F !important;
+  color: #38BDF8 !important;
+  border-color: #1E3A5F !important;
+}
+
+.simple-translation-banner {
+  background-color: #F1F5F9;
+  border-left: 4px solid #2E854B;
+  border-radius: 0.75rem;
+  padding: 0.875rem 1.125rem;
+}
+
+html.dark .simple-translation-banner {
+  background-color: #0E172F !important;
+  border-left-color: #3E9B67 !important;
+}
+
+
 

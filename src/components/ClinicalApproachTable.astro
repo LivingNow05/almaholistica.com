@@ -10,6 +10,9 @@
 
 export interface ClinicalDimension {
   dimension: string;
+  preguntaSimple: string;
+  simpleMedicina: string;
+  simpleBiodescodificacion: string;
   medicinaConvencional: string;
   biodescodificacion: string;
 }
@@ -17,26 +20,41 @@ export interface ClinicalDimension {
 const dimensions: ClinicalDimension[] = [
   {
     dimension: 'Paradigma de origen',
+    preguntaSimple: '1. ¿Por qué aparece el dolor?',
+    simpleMedicina: 'El cuerpo tiene una pieza inflamada, desgastada o un virus.',
+    simpleBiodescodificacion: 'Viviste un disgusto o estrés fuerte en silencio y tu cuerpo encendió una alarma.',
     medicinaConvencional: 'Etiología físico-mecánica y bioquímica. La afección se interpreta como una disfunción celular, anomalía orgánica, mutación fortuita o agresión externa de patógenos.',
     biodescodificacion: 'Paradigma psicosomático y adaptativo (Psiconeuroinmunología). El síntoma es un Programa Biológico Especial (SBS) activado por un impacto emocional vivido en soledad.'
   },
   {
     dimension: 'Enfoque diagnóstico',
+    preguntaSimple: '2. ¿Qué revisamos primero?',
+    simpleMedicina: 'Exámenes físicos: análisis de sangre, radiografías y ecografías.',
+    simpleBiodescodificacion: 'Tu historia de vida: qué situación difícil viviste justo antes de que empezara el síntoma.',
     medicinaConvencional: 'Taxonomía nosológica y análisis sintomático físico (pruebas de laboratorio séricas, biopsias, ecografías, resonancias magnéticas y marcadores clínicos).',
     biodescodificacion: 'Decodificación biosemiótica y cartografía biográfica. Mapeo del órgano y capa embrionaria afectada para identificar el conflicto biológico inconsciente.'
   },
   {
     dimension: 'Nivel de intervención',
+    preguntaSimple: '3. ¿Cómo te ayudamos?',
+    simpleMedicina: 'Con medicamentos, tratamientos físicos o cirugía para aliviar el cuerpo.',
+    simpleBiodescodificacion: 'Hablando y soltando la emoción atrapada para que tu sistema nervioso se relaje.',
     medicinaConvencional: 'Tratamiento bioquímico y estructural físico (farmacoterapia, cirugía reparadora, técnicas paliativas y supresión directa de la respuesta biológica).',
     biodescodificacion: 'Intervención psicoemocional y neurovegetativa (toma de conciencia, catarsis guiada, desactivación de la fase simpaticotónica y reprogramación cognitiva).'
   },
   {
     dimension: 'Objetivo del síntoma',
+    preguntaSimple: '4. ¿Qué es el síntoma?',
+    simpleMedicina: 'Un problema físico que hay que apagar o controlar.',
+    simpleBiodescodificacion: 'Un mensaje o aviso de tu cuerpo pidiéndote cambiar algo que te hace daño.',
     medicinaConvencional: 'Anomalía disfuncional o enemigo patológico que debe ser neutralizado, suprimido o extirpado para restaurar los parámetros fisiológicos estándar.',
     biodescodificacion: 'Brújula biológica de precisión y respuesta adaptativa de supervivencia. Revela la necesidad biológica no satisfecha que no logró resolverse conscientemente.'
   },
   {
     dimension: 'Papel del consultante',
+    preguntaSimple: '5. ¿Cuál es tu rol?',
+    simpleMedicina: 'Seguir las indicaciones y tomar el tratamiento recetado por el doctor.',
+    simpleBiodescodificacion: 'Ser el protagonista: comprender tu emoción, poner límites y recuperar tu paz.',
     medicinaConvencional: 'Receptor receptivo o pasivo de la prescripción facultativa y de los procedimientos externos prescritos por el especialista de la salud.',
     biodescodificacion: 'Protagonista y agente activo indispensable. Asume la responsabilidad consciente de explorar su historia personal, liberar emociones y resignificar vivencias.'
   }
@@ -44,7 +62,7 @@ const dimensions: ClinicalDimension[] = [
 ---
 
 <div class="w-full max-w-full overflow-hidden rounded-[2.5rem] bg-[#0A1226] border border-slate-800/40 p-6 sm:p-8 lg:p-10 my-12">
-  <!-- Cabecera de la tabla y micro-indicador móvil -->
+  <!-- Cabecera de la tabla -->
   <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-800/40">
     <div class="space-y-1">
       <span class="text-xs font-semibold tracking-[0.2em] text-[#779DD1] uppercase flex items-center gap-2">
@@ -56,16 +74,61 @@ const dimensions: ClinicalDimension[] = [
       </h3>
     </div>
 
-    <!-- Micro-indicador visual de desplazamiento horizontal en móvil -->
-    <div class="flex items-center gap-2 text-xs text-slate-400 font-sans lg:hidden shrink-0 bg-[#0E172F] px-3.5 py-1.5 rounded-full border border-slate-800/60 self-start sm:self-auto">
-      <svg class="w-3.5 h-3.5 text-[#779DD1] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-      </svg>
-      <span>Desplaza horizontalmente</span>
+    <div class="inline-flex items-center gap-2 text-xs text-emerald-400 font-sans shrink-0 bg-[#0E172F] px-4 py-2 rounded-full border border-slate-800/60 self-start sm:self-auto font-semibold">
+      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+      <span>Enfoques 100% Complementarios</span>
     </div>
   </div>
 
-  <!-- Contenedor scrollable responsivo con contención anti-desbordamiento -->
+  <!-- Resumen Visual Ultra-Simple (Para leer en 5 segundos en móvil y escritorio) -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+    <div class="p-5 rounded-2xl bg-[#0E172F] border border-slate-800 flex items-start gap-4">
+      <span class="simple-number-circle">🏥</span>
+      <div>
+        <span class="text-xs font-bold uppercase tracking-wider text-[#779DD1] block mb-1">1. Tu Médico Tratante</span>
+        <strong class="text-base text-white block mb-1">Cuida y repara tu cuerpo físico</strong>
+        <span class="text-sm text-slate-300 leading-relaxed block">
+          Revisa tus órganos con estudios médicos y receta medicamentos cuando tu cuerpo necesita alivio físico inmediato.
+        </span>
+      </div>
+    </div>
+    <div class="p-5 rounded-2xl bg-[#0E172F] border border-slate-800 border-l-4 border-l-[#2E854B] flex items-start gap-4">
+      <span class="simple-number-circle">🌿</span>
+      <div>
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 block mb-1">2. Alma Holística (Biodescodificación)</span>
+        <strong class="text-base text-white block mb-1">Desactiva la emoción que encendió el síntoma</strong>
+        <span class="text-sm text-slate-300 leading-relaxed block">
+          Te ayudamos a soltar el estrés, susto o tristeza guardada para que tu cuerpo deje de estar en alerta y sane mejor.
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vista Móvil Amigable: Tarjetas Apiladas de Lectura Sencilla (< 768px) -->
+  <div class="grid grid-cols-1 gap-4 md:hidden mb-6">
+    {dimensions.map((row) => (
+      <div class="p-5 rounded-2xl bg-[#0E172F] border border-slate-800 space-y-3">
+        <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
+          <span class="text-base font-bold text-white">{row.preguntaSimple}</span>
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-[#779DD1] bg-[#0A1226] px-2.5 py-1 rounded-full border border-slate-800">
+            {row.dimension}
+          </span>
+        </div>
+        <div class="grid grid-cols-1 gap-2.5 text-sm">
+          <div class="p-3 rounded-xl bg-[#0A1226] border border-slate-800">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">🏥 Medicina Convencional:</span>
+            <span class="text-slate-200 font-medium block">{row.simpleMedicina}</span>
+          </div>
+          <div class="p-3 rounded-xl bg-[#0A1226] border border-slate-800 border-l-4 border-l-[#779DD1]">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-[#779DD1] block mb-1">🌿 Biodescodificación:</span>
+            <span class="text-white font-semibold block">{row.simpleBiodescodificacion}</span>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Contenedor de Tabla Semántica Completa (Visible en Desktop + Expandible en Móvil para SEO/GEO) -->
   <div class="w-full max-w-full overflow-x-auto scroll-smooth overscroll-contain clinical-table-container">
     <table
       itemscope
@@ -93,16 +156,21 @@ const dimensions: ClinicalDimension[] = [
         {dimensions.map((row, idx) => (
           <tr class={idx % 2 === 0 ? 'bg-[#0A1226]' : 'bg-[#0E172F]'}>
             <th scope="row" class="py-5 px-5 text-sm font-semibold text-slate-900 dark:text-white align-top">
-              <div class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#779DD1] shrink-0"></span>
-                <span>{row.dimension}</span>
+              <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#779DD1] shrink-0"></span>
+                  <span class="text-base font-bold">{row.preguntaSimple}</span>
+                </div>
+                <span class="block text-xs text-[#779DD1] font-medium pl-3.5">{row.dimension}</span>
               </div>
             </th>
             <td class="py-5 px-5 text-sm text-slate-700 dark:text-slate-300 font-normal leading-relaxed align-top">
-              {row.medicinaConvencional}
+              <strong class="block text-slate-900 dark:text-white font-semibold mb-1">{row.simpleMedicina}</strong>
+              <span class="text-xs sm:text-sm opacity-90">{row.medicinaConvencional}</span>
             </td>
             <td class="py-5 px-5 text-sm text-slate-800 dark:text-slate-200 font-normal leading-relaxed align-top">
-              {row.biodescodificacion}
+              <strong class="block text-slate-900 dark:text-white font-semibold mb-1">{row.simpleBiodescodificacion}</strong>
+              <span class="text-xs sm:text-sm opacity-90">{row.biodescodificacion}</span>
             </td>
           </tr>
         ))}

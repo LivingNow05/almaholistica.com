@@ -12,6 +12,7 @@
 export interface AccompanimentStageRow {
   numero: string;
   fase: string;
+  resumenNino: string;
   sesionesEstimadas: string;
   metodologia: string;
   resultadoEsperado: string;
@@ -23,6 +24,7 @@ const stages: AccompanimentStageRow[] = [
   {
     numero: '01',
     fase: 'Diagnóstico & Cartografía Biológica',
+    resumenNino: '🔍 Paso 1: Encontramos qué momento exacto de tu vida encendió el dolor.',
     sesionesEstimadas: '1 sesión (60 - 75 min)',
     metodologia: 'Anamnesis clínica biográfica, correlación del síntoma físico con las leyes biológicas del choque inconsciente (Bioshock) y localización del tejido embrionario afectado.',
     resultadoEsperado: 'Identificación precisa del conflicto raíz inconsciente, comprensión del sentido adaptativo del síntoma y entrega de la hipótesis clínica personalizada.',
@@ -32,6 +34,7 @@ const stages: AccompanimentStageRow[] = [
   {
     numero: '02',
     fase: 'Desanclaje Emocional & Catarsis',
+    resumenNino: '💧 Paso 2: Expresas y sueltas el enojo, miedo o tristeza que tenías guardado.',
     sesionesEstimadas: '1 a 2 sesiones',
     metodologia: 'Técnicas de Psiconeuroinmunología (PNI), regresión consciente al momento del bioshock, desactivación de la alerta neurovegetativa y liberación somática de emociones reprimidas.',
     resultadoEsperado: 'Descenso notable del nivel de alerta simpática en el sistema nervioso autónomo, liberación de la tensión visceral y disminución progresiva del dolor físico.',
@@ -41,6 +44,7 @@ const stages: AccompanimentStageRow[] = [
   {
     numero: '03',
     fase: 'Reprogramación Mental & Límites',
+    resumenNino: '🛡️ Paso 3: Aprendes a decir "no" y a proteger tu paz sin sentir culpa.',
     sesionesEstimadas: '1 sesión',
     metodologia: 'Anclajes de PNL integrativa, decretos biológicos de resignificación, reestructuración cognitiva de creencias limitantes y establecimiento de límites asertivos.',
     resultadoEsperado: 'Generación de nuevos circuitos neuronales de respuesta ante detonantes estresores, desactivación de la orden biológica de alarma y prevención activa de recidivas.',
@@ -50,6 +54,7 @@ const stages: AccompanimentStageRow[] = [
   {
     numero: '04',
     fase: 'Consolidación & Autorregulación',
+    resumenNino: '🌿 Paso 4: Tu cuerpo descansa tranquilo y recupera su bienestar natural.',
     sesionesEstimadas: 'Seguimiento a 21-30 días (opcional)',
     metodologia: 'Evaluación de marcadores de estabilidad somática, balance de coherencia mente-cuerpo, calibración del estilo de vida y entrega de pautas de higiene bioemocional.',
     resultadoEsperado: 'Remisión sostenida del conflicto inconsciente, autonomía del consultante para autorregularse ante futuros estresores y consolidación del bienestar integral.',
@@ -60,7 +65,7 @@ const stages: AccompanimentStageRow[] = [
 ---
 
 <div class="w-full max-w-full overflow-hidden rounded-[2.5rem] bg-[#0A1226] border border-slate-800/40 p-6 sm:p-8 lg:p-10 my-12">
-  <!-- Cabecera de la tabla y micro-indicador móvil -->
+  <!-- Cabecera de la tabla -->
   <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-800/40">
     <div class="space-y-1">
       <span class="text-xs font-semibold tracking-[0.2em] text-[#779DD1] uppercase flex items-center gap-2">
@@ -72,13 +77,35 @@ const stages: AccompanimentStageRow[] = [
       </h3>
     </div>
 
-    <!-- Micro-indicador visual de desplazamiento horizontal en móvil -->
-    <div class="flex items-center gap-2 text-xs text-slate-400 font-sans lg:hidden shrink-0 bg-[#0E172F] px-3.5 py-1.5 rounded-full border border-slate-800/60 self-start sm:self-auto">
-      <svg class="w-3.5 h-3.5 text-[#779DD1] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-      </svg>
-      <span>Desplaza horizontalmente</span>
+    <div class="inline-flex items-center gap-2 text-xs text-emerald-400 font-sans shrink-0 bg-[#0E172F] px-4 py-2 rounded-full border border-slate-800/60 self-start sm:self-auto font-semibold">
+      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+      <span>Proceso Breve: 1 a 4 Sesiones</span>
     </div>
+  </div>
+
+  <!-- Vista Móvil Amigable: Tarjetas de Etapas Paso a Paso (< 768px) -->
+  <div class="grid grid-cols-1 gap-4 md:hidden mb-6">
+    {stages.map((row) => (
+      <div class="p-5 rounded-2xl bg-[#0E172F] border border-slate-800 space-y-3">
+        <div class="flex items-center justify-between gap-2 flex-wrap">
+          <div class="flex items-center gap-2">
+            <span class="simple-number-circle">{row.numero}</span>
+            <strong class="text-base font-bold text-white">{row.fase}</strong>
+          </div>
+          <span class={`bio-badge ${row.badgeClass} inline-flex items-center text-[11px]`}>
+            {row.badgeLabel}
+          </span>
+        </div>
+        <div class="p-3 rounded-xl bg-[#0A1226] border border-slate-800 border-l-4 border-l-[#779DD1]">
+          <span class="text-sm font-semibold text-white block leading-snug">{row.resumenNino}</span>
+          <span class="text-xs text-[#779DD1] font-medium block mt-1">⏱️ Duración: {row.sesionesEstimadas}</span>
+        </div>
+        <div class="text-xs text-slate-300 space-y-1.5 leading-relaxed">
+          <div><strong class="text-white">Cómo trabajamos:</strong> {row.metodologia}</div>
+          <div><strong class="text-emerald-400">Qué logras:</strong> {row.resultadoEsperado}</div>
+        </div>
+      </div>
+    ))}
   </div>
 
   <!-- Contenedor scrollable responsivo con contención anti-desbordamiento -->
@@ -94,10 +121,10 @@ const stages: AccompanimentStageRow[] = [
       </caption>
       <thead>
         <tr class="border-b border-slate-800/60 bg-[#0E172F]">
-          <th scope="col" class="py-4 px-5 text-xs font-semibold uppercase tracking-wider text-[#779DD1] w-[22%]">
+          <th scope="col" class="py-4 px-5 text-xs font-semibold uppercase tracking-wider text-[#779DD1] w-[24%]">
             Fase Clínica
           </th>
-          <th scope="col" class="py-4 px-5 text-xs font-semibold uppercase tracking-wider text-slate-200 w-[18%]">
+          <th scope="col" class="py-4 px-5 text-xs font-semibold uppercase tracking-wider text-slate-200 w-[16%]">
             Sesiones Estimadas
           </th>
           <th scope="col" class="py-4 px-5 text-xs font-semibold uppercase tracking-wider text-slate-200 w-[30%]">
@@ -115,10 +142,13 @@ const stages: AccompanimentStageRow[] = [
               <div class="space-y-2">
                 <div class="flex items-center gap-2">
                   <span class="font-sans text-xs text-[#779DD1] font-bold">[{row.numero}]</span>
-                  <span>{row.fase}</span>
+                  <span class="text-base font-bold">{row.fase}</span>
                 </div>
                 <span class={`bio-badge ${row.badgeClass} inline-flex items-center text-[11px]`}>
                   {row.badgeLabel}
+                </span>
+                <span class="block text-xs font-medium text-[#779DD1] pt-1 leading-snug">
+                  {row.resumenNino}
                 </span>
               </div>
             </th>

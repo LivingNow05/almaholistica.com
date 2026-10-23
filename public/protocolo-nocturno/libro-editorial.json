@@ -1,0 +1,65 @@
+{
+  "title": "Esta noche, baja el ritmo.",
+  "chapters": [
+    {
+      "id": "orientacion-limites",
+      "title": "Empieza por aquí.",
+      "desc": "No tienes que leer todo esta noche."
+    },
+    {
+      "id": "metodo-333",
+      "title": "Tres pasos. Una rutina.",
+      "desc": "Reconoce. Anota. Afloja."
+    },
+    {
+      "id": "ruta-breve",
+      "title": "Hazlo esta noche.",
+      "desc": "Una página para cuando no quieres pensar de más."
+    },
+    {
+      "id": "modulo-1",
+      "title": "Ponle nombre.",
+      "desc": "Paso 1 · Reconocer sin pelear."
+    },
+    {
+      "id": "modulo-2",
+      "title": "Escribe tres frases.",
+      "desc": "Paso 2 · Saca el pendiente de tu cabeza."
+    },
+    {
+      "id": "modulo-3",
+      "title": "Afloja el cuerpo.",
+      "desc": "Paso 3 · Menos esfuerzo, más comodidad."
+    },
+    {
+      "id": "audios-guiados",
+      "title": "Escucha y descansa.",
+      "desc": "Dos audios. Elige el que necesitas."
+    },
+    {
+      "id": "recorrido-7-noches",
+      "title": "Siete noches, poco a poco.",
+      "desc": "Un pequeño cambio por noche."
+    },
+    {
+      "id": "casos-aplicacion",
+      "title": "Así puede verse en tu día.",
+      "desc": "Seis ejemplos para encontrar tu propia forma."
+    },
+    {
+      "id": "obstaculos-mantenimiento",
+      "title": "Si hoy no cambia, ajusta.",
+      "desc": "Una mala noche no es un examen perdido."
+    },
+    {
+      "id": "diario-privado",
+      "title": "Tu cuaderno.",
+      "desc": "Escribe poco. Deja claro el próximo paso."
+    },
+    {
+      "id": "fuentes-descargas",
+      "title": "Tenlo a mano.",
+      "desc": "Tus recursos y las fuentes de esta guía."
+    }
+  ]
+}

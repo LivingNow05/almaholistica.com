@@ -178,12 +178,90 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
       </div>
     </header>
 
+    <!-- MÓDULO DIDÁCTICO PRIMARIO "EN PALABRAS SIMPLES: ¿QUÉ ESTÁS VIVIENDO?" (Lectura Fácil e Inmediata) -->
+    <section id="en-palabras-simples" class="mb-10" aria-label="En palabras simples">
+      <div class="mb-6">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span class="text-xs uppercase tracking-widest text-emerald-400 font-bold">Lectura Fácil en 15 Segundos • Para Todas las Edades</span>
+        </div>
+        <h2 class="heading-solemn text-2xl sm:text-3xl font-normal text-slate-100">
+          En Palabras Simples: ¿Qué intenta decirte tu cuerpo con {nombre}?
+        </h2>
+      </div>
+
+      <!-- Mini-Historia Visual en 3 Pasos Claros -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
+        <!-- Tarjeta 1: La Vivencia Diaria -->
+        <div class="card-matte-elevated p-6 flex flex-col justify-between border-t-4 border-t-[#F97316]">
+          <div>
+            <div class="flex items-center gap-2.5 mb-3">
+              <span class="simple-number-circle">1</span>
+              <span class="text-xs font-sans uppercase tracking-wider text-[#F97316] font-bold">Lo que sentiste y callaste</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">💬 ¿Qué emoción se guardó?</h3>
+            <p class="text-sm sm:text-base text-slate-200 leading-relaxed">
+              Viviste un momento de enojo, miedo o mucha presión donde sentiste que no podías hablar, defenderte o decir "basta" en voz alta.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2: La Reacción Biológica -->
+        <div class="card-matte-elevated p-6 flex flex-col justify-between border-t-4 border-t-[#779DD1]">
+          <div>
+            <div class="flex items-center gap-2.5 mb-3">
+              <span class="simple-number-circle">2</span>
+              <span class="text-xs font-sans uppercase tracking-wider text-[#779DD1] font-bold">La alarma de tu cuerpo</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">🛡️ ¿Por qué duele o molesta?</h3>
+            <p class="text-sm sm:text-base text-slate-200 leading-relaxed">
+              Tu cuerpo no está en tu contra: encendió una alarma en tu <strong>{sistema.toLowerCase()}</strong> intentando ayudarte a resistir ese estrés que llevabas por dentro.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tarjeta 3: La Clave de Liberación -->
+        <div class="card-matte-elevated p-6 flex flex-col justify-between border-t-4 border-t-[#2E854B]">
+          <div>
+            <div class="flex items-center gap-2.5 mb-3">
+              <span class="simple-number-circle">3</span>
+              <span class="text-xs font-sans uppercase tracking-wider text-emerald-400 font-bold">El camino de alivio</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">🌿 ¿Cómo se apaga la alarma?</h3>
+            <p class="text-sm sm:text-base text-slate-200 leading-relaxed">
+              Cuando en consulta 1 a 1 encontramos ese momento y sueltas la emoción guardada, tu sistema nervioso entiende que el peligro ya pasó y descansa.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra Resumen de 1 Línea -->
+      <div class="simple-translation-banner flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="text-sm sm:text-base text-slate-200">
+          <strong class="text-white">💡 Regla de oro fácil de recordar:</strong> Lo que tu boca calla por miedo o estrés, tu cuerpo lo expresa a través de <strong>{nombre.toLowerCase()}</strong> para pedirte alivio.
+        </div>
+        <a
+          href={fallbackWhatsAppUrl}
+          data-open-quiz="true"
+          data-symptom={nombre}
+          class="text-xs font-bold uppercase tracking-wider text-emerald-400 hover:underline shrink-0"
+        >
+          Hacer test de 1 minuto &rarr;
+        </a>
+      </div>
+    </section>
+
     <!-- BLOQUE CANÓNICO DE CITABILIDAD RAG (GEO AI OVERVIEWS / CHATGPT / PERPLEXITY) -->
     <section id="definicion-citabilidad-rag" class="card-matte-elevated p-6 sm:p-8 md:p-10 mb-10 border border-slate-800" aria-label="Definición Clínica y Citabilidad RAG">
-      <div class="flex items-center gap-2 mb-3">
-        <span class="w-2 h-2 rounded-full bg-[#38BDF8]"></span>
-        <span class="text-xs uppercase tracking-widest text-[#38BDF8] font-semibold font-mono">
-          SÍNTESIS CLÍNICA BIOEMOCIONAL // CITABILIDAD AI
+      <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#38BDF8]"></span>
+          <span class="text-xs uppercase tracking-widest text-[#38BDF8] font-semibold font-mono">
+            SÍNTESIS CLÍNICA BIOEMOCIONAL // CITABILIDAD AI
+          </span>
+        </div>
+        <span class="text-xs font-sans font-semibold text-slate-400 bg-[#0A1226] px-3 py-1 rounded-full border border-slate-800">
+          📖 Ficha Clínica Profunda
         </span>
       </div>
       <h2 class="heading-solemn text-2xl sm:text-3xl font-normal mb-4 text-slate-100">
@@ -199,73 +277,27 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
       </div>
     </section>
 
-    <!-- MÓDULO DIDÁCTICO "EN PALABRAS SIMPLES: ¿QUÉ ESTÁS VIVIENDO?" -->
-    <section id="en-palabras-simples" class="mb-10" aria-label="En palabras simples">
-      <div class="mb-6">
-        <div class="flex items-center gap-2 mb-2">
-          <span class="w-2 h-2 rounded-full bg-[#779DD1]"></span>
-          <span class="text-xs uppercase tracking-widest text-[#779DD1] font-semibold">Explicación Clara y Cercana</span>
-        </div>
-        <h2 class="heading-solemn text-2xl sm:text-3xl font-normal text-slate-100">
-          En Palabras Simples: ¿Qué intenta decirte tu cuerpo?
-        </h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <!-- Tarjeta 1: La Vivencia Diaria -->
-        <div class="card-matte-elevated p-6 flex flex-col justify-between border-t-2 border-t-[#F97316]">
-          <div>
-            <span class="text-xs font-sans uppercase tracking-wider text-[#F97316] font-bold block mb-2">01 // La Emoción Oculta</span>
-            <h3 class="text-base font-bold text-white mb-2">¿Cómo se siente en tu día a día?</h3>
-            <p class="text-sm text-slate-300 leading-relaxed">
-              Suele relacionarse con situaciones de impotencia, silencios prolongados o sobreexigencia donde te costó poner límites o expresar lo que sentías.
-            </p>
-          </div>
-        </div>
-
-        <!-- Tarjeta 2: La Reacción Biológica -->
-        <div class="card-matte-elevated p-6 flex flex-col justify-between border-t-2 border-t-[#779DD1]">
-          <div>
-            <span class="text-xs font-sans uppercase tracking-wider text-[#779DD1] font-bold block mb-2">02 // La Respuesta Orgánica</span>
-            <h3 class="text-base font-bold text-white mb-2">¿Por qué reacciona el cuerpo?</h3>
-            <p class="text-sm text-slate-300 leading-relaxed">
-              Tu biología no se equivoca: activa una alerta temporal en este tejido para amortiguar el impacto del estrés que tu mente no pudo resolver.
-            </p>
-          </div>
-        </div>
-
-        <!-- Tarjeta 3: La Clave de Liberación -->
-        <div class="card-matte-elevated p-6 flex flex-col justify-between border-t-2 border-t-emerald-400">
-          <div>
-            <span class="text-xs font-sans uppercase tracking-wider text-emerald-400 font-bold block mb-2">03 // El Camino de Alivio</span>
-            <h3 class="text-base font-bold text-white mb-2">¿Cómo empezar a sanarlo?</h3>
-            <p class="text-sm text-slate-300 leading-relaxed">
-              Al hacer consciente la emoción original y resignificarla en consulta 1 a 1, el sistema nervioso suelta la alarma y el cuerpo vuelve a su estado de equilibrio.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- TERMÓMETRO BIOLÓGICO DIDÁCTICO -->
     <section class="card-matte p-6 sm:p-8 mb-10 border border-slate-800" aria-label="Termómetro Biológico">
       <div class="flex items-center justify-between flex-wrap gap-4 mb-4">
         <div>
-          <span class="text-xs uppercase tracking-wider text-slate-400 font-bold block mb-1">Fases Biológicas de tu Dolencia</span>
-          <h3 class="text-lg sm:text-xl font-bold text-white">¿En qué etapa se encuentra tu síntoma?</h3>
+          <span class="text-xs uppercase tracking-wider text-[#779DD1] font-bold block mb-1">El Semáforo de tu Cuerpo</span>
+          <h3 class="text-lg sm:text-xl font-bold text-white">¿En cuál de estas 2 etapas estás hoy?</h3>
         </div>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="p-4 rounded-xl bg-[#0A1226] border border-[#F97316]/40">
-          <span class="text-xs font-sans font-bold text-[#F97316] uppercase block mb-1">🔴 Fase 1: Estrés Activo</span>
+        <div class="p-5 rounded-xl bg-[#0A1226] border border-[#F97316]/40 space-y-2">
+          <span class="text-xs sm:text-sm font-sans font-bold text-[#F97316] uppercase block">🔴 Etapa 1: Cuerpo Tenso (Estrés Activo)</span>
+          <strong class="text-sm text-white block">Todavía estás preocupado por el problema</strong>
           <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            La mente le da vueltas al problema, hay tensión muscular o insomnio. El cuerpo mantiene encendido el programa de adaptación.
+            La mente le da vueltas al asunto, hay tensión muscular, manos frías o mal sueño. Tu cuerpo mantiene encendida la alarma para defenderte.
           </p>
         </div>
-        <div class="p-4 rounded-xl bg-[#0A1226] border border-[#779DD1]/40">
-          <span class="text-xs font-sans font-bold text-[#779DD1] uppercase block mb-1">🔵 Fase 2: Fase de Reparación</span>
+        <div class="p-5 rounded-xl bg-[#0A1226] border border-[#779DD1]/40 space-y-2">
+          <span class="text-xs sm:text-sm font-sans font-bold text-[#779DD1] uppercase block">🔵 Etapa 2: Cuerpo Reparando (Alivio)</span>
+          <strong class="text-sm text-white block">Ya pasó la tormenta y tu cuerpo se repara</strong>
           <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Tras verbalizar o calmar el conflicto, aparece la inflamación o cansancio reparador. La biología trabaja para regenerar el tejido.
+            Tras hablar o calmar el conflicto, aparece inflamación, calor o mucho cansancio. No estás empeorando: tu cuerpo está reparando el tejido.
           </p>
         </div>
       </div>
@@ -277,9 +309,17 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
         <span class="w-2 h-2 rounded-full bg-[#779DD1]"></span>
         <span class="text-xs uppercase tracking-widest text-[#779DD1] font-semibold">Origen Psicoemocional</span>
       </div>
-      <h2 id="conflicto-heading" class="heading-solemn text-2xl sm:text-3xl font-normal mb-6 text-slate-100">
+      <h2 id="conflicto-heading" class="heading-solemn text-2xl sm:text-3xl font-normal mb-4 text-slate-100">
         El Conflicto Emocional Inconsciente
       </h2>
+
+      <!-- Traducción infantil / universal antes de la cita -->
+      <div class="mb-5 p-4 rounded-xl bg-[#0A1226] border border-slate-800 flex items-start gap-3">
+        <span class="text-lg shrink-0">🔍</span>
+        <div class="text-sm sm:text-base text-slate-200 leading-relaxed">
+          <strong class="text-white">¿Qué significa "Conflicto Emocional"?</strong> Es simplemente una situación de tu vida que te dolió, te dio miedo o te pareció injusta, y que guardaste adentro sin poder resolverla.
+        </div>
+      </div>
 
       <!-- Bloque destacado con la cita central del conflicto -->
       <div class="p-6 bg-[#0A1226] border-l-4 border-[#779DD1] rounded-r-xl mb-6">
@@ -304,9 +344,17 @@ const fallbackWhatsAppUrl = buildWhatsAppUrl({
         <span class="w-2 h-2 rounded-full bg-[#779DD1]"></span>
         <span class="text-xs uppercase tracking-widest text-[#779DD1] font-semibold">Fisiología y Adaptación</span>
       </div>
-      <h2 id="sentido-heading" class="heading-solemn text-2xl sm:text-3xl font-normal mb-6 text-slate-100">
+      <h2 id="sentido-heading" class="heading-solemn text-2xl sm:text-3xl font-normal mb-4 text-slate-100">
         El Sentido Biológico de Supervivencia
       </h2>
+
+      <!-- Traducción infantil / universal del sentido biológico -->
+      <div class="mb-5 p-4 rounded-xl bg-[#0E172F] border border-slate-800 border-l-4 border-l-[#2E854B] flex items-start gap-3">
+        <span class="text-lg shrink-0">🛡️</span>
+        <div class="text-sm sm:text-base text-slate-200 leading-relaxed">
+          <strong class="text-white">¿Para qué hace esto tu cuerpo?</strong> Así como sudas cuando hace calor para refrescarte, tu cuerpo activa este síntoma intentando ayudarte a soportar una situación que sentiste difícil.
+        </div>
+      </div>
 
       <div class="p-6 bg-[#0E172F] border border-[#1E3A5F] rounded-xl mb-6">
         <p class="text-base sm:text-lg text-slate-200 leading-relaxed font-normal">
